@@ -26,17 +26,29 @@ procedure Decode_Hall is
       (4 => -1.0, others => 0.0)
      );
    
-   A_Translation : constant Symop := (4 => (0.0, 0.5, 0.5, 0.0), others => (others => 0.0));
-   B_Translation : constant Symop := (4 => (0.5, 0.0, 0.5, 0.0), others => (others => 0.0));
-   C_Translation : constant Symop := (4 => (0.5, 0.5, 0.0, 0.0), others => (others => 0.0));
-   I_Translation : constant Symop := (4 => (0.5, 0.5, 0.5, 0.0), others => (others => 0.0));
+   A_Translation : constant Symop := (4 => (0.0, 0.5, 0.5, 0.0), others => (4 => 1.0, others => 0.0));
+   B_Translation : constant Symop := (4 => (0.5, 0.0, 0.5, 0.0), others => (4 => 1.0, others => 0.0));
+   C_Translation : constant Symop := (4 => (0.5, 0.5, 0.0, 0.0), others => (4 => 1.0, others => 0.0));
+   I_Translation : constant Symop := (4 => (0.5, 0.5, 0.5, 0.0), others => (4 => 1.0, others => 0.0));
    
-   R_Translation_1 : constant Symop := (4 => (1.0/3.0, 2.0/3.0, 2.0/3.0, 0.0), others => (others => 0.0));
-   R_Translation_2 : constant Symop := (4 => (2.0/3.0, 1.0/3.0, 1.0/3.0, 0.0), others => (others => 0.0));
+   R_Translation_1 : constant Symop := (4 => (1.0/3.0, 2.0/3.0, 2.0/3.0, 0.0), others => (4 => 1.0, others => 0.0));
+   R_Translation_2 : constant Symop := (4 => (2.0/3.0, 1.0/3.0, 1.0/3.0, 0.0), others => (4 => 1.0, others => 0.0));
    
-   F_Translation_1 : constant Symop := (4 => (0.0, 0.5, 0.5, 0.0), others => (others => 0.0));
-   F_Translation_2 : constant Symop := (4 => (0.5, 0.0, 0.5, 0.0), others => (others => 0.0));
-   F_Translation_3 : constant Symop := (4 => (0.5, 0.5, 0.0, 0.0), others => (others => 0.0));
+   F_Translation_1 : constant Symop := (4 => (0.0, 0.5, 0.5, 0.0), others => (4 => 1.0, others => 0.0));
+   F_Translation_2 : constant Symop := (4 => (0.5, 0.0, 0.5, 0.0), others => (4 => 1.0, others => 0.0));
+   F_Translation_3 : constant Symop := (4 => (0.5, 0.5, 0.0, 0.0), others => (4 => 1.0, others => 0.0));
+   
+   Rotation_Matrices : constant array (1..1, 1..1) of Symop :=
+     (
+      1 => (
+            1 => (
+                  (1 =>  1.0, others => 0.0),
+                  (2 => -1.0, others => 0.0),
+                  (3 => -1.0, others => 0.0),
+                  (4 =>  1.0, others => 0.0)
+                 )
+           )
+     );
    
    procedure Init_Zero (S: out Symop) is
    begin
