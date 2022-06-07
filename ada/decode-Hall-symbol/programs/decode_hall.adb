@@ -72,33 +72,6 @@ procedure Decode_Hall is
    F_Translation_Vector_3 : constant Crystallographic_Translation :=
      C_Translation_Vector;
    
-
-   A_Translation : constant Symop :=
-     Transpose ((4 => (0.0, 0.5, 0.5, 0.0), others => (others => 0.0)));
-   
-   B_Translation : constant Symop :=
-     Transpose ((4 => (0.5, 0.0, 0.5, 0.0), others => (others => 0.0)));
-   
-   C_Translation : constant Symop :=
-     Transpose ((4 => (0.5, 0.5, 0.0, 0.0), others => (others => 0.0)));
-   
-   I_Translation : constant Symop :=
-     Transpose ((4 => (0.5, 0.5, 0.5, 0.0), others => (others => 0.0)));
-   
-   R_Translation_1 : constant Symop := 
-     Transpose ((
-                 4 => (1.0/3.0, 2.0/3.0, 2.0/3.0, 0.0),
-                 others => (others => 0.0)
-                ));
-   
-   R_Translation_2 : constant Symop :=
-     Transpose ((
-                 4 => (2.0/3.0, 1.0/3.0, 1.0/3.0, 0.0), others => (others => 0.0)
-                ));
-   
-   F_Translation_1 : constant Symop := A_Translation;
-   F_Translation_2 : constant Symop := B_Translation;
-   F_Translation_3 : constant Symop := C_Translation;
    
    Principal_Rotations : constant array (1..3, 1..4) of Symop :=
      (
