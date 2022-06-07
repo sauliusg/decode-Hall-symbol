@@ -73,6 +73,40 @@ procedure Decode_Hall is
      C_Translation_Vector;
    
    
+   Translation_a : constant Crystallographic_Translation :=
+     ((1,2), (0,1), (0,1));
+   Translation_b : constant Crystallographic_Translation :=
+     ((0,1), (1,2), (0,1));
+   Translation_c : constant Crystallographic_Translation :=
+     ((0,1), (0,1), (1,2));
+   Translation_n : constant Crystallographic_Translation :=
+     ((1,2), (1,2), (1,2));
+   Translation_u : constant Crystallographic_Translation :=
+     ((1,4), (0,1), (0,1));
+   Translation_v : constant Crystallographic_Translation :=
+     ((0,1), (1,4), (0,1));
+   Translation_w : constant Crystallographic_Translation :=
+     ((0,1), (0,1), (1,4));
+   Translation_d : constant Crystallographic_Translation :=
+     ((1,4), (1,4), (1,4));
+   
+   Translations_3_1 : constant array (1..3) of Crystallographic_Translation :=
+     (((1,3), (0,1), (0,1)), ((0,1), (1,3), (0,1)), ((0,1), (0,1), (1,3)));
+   Translations_3_2 : constant array (1..3) of Crystallographic_Translation :=
+     (((2,3), (0,1), (0,1)), ((0,1), (2,3), (0,1)), ((0,1), (0,1), (2,3)));
+   Translations_4_1 : constant array (1..3) of Crystallographic_Translation :=
+     (((1,4), (0,1), (0,1)), ((0,1), (1,4), (0,1)), ((0,1), (0,1), (1,4)));
+   Translations_4_3 : constant array (1..3) of Crystallographic_Translation :=
+     (((3,4), (0,1), (0,1)), ((0,1), (3,4), (0,1)), ((0,1), (0,1), (3,4)));
+   Translations_6_1 : constant array (1..3) of Crystallographic_Translation :=
+     (((1,6), (0,1), (0,1)), ((0,1), (1,6), (0,1)), ((0,1), (0,1), (1,6)));
+   Translations_6_2 : constant array (1..3) of Crystallographic_Translation :=
+     (((2,6), (0,1), (0,1)), ((0,1), (2,6), (0,1)), ((0,1), (0,1), (2,6)));
+   Translations_6_4 : constant array (1..3) of Crystallographic_Translation :=
+     (((4,6), (0,1), (0,1)), ((0,1), (4,6), (0,1)), ((0,1), (0,1), (4,6)));
+   Translations_6_5 : constant array (1..3) of Crystallographic_Translation :=
+     (((5,6), (0,1), (0,1)), ((0,1), (5,6), (0,1)), ((0,1), (0,1), (5,6)));
+   
    Principal_Rotations : constant array (1..3, 1..4) of Symop :=
      (
       -- axis x (a)
