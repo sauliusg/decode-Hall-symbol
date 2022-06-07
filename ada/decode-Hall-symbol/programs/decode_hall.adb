@@ -37,6 +37,42 @@ procedure Decode_Hall is
       return R;
    end;
    
+   type Crystallographic_Translation_Component is record
+      Numerator : Integer range 0..6;
+      Denominator : Integer range 1..6;
+   end record;
+      
+   type Crystallographic_Translation is array (1..3)
+     of Crystallographic_Translation_Component;
+   
+   A_Translation_Vector : constant Crystallographic_Translation :=
+     ((0,1), (1,2), (1,2));
+   
+   B_Translation_Vector : constant Crystallographic_Translation :=
+     ((1,2), (0,1), (1,2));
+   
+   C_Translation_Vector : constant Crystallographic_Translation :=
+     ((1,2), (1,2), (0,1));
+   
+   I_Translation_Vector : constant Crystallographic_Translation :=
+     ((1,2), (1,2), (1,2));
+   
+   R_Translation_Vector_1 : constant Crystallographic_Translation :=
+     ((1,3), (2,3), (2,3));
+   
+   R_Translation_Vector_2 : constant Crystallographic_Translation :=
+     ((2,3), (1,3), (1,3));
+   
+   F_Translation_Vector_1 : constant Crystallographic_Translation :=
+     A_Translation_Vector;
+   
+   F_Translation_Vector_2 : constant Crystallographic_Translation :=
+     B_Translation_Vector;
+   
+   F_Translation_Vector_3 : constant Crystallographic_Translation :=
+     C_Translation_Vector;
+   
+
    A_Translation : constant Symop :=
      Transpose ((4 => (0.0, 0.5, 0.5, 0.0), others => (others => 0.0)));
    
@@ -266,7 +302,7 @@ procedure Decode_Hall is
       return Symops (1..N_Symops);
    end;
    
-   procedure Print_Symop (S : Symop) is
+   procedure Put (S : Symop) is
    begin
       for J in Symop'Range(1) loop
          for K in Symop'Range(1) loop
@@ -276,22 +312,31 @@ procedure Decode_Hall is
       end loop;
    end;
    
+   procedure Put (S : Crystallographic_Translation) is
+      Ratio : Float;
+   begin
+      for I in S'Range loop
+         Ratio := Float (S (I).Numerator) / Float (S (I).Denominator); 
+         Put (" " & Ratio'Image);
+      end loop;
+      New_Line;
+   end;
+   
 begin
    
-   Print_Symop (A_Translation);
+   Put (A_Translation_Vector);
    New_Line;
-   Print_Symop (B_Translation);
+   Put (B_Translation_Vector);
    New_Line;
-   Print_Symop (C_Translation);
+   Put (C_Translation_Vector);
    New_Line;
-   Print_Symop (I_Translation);
-   New_Line;
+   Put (I_Translation_Vector);
    New_Line;
    
    Put_Line ("Principal Rotations:");
    for I in Principal_Rotations'Range(1) loop
       for J in Principal_Rotations'Range(2) loop
-         Print_Symop (Principal_Rotations (I,J));
+         Put (Principal_Rotations (I,J));
          New_Line;         
       end loop;
    end loop;
@@ -299,7 +344,7 @@ begin
    Put_Line ("Face Diagonal Rotations:");
    for I in Face_Diagonal_Rotations'Range(1) loop
       for J in Face_Diagonal_Rotations'Range(2) loop
-         Print_Symop (Face_Diagonal_Rotations (I,J));
+         Put (Face_Diagonal_Rotations (I,J));
          New_Line;         
       end loop;
    end loop;
@@ -310,7 +355,7 @@ begin
          Symops : Symop_Array := Decode_Hall (Argument (I));
       begin
          for I in Symops'Range loop
-            Print_Symop (Symops (I));
+            Put (Symops (I));
             New_Line;
          end loop;
       end;
