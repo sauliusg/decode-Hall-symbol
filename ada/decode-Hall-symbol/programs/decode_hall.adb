@@ -150,6 +150,52 @@ procedure Decode_Hall is
 
      );
    
+   Face_Diagonal_Rotations : constant array (1..3,1..2) of Symop :=
+     (
+      1 => (
+            1 => (
+                  (-1.0,  0.0,  0.0,  0.0),
+                  ( 0.0,  0.0, -1.0,  0.0),
+                  ( 0.0, -1.0,  0.0,  0.0),
+                  ( 0.0,  0.0,  0.0,  1.0)
+                 ),
+            2 => (
+                  (-1.0,  0.0,  0.0,  0.0),
+                  ( 0.0,  0.0,  1.0,  0.0),
+                  ( 0.0,  1.0,  0.0,  0.0),
+                  ( 0.0,  0.0,  0.0,  1.0)
+                 )
+           ),
+      2 => (
+            1 => (
+                  ( 0.0,  0.0, -1.0,  0.0),
+                  ( 0.0, -1.0,  0.0,  0.0),
+                  (-1.0,  0.0,  0.0,  0.0),
+                  ( 0.0,  0.0,  0.0,  1.0)
+                 ),
+            2 => (
+                  ( 0.0,  0.0,  1.0,  0.0),
+                  ( 0.0, -1.0,  0.0,  0.0),
+                  ( 1.0,  0.0,  0.0,  0.0),
+                  ( 0.0,  0.0,  0.0,  1.0)
+                 )
+           ),
+      3 => (
+            1 => (
+                  ( 0.0, -1.0,  0.0,  0.0),
+                  (-1.0,  0.0,  0.0,  0.0),
+                  ( 0.0,  0.0, -1.0,  0.0),
+                  ( 0.0,  0.0,  0.0,  1.0)
+                 ),
+            2 => (
+                  ( 0.0,  1.0,  0.0,  0.0),
+                  ( 1.0,  0.0,  0.0,  0.0),
+                  ( 0.0,  0.0, -1.0,  0.0),
+                  ( 0.0,  0.0,  0.0,  1.0)
+                 )
+           )
+     );
+   
    Body_Diagonal_Rotation : constant Symop :=
      (
       (0.0, 0.0, 1.0, 0.0),
@@ -246,6 +292,14 @@ begin
    for I in Principal_Rotations'Range(1) loop
       for J in Principal_Rotations'Range(2) loop
          Print_Symop (Principal_Rotations (I,J));
+         New_Line;         
+      end loop;
+   end loop;
+   
+   Put_Line ("Face Diagonal Rotations:");
+   for I in Face_Diagonal_Rotations'Range(1) loop
+      for J in Face_Diagonal_Rotations'Range(2) loop
+         Print_Symop (Face_Diagonal_Rotations (I,J));
          New_Line;         
       end loop;
    end loop;
