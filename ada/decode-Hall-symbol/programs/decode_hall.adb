@@ -8,29 +8,49 @@ procedure Decode_Hall is
    
    type Symop_Array is array (Positive range <>) of Symop;
    
+   Zero_Matrix : constant Symop := (others => (others => 0.0));
+   
+   Unity_Matrix : constant Symop :=
+     (
+      (1 => 1.0, others => 0.0),
+      (2 => 1.0, others => 0.0),
+      (3 => 1.0, others => 0.0),
+      (4 => 1.0, others => 0.0)
+     );
+   
+   Ci_Matrix : constant Symop :=
+     (
+      (1 => -1.0, others => 0.0),
+      (2 => -1.0, others => 0.0),
+      (3 => -1.0, others => 0.0),
+      (4 => -1.0, others => 0.0)
+     );
+   
+   A_Translation : constant Symop := (4 => (0.0, 0.5, 0.5, 0.0), others => (others => 0.0));
+   B_Translation : constant Symop := (4 => (0.5, 0.0, 0.5, 0.0), others => (others => 0.0));
+   C_Translation : constant Symop := (4 => (0.5, 0.5, 0.0, 0.0), others => (others => 0.0));
+   I_Translation : constant Symop := (4 => (0.5, 0.5, 0.5, 0.0), others => (others => 0.0));
+   
+   R_Translation_1 : constant Symop := (4 => (1.0/3.0, 2.0/3.0, 2.0/3.0, 0.0), others => (others => 0.0));
+   R_Translation_2 : constant Symop := (4 => (2.0/3.0, 1.0/3.0, 1.0/3.0, 0.0), others => (others => 0.0));
+   
+   F_Translation_1 : constant Symop := (4 => (0.0, 0.5, 0.5, 0.0), others => (others => 0.0));
+   F_Translation_2 : constant Symop := (4 => (0.5, 0.0, 0.5, 0.0), others => (others => 0.0));
+   F_Translation_3 : constant Symop := (4 => (0.5, 0.5, 0.0, 0.0), others => (others => 0.0));
+   
    procedure Init_Zero (S: out Symop) is
    begin
-      for I in S'Range(1) loop
-         for J in S'Range(2) loop
-            S (I,J) := 0.0;
-         end loop;
-      end loop;
+      S := Zero_Matrix;
    end;
    
    procedure Init_Unity (S: in out Symop) is
    begin
-      Init_Zero (S);
-      for I in S'Range(1) loop
-         S (I,I) := 1.0;
-      end loop;
+      S := Unity_Matrix;
    end;
 
    procedure Init_Ci (S: in out Symop) is
    begin
-      Init_Zero (S);
-      for I in S'Range(1) loop
-         S (I,I) := -1.0;
-      end loop;
+      S := Ci_Matrix;
    end;
    
    procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
