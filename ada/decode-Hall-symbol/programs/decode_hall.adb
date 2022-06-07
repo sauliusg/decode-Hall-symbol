@@ -107,6 +107,15 @@ procedure Decode_Hall is
    Translations_6_5 : constant array (1..3) of Crystallographic_Translation :=
      (((5,6), (0,1), (0,1)), ((0,1), (5,6), (0,1)), ((0,1), (0,1), (5,6)));
    
+   function To_Symop (T : Crystallographic_Translation) return Symop is
+      S : Symop := Zero_Matrix;
+   begin
+      for I in T'Range loop
+         S (I,4) := Float (T (I).Numerator) / Float (T (I).Denominator);
+      end loop;
+      return S;
+   end;
+   
    Principal_Rotations : constant array (1..3, 1..4) of Symop :=
      (
       -- axis x (a)
@@ -339,6 +348,22 @@ begin
    New_Line;
    Put (I_Translation_Vector);
    New_Line;
+   
+   Put_Line ("Translation Matrices:");
+   for I in Translations_3_1'Range loop
+      Put (To_Symop (Translations_3_1 (I)));
+      New_Line;
+   end loop;
+   
+   for I in Translations_6_4'Range loop
+      Put (To_Symop (Translations_6_4 (I)));
+      New_Line;
+   end loop;
+   
+   for I in Translations_6_5'Range loop
+      Put (To_Symop (Translations_6_5 (I)));
+      New_Line;
+   end loop;
    
    Put_Line ("Principal Rotations:");
    for I in Principal_Rotations'Range(1) loop
