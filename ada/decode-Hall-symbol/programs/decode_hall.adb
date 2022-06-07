@@ -26,17 +26,6 @@ procedure Decode_Hall is
       (4 => -1.0, others => 0.0)
      );
    
-   function Transpose (S : Symop) return Symop is
-      R : Symop;
-   begin
-      for I in S'Range(1) loop
-         for J in S'Range(1) loop
-            R (I,J) := S (J,I);
-         end loop;
-      end loop;
-      return R;
-   end;
-   
    type Crystallographic_Translation_Component is record
       Numerator : Integer range 0..6;
       Denominator : Integer range 1..6;
