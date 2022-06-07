@@ -80,6 +80,16 @@ procedure Decode_Hall is
       return Symops (1..N_Symops);
    end;
    
+   procedure Print_Symop (S : Symop) is
+   begin
+      for J in Symop'Range(1) loop
+         for K in Symop'Range(1) loop
+            Put (" " & S (J,K)'Image);
+         end loop;
+         New_Line;
+      end loop;
+   end;
+   
 begin
    
    for I in 1 .. Argument_Count loop
@@ -88,17 +98,8 @@ begin
          Symops : Symop_Array := Decode_Hall (Argument (I));
       begin
          for I in Symops'Range loop
-            declare
-               S : Symop := Symops (I);
-            begin
-               for J in Symop'Range(1) loop
-                  for K in Symop'Range(1) loop
-                     Put (" " & S (J,K)'Image);
-                  end loop;
-                  New_Line;
-               end loop;
-               New_Line;
-            end;
+            Print_Symop (Symops (I));
+            New_Line;
          end loop;
       end;
    end loop;
