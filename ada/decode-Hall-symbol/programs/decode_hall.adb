@@ -150,6 +150,14 @@ procedure Decode_Hall is
 
      );
    
+   Body_Diagonal_Rotation : constant Symop :=
+     (
+      (0.0, 0.0, 1.0, 0.0),
+      (1.0, 0.0, 0.0, 0.0),
+      (0.0, 1.0, 0.0, 0.0),
+      (0.0, 0.0, 0.0, 1.0)
+     );
+   
    procedure Init_Zero (S: out Symop) is
    begin
       S := Zero_Matrix;
