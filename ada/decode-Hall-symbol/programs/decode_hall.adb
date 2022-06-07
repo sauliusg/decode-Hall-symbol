@@ -38,16 +38,16 @@ procedure Decode_Hall is
    end;
    
    A_Translation : constant Symop :=
-     Transpose ((4 => (0.0, 0.5, 0.5, 1.0), others => (others => 0.0)));
+     Transpose ((4 => (0.0, 0.5, 0.5, 0.0), others => (others => 0.0)));
    
    B_Translation : constant Symop :=
-     Transpose ((4 => (0.5, 0.0, 0.5, 1.0), others => (others => 0.0)));
+     Transpose ((4 => (0.5, 0.0, 0.5, 0.0), others => (others => 0.0)));
    
    C_Translation : constant Symop :=
-     Transpose ((4 => (0.5, 0.5, 0.0, 1.0), others => (others => 0.0)));
+     Transpose ((4 => (0.5, 0.5, 0.0, 0.0), others => (others => 0.0)));
    
    I_Translation : constant Symop :=
-     Transpose ((4 => (0.5, 0.5, 0.5, 1.0), others => (others => 0.0)));
+     Transpose ((4 => (0.5, 0.5, 0.5, 0.0), others => (others => 0.0)));
    
    R_Translation_1 : constant Symop := 
      Transpose ((
