@@ -26,6 +26,9 @@ procedure Decode_Hall is
       (4 => -1.0, others => 0.0)
      );
    
+   Inversion_Matrices : constant array (1..2) of Symop :=
+     (Unity_Matrix, Ci_Matrix);
+   
    type Crystallographic_Translation_Component is record
       Numerator : Integer range 0..6;
       Denominator : Integer range 1..6;
@@ -247,41 +250,11 @@ procedure Decode_Hall is
       (0.0, 0.0, 0.0, 1.0)
      );
    
-   procedure Init_Zero (S: out Symop) is
-   begin
-      S := Zero_Matrix;
-   end;
-   
-   procedure Init_Unity (S: in out Symop) is
-   begin
-      S := Unity_Matrix;
-   end;
-
-   procedure Init_Ci (S: in out Symop) is
-   begin
-      S := Ci_Matrix;
-   end;
-   
    procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
    begin
       while Pos <= S'Last and then S (Pos) = ' ' loop
          Pos := Pos + 1;
       end loop;
-   end;
-   
-   procedure Init_Global_Centering
-     (
-      Symbol : in String;
-      Pos : in out Positive;
-      Symops : in out Symop_Array;
-      N_Symops : in out Positive
-     ) is
-   begin
-      Skip_Spaces (Symbol, Pos);
-      if Symbol (Pos) = '-' then
-         Init_Ci (Symops (N_Symops));
-         N_Symops := N_Symops + 1;
-      end if;
    end;
    
    procedure Init_Centering_Matrices 
@@ -299,13 +272,20 @@ procedure Decode_Hall is
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 96;
       Symops : Symop_Array (1 .. Max_Symops);
-      N_Symops : Positive := 2; -- The first element is allocated for the
+      N_Symops : Positive := 1; -- The first element is allocated for the
                                 -- unity matrix.
       Pos : Positive := 1;      -- current position in the string 'Symbol'.
+      
+      N_Inversions : Positive := 1;
+      
+      Rotations : Symop_Array (1..3);
+      N_Rotations : Positive := 1;
+      
+      Centering : Symop_Array (1..4) := (others => Unity_Matrix);
+      N_Centering : Positive := 1;
+      
    begin
-      Init_Unity (Symops (1));
-      Init_Global_Centering (Symbol, Pos, Symops, N_Symops);
-      Init_Centering_Matrices (Symbol, Pos, Symops, N_Symops);
+      Symops (1) := Unity_Matrix;
       return Symops (1..N_Symops);
    end;
    
