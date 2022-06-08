@@ -514,6 +514,10 @@ procedure Decode_Hall is
          
          Preceeding_Axis := Axis_Number;
          
+         if Inversion = '-' then
+            Matrix := Ci_Matrix * Matrix;
+         end if;
+         
          for Tr of Translations loop
             case Tr is
                when ' ' => null;
@@ -581,6 +585,7 @@ procedure Decode_Hall is
                     with "translation character " & Tr'Image;
             end case;
          end loop;
+         
       end;
       
       Inversion : Character;
