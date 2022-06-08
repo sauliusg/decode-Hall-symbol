@@ -347,7 +347,17 @@ begin
    end loop;
    
    for I in 1..3 loop
+      Put (To_Symop (Translations_6_1, I));
+      New_Line;
+   end loop;
+   
+   for I in 1..3 loop
       Put (To_Symop (Translations_6_4, I));
+      New_Line;
+   end loop;
+   
+   for I in 1..3 loop
+      Put (To_Symop (Translations_6_5, I));
       New_Line;
    end loop;
    
