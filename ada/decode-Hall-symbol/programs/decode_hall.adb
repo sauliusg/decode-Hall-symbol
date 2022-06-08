@@ -79,22 +79,16 @@ procedure Decode_Hall is
    Translation_d : constant Crystallographic_Translation :=
      ((1,4), (1,4), (1,4));
    
-   Translations_3_1 : constant array (1..3) of Crystallographic_Translation :=
-     (((1,3), (0,1), (0,1)), ((0,1), (1,3), (0,1)), ((0,1), (0,1), (1,3)));
-   Translations_3_2 : constant array (1..3) of Crystallographic_Translation :=
-     (((2,3), (0,1), (0,1)), ((0,1), (2,3), (0,1)), ((0,1), (0,1), (2,3)));
-   Translations_4_1 : constant array (1..3) of Crystallographic_Translation :=
-     (((1,4), (0,1), (0,1)), ((0,1), (1,4), (0,1)), ((0,1), (0,1), (1,4)));
-   Translations_4_3 : constant array (1..3) of Crystallographic_Translation :=
-     (((3,4), (0,1), (0,1)), ((0,1), (3,4), (0,1)), ((0,1), (0,1), (3,4)));
-   Translations_6_1 : constant array (1..3) of Crystallographic_Translation :=
-     (((1,6), (0,1), (0,1)), ((0,1), (1,6), (0,1)), ((0,1), (0,1), (1,6)));
-   Translations_6_2 : constant array (1..3) of Crystallographic_Translation :=
-     (((2,6), (0,1), (0,1)), ((0,1), (2,6), (0,1)), ((0,1), (0,1), (2,6)));
-   Translations_6_4 : constant array (1..3) of Crystallographic_Translation :=
-     (((4,6), (0,1), (0,1)), ((0,1), (4,6), (0,1)), ((0,1), (0,1), (4,6)));
-   Translations_6_5 : constant array (1..3) of Crystallographic_Translation :=
-     (((5,6), (0,1), (0,1)), ((0,1), (5,6), (0,1)), ((0,1), (0,1), (5,6)));
+   Translations_3_1 : constant Crystallographic_Translation_Component := (1,3);
+   Translations_3_2 : constant Crystallographic_Translation_Component := (2,3);
+   
+   Translations_4_1 : constant Crystallographic_Translation_Component := (1,4);
+   Translations_4_3 : constant Crystallographic_Translation_Component := (3,4);
+   
+   Translations_6_1 : constant Crystallographic_Translation_Component := (1,6);
+   Translations_6_2 : constant Crystallographic_Translation_Component := (2,6);
+   Translations_6_4 : constant Crystallographic_Translation_Component := (4,6);
+   Translations_6_5 : constant Crystallographic_Translation_Component := (5,6);
    
    function To_Symop (T : Crystallographic_Translation) return Symop is
       S : Symop := Zero_Matrix;
@@ -102,6 +96,14 @@ procedure Decode_Hall is
       for I in T'Range loop
          S (I,4) := Float (T (I).Numerator) / Float (T (I).Denominator);
       end loop;
+      return S;
+   end;
+   
+   function To_Symop (T : Crystallographic_Translation_Component;
+                      Axis : Positive) return Symop is
+      S : Symop := Zero_Matrix;
+   begin
+      S (Axis,4) := Float (T.Numerator) / Float (T.Denominator);
       return S;
    end;
    
@@ -339,18 +341,13 @@ begin
    New_Line;
    
    Put_Line ("Translation Matrices:");
-   for I in Translations_3_1'Range loop
-      Put (To_Symop (Translations_3_1 (I)));
+   for I in 1..3 loop
+      Put (To_Symop (Translations_3_1, I));
       New_Line;
    end loop;
    
-   for I in Translations_6_4'Range loop
-      Put (To_Symop (Translations_6_4 (I)));
-      New_Line;
-   end loop;
-   
-   for I in Translations_6_5'Range loop
-      Put (To_Symop (Translations_6_5 (I)));
+   for I in 1..3 loop
+      Put (To_Symop (Translations_6_4, I));
       New_Line;
    end loop;
    
