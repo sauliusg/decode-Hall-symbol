@@ -4,6 +4,10 @@ with Ada.Command_Line;    use Ada.Command_Line;
 
 procedure Decode_Hall is
    
+   UNKNOWN_AXIS : exception;
+   UNKNOWN_ROTATION : exception;
+   UNKNOWN_TRANSLATION : exception;
+   
    type Symop is array (1..4, 1..4) of Float;
    
    type Symop_Array is array (Positive range <>) of Symop;
@@ -270,6 +274,42 @@ procedure Decode_Hall is
       (0.0, 0.0, 0.0, 1.0)
      );
    
+   procedure Add (M1 : in out Symop; M2 : in Symop) is
+   begin
+      for I in M1'Range(1) loop
+         for J in M1'Range(2) loop
+            M1 (I,J) := M1 (I,J) + M2(I,J);
+         end loop;
+      end loop;
+   end;
+   
+   function "+" (M1, M2 : Symop) return Symop is
+      M : Symop;
+   begin
+      for I in M1'Range(1) loop
+         for J in M1'Range(2) loop
+            M (I,J) := M1 (I,J) + M2(I,J);
+         end loop;
+      end loop;
+      return M;
+   end;
+   
+   function "*" (M1, M2 : Symop) return Symop is
+      M : Symop;
+   begin
+      pragma Assert (M1'Last(2) = M2'Last(1));
+      
+      for I in M1'Range(1) loop
+         for J in M2'Range(2) loop
+            M (I,J) := 0.0;
+            for K in M2'Range(1) loop
+               M (I,J) := M (I,J) + M1 (I,K) * M2(K,J);
+            end loop;
+         end loop;
+      end loop;
+      return M;
+   end;
+   
    procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
    begin
       while Pos <= S'Last and then S (Pos) = ' ' loop
@@ -336,6 +376,232 @@ procedure Decode_Hall is
       Pos := Pos + 1;
    end;
    
+   procedure Get_Hall_Symbol_Rotations
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Rotations : out Symop_Array;
+      N_Rotations : in out Natural;
+      Preceeding_Axis : in out Natural;
+      Axis_Number : in Positive
+     )
+   is
+      
+      procedure Get_Inversion_Character (Inversion : out Character) is
+      begin
+         Skip_Spaces (Symbol, Pos);
+         if Pos <= Symbol'Last and then
+           Symbol (Pos) = '-' then
+            Inversion := Symbol (Pos);
+            Pos := Pos + 1;
+         else
+            Inversion := ' ';
+         end if;
+      end;
+      
+      procedure Get_Rotation_Character (Rotation : out Character) is
+      begin
+         Skip_Spaces (Symbol, Pos);
+         if Pos <= Symbol'Last then
+            pragma Assert (Symbol (Pos) in '2'..'6');
+            Rotation := Symbol (Pos);
+            Pos := Pos + 1;
+         else
+            Rotation := '1';
+         end if;
+      end;
+      
+      procedure Get_Axis_Character (Axis : out Character;
+                                    Axis_Number : Positive) is
+      begin
+         Skip_Spaces (Symbol, Pos);
+         if Pos <= Symbol'Last then
+           if Symbol (Pos) in 'x'..'z' or else
+             Symbol (Pos) = ''' or else
+             Symbol (Pos) = '*' or else
+             Symbol (Pos) = '"'
+           then
+              Axis := Symbol (Pos);
+              Pos := Pos + 1;
+           else
+              case Axis_Number is
+                 when 1 => Axis := 'x';
+                 when 2 => Axis := 'y';
+                 when 3 => Axis := 'z';
+                 when others =>
+                    raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
+              end case;
+           end if;
+         else
+            Axis := ' ';
+         end if;
+      end;
+      
+      procedure Get_Translation_Characters (Translations : out String) is
+         I : Positive := 1;
+      begin
+         while Pos <= Symbol'Last and then
+           (
+            Symbol (Pos) in 'a' .. 'd' or else
+              Symbol (Pos) in 'u' .. 'w' or else
+              Symbol (Pos) in '1' .. '5' or else
+              Symbol (Pos) = 'n' 
+           ) loop
+            Translations (I) := Symbol (Pos);
+            Pos := Pos + 1;
+            I := I + 1;
+            -- Skip_Spaces (Symbol, Pos);
+         end loop;
+      end;
+      
+      function Rotation_Axis_Index (Rotation_Character : Character)
+                                   return Positive
+      is
+      begin
+         case Rotation_Character is
+            when '2' => return 1;
+            when '3' => return 2;
+            when '4' => return 3;
+            when '6' => return 6;
+            when others => 
+               raise UNKNOWN_ROTATION
+                 with "rotation " & Rotation_Character'Image;
+         end case;
+      end;
+      
+      procedure Construct_Rotation_Matrix
+        (
+         Matrix : out Symop;
+         Inversion : in Character;
+         Axis : in Character;
+         Rotation : in Character;
+         Translations : String;
+         Preceeding_Axis : in out Natural
+        )
+      is
+         Axis_Number : Integer range 0..3 := 0;
+      begin
+         case Axis is 
+            when 'x' =>
+               Matrix :=
+                 Principal_Rotations (1, Rotation_Axis_Index (Rotation));
+               Preceeding_Axis := 1;
+               Axis_Number := 1;
+            when 'y' =>
+               Matrix :=
+                 Principal_Rotations (2, Rotation_Axis_Index (Rotation));
+               Preceeding_Axis := 2;
+               Axis_Number := 2;
+            when 'z' =>
+               Matrix :=
+                 Principal_Rotations (3, Rotation_Axis_Index (Rotation));
+               Axis_Number := 3;
+            when ''' =>
+               Matrix :=
+                 Face_Diagonal_Rotations (Preceeding_Axis, 1);
+               Axis_Number := 0;
+            when '"' =>
+               Matrix :=
+                 Face_Diagonal_Rotations (Preceeding_Axis, 2);
+               Axis_Number := 0;
+            when '*' =>
+               Matrix :=
+                 Body_Diagonal_Rotation;
+               Axis_Number := 0;
+            when others =>
+               raise UNKNOWN_AXIS with "axis character " & Axis'Image;
+         end case;
+         
+         Preceeding_Axis := Axis_Number;
+         
+         for Tr of Translations loop
+            case Tr is
+               when ' ' => null;
+               when 'a' => Add (Matrix, To_Symop (Translation_a));
+               when 'b' => Add (Matrix, To_Symop (Translation_b));
+               when 'c' => Add (Matrix, To_Symop (Translation_c));
+               when 'd' => Add (Matrix, To_Symop (Translation_d));
+               when 'u' => Add (Matrix, To_Symop (Translation_u));
+               when 'v' => Add (Matrix, To_Symop (Translation_v));
+               when 'w' => Add (Matrix, To_Symop (Translation_w));
+               when 'n' => Add (Matrix, To_Symop (Translation_n));
+               when '1' => 
+                  case Rotation is 
+                     when '3' => 
+                        Add (Matrix, To_Symop (Translations_3_1, Axis_Number));
+                     when '4' => 
+                        Add (Matrix, To_Symop (Translations_4_1, Axis_Number));
+                     when '6' => 
+                        Add (Matrix, To_Symop (Translations_6_1, Axis_Number));
+                     when others =>
+                        raise UNKNOWN_ROTATION
+                          with "mismatching translation " & 
+                          Tr'Image & " for rotation " & Rotation'Image;
+                  end case;
+               when '2' => 
+                  case Rotation is 
+                     when '3' => 
+                        Add (Matrix, To_Symop (Translations_3_2, Axis_Number));
+                     when '6' => 
+                        Add (Matrix, To_Symop (Translations_6_2, Axis_Number));
+                     when others =>
+                        raise UNKNOWN_ROTATION
+                          with "mismatching translation " & 
+                          Tr'Image & " for rotation " & Rotation'Image;
+                  end case;
+               when '3' => 
+                  case Rotation is 
+                     when '4' => 
+                        Add (Matrix, To_Symop (Translations_4_3, Axis_Number));
+                     when others =>
+                        raise UNKNOWN_ROTATION
+                          with "mismatching translation " & 
+                          Tr'Image & " for rotation " & Rotation'Image;
+                  end case;
+               when '4' => 
+                  case Rotation is 
+                     when '6' => 
+                        Add (Matrix, To_Symop (Translations_6_4, Axis_Number));
+                     when others =>
+                        raise UNKNOWN_ROTATION
+                          with "mismatching translation " & 
+                          Tr'Image & " for rotation " & Rotation'Image;
+                  end case;
+               when '5' => 
+                  case Rotation is 
+                     when '6' => 
+                        Add (Matrix, To_Symop (Translations_6_5, Axis_Number));
+                     when others =>
+                        raise UNKNOWN_ROTATION
+                          with "mismatching translation " & 
+                          Tr'Image & " for rotation " & Rotation'Image;
+                  end case;
+               when others =>
+                  raise UNKNOWN_TRANSLATION
+                    with "translation character " & Tr'Image;
+            end case;
+         end loop;
+      end;
+      
+      Inversion : Character;
+      Rotation : Character;
+      Axis : Character;
+      Translations : String (1..2) := (others => ' ');
+      
+   begin
+      Get_Inversion_Character (Inversion);
+      Get_Rotation_Character (Rotation);
+      Get_Axis_Character (Axis, Axis_Number);
+      Get_Translation_Characters (Translations);
+      
+      if Rotation /= ' ' and then Axis /= ' ' then
+         N_Rotations := N_Rotations + 1;
+         Construct_Rotation_Matrix (Rotations (N_Rotations), 
+                                    Inversion, Axis, Rotation,
+                                    Translations, Preceeding_Axis);
+      end if;
+   end;
+   
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 96;
       Symops : Symop_Array (1 .. Max_Symops);
@@ -346,16 +612,21 @@ procedure Decode_Hall is
       N_Inversions : Positive;
       
       Rotations : Symop_Array (1..3);
-      N_Rotations : Positive;
+      N_Rotations : Natural := 0;
       
       Centering : Symop_Array (1..4);
       N_Centering : Positive;
+      
+      Preceeding_Axis : Natural := 0;
       
    begin
       Symops (1) := Unity_Matrix;
       
       Get_Hall_Symbol_Inversions (Symbol, Pos, N_Inversions);
       Get_Hall_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Rotations, N_Rotations, Preceeding_Axis, 1);
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Rotations, N_Rotations, Preceeding_Axis, 2);
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Rotations, N_Rotations, Preceeding_Axis, 3);
       
       Put_Line ("Inversions:");
       for I in 1..N_Inversions loop
@@ -369,6 +640,13 @@ procedure Decode_Hall is
          New_Line;
       end loop;
       
+      Put_Line ("Rotations:");
+      for I in 1..N_Rotations loop
+         Put_Line (I'Image);
+         Put (Rotations (I));
+         New_Line;
+      end loop;
+      
       return Symops (1..N_Symops);
    end;
    
@@ -379,6 +657,7 @@ begin
       declare
          Symops : Symop_Array := Decode_Hall (Argument (I));
       begin
+         Put_Line ("Symops:");
          for I in Symops'Range loop
             Put (Symops (I));
             New_Line;
