@@ -304,7 +304,7 @@ procedure Decode_Hall is
    is
    begin
       Skip_Spaces (Symbol, Pos);
-      Centering (1) := Unity_Matrix;
+      Centering (1) := Zero_Matrix;
       case Symbol (Pos) is
          when 'P' =>
            N_Centering := 1;
