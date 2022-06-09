@@ -430,12 +430,10 @@ procedure Decode_Hall is
          when 'x' =>
             Matrix :=
               Principal_Rotations (1, Rotation_Axis_Index (Rotation));
-            Preceeding_Axis := 1;
             Axis_Number := 1;
          when 'y' =>
             Matrix :=
               Principal_Rotations (2, Rotation_Axis_Index (Rotation));
-            Preceeding_Axis := 2;
             Axis_Number := 2;
          when 'z' =>
             Matrix :=
