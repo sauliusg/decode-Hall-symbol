@@ -30,7 +30,7 @@ procedure Decode_Hall is
       (1 => -1.0, others => 0.0),
       (2 => -1.0, others => 0.0),
       (3 => -1.0, others => 0.0),
-      (4 => -1.0, others => 0.0)
+      (4 =>  1.0, others => 0.0)
      );
    
    Inversion_Matrices : constant array (1..2) of Symop :=
