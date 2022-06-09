@@ -421,10 +421,15 @@ procedure Decode_Hall is
       Axis : in Character;
       Rotation : in Character;
       Translations : String;
-      Preceeding_Axis : in out Natural
+      Preceeding_Axis_Direction : in out Natural;
+      Preceeding_Axis_Order : in out Natural
      )
    is
       Axis_Number : Integer range 0..3 := 0;
+      
+      function Ord (C : Character) return Positive is
+         (Character'Pos (C) - Character'Pos ('0'));
+      
    begin
       case Axis is 
          when 'x' =>
@@ -441,11 +446,11 @@ procedure Decode_Hall is
             Axis_Number := 3;
          when ''' =>
             Matrix :=
-              Face_Diagonal_Rotations (Preceeding_Axis, 1);
+              Face_Diagonal_Rotations (Preceeding_Axis_Direction, 1);
             Axis_Number := 0;
          when '"' =>
             Matrix :=
-              Face_Diagonal_Rotations (Preceeding_Axis, 2);
+              Face_Diagonal_Rotations (Preceeding_Axis_Direction, 2);
             Axis_Number := 0;
          when '*' =>
             Matrix :=
@@ -455,7 +460,8 @@ procedure Decode_Hall is
             raise UNKNOWN_AXIS with "axis character " & Axis'Image;
       end case;
       
-      Preceeding_Axis := Axis_Number;
+      Preceeding_Axis_Direction := Axis_Number;
+      Preceeding_Axis_Order := Ord (Rotation);
       
       if Inversion = '-' then
          Matrix := Ci_Matrix * Matrix;
@@ -537,7 +543,8 @@ procedure Decode_Hall is
       Pos : in out Positive;
       Rotations : out Symop_Array;
       N_Rotations : in out Natural;
-      Preceeding_Axis : in out Natural;
+      Preceeding_Axis_Direction : in out Natural;
+      Preceeding_Axis_Order : in out Natural;
       Axis_Number : in Positive
      )
    is
@@ -564,10 +571,12 @@ procedure Decode_Hall is
          end if;
       end;
       
-      procedure Get_Axis_Character (Axis : out Character;
+      procedure Get_Axis_Character (
+                                    Axis : out Character;
                                     Axis_Number : in Positive;
                                     Rotation_Character : in Character;
-                                    Preceeding_Axis : in Natural ) is
+                                    Preceeding_Axis_Order : in Natural
+                                   ) is
       begin
          if Pos <= Symbol'Last and then
            (
@@ -586,15 +595,19 @@ procedure Decode_Hall is
                   case Rotation_Character is
                      when ' ' => null;
                      when '2' => 
-                        if Preceeding_Axis = 2 or Preceeding_Axis = 4 then
-                           Axis := 'a';
-                        elsif Preceeding_Axis = 3 or Preceeding_Axis = 6 then
+                        if Preceeding_Axis_Order = 2 or else
+                          Preceeding_Axis_Order = 4 then
+                           Axis := 'x'; -- the \vec{a} crystallographic axis
+                        elsif Preceeding_Axis_Order = 3 or else 
+                          Preceeding_Axis_Order = 6 then
                            Axis := ''';
                         else
                            raise UNKNOWN_AXIS with
                              "can not determine rotation axis for " &
-                             "the preceeding axis" & Preceeding_Axis'Image &
-                             " and curren axis" & Rotation_Character'Image;
+                             "the preceeding axis " & 
+                             Preceeding_Axis_Order'Image &
+                             " and current axis " & 
+                             Rotation_Character'Image;
                         end if;
                      when '3' => 
                         Axis := '*';
@@ -643,14 +656,15 @@ procedure Decode_Hall is
       Get_Inversion_Character (Inversion);
       Get_Rotation_Character (Rotation);
       Get_Translation_Characters (Translations, N_Translations);
-      Get_Axis_Character (Axis, Axis_Number, Rotation, Preceeding_Axis);
+      Get_Axis_Character (Axis, Axis_Number, Rotation, Preceeding_Axis_Order);
       Get_Translation_Characters (Translations, N_Translations);
       
       if Rotation /= ' ' and then Axis /= ' ' then
          N_Rotations := N_Rotations + 1;
          Construct_Rotation_Matrix (Rotations (N_Rotations), 
                                     Inversion, Axis, Rotation,
-                                    Translations, Preceeding_Axis);
+                                    Translations, Preceeding_Axis_Direction,
+                                    Preceeding_Axis_Order);
       end if;
    end Get_Hall_Symbol_Rotations;
    
@@ -667,7 +681,8 @@ procedure Decode_Hall is
       Centering : Symop_Array (1..4);
       N_Centering : Positive;
       
-      Preceeding_Axis : Natural := 0;
+      Preceeding_Axis_Direction : Natural := 0;
+      Preceeding_Axis_Order : Natural := 0;
       
       function Has_Symop
         (
@@ -690,9 +705,18 @@ procedure Decode_Hall is
       
       Get_Hall_Symbol_Inversions (Symbol, Pos, N_Inversions);
       Get_Hall_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 1);
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 2);
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 3);
+      
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
+                                  Preceeding_Axis_Direction,
+                                  Preceeding_Axis_Order, 1);
+
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, 
+                                  Preceeding_Axis_Direction,
+                                  Preceeding_Axis_Order, 2);
+
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
+                                  Preceeding_Axis_Direction,
+                                  Preceeding_Axis_Order, 3);
       
       if Debug_Print_Matrices then
          Put_Line (Standard_Error, "Inversions:");
