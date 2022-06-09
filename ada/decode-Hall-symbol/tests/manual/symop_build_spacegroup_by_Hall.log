@@ -32,7 +32,7 @@ Linuxmint-20.1
 + uname -a
 Linux tasmanijos-velnias 5.4.0-73-generic #82-Ubuntu SMP Wed Apr 14 17:39:42 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 + date
-2022-06-09T18:37:20 EEST
+2022-06-09T18:41:45 EEST
 + which symops
 /home/saulius/src/cod-tools/scripts/symops
 ++ which symops
@@ -72,9 +72,9 @@ Files /dev/fd/1038 and /dev/fd/1039 differ
 tests/cases/decode_hall_518.opt: 'F 4d 2 3 -1ad' 
 + set -x
 + history
-+ grep -v 'grep symop_build_spacegroup'
++ grep symop-matrices
++ grep -v 'grep symop-matrices'
 + tail -n1
-+ grep symop_build_spacegroup
- 1673  symops --schoen -- "D2h^1" | symop_build_spacegroup | grep -E 'hermann|hall|universal|schoenflies'
+ 1689  ( set -x; ulimit -n 4069; ulimit; directory-metadata; which symops; svn info $(which symops); (set +x; for FILE in tests/cases/*.opt; do OUT=$(dirname $FILE)/$(basename $F .opt).out; if ! diff -q <(eval ./bin/decode_hall "$(cat $FILE)" | symop-matrices | grep '^#CANOP' | perl -pe 's/ [0-9]+://' | sort) <(eval symops --hall --  "$(cat $FILE)" | symop-matrices | grep '^#CANOP' | perl -pe 's/ [0-9]+://' | sort); then echo "${FILE}:" "$(cat "${FILE}")" "${H_M}"; fi; done ); set -x; history | grep symop_build_spacegroup | grep -v 'grep symop_build_spacegroup' | tail -n1; date ) 2>&1 | tee tests/manual/symop_build_spacegroup_by_Hall.log
 + date
-2022-06-09T18:38:12 EEST
+2022-06-09T18:42:37 EEST
