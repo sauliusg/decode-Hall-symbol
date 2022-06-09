@@ -763,14 +763,18 @@ procedure Decode_Hall is
       
       declare
          M : Positive := N_Symops;
+         New_Symop : Symop;
       begin
          for I in 1..N_Inversions loop
             for C in 1..N_Centering loop
                if I /= 1 or else C /= 1 then
                   for S in 1..N_Symops loop
-                     M := M + 1;
-                     Symops (M) := 
+                     New_Symop :=
                        (Symops (S) + Centering (C)) * Inversion_Matrices (I);
+                     if not Has_Symop (Symops, M, New_Symop) then
+                       M := M + 1;
+                       Symops (M) := New_Symop;
+                     end if;
                   end loop;
                end if;
             end loop;
