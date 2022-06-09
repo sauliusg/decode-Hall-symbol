@@ -564,7 +564,9 @@ procedure Decode_Hall is
       end;
       
       procedure Get_Axis_Character (Axis : out Character;
-                                    Axis_Number : Positive) is
+                                    Axis_Number : in Positive;
+                                    Rotation_Character : in Character;
+                                    Preceeding_Axis : in Natural ) is
       begin
          if Pos <= Symbol'Last and then
            (
@@ -578,9 +580,29 @@ procedure Decode_Hall is
             Pos := Pos + 1;
          else
             case Axis_Number is
-               when 1 => Axis := 'x';
-               when 2 => Axis := 'y';
-               when 3 => Axis := 'z';
+               when 1 => Axis := 'z';
+               when 2..3 =>
+                  case Rotation_Character is
+                     when ' ' => null;
+                     when '2' => 
+                        if Preceeding_Axis = 2 or Preceeding_Axis = 4 then
+                           Axis := 'a';
+                        elsif Preceeding_Axis = 3 or Preceeding_Axis = 6 then
+                           Axis := ''';
+                        else
+                           raise UNKNOWN_AXIS with
+                             "can not determine rotation axis for " &
+                             "the preceeding axis" & Preceeding_Axis'Image &
+                             " and curren axis" & Rotation_Character'Image;
+                        end if;
+                     when '3' => 
+                        Axis := '*';
+                     when others =>
+                        raise UNKNOWN_ROTATION 
+                          with "wrong rotation character " & 
+                          Rotation_Character'Image &
+                          " for axis number" & Axis_Number'Image;
+                  end case;
                when others =>
                   raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
             end case;
@@ -620,7 +642,7 @@ procedure Decode_Hall is
       Get_Inversion_Character (Inversion);
       Get_Rotation_Character (Rotation);
       Get_Translation_Characters (Translations, N_Translations);
-      Get_Axis_Character (Axis, Axis_Number);
+      Get_Axis_Character (Axis, Axis_Number, Rotation, Preceeding_Axis);
       Get_Translation_Characters (Translations, N_Translations);
       
       if Rotation /= ' ' and then Axis /= ' ' then
