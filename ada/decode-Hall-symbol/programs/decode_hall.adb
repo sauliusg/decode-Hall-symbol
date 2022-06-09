@@ -1,4 +1,4 @@
-with Text_IO;             use Text_IO;
+with Text_IO;         use Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 with Ada.Command_Line;    use Ada.Command_Line;
 with Ada.Environment_Variables; use Ada.Environment_Variables;
@@ -100,24 +100,24 @@ procedure Decode_Hall is
    Translations_6_4 : constant Crystallographic_Translation_Component := (4,6);
    Translations_6_5 : constant Crystallographic_Translation_Component := (5,6);
    
-   procedure Put (S : Symop) is
+   procedure Put (F : File_Type; S : Symop) is
    begin
       for J in Symop'Range(1) loop
          for K in Symop'Range(1) loop
-            Put (" " & S (J,K)'Image);
+            Put (F, " " & S (J,K)'Image);
          end loop;
-         New_Line;
+         New_Line (F);
       end loop;
    end;
    
-   procedure Put (S : Crystallographic_Translation) is
+   procedure Put (F : File_Type; S : Crystallographic_Translation) is
       Ratio : Float;
    begin
       for I in S'Range loop
          Ratio := Float (S (I).Numerator) / Float (S (I).Denominator); 
-         Put (" " & Ratio'Image);
+         Put (F, " " & Ratio'Image);
       end loop;
-      New_Line;
+      New_Line (F);
    end;
    
    function To_Symop (T : Crystallographic_Translation) return Symop is
@@ -697,23 +697,23 @@ procedure Decode_Hall is
       Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 3);
       
       if Debug_Print_Matrices then
-         Put_Line ("Inversions:");
+         Put_Line (Standard_Error, "Inversions:");
          for I in 1..N_Inversions loop
-            Put (Inversion_Matrices (I));
-            New_Line;
+            Put (Standard_Error, Inversion_Matrices (I));
+            New_Line (Standard_Error);
          end loop;
          
-         Put_Line ("Centerings:");
+         Put_Line (Standard_Error, "Centerings:");
          for I in 1..N_Centering loop
-            Put (Centering (I));
-            New_Line;
+            Put (Standard_Error, Centering (I));
+            New_Line (Standard_Error);
          end loop;
          
-         Put_Line ("Rotations:");
+         Put_Line (Standard_Error, "Rotations:");
          for I in 1..N_Symops loop
-            Put_Line (I'Image);
-            Put (Symops (I));
-            New_Line;
+            Put_Line (Standard_Error, I'Image);
+            Put (Standard_Error, Symops (I));
+            New_Line (Standard_Error);
          end loop;
       end if;
       
@@ -843,17 +843,17 @@ begin
       
    for I in 1 .. Argument_Count loop
       if Debug_Print_Matrices then
-         Put_Line (Argument (I));
+         Put_Line (Standard_Error, Argument (I));
       end if;
       
       declare
          Symops : Symop_Array := Decode_Hall (Argument (I));
       begin
          if Debug_Print_Matrices then
-            Put_Line ("Symops:");
+            Put_Line (Standard_Error, "Symops:");
             for I in Symops'Range loop
-               Put (Symops (I));
-               New_Line;
+               Put (Standard_Error, Symops (I));
+               New_Line (Standard_Error);
             end loop;
          end if;
          
