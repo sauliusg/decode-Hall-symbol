@@ -441,11 +441,12 @@ procedure Decode_Hall is
       Rotation : in Character;
       Translations : String;
       Preceeding_Axis_Direction : in out Natural;
-      Preceeding_Axis_Order : in out Natural
+      Preceeding_Axis_Order : in out Natural;
+      Axis_Number_Parameter : in Natural
      )
    is
-      Axis_Number : Integer range 0..3 := 0;
-      
+      Axis_Number : Integer range 0..3 := Axis_Number_Parameter;
+        
       function Ord (C : Character) return Positive is
          (Character'Pos (C) - Character'Pos ('0'));
       
@@ -466,15 +467,12 @@ procedure Decode_Hall is
          when ''' =>
             Matrix :=
               Face_Diagonal_Rotations (Preceeding_Axis_Direction, 1);
-            Axis_Number := 0;
          when '"' =>
             Matrix :=
               Face_Diagonal_Rotations (Preceeding_Axis_Direction, 2);
-            Axis_Number := 0;
          when '*' =>
             Matrix :=
               Body_Diagonal_Rotation;
-            Axis_Number := 0;
          when others =>
             raise UNKNOWN_AXIS with "axis character " & Axis'Image;
       end case;
@@ -685,7 +683,8 @@ procedure Decode_Hall is
          Construct_Rotation_Matrix (Rotations (N_Rotations), 
                                     Inversion, Axis, Rotation,
                                     Translations, Preceeding_Axis_Direction,
-                                    Preceeding_Axis_Order);
+                                    Preceeding_Axis_Order,
+                                    Axis_Number);
          
          if Rotations (N_Rotations) = Unity_Matrix then
             N_Rotations := N_Rotations - 1;
