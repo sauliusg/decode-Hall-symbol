@@ -1,8 +1,11 @@
 with Text_IO;             use Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 with Ada.Command_Line;    use Ada.Command_Line;
+with Ada.Environment_Variables; use Ada.Environment_Variables;
 
 procedure Decode_Hall is
+   
+   Debug_Print_Matrices : Boolean := False;
    
    UNKNOWN_AXIS : exception;
    UNKNOWN_ROTATION : exception;
@@ -693,24 +696,26 @@ procedure Decode_Hall is
       Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 2);
       Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 3);
       
-      Put_Line ("Inversions:");
-      for I in 1..N_Inversions loop
-         Put (Inversion_Matrices (I));
-         New_Line;
-      end loop;
-      
-      Put_Line ("Centerings:");
-      for I in 1..N_Centering loop
-         Put (Centering (I));
-         New_Line;
-      end loop;
-      
-      Put_Line ("Rotations:");
-      for I in 1..N_Symops loop
-         Put_Line (I'Image);
-         Put (Symops (I));
-         New_Line;
-      end loop;
+      if Debug_Print_Matrices then
+         Put_Line ("Inversions:");
+         for I in 1..N_Inversions loop
+            Put (Inversion_Matrices (I));
+            New_Line;
+         end loop;
+         
+         Put_Line ("Centerings:");
+         for I in 1..N_Centering loop
+            Put (Centering (I));
+            New_Line;
+         end loop;
+         
+         Put_Line ("Rotations:");
+         for I in 1..N_Symops loop
+            Put_Line (I'Image);
+            Put (Symops (I));
+            New_Line;
+         end loop;
+      end if;
       
       -- Reconstruct all rotation operators:
       
@@ -827,16 +832,30 @@ procedure Decode_Hall is
    
 begin
    
+   if Exists ("DECODE_HALL_DEBUG") and then
+     (
+      Value ("DECODE_HALL_DEBUG") = "1" or else
+        Value ("DECODE_HALL_DEBUG") = "true"
+     )
+   then
+      Debug_Print_Matrices := True;
+   end if;
+      
    for I in 1 .. Argument_Count loop
-      Put_Line (Argument (I));
+      if Debug_Print_Matrices then
+         Put_Line (Argument (I));
+      end if;
+      
       declare
          Symops : Symop_Array := Decode_Hall (Argument (I));
       begin
-         Put_Line ("Symops:");
-         for I in Symops'Range loop
-            Put (Symops (I));
-            New_Line;
-         end loop;
+         if Debug_Print_Matrices then
+            Put_Line ("Symops:");
+            for I in Symops'Range loop
+               Put (Symops (I));
+               New_Line;
+            end loop;
+         end if;
          
          for I in Symops'Range loop
             Put_Line (As_String (Symops (I)));
