@@ -445,7 +445,7 @@ procedure Decode_Hall is
       Axis_Number_Parameter : in Natural
      )
    is
-      Axis_Number : Integer range 0..3 := Axis_Number_Parameter;
+      Axis_Number : Integer range 0..4 := Axis_Number_Parameter;
         
       function Ord (C : Character) return Positive is
          (Character'Pos (C) - Character'Pos ('0'));
@@ -636,6 +636,8 @@ procedure Decode_Hall is
                           Rotation_Character'Image &
                           " for axis number" & Axis_Number'Image;
                   end case;
+               when 4 =>
+                  Axis := 'x';
                when others =>
                   raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
             end case;
@@ -741,6 +743,10 @@ procedure Decode_Hall is
       Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
                                   Preceeding_Axis_Direction,
                                   Preceeding_Axis_Order, 3);
+      
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
+                                  Preceeding_Axis_Direction,
+                                  Preceeding_Axis_Order, 4);
       
       if Debug_Print_Matrices then
          Put_Line (Standard_Error, "Inversions:");
