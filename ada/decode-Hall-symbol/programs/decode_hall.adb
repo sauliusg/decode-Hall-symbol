@@ -587,8 +587,13 @@ procedure Decode_Hall is
          end if;
       end;
       
-      procedure Get_Translation_Characters (Translations : out String) is
-         I : Positive := 1;
+      procedure Get_Translation_Characters
+        (
+         Translations : in out String;
+         N_Translations: in out Natural
+        ) 
+      is
+         I : Natural := N_Translations;
       begin
          while Pos <= Symbol'Last and then
            (
@@ -597,23 +602,26 @@ procedure Decode_Hall is
               Symbol (Pos) in '1' .. '5' or else
               Symbol (Pos) = 'n' 
            ) loop
+            I := I + 1;
             Translations (I) := Symbol (Pos);
             Pos := Pos + 1;
-            I := I + 1;
          end loop;
+         N_Translations := I;
       end;      
       
       Inversion : Character;
       Rotation : Character;
       Axis : Character;
       Translations : String (1..2) := (others => ' ');
+      N_Translations : Natural := 0;
       
    begin
       Skip_Spaces (Symbol, Pos);
       Get_Inversion_Character (Inversion);
       Get_Rotation_Character (Rotation);
+      Get_Translation_Characters (Translations, N_Translations);
       Get_Axis_Character (Axis, Axis_Number);
-      Get_Translation_Characters (Translations);
+      Get_Translation_Characters (Translations, N_Translations);
       
       if Rotation /= ' ' and then Axis /= ' ' then
          N_Rotations := N_Rotations + 1;
