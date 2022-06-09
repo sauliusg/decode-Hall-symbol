@@ -728,6 +728,30 @@ procedure Decode_Hall is
       Buffer : String (1..100); -- large enough to hold any symop
       Pos : Positive := 1;
       Non_Zero_Printed : Boolean;
+      
+      function Rational_Translation (T : Float) return String is
+      begin
+         if T = 0.0 then
+            return "";
+         elsif T = 0.5 then
+            return "+1/2";
+         elsif T = 1.0/3.0 then
+            return "+1/3";
+         elsif T = 2.0/3.0 then
+            return "+2/3";
+         elsif T = 1.0/4.0 then
+            return "+1/4";
+         elsif T = 3.0/4.0 then
+            return "+3/4";
+         elsif T = 1.0/6.0 then
+            return "+1/6";
+         elsif T = 5.0/6.0 then
+            return "+5/6";
+         else
+            return T'Image;
+         end if;
+      end;
+      
    begin
       for I in 1 .. S'Last(2) - 1 loop
          Non_Zero_Printed := False;
@@ -756,16 +780,10 @@ procedure Decode_Hall is
                end if;
             else
                -- translation part:
-               if S (I,J) /= 0.0 then
-                  if S (I,J) > 0.0 then
-                     Buffer (Pos) := '+';
-                     Pos := Pos + 1;
-                  end if;
-                  for C of S (I,J)'Image loop
-                     Buffer (Pos) := C;
-                     Pos := Pos + 1;
-                  end loop;
-               end if;
+               for C of Rational_Translation (S (I,J)) loop
+                  Buffer (Pos) := C;
+                  Pos := Pos + 1;
+               end loop;
             end if;
          end loop;
          if I < 3 then
