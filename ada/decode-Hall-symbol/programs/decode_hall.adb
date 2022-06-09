@@ -621,7 +621,7 @@ procedure Decode_Hall is
                                     Inversion, Axis, Rotation,
                                     Translations, Preceeding_Axis);
       end if;
-   end;
+   end Get_Hall_Symbol_Rotations;
    
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 96;
