@@ -667,7 +667,7 @@ procedure Decode_Hall is
       Inversion : Character;
       Rotation : Character;
       Axis : Character;
-      Translations : String (1..2) := (others => ' ');
+      Translations : String (1..3) := (others => ' ');
       N_Translations : Natural := 0;
       
    begin
