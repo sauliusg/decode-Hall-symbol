@@ -706,7 +706,6 @@ procedure Decode_Hall is
       
       declare
          M : Positive := N_Symops;
-         New_Symop : Symop;
       begin
          for I in 1..N_Inversions loop
             for C in 1..N_Centering loop
@@ -725,6 +724,59 @@ procedure Decode_Hall is
       return Symops (1..N_Symops);
    end;
    
+   function As_String (S : Symop) return String is
+      Buffer : String (1..100); -- large enough to hold any symop
+      Pos : Positive := 1;
+      Non_Zero_Printed : Boolean;
+   begin
+      for I in 1 .. S'Last(2) - 1 loop
+         Non_Zero_Printed := False;
+         for J in S'Range(1) loop
+            if J < 4 then
+               -- rotation part:
+               if S (I,J) /= 0.0 then
+                  if S (I,J) < 0.0 then
+                     Buffer (Pos) := '-';
+                     Pos := Pos + 1;
+                  else
+                     if Non_Zero_Printed then
+                        Buffer (Pos) := '+';
+                        Pos := Pos + 1;
+                     end if;
+                  end if;
+                  case J is
+                     when 1 => Buffer (Pos) := 'X';
+                     when 2 => Buffer (Pos) := 'Y';
+                     when 3 => Buffer (Pos) := 'Z';
+                     when others =>
+                        raise CONSTRAINT_ERROR;
+                  end case;
+                  Pos := Pos + 1;
+                  Non_Zero_Printed := True;
+               end if;
+            else
+               -- translation part:
+               if S (I,J) /= 0.0 then
+                  if S (I,J) > 0.0 then
+                     Buffer (Pos) := '+';
+                     Pos := Pos + 1;
+                  end if;
+                  for C of S (I,J)'Image loop
+                     Buffer (Pos) := C;
+                     Pos := Pos + 1;
+                  end loop;
+               end if;
+            end if;
+         end loop;
+         if I < 3 then
+            Buffer (Pos) := ',';
+            Pos := Pos + 1;
+         end if;
+      end loop;
+      
+      return Buffer (1..Pos-1);
+   end;
+   
 begin
    
    for I in 1 .. Argument_Count loop
@@ -736,6 +788,10 @@ begin
          for I in Symops'Range loop
             Put (Symops (I));
             New_Line;
+         end loop;
+         
+         for I in Symops'Range loop
+            Put_Line (As_String (Symops (I)));
          end loop;
       end;
    end loop;
