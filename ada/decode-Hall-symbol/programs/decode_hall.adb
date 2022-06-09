@@ -137,10 +137,16 @@ procedure Decode_Hall is
       return S;
    end;
    
-   Principal_Rotations : constant array (1..3, 1..4) of Symop :=
+   Principal_Rotations : constant array (1..3, 0..4) of Symop :=
      (
       -- axis x (a)
       1 => (
+            0 => ( -- identity
+                  (1.0,  0.0,  0.0,  0.0),
+                  (0.0,  1.0,  0.0,  0.0),
+                  (0.0,  0.0,  1.0,  0.0),
+                  (0.0,  0.0,  0.0,  1.0)                   
+                 ),
             1 => ( -- twofold axis
                   (1.0,  0.0,  0.0,  0.0),
                   (0.0, -1.0,  0.0,  0.0),
@@ -168,6 +174,12 @@ procedure Decode_Hall is
            ),
       -- axis y (b)
       2 => (
+            0 => ( -- identity
+                  (1.0,  0.0,  0.0,  0.0),
+                  (0.0,  1.0,  0.0,  0.0),
+                  (0.0,  0.0,  1.0,  0.0),
+                  (0.0,  0.0,  0.0,  1.0)                   
+                 ),
             1 => (
                   (-1.0,  0.0,  0.0,  0.0),
                   ( 0.0,  1.0,  0.0,  0.0),
@@ -195,6 +207,12 @@ procedure Decode_Hall is
            ),
       -- axis z (c)
       3 => (
+            0 => ( -- identity
+                  (1.0,  0.0,  0.0,  0.0),
+                  (0.0,  1.0,  0.0,  0.0),
+                  (0.0,  0.0,  1.0,  0.0),
+                  (0.0,  0.0,  0.0,  1.0)                   
+                 ),
             1 => (
                   (-1.0,  0.0,  0.0,  0.0),
                   ( 0.0, -1.0,  0.0,  0.0),
@@ -400,10 +418,11 @@ procedure Decode_Hall is
    end;
    
    function Rotation_Axis_Index (Rotation_Character : Character)
-                                return Positive
+                                return Natural
    is
    begin
       case Rotation_Character is
+         when '1' => return 0;
          when '2' => return 1;
          when '3' => return 2;
          when '4' => return 3;
@@ -665,6 +684,10 @@ procedure Decode_Hall is
                                     Inversion, Axis, Rotation,
                                     Translations, Preceeding_Axis_Direction,
                                     Preceeding_Axis_Order);
+         
+         if Rotations (N_Rotations) = Unity_Matrix then
+            N_Rotations := N_Rotations - 1;
+         end if;
       end if;
    end Get_Hall_Symbol_Rotations;
    
