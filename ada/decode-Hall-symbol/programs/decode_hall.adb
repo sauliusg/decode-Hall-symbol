@@ -457,7 +457,7 @@ procedure Decode_Hall is
             when '2' => return 1;
             when '3' => return 2;
             when '4' => return 3;
-            when '6' => return 6;
+            when '6' => return 4;
             when others => 
                raise UNKNOWN_ROTATION
                  with "rotation " & Rotation_Character'Image;
