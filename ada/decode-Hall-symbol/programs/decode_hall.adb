@@ -692,7 +692,7 @@ procedure Decode_Hall is
    end Get_Hall_Symbol_Rotations;
    
    function Decode_Hall (Symbol : in String) return Symop_Array is
-      Max_Symops : constant Integer := 96;
+      Max_Symops : constant Integer := 192;
       
       Symops : Symop_Array (1 .. Max_Symops);
       N_Symops : Positive := 1;
