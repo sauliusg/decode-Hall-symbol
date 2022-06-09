@@ -389,7 +389,6 @@ procedure Decode_Hall is
       
       procedure Get_Inversion_Character (Inversion : out Character) is
       begin
-         Skip_Spaces (Symbol, Pos);
          if Pos <= Symbol'Last and then
            Symbol (Pos) = '-' then
             Inversion := Symbol (Pos);
@@ -401,39 +400,36 @@ procedure Decode_Hall is
       
       procedure Get_Rotation_Character (Rotation : out Character) is
       begin
-         Skip_Spaces (Symbol, Pos);
          if Pos <= Symbol'Last then
             pragma Assert (Symbol (Pos) in '2'..'6');
             Rotation := Symbol (Pos);
             Pos := Pos + 1;
          else
-            Rotation := '1';
+            Rotation := ' ';
          end if;
       end;
       
       procedure Get_Axis_Character (Axis : out Character;
                                     Axis_Number : Positive) is
       begin
-         Skip_Spaces (Symbol, Pos);
-         if Pos <= Symbol'Last then
-           if Symbol (Pos) in 'x'..'z' or else
-             Symbol (Pos) = ''' or else
-             Symbol (Pos) = '*' or else
-             Symbol (Pos) = '"'
-           then
-              Axis := Symbol (Pos);
-              Pos := Pos + 1;
-           else
-              case Axis_Number is
-                 when 1 => Axis := 'x';
-                 when 2 => Axis := 'y';
-                 when 3 => Axis := 'z';
-                 when others =>
-                    raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
-              end case;
-           end if;
+         if Pos <= Symbol'Last and then
+           (
+            Symbol (Pos) in 'x'..'z' or else
+              Symbol (Pos) = ''' or else
+              Symbol (Pos) = '*' or else
+              Symbol (Pos) = '"'
+           )
+         then
+            Axis := Symbol (Pos);
+            Pos := Pos + 1;
          else
-            Axis := ' ';
+            case Axis_Number is
+               when 1 => Axis := 'x';
+               when 2 => Axis := 'y';
+               when 3 => Axis := 'z';
+               when others =>
+                  raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
+            end case;
          end if;
       end;
       
@@ -450,7 +446,6 @@ procedure Decode_Hall is
             Translations (I) := Symbol (Pos);
             Pos := Pos + 1;
             I := I + 1;
-            -- Skip_Spaces (Symbol, Pos);
          end loop;
       end;
       
@@ -594,6 +589,7 @@ procedure Decode_Hall is
       Translations : String (1..2) := (others => ' ');
       
    begin
+      Skip_Spaces (Symbol, Pos);
       Get_Inversion_Character (Inversion);
       Get_Rotation_Character (Rotation);
       Get_Axis_Character (Axis, Axis_Number);
