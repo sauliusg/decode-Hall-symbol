@@ -671,7 +671,7 @@ procedure Decode_Hall is
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 96;
       
-      Symops : Symop_Array (1 .. 2 * Max_Symops);
+      Symops : Symop_Array (1 .. Max_Symops);
       N_Symops : Positive := 1;
       
       Pos : Positive := 1;      -- current position in the string 'Symbol'.
@@ -754,7 +754,7 @@ procedure Decode_Hall is
                end if;
             end loop;
             N := N + 1;
-            exit when N > M;
+            exit when N > M or else M >= Max_Symops;
          end loop;
          N_Symops := M;
       end;
