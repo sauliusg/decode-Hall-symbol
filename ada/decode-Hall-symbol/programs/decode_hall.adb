@@ -274,6 +274,23 @@ procedure Decode_Hall is
       (0.0, 0.0, 0.0, 1.0)
      );
    
+   procedure Snap_To_Crystallographic_Translations (M : in out Symop) is
+      Eps : constant Float := 1.0E-5;
+   begin
+      for I in 1 .. M'Last(1) - 1 loop
+         M (I,4) := M (I,4) - Float'Floor (M (I,4));
+         if abs (M (I,4) - 1.0/3.0) < Eps  then
+            M (I,4) := 1.0/3.0;
+         elsif abs (M (I,4) - 2.0/3.0) < Eps then
+            M (I,4) := 2.0/3.0;
+         elsif abs (M (I,4) - 1.0/6.0) < Eps then
+            M (I,4) := 1.0/6.0;
+         elsif abs (M (I,4) - 5.0/6.0) < Eps then
+            M (I,4) := 5.0/6.0;
+         end if;
+      end loop;
+   end;
+   
    procedure Add (M1 : in out Symop; M2 : in Symop) is
    begin
       for I in M1'Range(1) loop
@@ -281,6 +298,7 @@ procedure Decode_Hall is
             M1 (I,J) := M1 (I,J) + M2(I,J);
          end loop;
       end loop;
+      Snap_To_Crystallographic_Translations (M1);
    end;
    
    function "+" (M1, M2 : Symop) return Symop is
@@ -291,6 +309,7 @@ procedure Decode_Hall is
             M (I,J) := M1 (I,J) + M2(I,J);
          end loop;
       end loop;
+      Snap_To_Crystallographic_Translations (M);
       return M;
    end;
    
@@ -307,6 +326,7 @@ procedure Decode_Hall is
             end loop;
          end loop;
       end loop;
+      Snap_To_Crystallographic_Translations (M);
       return M;
    end;
    
@@ -605,29 +625,43 @@ procedure Decode_Hall is
    
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 96;
+      
       Symops : Symop_Array (1 .. Max_Symops);
-      N_Symops : Positive := 1; -- The first element is allocated for the
-                                -- unity matrix.
+      N_Symops : Positive := 1;
+      
       Pos : Positive := 1;      -- current position in the string 'Symbol'.
       
       N_Inversions : Positive;
-      
-      Rotations : Symop_Array (1..3);
-      N_Rotations : Natural := 0;
       
       Centering : Symop_Array (1..4);
       N_Centering : Positive;
       
       Preceeding_Axis : Natural := 0;
       
+      function Has_Symop
+        (
+         Symops : Symop_Array;
+         Last_Symop_Index : Positive;
+         Lookup_Symop : Symop
+        )
+        return Boolean is
+      begin
+         for I in 1 .. Last_Symop_Index loop
+            if Symops (I) = Lookup_Symop then
+               return True;
+            end if;
+         end loop;
+         return False;
+      end;
+      
    begin
       Symops (1) := Unity_Matrix;
       
       Get_Hall_Symbol_Inversions (Symbol, Pos, N_Inversions);
       Get_Hall_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Rotations, N_Rotations, Preceeding_Axis, 1);
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Rotations, N_Rotations, Preceeding_Axis, 2);
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Rotations, N_Rotations, Preceeding_Axis, 3);
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 1);
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 2);
+      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, Preceeding_Axis, 3);
       
       Put_Line ("Inversions:");
       for I in 1..N_Inversions loop
@@ -642,11 +676,31 @@ procedure Decode_Hall is
       end loop;
       
       Put_Line ("Rotations:");
-      for I in 1..N_Rotations loop
+      for I in 1..N_Symops loop
          Put_Line (I'Image);
-         Put (Rotations (I));
+         Put (Symops (I));
          New_Line;
       end loop;
+      
+      -- Reconstruct all rotation operators:
+      
+      declare
+         N, M : Positive := N_Symops;
+         New_Symop : Symop;
+      begin
+         loop
+            for I in 2 .. N loop
+               New_Symop := Symops (I) * Symops (N);
+               if not Has_Symop (Symops, M, New_Symop) then
+                  M := M + 1;
+                  Symops (M) := New_Symop;
+               end if;
+            end loop;
+            N := N + 1;
+            exit when N > M;
+         end loop;
+         N_Symops := M;
+      end;
       
       return Symops (1..N_Symops);
    end;
