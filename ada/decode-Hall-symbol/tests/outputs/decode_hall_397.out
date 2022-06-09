@@ -1,0 +1,16 @@
+X,Y,Z
+-Y,X,Z
+X,-Y,-Z
+Y,X,-Z
+-X,Y,-Z
+Y,-X,Z
+-Y,-X,-Z
+-X,-Y,Z
+-X,-Y,-Z
+Y,-X,-Z
+-X,Y,Z
+-Y,-X,Z
+X,-Y,Z
+-Y,X,-Z
+Y,X,Z
+X,Y,-Z
