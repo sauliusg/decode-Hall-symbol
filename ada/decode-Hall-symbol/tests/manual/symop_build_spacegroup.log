@@ -1,0 +1,134 @@
++ ulimit -n 4069
++ ulimit
+unlimited
++ directory-metadata
++ whoami
+saulius
++ hostname -f
+tasmanijos-velnias
++ pwd
+/home/saulius/tests/ada/decode-Hall-symbol
++ svn info
+Path: .
+Working Copy Root Path: /home/saulius/tests
+URL: svn+ssh://saulius-grazulis.lt/home/saulius/svn-repositories/tests/ada/decode-Hall-symbol
+Relative URL: ^/ada/decode-Hall-symbol
+Repository Root: svn+ssh://saulius-grazulis.lt/home/saulius/svn-repositories/tests
+Repository UUID: 7d3c22fc-10a8-428c-9238-cefecdfad580
+Revision: 1813
+Node Kind: directory
+Schedule: normal
+Last Changed Author: saulius
+Last Changed Rev: 1813
+Last Changed Date: 2022-06-09 16:46:01 +0300 (Thu, 09 Jun 2022)
+
++ df -h .
+Filesystem                  Size  Used Avail Use% Mounted on
+/dev/mapper/linux--vg-home  3,5T  2,4T  948G  72% /home
++ type osname
+osname is /home/saulius/scripts/osname
++ osname
+Linuxmint-20.1
++ uname -a
+Linux tasmanijos-velnias 5.4.0-73-generic #82-Ubuntu SMP Wed Apr 14 17:39:42 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
++ date
+2022-06-09T17:57:29 EEST
++ which symops
+/home/saulius/src/cod-tools/scripts/symops
+++ which symops
++ svn info /home/saulius/src/cod-tools/scripts/symops
+Path: /home/saulius/src/cod-tools/scripts/symops
+Name: symops
+Working Copy Root Path: /home/saulius/src/cod-tools
+URL: svn://cod.ibt.lt/cif-tools/trunk/scripts/symops
+Relative URL: ^/trunk/scripts/symops
+Repository Root: svn://cod.ibt.lt/cif-tools
+Repository UUID: 04be6746-3802-0410-999d-98508da1e98c
+Revision: 9258
+Node Kind: file
+Schedule: normal
+Last Changed Author: antanas
+Last Changed Rev: 8738
+Last Changed Date: 2021-04-28 19:35:53 +0300 (Wed, 28 Apr 2021)
+Text Last Updated: 2022-04-06 09:17:56 +0300 (Wed, 06 Apr 2022)
+Checksum: c142b6e7aabb13f71e205b9c07dab13b89730f77
+
++ set +x
+Files /dev/fd/460 and /dev/fd/461 differ
+tests/cases/decode_hall_229.opt: '-P 2ab 2bc' P n n n
+Files /dev/fd/470 and /dev/fd/471 differ
+tests/cases/decode_hall_234.opt: '-P 2ab 2b' P b a n
+Files /dev/fd/474 and /dev/fd/475 differ
+tests/cases/decode_hall_236.opt: '-P 2b 2bc' P n c b
+Files /dev/fd/478 and /dev/fd/479 differ
+tests/cases/decode_hall_238.opt: '-P 2a 2c' P c n a
+Files /dev/fd/560 and /dev/fd/561 differ
+tests/cases/decode_hall_279.opt: '-P 2ab 2a' P m m n
+Files /dev/fd/564 and /dev/fd/565 differ
+tests/cases/decode_hall_281.opt: '-P 2c 2bc' P n m m
+Files /dev/fd/568 and /dev/fd/569 differ
+tests/cases/decode_hall_283.opt: '-P 2c 2a' P m n m
+Files /dev/fd/668 and /dev/fd/669 differ
+tests/cases/decode_hall_333.opt: '-F 2uv 2vw' F d d d
+Files /dev/fd/716 and /dev/fd/717 differ
+tests/cases/decode_hall_357.opt: '-P 4a' P 4/n
+Files /dev/fd/720 and /dev/fd/721 differ
+tests/cases/decode_hall_359.opt: '-P 4bc' P 42/n
+Files /dev/fd/726 and /dev/fd/727 differ
+tests/cases/decode_hall_362.opt: '-I 4ad' I 41/a
+Files /dev/fd/802 and /dev/fd/803 differ
+tests/cases/decode_hall_400.opt: '-P 4a 2b' P 4/n b m
+Files /dev/fd/806 and /dev/fd/807 differ
+tests/cases/decode_hall_402.opt: '-P 4a 2bc' P 4/n n c
+Files /dev/fd/814 and /dev/fd/815 differ
+tests/cases/decode_hall_406.opt: '-P 4a 2a' P 4/n m m
+Files /dev/fd/818 and /dev/fd/819 differ
+tests/cases/decode_hall_408.opt: '-P 4a 2ac' P 4/n c c
+Files /dev/fd/826 and /dev/fd/827 differ
+tests/cases/decode_hall_412.opt: '-P 4ac 2b' P 42/n b c
+Files /dev/fd/830 and /dev/fd/831 differ
+tests/cases/decode_hall_414.opt: '-P 4ac 2bc' P 42/n n m
+Files /dev/fd/838 and /dev/fd/839 differ
+tests/cases/decode_hall_418.opt: '-P 4ac 2a' P 42/n m c
+Files /dev/fd/842 and /dev/fd/843 differ
+tests/cases/decode_hall_420.opt: '-P 4ac 2ac' P 42/n c m
+Files /dev/fd/850 and /dev/fd/851 differ
+tests/cases/decode_hall_424.opt: '-I 4bd 2' I 41/a m d
+Files /dev/fd/854 and /dev/fd/855 differ
+tests/cases/decode_hall_426.opt: '-I 4bd 2c' I 41/a c d
+Files /dev/fd/864 and /dev/fd/865 differ
+tests/cases/decode_hall_431.opt: 'P 3*' R 3
+Files /dev/fd/870 and /dev/fd/871 differ
+tests/cases/decode_hall_434.opt: '-P 3*' R -3
+Files /dev/fd/882 and /dev/fd/883 differ
+tests/cases/decode_hall_440.opt: 'P 3* 2' R 3 2
+Files /dev/fd/894 and /dev/fd/895 differ
+tests/cases/decode_hall_446.opt: 'P 3* -2' R 3 m
+Files /dev/fd/898 and /dev/fd/899 differ
+tests/cases/decode_hall_448.opt: 'P 3* -2n' R 3 c
+Files /dev/fd/910 and /dev/fd/911 differ
+tests/cases/decode_hall_454.opt: '-P 3* 2' R -3 m
+Files /dev/fd/914 and /dev/fd/915 differ
+tests/cases/decode_hall_456.opt: '-P 3* 2n' R -3 c
+Files /dev/fd/976 and /dev/fd/977 differ
+tests/cases/decode_hall_487.opt: '-P 2ab 2bc 3' P n -3
+Files /dev/fd/982 and /dev/fd/983 differ
+tests/cases/decode_hall_490.opt: '-F 2uv 2vw 3' F d -3
+Files /dev/fd/1022 and /dev/fd/1023 differ
+tests/cases/decode_hall_510.opt: '-P 4a 2bc 3' P n -3 n
+Files /dev/fd/1028 and /dev/fd/1029 differ
+tests/cases/decode_hall_513.opt: '-P 4bc 2bc 3' P n -3 m
+Files /dev/fd/1036 and /dev/fd/1037 differ
+tests/cases/decode_hall_517.opt: '-F 4vw 2vw 3' F d -3 m
+Files /dev/fd/1040 and /dev/fd/1041 differ
+tests/cases/decode_hall_519.opt: '-F 4ud 2vw 3' F d -3 c
+Files /dev/fd/1066 and /dev/fd/1067 differ
+tests/cases/decode_hall_532.opt: 'P 2ybc' P 1 21 1
++ set -x
++ history
++ grep symop_build_spacegroup
++ grep -v 'grep symop_build_spacegroup'
++ tail -n1
+ 1648  ( set -x; directory-metadata; which symops; svn info $(which symops); (set +x; for FILE in tests/cases/*.opt; do OUT=$(dirname $FILE)/$(basename $F .opt).out; H_M=$(eval ./bin/decode_hall "$(cat $FILE)" | symop_build_spacegroup | awk -F'"' '/hermann_/ {print $4}'); if ! diff -q <(eval ./bin/decode_hall "$(cat $FILE)" | symop-matrices | grep '^#CANOP' | perl -pe 's/ [0-9]+://' | sort) <(symops "${H_M}" | symop-matrices | grep '^#CANOP' | perl -pe 's/ [0-9]+://' | sort); then echo "${FILE}:" "$(cat "${FILE}")" "${H_M}"; fi; done ); date )
++ date
+2022-06-09T18:01:52 EEST
