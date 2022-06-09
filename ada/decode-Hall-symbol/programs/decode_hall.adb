@@ -702,6 +702,26 @@ procedure Decode_Hall is
          N_Symops := M;
       end;
       
+      -- Add centering and inversion matrices:
+      
+      declare
+         M : Positive := N_Symops;
+         New_Symop : Symop;
+      begin
+         for I in 1..N_Inversions loop
+            for C in 1..N_Centering loop
+               if I /= 1 or else C /= 1 then
+                  for S in 1..N_Symops loop
+                     M := M + 1;
+                     Symops (M) := 
+                       (Symops (S) + Centering (C)) * Inversion_Matrices (I);
+                  end loop;
+               end if;
+            end loop;
+         end loop;
+         N_Symops := M;
+      end;      
+      
       return Symops (1..N_Symops);
    end;
    
