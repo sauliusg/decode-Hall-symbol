@@ -613,6 +613,8 @@ procedure Decode_Hall is
                when 2..3 =>
                   case Rotation_Character is
                      when ' ' => null;
+                     when '1' => 
+                        Axis := 'z';
                      when '2' => 
                         if Preceeding_Axis_Order = 2 or else
                           Preceeding_Axis_Order = 4 then
