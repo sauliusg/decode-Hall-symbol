@@ -12,17 +12,17 @@ procedure Decode_Hall is
    UNKNOWN_CENTERING : exception;
    UNKNOWN_TRANSLATION : exception;
    
-   type Axis_Direction_Specification is
+   type Axis_Direction_Type is
      (X_AXIS, Y_AXIS, Z_AXIS, UNKNOWN);
    
-   subtype Axis_Direction_Type is
-     Axis_Direction_Specification range X_AXIS .. Z_AXIS;
+   subtype Known_Axis_Direction is
+     Axis_Direction_Type range X_AXIS .. Z_AXIS;
    
-   type Axis_Order_Specification is
+   type Axis_Order_Type is
      (IDENTITY, TWOFOLD, THREEFOLD, FOURFOLD, SIXFOLD, UNKNOWN);
    
-   subtype Axis_Order_Type is
-     Axis_Order_Specification range IDENTITY .. SIXFOLD;
+   subtype Known_Axis_Order is
+     Axis_Order_Type range IDENTITY .. SIXFOLD;
    
    type Symop is array (1..4, 1..4) of Float;
    
@@ -151,7 +151,7 @@ procedure Decode_Hall is
    end;
    
    Principal_Rotations : constant array 
-     (Axis_Direction_Type, Axis_Order_Type) of Symop :=
+     (Known_Axis_Direction, Known_Axis_Order) of Symop :=
      (
       X_AXIS => 
         ( -- axis x (a)
@@ -271,7 +271,7 @@ procedure Decode_Hall is
         )
      );
    
-   Face_Diagonal_Rotations : constant array (Axis_Direction_Type,1..2) of Symop :=
+   Face_Diagonal_Rotations : constant array (Known_Axis_Direction,1..2) of Symop :=
      (
       X_AXIS => (
                  1 => (
@@ -456,7 +456,7 @@ procedure Decode_Hall is
    end;
    
    function Rotation_Axis_Index (Rotation_Character : Character)
-                                return Axis_Order_Type
+                                return Known_Axis_Order
    is
    begin
       case Rotation_Character is
@@ -478,8 +478,8 @@ procedure Decode_Hall is
       Axis : in Character;
       Rotation : in Character;
       Translations : String;
-      Preceeding_Axis_Direction : in out Axis_Direction_Specification;
-      Preceeding_Axis_Order : in out Axis_Order_Specification;
+      Preceeding_Axis_Direction : in out Axis_Direction_Type;
+      Preceeding_Axis_Order : in out Axis_Order_Type;
       Axis_Number_Parameter : in Natural
      )
    is
@@ -515,7 +515,7 @@ procedure Decode_Hall is
             raise UNKNOWN_AXIS with "axis character " & Axis'Image;
       end case;
       
-      Preceeding_Axis_Direction := Axis_Direction_Type'Val (Axis_Number - 1);
+      Preceeding_Axis_Direction := Known_Axis_Direction'Val (Axis_Number - 1);
       Preceeding_Axis_Order := Rotation_Axis_Index (Rotation);
       
       if Inversion = '-' then
@@ -598,8 +598,8 @@ procedure Decode_Hall is
       Pos : in out Positive;
       Rotations : out Symop_Array;
       N_Rotations : in out Natural;
-      Preceeding_Axis_Direction : in out Axis_Direction_Specification;
-      Preceeding_Axis_Order : in out Axis_Order_Specification;
+      Preceeding_Axis_Direction : in out Axis_Direction_Type;
+      Preceeding_Axis_Order : in out Axis_Order_Type;
       Axis_Number : in Positive
      )
    is
@@ -631,7 +631,7 @@ procedure Decode_Hall is
          Axis : out Character;
          Axis_Number : in Positive;
          Rotation_Character : in Character;
-         Preceeding_Axis_Order : in Axis_Order_Specification
+         Preceeding_Axis_Order : in Axis_Order_Type
         )
       is
       begin
@@ -747,8 +747,8 @@ procedure Decode_Hall is
       Centering : Symop_Array (1..4);
       N_Centering : Positive;
       
-      Preceeding_Axis_Direction : Axis_Direction_Specification := UNKNOWN;
-      Preceeding_Axis_Order : Axis_Order_Specification := UNKNOWN;
+      Preceeding_Axis_Direction : Axis_Direction_Type := UNKNOWN;
+      Preceeding_Axis_Order : Axis_Order_Type := UNKNOWN;
       
       function Has_Symop
         (
