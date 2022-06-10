@@ -432,8 +432,8 @@ procedure Decode_Hall is
            Centering (3) := To_Symop (R_Translation_Vector_2);
            N_Centering := 3;
          when others =>
-           Centering (1) := Unity_Matrix;
-           N_Centering := 1;           
+            raise UNKNOWN_ROTATION with
+              "unknown rotation symbol " & Symbol (Pos)'Image;
       end case;
       Pos := Pos + 1;
    end;
