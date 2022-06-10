@@ -1,2 +1,2 @@
 
-raised DECODE_HALL.UNKNOWN_ROTATION : unknown rotation symbol 'H'
+raised DECODE_HALL.UNKNOWN_CENTERING : unknown centering symbol 'H'

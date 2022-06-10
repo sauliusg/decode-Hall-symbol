@@ -9,6 +9,7 @@ procedure Decode_Hall is
    
    UNKNOWN_AXIS : exception;
    UNKNOWN_ROTATION : exception;
+   UNKNOWN_CENTERING : exception;
    UNKNOWN_TRANSLATION : exception;
    
    type Axis_Direction_Type is (X_AXIS, Y_AXIS, Z_AXIS);
@@ -432,8 +433,8 @@ procedure Decode_Hall is
            Centering (3) := To_Symop (R_Translation_Vector_2);
            N_Centering := 3;
          when others =>
-            raise UNKNOWN_ROTATION with
-              "unknown rotation symbol " & Symbol (Pos)'Image;
+            raise UNKNOWN_CENTERING with
+              "unknown centering symbol " & Symbol (Pos)'Image;
       end case;
       Pos := Pos + 1;
    end;
