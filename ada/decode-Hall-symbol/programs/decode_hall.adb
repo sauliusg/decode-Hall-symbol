@@ -510,34 +510,17 @@ procedure Decode_Hall is
       
       Preceeding_Axis_Direction := Known_Axis_Direction'Val (Axis_Number - 1);
       Preceeding_Axis_Order := Rotation_Axis_Index (Rotation);
-   end;
+   end Get_Rotation_Matrix_From_Axis_And_Rotation;
    
-   procedure Construct_Rotation_Matrix
+   procedure Add_Translation_To_The_Rotation_Matrix
      (
       Matrix : out Symop;
-      Inversion : in Character;
-      Axis : in Character;
-      Rotation : in Character;
+      Rotation : Character;
       Translations : String;
-      Preceeding_Axis_Direction : in out Axis_Direction_Type;
-      Preceeding_Axis_Order : in out Axis_Order_Type;
-      Axis_Number_Parameter : in Natural
+      Axis_Number : in Natural
      )
    is
-      Axis_Number : Integer range 0..4 := Axis_Number_Parameter;
-   begin      
-      Get_Rotation_Matrix_From_Axis_And_Rotation
-        ( 
-          Matrix, Axis, Rotation,
-          Preceeding_Axis_Direction,
-          Preceeding_Axis_Order,
-          Axis_Number
-        );
-      
-      if Inversion = '-' then
-         Matrix := Ci_Matrix * Matrix;
-      end if;
-      
+   begin
       for Tr of Translations loop
          case Tr is
             when ' ' => null;
@@ -605,7 +588,40 @@ procedure Decode_Hall is
                  with "translation character " & Tr'Image;
          end case;
       end loop;
+   end Add_Translation_To_The_Rotation_Matrix;
+   
+   procedure Construct_Rotation_Matrix
+     (
+      Matrix : out Symop;
+      Inversion : in Character;
+      Axis : in Character;
+      Rotation : in Character;
+      Translations : String;
+      Preceeding_Axis_Direction : in out Axis_Direction_Type;
+      Preceeding_Axis_Order : in out Axis_Order_Type;
+      Axis_Number_Parameter : in Natural
+     )
+   is
+      Axis_Number : Integer range 0..4 := Axis_Number_Parameter;
+   begin      
+      Get_Rotation_Matrix_From_Axis_And_Rotation
+        ( 
+          Matrix, Axis, Rotation,
+          Preceeding_Axis_Direction,
+          Preceeding_Axis_Order,
+          Axis_Number
+        );
       
+      if Inversion = '-' then
+         Matrix := Ci_Matrix * Matrix;
+      end if;
+      
+      Add_Translation_To_The_Rotation_Matrix
+        (
+         Matrix, Rotation,
+         Translations,
+         Axis_Number
+        );
    end;
       
    procedure Get_Hall_Symbol_Rotations
