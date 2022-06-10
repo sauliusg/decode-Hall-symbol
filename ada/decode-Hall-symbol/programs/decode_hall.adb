@@ -11,6 +11,10 @@ procedure Decode_Hall is
    UNKNOWN_ROTATION : exception;
    UNKNOWN_TRANSLATION : exception;
    
+   type Axis_Direction_Type is (X_AXIS, Y_AXIS, Z_AXIS);
+   
+   type Axis_Order_Type is (IDENTITY, TWOFOLD, THREEFOLD, FOURFOLD, SIXFOLD);
+   
    type Symop is array (1..4, 1..4) of Float;
    
    type Symop_Array is array (Positive range <>) of Symop;
@@ -137,108 +141,125 @@ procedure Decode_Hall is
       return S;
    end;
    
-   Principal_Rotations : constant array (1..3, 0..4) of Symop :=
+   Principal_Rotations : constant array 
+     (Axis_Direction_Type, Axis_Order_Type) of Symop :=
      (
-      -- axis x (a)
-      1 => (
-            0 => ( -- identity
-                  (1.0,  0.0,  0.0,  0.0),
-                  (0.0,  1.0,  0.0,  0.0),
-                  (0.0,  0.0,  1.0,  0.0),
-                  (0.0,  0.0,  0.0,  1.0)                   
-                 ),
-            1 => ( -- twofold axis
-                  (1.0,  0.0,  0.0,  0.0),
-                  (0.0, -1.0,  0.0,  0.0),
-                  (0.0,  0.0, -1.0,  0.0),
-                  (0.0,  0.0,  0.0,  1.0)
-                 ),
-            2 => ( --treefold axis
-                  (1.0,  0.0,  0.0,  0.0),
-                  (0.0,  0.0, -1.0,  0.0),
-                  (0.0,  1.0, -1.0,  0.0),
-                  (0.0,  0.0,  0.0,  1.0)
-                 ),
-            3 => ( -- fourfold axis
-                  (1.0,  0.0,  0.0,  0.0),
-                  (0.0,  0.0, -1.0,  0.0),
-                  (0.0,  1.0,  0.0,  0.0),
-                  (0.0,  0.0,  0.0,  1.0)
-                 ),
-            4 => ( --sixfold axis
-                  (1.0,  0.0,  0.0,  0.0),
-                  (0.0,  1.0, -1.0,  0.0),
-                  (0.0,  1.0,  0.0,  0.0),
-                  (0.0,  0.0,  0.0,  1.0)
-                 )
-           ),
-      -- axis y (b)
-      2 => (
-            0 => ( -- identity
-                  (1.0,  0.0,  0.0,  0.0),
-                  (0.0,  1.0,  0.0,  0.0),
-                  (0.0,  0.0,  1.0,  0.0),
-                  (0.0,  0.0,  0.0,  1.0)                   
-                 ),
-            1 => (
-                  (-1.0,  0.0,  0.0,  0.0),
-                  ( 0.0,  1.0,  0.0,  0.0),
-                  ( 0.0,  0.0, -1.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 ),
-            2 => (
-                  (-1.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  1.0,  0.0,  0.0),
-                  (-1.0,  0.0,  0.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 ),
-            3 => (
-                  ( 0.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  1.0,  0.0,  0.0),
-                  (-1.0,  0.0,  0.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 ),
-            4 => (
-                  ( 0.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  1.0,  0.0,  0.0),
-                  (-1.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 )
-           ),
+      X_AXIS => 
+        ( -- axis x (a)
+          IDENTITY =>
+            (
+             (1.0,  0.0,  0.0,  0.0),
+             (0.0,  1.0,  0.0,  0.0),
+             (0.0,  0.0,  1.0,  0.0),
+             (0.0,  0.0,  0.0,  1.0)                   
+            ),
+          TWOFOLD =>
+            (
+             (1.0,  0.0,  0.0,  0.0),
+             (0.0, -1.0,  0.0,  0.0),
+             (0.0,  0.0, -1.0,  0.0),
+             (0.0,  0.0,  0.0,  1.0)
+            ),
+          THREEFOLD =>
+            (
+             (1.0,  0.0,  0.0,  0.0),
+             (0.0,  0.0, -1.0,  0.0),
+             (0.0,  1.0, -1.0,  0.0),
+             (0.0,  0.0,  0.0,  1.0)
+            ),
+          FOURFOLD =>
+            (
+             (1.0,  0.0,  0.0,  0.0),
+             (0.0,  0.0, -1.0,  0.0),
+             (0.0,  1.0,  0.0,  0.0),
+             (0.0,  0.0,  0.0,  1.0)
+            ),
+          SIXFOLD =>
+            (
+             (1.0,  0.0,  0.0,  0.0),
+             (0.0,  1.0, -1.0,  0.0),
+             (0.0,  1.0,  0.0,  0.0),
+             (0.0,  0.0,  0.0,  1.0)
+            )
+        ),
+      Y_AXIS => 
+        ( -- axis y (b)
+          IDENTITY =>
+            (
+             (1.0,  0.0,  0.0,  0.0),
+             (0.0,  1.0,  0.0,  0.0),
+             (0.0,  0.0,  1.0,  0.0),
+             (0.0,  0.0,  0.0,  1.0)                   
+            ),
+          TWOFOLD =>
+            (
+             (-1.0,  0.0,  0.0,  0.0),
+             ( 0.0,  1.0,  0.0,  0.0),
+             ( 0.0,  0.0, -1.0,  0.0),
+             ( 0.0,  0.0,  0.0,  1.0)
+            ),
+          THREEFOLD =>
+            (
+             (-1.0,  0.0,  1.0,  0.0),
+             ( 0.0,  1.0,  0.0,  0.0),
+             (-1.0,  0.0,  0.0,  0.0),
+             ( 0.0,  0.0,  0.0,  1.0)
+            ),
+          FOURFOLD =>
+            (
+             ( 0.0,  0.0,  1.0,  0.0),
+             ( 0.0,  1.0,  0.0,  0.0),
+             (-1.0,  0.0,  0.0,  0.0),
+             ( 0.0,  0.0,  0.0,  1.0)
+            ),
+          SIXFOLD =>
+            (
+             ( 0.0,  0.0,  1.0,  0.0),
+             ( 0.0,  1.0,  0.0,  0.0),
+             (-1.0,  0.0,  1.0,  0.0),
+             ( 0.0,  0.0,  0.0,  1.0)
+            )
+        ),
       -- axis z (c)
-      3 => (
-            0 => ( -- identity
-                  (1.0,  0.0,  0.0,  0.0),
-                  (0.0,  1.0,  0.0,  0.0),
-                  (0.0,  0.0,  1.0,  0.0),
-                  (0.0,  0.0,  0.0,  1.0)                   
-                 ),
-            1 => (
-                  (-1.0,  0.0,  0.0,  0.0),
-                  ( 0.0, -1.0,  0.0,  0.0),
-                  ( 0.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 ),
-            2 => (
-                  ( 0.0, -1.0,  0.0,  0.0),
-                  ( 1.0, -1.0,  0.0,  0.0),
-                  ( 0.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 ),
-            3 => (
-                  ( 0.0, -1.0,  0.0,  0.0),
-                  ( 1.0,  0.0,  0.0,  0.0),
-                  ( 0.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 ),
-            4 => (
-                  ( 1.0, -1.0,  0.0,  0.0),
-                  ( 1.0,  0.0,  0.0,  0.0),
-                  ( 0.0,  0.0,  1.0,  0.0),
-                  ( 0.0,  0.0,  0.0,  1.0)
-                 )
+      Z_AXIS =>
+        (
+         IDENTITY =>
+           ( -- identity
+             (1.0,  0.0,  0.0,  0.0),
+             (0.0,  1.0,  0.0,  0.0),
+             (0.0,  0.0,  1.0,  0.0),
+             (0.0,  0.0,  0.0,  1.0)                   
+           ),
+         TWOFOLD =>
+           (
+            (-1.0,  0.0,  0.0,  0.0),
+            ( 0.0, -1.0,  0.0,  0.0),
+            ( 0.0,  0.0,  1.0,  0.0),
+            ( 0.0,  0.0,  0.0,  1.0)
+           ),
+         THREEFOLD =>
+           (
+            ( 0.0, -1.0,  0.0,  0.0),
+            ( 1.0, -1.0,  0.0,  0.0),
+            ( 0.0,  0.0,  1.0,  0.0),
+            ( 0.0,  0.0,  0.0,  1.0)
+           ),
+         FOURFOLD =>
+           (
+            ( 0.0, -1.0,  0.0,  0.0),
+            ( 1.0,  0.0,  0.0,  0.0),
+            ( 0.0,  0.0,  1.0,  0.0),
+            ( 0.0,  0.0,  0.0,  1.0)
+           ),
+         SIXFOLD
+           => 
+           (
+            ( 1.0, -1.0,  0.0,  0.0),
+            ( 1.0,  0.0,  0.0,  0.0),
+            ( 0.0,  0.0,  1.0,  0.0),
+            ( 0.0,  0.0,  0.0,  1.0)
            )
-
+        )
      );
    
    Face_Diagonal_Rotations : constant array (1..3,1..2) of Symop :=
@@ -418,15 +439,15 @@ procedure Decode_Hall is
    end;
    
    function Rotation_Axis_Index (Rotation_Character : Character)
-                                return Natural
+                                return Axis_Order_Type
    is
    begin
       case Rotation_Character is
-         when '1' => return 0;
-         when '2' => return 1;
-         when '3' => return 2;
-         when '4' => return 3;
-         when '6' => return 4;
+         when '1' => return IDENTITY;
+         when '2' => return TWOFOLD;
+         when '3' => return THREEFOLD;
+         when '4' => return FOURFOLD;
+         when '6' => return SIXFOLD;
          when others => 
             raise UNKNOWN_ROTATION
               with "rotation " & Rotation_Character'Image;
@@ -454,15 +475,15 @@ procedure Decode_Hall is
       case Axis is 
          when 'x' =>
             Matrix :=
-              Principal_Rotations (1, Rotation_Axis_Index (Rotation));
+              Principal_Rotations (X_AXIS, Rotation_Axis_Index (Rotation));
             Axis_Number := 1;
          when 'y' =>
             Matrix :=
-              Principal_Rotations (2, Rotation_Axis_Index (Rotation));
+              Principal_Rotations (Y_AXIS, Rotation_Axis_Index (Rotation));
             Axis_Number := 2;
          when 'z' =>
             Matrix :=
-              Principal_Rotations (3, Rotation_Axis_Index (Rotation));
+              Principal_Rotations (Z_AXIS, Rotation_Axis_Index (Rotation));
             Axis_Number := 3;
          when ''' =>
             Matrix :=
