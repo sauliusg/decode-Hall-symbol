@@ -330,6 +330,8 @@ procedure Decode_Hall is
             M (I,4) := 1.0/6.0;
          elsif abs (M (I,4) - 5.0/6.0) < Eps then
             M (I,4) := 5.0/6.0;
+         elsif abs (M (I,4) - 1.0/2.0) < Eps then
+            M (I,4) := 1.0/2.0;
          end if;
       end loop;
    end;
