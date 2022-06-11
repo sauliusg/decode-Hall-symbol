@@ -143,12 +143,23 @@ procedure Decode_Hall is
    end;
    
    function To_Symop (T : Crystallographic_Translation_Component;
-                      Axis : Positive) return Symop is
+                      Axis_Direction : Known_Axis_Direction) return Symop is
       S : Symop := Zero_Matrix;
+      
+      function Axis_Index (Direction : Known_Axis_Direction) return Positive is
+      begin
+         case Direction is
+            when X_AXIS => return 1;
+            when Y_AXIS => return 2;
+            when Z_AXIS => return 3;
+         end case;
+      end Axis_Index;
+      
    begin
-      S (Axis,4) := Float (T.Numerator) / Float (T.Denominator);
+      S (Axis_Index (Axis_Direction), 4) :=
+        Float (T.Numerator) / Float (T.Denominator);
       return S;
-   end;
+   end To_Symop;
    
    Principal_Rotations : constant array 
      (Known_Axis_Direction, Known_Axis_Order) of Symop :=
@@ -478,39 +489,47 @@ procedure Decode_Hall is
       Rotation : in Character;
       Preceeding_Axis_Direction : in out Axis_Direction_Type;
       Preceeding_Axis_Order : in out Axis_Order_Type;
-      Axis_Number : in out Natural
+      Axis_Direction : out Axis_Direction_Type;
+      Axis_Number : in Natural
      )
    is
       Current_Axis_Order : constant Known_Axis_Order := 
         Rotation_Axis_Index (Rotation);
    begin
+      Axis_Direction := (if Axis_Number = 1 then Z_AXIS else X_AXIS);
       case Axis is 
          when 'x' =>
             Matrix :=
               Principal_Rotations (X_AXIS, Current_Axis_Order);
-            Axis_Number := 1;
+            Axis_Direction := X_AXIS;
+            Preceeding_Axis_Direction := Axis_Direction;
          when 'y' =>
             Matrix :=
               Principal_Rotations (Y_AXIS, Current_Axis_Order);
-            Axis_Number := 2;
+            Axis_Direction := Y_AXIS;
+            Preceeding_Axis_Direction := Axis_Direction;
          when 'z' =>
             Matrix :=
               Principal_Rotations (Z_AXIS, Current_Axis_Order);
-            Axis_Number := 3;
+            Axis_Direction := Z_AXIS;
+            Preceeding_Axis_Direction := Axis_Direction;
          when ''' =>
             Matrix :=
               Face_Diagonal_Rotations (Preceeding_Axis_Direction, 1);
+            Preceeding_Axis_Direction := Axis_Direction;
          when '"' =>
             Matrix :=
               Face_Diagonal_Rotations (Preceeding_Axis_Direction, 2);
+            Preceeding_Axis_Direction := Axis_Direction;
          when '*' =>
             Matrix :=
               Body_Diagonal_Rotation;
+            Preceeding_Axis_Direction := Known_Axis_Direction'Val (Axis_Number - 1);
+            -- Preceeding_Axis_Direction := Axis_Direction;
          when others =>
             raise UNKNOWN_AXIS with "axis character " & Axis'Image;
       end case;
       
-      Preceeding_Axis_Direction := Known_Axis_Direction'Val (Axis_Number - 1);
       Preceeding_Axis_Order := Current_Axis_Order;
    end Get_Rotation_Matrix_From_Axis_And_Rotation;
    
@@ -519,7 +538,7 @@ procedure Decode_Hall is
       Matrix : out Symop;
       Rotation : Character;
       Translations : String;
-      Axis_Number : in Natural
+      Axis_Direction : in Axis_Direction_Type
      )
    is
    begin
@@ -537,11 +556,11 @@ procedure Decode_Hall is
             when '1' => 
                case Rotation is 
                   when '3' => 
-                     Add (Matrix, To_Symop (Translations_3_1, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_3_1, Axis_Direction));
                   when '4' => 
-                     Add (Matrix, To_Symop (Translations_4_1, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_4_1, Axis_Direction));
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_1, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_6_1, Axis_Direction));
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -550,9 +569,9 @@ procedure Decode_Hall is
             when '2' => 
                case Rotation is 
                   when '3' => 
-                     Add (Matrix, To_Symop (Translations_3_2, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_3_2, Axis_Direction));
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_2, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_6_2, Axis_Direction));
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -561,7 +580,7 @@ procedure Decode_Hall is
             when '3' => 
                case Rotation is 
                   when '4' => 
-                     Add (Matrix, To_Symop (Translations_4_3, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_4_3, Axis_Direction));
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -570,7 +589,7 @@ procedure Decode_Hall is
             when '4' => 
                case Rotation is 
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_4, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_6_4, Axis_Direction));
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -579,7 +598,7 @@ procedure Decode_Hall is
             when '5' => 
                case Rotation is 
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_5, Axis_Number));
+                     Add (Matrix, To_Symop (Translations_6_5, Axis_Direction));
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -601,16 +620,17 @@ procedure Decode_Hall is
       Translations : String;
       Preceeding_Axis_Direction : in out Axis_Direction_Type;
       Preceeding_Axis_Order : in out Axis_Order_Type;
-      Axis_Number_Parameter : in Natural
+      Axis_Number : in Natural
      )
    is
-      Axis_Number : Integer range 0..4 := Axis_Number_Parameter;
+      Axis_Direction : Axis_Direction_Type;
    begin      
       Get_Rotation_Matrix_From_Axis_And_Rotation
         ( 
           Matrix, Axis, Rotation,
           Preceeding_Axis_Direction,
           Preceeding_Axis_Order,
+          Axis_Direction,
           Axis_Number
         );
       
@@ -622,7 +642,7 @@ procedure Decode_Hall is
         (
          Matrix, Rotation,
          Translations,
-         Axis_Number
+         Axis_Direction
         );
    end;
       
