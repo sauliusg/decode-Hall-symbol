@@ -661,6 +661,124 @@ procedure Decode_Hall is
       return False;
    end;
       
+   procedure Get_Inversion_Character
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Inversion : out Character
+     )
+   is
+   begin
+      if Pos <= Symbol'Last and then
+        Symbol (Pos) = '-' then
+         Inversion := Symbol (Pos);
+         Pos := Pos + 1;
+      else
+         Inversion := ' ';
+      end if;
+   end;
+   
+   procedure Get_Rotation_Character
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Rotation : out Character
+     )
+   is
+   begin
+      if Pos <= Symbol'Last then
+         pragma Assert (Symbol (Pos) in '2'..'6');
+         Rotation := Symbol (Pos);
+         Pos := Pos + 1;
+      else
+         Rotation := ' ';
+      end if;
+   end;
+   
+   procedure Get_Axis_Character
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Axis : out Character;
+      Axis_Number : in Positive;
+      Rotation_Character : in Character;
+      Preceeding_Axis_Order : in Axis_Order_Type
+     )
+   is
+   begin
+      if Pos <= Symbol'Last and then
+        (
+         Symbol (Pos) in 'x'..'z' or else
+           Symbol (Pos) = ''' or else
+           Symbol (Pos) = '*' or else
+           Symbol (Pos) = '"'
+        )
+      then
+         Axis := Symbol (Pos);
+         Pos := Pos + 1;
+      else
+         case Axis_Number is
+            when 1 => Axis := 'z';
+            when 2..3 =>
+               case Rotation_Character is
+                  when ' ' => null;
+                  when '1' => 
+                     Axis := 'z';
+                  when '2' => 
+                     if Preceeding_Axis_Order = TWOFOLD or else
+                       Preceeding_Axis_Order = FOURFOLD then
+                        Axis := 'x';
+                     elsif Preceeding_Axis_Order = THREEFOLD or else 
+                       Preceeding_Axis_Order = SIXFOLD then
+                        Axis := ''';
+                     else
+                        raise UNKNOWN_AXIS with
+                          "can not determine rotation axis for " &
+                          "the preceeding axis " & 
+                          Preceeding_Axis_Order'Image &
+                          " and current axis " & 
+                          Rotation_Character'Image;
+                     end if;
+                  when '3' => 
+                     Axis := '*';
+                  when others =>
+                     raise UNKNOWN_ROTATION 
+                       with "wrong rotation character " & 
+                       Rotation_Character'Image &
+                       " for axis number" & Axis_Number'Image;
+               end case;
+            when 4 =>
+               Axis := 'x';
+            when others =>
+               raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
+         end case;
+      end if;
+   end;
+   
+   procedure Get_Translation_Characters
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Translations : in out String;
+      N_Translations: in out Natural
+     ) 
+   is
+      I : Natural := N_Translations;
+   begin
+      while Pos <= Symbol'Last and then
+        (
+         Symbol (Pos) in 'a' .. 'd' or else
+           Symbol (Pos) in 'u' .. 'w' or else
+           Symbol (Pos) in '1' .. '5' or else
+           Symbol (Pos) = 'n' 
+        ) loop
+         I := I + 1;
+         Translations (I) := Symbol (Pos);
+         Pos := Pos + 1;
+      end loop;
+      N_Translations := I;
+   end;
+      
    procedure Get_Hall_Symbol_Rotation
      (
       Symbol : in String;
@@ -671,123 +789,23 @@ procedure Decode_Hall is
       Preceeding_Axis_Order : in out Axis_Order_Type;
       Axis_Number : in Positive
      )
-   is
-      
-      procedure Get_Inversion_Character (Inversion : out Character) is
-      begin
-         if Pos <= Symbol'Last and then
-           Symbol (Pos) = '-' then
-            Inversion := Symbol (Pos);
-            Pos := Pos + 1;
-         else
-            Inversion := ' ';
-         end if;
-      end;
-      
-      procedure Get_Rotation_Character (Rotation : out Character) is
-      begin
-         if Pos <= Symbol'Last then
-            pragma Assert (Symbol (Pos) in '2'..'6');
-            Rotation := Symbol (Pos);
-            Pos := Pos + 1;
-         else
-            Rotation := ' ';
-         end if;
-      end;
-      
-      procedure Get_Axis_Character
-        (
-         Axis : out Character;
-         Axis_Number : in Positive;
-         Rotation_Character : in Character;
-         Preceeding_Axis_Order : in Axis_Order_Type
-        )
-      is
-      begin
-         if Pos <= Symbol'Last and then
-           (
-            Symbol (Pos) in 'x'..'z' or else
-              Symbol (Pos) = ''' or else
-              Symbol (Pos) = '*' or else
-              Symbol (Pos) = '"'
-           )
-         then
-            Axis := Symbol (Pos);
-            Pos := Pos + 1;
-         else
-            case Axis_Number is
-               when 1 => Axis := 'z';
-               when 2..3 =>
-                  case Rotation_Character is
-                     when ' ' => null;
-                     when '1' => 
-                        Axis := 'z';
-                     when '2' => 
-                        if Preceeding_Axis_Order = TWOFOLD or else
-                          Preceeding_Axis_Order = FOURFOLD then
-                           Axis := 'x';
-                        elsif Preceeding_Axis_Order = THREEFOLD or else 
-                          Preceeding_Axis_Order = SIXFOLD then
-                           Axis := ''';
-                        else
-                           raise UNKNOWN_AXIS with
-                             "can not determine rotation axis for " &
-                             "the preceeding axis " & 
-                             Preceeding_Axis_Order'Image &
-                             " and current axis " & 
-                             Rotation_Character'Image;
-                        end if;
-                     when '3' => 
-                        Axis := '*';
-                     when others =>
-                        raise UNKNOWN_ROTATION 
-                          with "wrong rotation character " & 
-                          Rotation_Character'Image &
-                          " for axis number" & Axis_Number'Image;
-                  end case;
-               when 4 =>
-                  Axis := 'x';
-               when others =>
-                  raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
-            end case;
-         end if;
-      end;
-      
-      procedure Get_Translation_Characters
-        (
-         Translations : in out String;
-         N_Translations: in out Natural
-        ) 
-      is
-         I : Natural := N_Translations;
-      begin
-         while Pos <= Symbol'Last and then
-           (
-            Symbol (Pos) in 'a' .. 'd' or else
-              Symbol (Pos) in 'u' .. 'w' or else
-              Symbol (Pos) in '1' .. '5' or else
-              Symbol (Pos) = 'n' 
-           ) loop
-            I := I + 1;
-            Translations (I) := Symbol (Pos);
-            Pos := Pos + 1;
-         end loop;
-         N_Translations := I;
-      end;      
-      
+   is      
       Inversion : Character;
       Rotation : Character;
       Axis : Character;
       Translations : String (1..3) := (others => ' ');
-      N_Translations : Natural := 0;
-      
+      N_Translations : Natural := 0;      
    begin
       Skip_Spaces (Symbol, Pos);
-      Get_Inversion_Character (Inversion);
-      Get_Rotation_Character (Rotation);
-      Get_Translation_Characters (Translations, N_Translations);
-      Get_Axis_Character (Axis, Axis_Number, Rotation, Preceeding_Axis_Order);
-      Get_Translation_Characters (Translations, N_Translations);
+      Get_Inversion_Character (Symbol, Pos, Inversion);
+      Get_Rotation_Character (Symbol, Pos, Rotation);
+      
+      Get_Translation_Characters (Symbol, Pos, Translations, N_Translations);
+      
+      Get_Axis_Character (Symbol, Pos, Axis, Axis_Number, Rotation,
+                          Preceeding_Axis_Order);
+      
+      Get_Translation_Characters (Symbol, Pos, Translations, N_Translations);
       
       if Rotation /= ' ' and then Axis /= ' ' then
          N_Rotations := N_Rotations + 1;
