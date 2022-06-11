@@ -645,6 +645,22 @@ procedure Decode_Hall is
         );
    end;
       
+   function Has_Symop
+     (
+      Symops : Symop_Array;
+      Last_Symop_Index : Positive;
+      Lookup_Symop : Symop
+     )
+     return Boolean is
+   begin
+      for I in 1 .. Last_Symop_Index loop
+         if Symops (I) = Lookup_Symop then
+            return True;
+         end if;
+      end loop;
+      return False;
+   end;
+      
    procedure Get_Hall_Symbol_Rotations
      (
       Symbol : in String;
@@ -781,7 +797,7 @@ procedure Decode_Hall is
                                     Preceeding_Axis_Order,
                                     Axis_Number);
          
-         if Rotations (N_Rotations) = Unity_Matrix then
+         if Has_Symop( Rotations, N_Rotations -1, Rotations (N_Rotations)) then
             N_Rotations := N_Rotations - 1;
          end if;
       end if;
@@ -802,22 +818,6 @@ procedure Decode_Hall is
       
       Preceeding_Axis_Direction : Axis_Direction_Type := UNKNOWN;
       Preceeding_Axis_Order : Axis_Order_Type := UNKNOWN;
-      
-      function Has_Symop
-        (
-         Symops : Symop_Array;
-         Last_Symop_Index : Positive;
-         Lookup_Symop : Symop
-        )
-        return Boolean is
-      begin
-         for I in 1 .. Last_Symop_Index loop
-            if Symops (I) = Lookup_Symop then
-               return True;
-            end if;
-         end loop;
-         return False;
-      end;
       
    begin
       Symops (1) := Unity_Matrix;
