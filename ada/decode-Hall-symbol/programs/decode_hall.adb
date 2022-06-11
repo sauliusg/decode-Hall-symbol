@@ -481,7 +481,8 @@ procedure Decode_Hall is
       Axis_Number : in out Natural
      )
    is
-      Current_Axis_Order : Known_Axis_Order := Rotation_Axis_Index (Rotation);
+      Current_Axis_Order : constant Known_Axis_Order := 
+        Rotation_Axis_Index (Rotation);
    begin
       case Axis is 
          when 'x' =>
