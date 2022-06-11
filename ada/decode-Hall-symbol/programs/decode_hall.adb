@@ -661,7 +661,7 @@ procedure Decode_Hall is
       return False;
    end;
       
-   procedure Get_Hall_Symbol_Rotations
+   procedure Get_Hall_Symbol_Rotation
      (
       Symbol : in String;
       Pos : in out Positive;
@@ -801,7 +801,7 @@ procedure Decode_Hall is
             N_Rotations := N_Rotations - 1;
          end if;
       end if;
-   end Get_Hall_Symbol_Rotations;
+   end Get_Hall_Symbol_Rotation;
    
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 192;
@@ -826,9 +826,9 @@ procedure Decode_Hall is
       Get_Hall_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
       
       for Axis_Number in 1..4 loop
-         Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
-                                     Preceeding_Axis_Direction,
-                                     Preceeding_Axis_Order, Axis_Number);
+         Get_Hall_Symbol_Rotation (Symbol, Pos, Symops, N_Symops,
+                                   Preceeding_Axis_Direction,
+                                   Preceeding_Axis_Order, Axis_Number);
       end loop;
       
       if Debug_Print_Matrices then
