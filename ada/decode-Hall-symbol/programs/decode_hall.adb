@@ -481,19 +481,20 @@ procedure Decode_Hall is
       Axis_Number : in out Natural
      )
    is
+      Current_Axis_Order : Known_Axis_Order := Rotation_Axis_Index (Rotation);
    begin
       case Axis is 
          when 'x' =>
             Matrix :=
-              Principal_Rotations (X_AXIS, Rotation_Axis_Index (Rotation));
+              Principal_Rotations (X_AXIS, Current_Axis_Order);
             Axis_Number := 1;
          when 'y' =>
             Matrix :=
-              Principal_Rotations (Y_AXIS, Rotation_Axis_Index (Rotation));
+              Principal_Rotations (Y_AXIS, Current_Axis_Order);
             Axis_Number := 2;
          when 'z' =>
             Matrix :=
-              Principal_Rotations (Z_AXIS, Rotation_Axis_Index (Rotation));
+              Principal_Rotations (Z_AXIS, Current_Axis_Order);
             Axis_Number := 3;
          when ''' =>
             Matrix :=
@@ -509,7 +510,7 @@ procedure Decode_Hall is
       end case;
       
       Preceeding_Axis_Direction := Known_Axis_Direction'Val (Axis_Number - 1);
-      Preceeding_Axis_Order := Rotation_Axis_Index (Rotation);
+      Preceeding_Axis_Order := Current_Axis_Order;
    end Get_Rotation_Matrix_From_Axis_And_Rotation;
    
    procedure Add_Translation_To_The_Rotation_Matrix
