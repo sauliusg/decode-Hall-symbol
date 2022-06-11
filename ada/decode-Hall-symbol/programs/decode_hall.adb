@@ -525,7 +525,6 @@ procedure Decode_Hall is
             Matrix :=
               Body_Diagonal_Rotation;
             Preceeding_Axis_Direction := Known_Axis_Direction'Val (Axis_Number - 1);
-            -- Preceeding_Axis_Direction := Axis_Direction;
          when others =>
             raise UNKNOWN_AXIS with "axis character " & Axis'Image;
       end case;
