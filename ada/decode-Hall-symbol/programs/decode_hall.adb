@@ -825,21 +825,11 @@ procedure Decode_Hall is
       Get_Hall_Symbol_Inversions (Symbol, Pos, N_Inversions);
       Get_Hall_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
       
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
-                                  Preceeding_Axis_Direction,
-                                  Preceeding_Axis_Order, 1);
-
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops, 
-                                  Preceeding_Axis_Direction,
-                                  Preceeding_Axis_Order, 2);
-
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
-                                  Preceeding_Axis_Direction,
-                                  Preceeding_Axis_Order, 3);
-      
-      Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
-                                  Preceeding_Axis_Direction,
-                                  Preceeding_Axis_Order, 4);
+      for N in 1..4 loop
+         Get_Hall_Symbol_Rotations  (Symbol, Pos, Symops, N_Symops,
+                                     Preceeding_Axis_Direction,
+                                     Preceeding_Axis_Order, N);
+      end loop;
       
       if Debug_Print_Matrices then
          Put_Line (Standard_Error, "Inversions:");
