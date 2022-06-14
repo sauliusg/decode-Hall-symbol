@@ -5,6 +5,30 @@ with Ada.Environment_Variables; use Ada.Environment_Variables;
 
 procedure Decode_Hall is
    
+   -- This program decodes Hall Crystallographic space group symbols
+   --  and outputs space group symmetry operators as lists of
+   --  general position coordinates.
+   --
+   -- The description of Hall symbols and decoding tables are taken
+   --  from [1]. Extended notation with the origin shift notation is
+   --  taken from [2], and the change-of-basis transformations are
+   --  described in [3].
+   --
+   -- Refs.:
+   --
+   -- 1. Hall, S. R. "Space-group notation with an explicit
+   --  origin". Acta Crystallographica Section A, International Union
+   --  of Crystallography (IUCr), 1981, 37, 517-525
+   --  DOI: https://doi.org/10.1107/s0567739481001228
+   --
+   -- 2. Sydney R. Hall, Ralf W. Grosse-Kunstleve "Concise Space-Group
+   --  Symbols". 1996, URL: https://cci.lbl.gov/sginfo/hall_symbols.html
+   --  [accessed: 2022-06-14T15:24+03:00]
+   --
+   -- 3. International Tables Volume B 1994, Section 1.4. "Symmetry in
+   --  reciprocal space". URL: https://onlinelibrary.wiley.com/iucr/itc/B/
+   --  [accessed: 2022-06-14T15:35+03:00]
+   
    Debug_Print_Matrices : Boolean := False;
    
    UNKNOWN_AXIS : exception;
