@@ -1,7 +1,8 @@
-with Text_IO;         use Text_IO;
-with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
-with Ada.Command_Line;    use Ada.Command_Line;
+with Text_IO;                   use Text_IO;
+with Ada.Integer_Text_IO;       use Ada.Integer_Text_IO;
+with Ada.Command_Line;          use Ada.Command_Line;
 with Ada.Environment_Variables; use Ada.Environment_Variables;
+with Ada.Strings.Maps;          use Ada.Strings.Maps;
 
 procedure Decode_Hall is
    
@@ -35,6 +36,7 @@ procedure Decode_Hall is
    UNKNOWN_ROTATION : exception;
    UNKNOWN_CENTERING : exception;
    UNKNOWN_TRANSLATION : exception;
+   UNEXPECTED_SYMBOL : exception;
    
    type Axis_Direction_Type is
      (X_AXIS, Y_AXIS, Z_AXIS, UNKNOWN);
@@ -831,29 +833,77 @@ procedure Decode_Hall is
       N_Translations : Natural := 0;      
    begin
       Skip_Spaces (Symbol, Pos);
-      Get_Inversion_Character (Symbol, Pos, Inversion);
-      Get_Rotation_Character (Symbol, Pos, Rotation);
-      
-      Get_Translation_Characters (Symbol, Pos, Translations, N_Translations);
-      
-      Get_Axis_Character (Symbol, Pos, Axis, Axis_Number, Rotation,
-                          Preceeding_Axis_Order);
-      
-      Get_Translation_Characters (Symbol, Pos, Translations, N_Translations);
-      
-      if Rotation /= ' ' and then Axis /= ' ' then
-         N_Rotations := N_Rotations + 1;
-         Construct_Rotation_Matrix (Rotations (N_Rotations), 
-                                    Inversion, Axis, Rotation,
-                                    Translations, Preceeding_Axis_Direction,
-                                    Preceeding_Axis_Order,
-                                    Axis_Number);
+      if Pos <= Symbol'Length and then Symbol (Pos) /= '(' then
+         Get_Inversion_Character (Symbol, Pos, Inversion);
+         Get_Rotation_Character (Symbol, Pos, Rotation);
          
-         if Has_Symop( Rotations, N_Rotations -1, Rotations (N_Rotations)) then
-            N_Rotations := N_Rotations - 1;
+         Get_Translation_Characters (Symbol, Pos, Translations, N_Translations);
+         
+         Get_Axis_Character (Symbol, Pos, Axis, Axis_Number, Rotation,
+                             Preceeding_Axis_Order);
+         
+         Get_Translation_Characters (Symbol, Pos, Translations, N_Translations);
+         
+         if Rotation /= ' ' and then Axis /= ' ' then
+            N_Rotations := N_Rotations + 1;
+            Construct_Rotation_Matrix (Rotations (N_Rotations), 
+                                       Inversion, Axis, Rotation,
+                                       Translations, Preceeding_Axis_Direction,
+                                       Preceeding_Axis_Order,
+                                       Axis_Number);
+            
+            if Has_Symop( Rotations, N_Rotations -1, Rotations (N_Rotations)) then
+               N_Rotations := N_Rotations - 1;
+            end if;
          end if;
       end if;
    end Get_Hall_Symbol_Rotation;
+   
+   subtype Character_Set is Ada.Strings.Maps.Character_Set;
+   
+   procedure Expect (
+                     Symbol : in String;
+                     Pos : in out Integer;
+                     Ch_Set : in Character_Set
+                    ) 
+   is
+   begin
+      Skip_Spaces (Symbol, Pos);
+      if Pos <= Symbol'Last then
+         if not Is_In( Symbol (Pos), Ch_Set) then
+            raise UNEXPECTED_SYMBOL with
+              "symbol " & Character'Image (Symbol (Pos)) & " " &
+              "is not expected, expecing one of """ &
+              To_Sequence (Ch_Set) & """";
+         end if;
+      end if;
+   end;
+   
+   procedure Get_Change_Of_Basis (
+                                  Symbol : in String;
+                                  Pos : in out Integer;
+                                  Change_Of_Basis : out Symop
+                                 )
+   is
+      Shift : Integer;
+      S : Symop := Unity_Matrix;
+   begin
+      Skip_Spaces (Symbol, Pos);
+      
+      if Pos <= Symbol'Last and then Symbol (Pos) = '(' then
+         Pos := Pos + 1;
+         
+         for I in 1 .. 3 loop
+            Expect (Symbol, Pos, To_Set (Character_Range'('0', '9')));
+            Get (Symbol (Pos..Symbol'Last), Shift, Pos);
+            Pos := Pos + 1;
+            S (I,4) := Float (Shift) / 12.0;
+         end loop;
+         
+         Expect (Symbol, Pos, To_Set (')'));         
+      end if;
+      Change_Of_Basis := S;
+   end;
    
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 192;
@@ -871,6 +921,8 @@ procedure Decode_Hall is
       Preceeding_Axis_Direction : Axis_Direction_Type := UNKNOWN;
       Preceeding_Axis_Order : Axis_Order_Type := UNKNOWN;
       
+      Change_Of_Basis : Symop;
+      
    begin
       Symops (1) := Unity_Matrix;
       
@@ -882,6 +934,8 @@ procedure Decode_Hall is
                                    Preceeding_Axis_Direction,
                                    Preceeding_Axis_Order, Axis_Number);
       end loop;
+      
+      Get_Change_Of_Basis (Symbol, Pos, Change_Of_Basis);
       
       if Debug_Print_Matrices then
          Put_Line (Standard_Error, "Inversions:");
@@ -946,6 +1000,22 @@ procedure Decode_Hall is
          end loop;
          N_Symops := M;
       end;      
+      
+      -- Apply the change-of-basis operator:
+      
+      if Change_Of_Basis /= Unity_Matrix then
+         Put_Line (">>> Changing basis");
+         declare
+            S1, S2 : Symop := Change_Of_Basis;
+         begin
+            S2 (1,4) := - S2 (1,4) ;
+            S2 (2,4) := - S2 (2,4) ;
+            S2 (3,4) := - S2 (3,4) ;
+            for I in 1..N_Symops loop
+               Symops (I) := S1 * Symops (I) * S2;
+            end loop;
+         end;
+      end if;
       
       return Symops (1..N_Symops);
    end;
