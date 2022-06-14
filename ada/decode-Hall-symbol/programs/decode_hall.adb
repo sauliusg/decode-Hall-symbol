@@ -1004,7 +1004,6 @@ procedure Decode_Hall is
       -- Apply the change-of-basis operator:
       
       if Change_Of_Basis /= Unity_Matrix then
-         Put_Line (">>> Changing basis");
          declare
             S1, S2 : Symop := Change_Of_Basis;
          begin
