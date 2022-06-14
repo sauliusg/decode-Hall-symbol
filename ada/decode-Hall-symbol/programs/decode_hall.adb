@@ -336,8 +336,18 @@ procedure Decode_Hall is
       (0.0, 0.0, 0.0, 1.0)
      );
    
+   function Machine_Epsilon return Float is
+      Epsilon : Float := 1.0;
+   begin
+      while 1.0 + Epsilon /= 1.0 loop
+         Epsilon := Epsilon / 2.0;
+      end loop;
+      return Epsilon;
+   end;
+   
+   Eps : constant Float := 16.0 * Machine_Epsilon;
+
    procedure Snap_To_Crystallographic_Translations (M : in out Symop) is
-      Eps : constant Float := 1.0E-5;
    begin
       for I in 1 .. M'Last(1) - 1 loop
          M (I,4) := M (I,4) - Float'Floor (M (I,4));
