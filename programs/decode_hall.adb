@@ -879,7 +879,19 @@ procedure Decode_Hall is
       end if;
    end;
    
-   procedure Get_Change_Of_Basis (
+   procedure Interpret_Change_Of_Basis_Matrix
+      (
+       Symbol : in String;
+       Pos : in out Integer;
+       Change_Of_Basis : out Symop
+      )
+   is
+   begin
+      raise PROGRAM_ERROR with
+        "Function 'Interpret_Change_Of_Basis_Matrix' not implemented yet.";
+   end;
+   
+   procedure Get_Shift_Of_Origin (
                                   Symbol : in String;
                                   Pos : in out Integer;
                                   Change_Of_Basis : out Symop
@@ -904,6 +916,33 @@ procedure Decode_Hall is
       end if;
       Change_Of_Basis := S;
    end;
+   
+   function Has_Only_Characters (S : String; CS : Character_Set) return Boolean
+   is
+   begin
+      for C of S loop
+         if not Is_In (C, CS) then
+            return False;
+         end if;
+      end loop;
+      return True;
+   end;
+   
+   procedure Get_Change_Of_Basis (
+                                  Symbol : in String;
+                                  Pos : in out Integer;
+                                  Change_Of_Basis : out Symop
+                                 )
+   is
+   begin
+      if Has_Only_Characters (Symbol (Pos..Symbol'Last),
+                              To_Set ("( 0123456789)")) then
+         Get_Shift_Of_Origin (Symbol, Pos, Change_Of_Basis);
+      else
+         Interpret_Change_Of_Basis_Matrix (Symbol, Pos, Change_Of_Basis);
+      end if;
+   end;
+
    
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 192;
