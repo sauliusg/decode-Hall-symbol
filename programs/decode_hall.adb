@@ -879,6 +879,49 @@ procedure Decode_Hall is
       end if;
    end;
    
+   procedure Skip (
+                   Symbol : in String;
+                   Pos : in out Integer;
+                   Ch_Set : in Character_Set
+                  )
+   is
+   begin
+      Expect (Symbol, Pos, Ch_Set);
+      while Pos <= Symbol'Length and then Is_In (Symbol (Pos), Ch_Set) loop
+         Pos := Pos + 1;
+      end loop;
+   end;
+
+   ----------------------------------------------------------------------------
+   -- A simple recursive descent parser for the change-of-basis:
+   
+   procedure Inc (X : in out Integer) is
+   begin
+      X := X + 1;
+   end;
+   
+   procedure Parse_Term 
+     (
+      Symbol : in String;
+      Pos : in out Integer;
+      Change_Of_Basis : out Symop;
+      Row : Integer
+     ) is
+      Factor : Float := 1.0;
+   begin
+      Skip_Spaces (Symbol, Pos);
+      
+      if Pos <= Symbol'Last then
+         if Symbol (Pos) = '+' then
+            null;
+         elsif Symbol (Pos) = '-' then
+            Factor := -1.0;
+         end if;
+         Inc (Pos);
+      end if;
+         
+   end;
+
    procedure Interpret_Change_Of_Basis_Matrix
       (
        Symbol : in String;
@@ -887,8 +930,14 @@ procedure Decode_Hall is
       )
    is
    begin
-      raise PROGRAM_ERROR with
-        "Function 'Interpret_Change_Of_Basis_Matrix' not implemented yet.";
+      Change_Of_Basis := Zero_Matrix;
+      Skip (Symbol, Pos, To_Set("("));
+      Parse_Term (Symbol, Pos, Change_Of_Basis, 1);
+      Skip (Symbol, Pos, To_Set(" ,"));
+      Parse_Term (Symbol, Pos, Change_Of_Basis, 2);
+      Skip (Symbol, Pos, To_Set(" ,"));
+      Parse_Term (Symbol, Pos, Change_Of_Basis, 3);
+      Skip (Symbol, Pos, To_Set(")"));
    end;
    
    procedure Get_Shift_Of_Origin (
