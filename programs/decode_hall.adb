@@ -873,7 +873,9 @@ procedure Decode_Hall is
          if not Is_In( Symbol (Pos), Ch_Set) then
             raise UNEXPECTED_SYMBOL with
               "symbol " & Character'Image (Symbol (Pos)) & " " &
-              "is not expected, expecing one of """ &
+              "is not expected at position" & Pos'Image &
+              " in """ & Symbol & """" &
+              ", expecing one of """ &
               To_Sequence (Ch_Set) & """";
          end if;
       end if;
@@ -893,14 +895,10 @@ procedure Decode_Hall is
    end;
 
    ----------------------------------------------------------------------------
-   -- A simple recursive descent parser for the change-of-basis:
+   -- A simple recursive descent parser for the change-of-basis operator:
    
-   procedure Inc (X : in out Integer) is
-   begin
-      X := X + 1;
-   end;
-   
-   procedure Parse_Term 
+   -- Parse the "+x", "y", "-z", "1/2" parts in the "+x-y*1/2:
+   procedure Parse_Term
      (
       Symbol : in String;
       Pos : in out Integer;
@@ -913,15 +911,45 @@ procedure Decode_Hall is
       
       if Pos <= Symbol'Last then
          if Symbol (Pos) = '+' then
-            null;
+            Pos := Pos + 1;
          elsif Symbol (Pos) = '-' then
             Factor := -1.0;
+            Pos := Pos + 1;
          end if;
-         Inc (Pos);
       end if;
-         
+      
+      Expect (Symbol, Pos, To_Set ("0123456789xXyYzZ"));
+      
+      case Symbol (Pos) is
+         when 'x'|'X' => Change_Of_Basis (Row, 1) := Factor;
+         when 'y'|'Y' => Change_Of_Basis (Row, 2) := Factor;
+         when 'z'|'Z' => Change_Of_Basis (Row, 3) := Factor;
+         when others =>
+            raise UNEXPECTED_SYMBOL with
+              "unexpected symbol " & Character'Image (Symbol (Pos)) &
+              " in the symop """ & Symbol & """";
+      end case;
+      Pos := Pos + 1;
    end;
-
+   
+   -- parse the "-x+y*1/2" part in the "-x+y*1/2,-z,y+2/3" operator:
+   procedure Parse_Symop_Component
+     (
+      Symbol : in String;
+      Pos : in out Integer;
+      Change_Of_Basis : out Symop;
+      Row : Integer
+     ) is
+   begin
+      loop
+         Parse_Term (Symbol, Pos, Change_Of_Basis, Row);
+         Skip_Spaces (Symbol, Pos);
+         if Pos <= Symbol'Length and then Symbol (Pos) = ',' then
+            exit;
+         end if;
+      end loop;
+   end;
+   
    procedure Interpret_Change_Of_Basis_Matrix
       (
        Symbol : in String;
@@ -932,11 +960,11 @@ procedure Decode_Hall is
    begin
       Change_Of_Basis := Zero_Matrix;
       Skip (Symbol, Pos, To_Set("("));
-      Parse_Term (Symbol, Pos, Change_Of_Basis, 1);
+      Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 1);
       Skip (Symbol, Pos, To_Set(" ,"));
-      Parse_Term (Symbol, Pos, Change_Of_Basis, 2);
+      Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 2);
       Skip (Symbol, Pos, To_Set(" ,"));
-      Parse_Term (Symbol, Pos, Change_Of_Basis, 3);
+      Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 3);
       Skip (Symbol, Pos, To_Set(")"));
    end;
    
