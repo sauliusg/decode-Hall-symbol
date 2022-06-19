@@ -1168,6 +1168,7 @@ procedure Decode_Hall is
                                  )
    is
       Shift : Integer;
+      Sign : Integer := 1;
       S : Symop := Unity_Matrix;
    begin
       Skip_Spaces (Symbol, Pos);
@@ -1176,10 +1177,14 @@ procedure Decode_Hall is
          Pos := Pos + 1;
          
          for I in 1 .. 3 loop
-            Expect (Symbol, Pos, To_Set (Character_Range'('0', '9')));
+            Expect (Symbol, Pos, To_Set ("-0123456789"));
+            if Symbol (Pos) = '-' then
+               Sign := -1;
+               Pos := Pos + 1;
+            end if;
             Get (Symbol (Pos..Symbol'Last), Shift, Pos);
             Pos := Pos + 1;
-            S (I,4) := Float (Shift) / 12.0;
+            S (I,4) := Float (Sign * Shift) / 12.0;
          end loop;
          
          Expect (Symbol, Pos, To_Set (')'));         
@@ -1206,7 +1211,7 @@ procedure Decode_Hall is
    is
    begin
       if Has_Only_Characters (Symbol (Pos..Symbol'Last),
-                              To_Set ("( 0123456789)")) then
+                              To_Set ("-( 0123456789)")) then
          Get_Shift_Of_Origin (Symbol, Pos, Change_Of_Basis);
       else
          Interpret_Change_Of_Basis_Matrix (Symbol, Pos, Change_Of_Basis);
