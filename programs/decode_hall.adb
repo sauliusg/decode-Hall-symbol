@@ -436,6 +436,104 @@ procedure Decode_Hall is
       return M;
    end;
    
+   type Matrix3x3 is array (1..3,1..3) of Float;
+   
+   function Det (M : Matrix3x3) return Float is
+   ( 
+     M(1,1)*M(2,2)*M(3,3) + 
+       M(1,2)*M(2,3)*M(3,1) + 
+       M(2,1)*M(3,2)*M(1,3) -
+       M(1,3)*M(2,2)*M(3,1) - 
+       M(2,1)*M(1,2)*M(3,3) - 
+       M(1,1)*M(2,3)*M(3,2)
+   );
+      
+   function Invert (M : Matrix3x3) return Matrix3x3 is
+      D : Float := Det (M);
+      
+      function Adjunct (P, Q : Integer) return Float is
+         A : array (1..4,1..2) of Float;
+         K, L : Integer;
+         Coeff : Float;
+      begin
+         K := 1; L := 1;
+         for I in M'Range(1) loop
+            if I /= P then 
+               for J in M'Range(2) loop
+                  if J /= Q then
+                     A(K,L) := M(I,J);
+                     L := L + 1;
+                  end if;
+               end loop;
+               L := 1;
+               K := K + 1;
+            end if;
+         end loop;
+         if (P + Q) mod 2 = 0 then
+            Coeff := 1.0;
+         else
+            Coeff := -1.0;
+         end if;
+         return Coeff * (A(1,1)*A(2,2) - A(1,2)*A(2,1));
+      end;
+      
+   begin -- Invert
+      return (
+              ( Adjunct(1,1)/D, Adjunct(2,1)/D, Adjunct(3,1)/D ),
+              ( Adjunct(1,2)/D, Adjunct(2,2)/D, Adjunct(3,2)/D ),
+              ( Adjunct(1,3)/D, Adjunct(2,3)/D, Adjunct(3,3)/D )
+             );
+   end Invert;
+   
+   -- a very specific inversion routine for sympos:
+   function Invert (S : Symop) return Symop is
+      R : Matrix3x3;
+      Inv : Symop;
+   begin
+      for I in R'Range(1) loop
+         for J in R'Range(2) loop
+            R (I,J) := S (I,J);
+         end loop;
+      end loop;
+      
+      -- rotation matrix of the inverse symop is an inverted rotation
+      --  matrix:
+      R := Invert (R);
+      
+      for I in R'Range(1) loop
+         for J in R'Range(2) loop
+            Inv (I,J) := R (I,J);
+         end loop;
+      end loop;
+      
+      -- compute the inverse translation:
+      
+      -- assume R' is the inverse of R:
+      -- R * R' = I, where I is the unity matrix.
+      -- then:
+      -- (R,t) * (R',t') = (R*R', R't + t') = (I,0)
+      -- =>
+      -- R't + t' = 0
+      -- =>
+      -- t' = -R' * t
+      
+      for I in R'Range(1) loop
+         Inv (I,4) := 0.0;
+         for J in R'Range(2) loop
+            Inv (I,4) := Inv (I,4) - R (I,J) * S (J,4);
+         end loop;
+      end loop;
+      
+      -- The last row is (0,0,0,1):
+      Inv (4,1) := 0.0;
+      Inv (4,2) := 0.0;
+      Inv (4,3) := 0.0;
+      Inv (4,4) := 1.0;
+      
+      return Inv;
+   end;
+   
+   -- -------------------------------------------------------------------------
    procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
    begin
       while Pos <= S'Last and then S (Pos) = ' ' loop
@@ -1167,9 +1265,7 @@ procedure Decode_Hall is
          declare
             S1, S2 : Symop := Change_Of_Basis;
          begin
-            S2 (1,4) := - S2 (1,4) ;
-            S2 (2,4) := - S2 (2,4) ;
-            S2 (3,4) := - S2 (3,4) ;
+            S2 := Invert (S1);
             for I in 1..N_Symops loop
                Symops (I) := S1 * Symops (I) * S2;
             end loop;
