@@ -897,6 +897,7 @@ procedure Decode_Hall is
    ----------------------------------------------------------------------------
    -- A simple recursive descent parser for the change-of-basis operator:
    
+   -- parse a fractional number (e.g. "2/3") and return its value as Float:
    procedure Inc (Result : in out Float; D : in Float) is
    begin
       Result := Result + D;
@@ -908,15 +909,15 @@ procedure Decode_Hall is
       Denominator : Natural := 1;
       Final_Pos : Integer := Pos;
    begin
-      while Final_Pos <= Symbol'Last and then Symbol (Pos) in '0'..'9' loop
+      while Final_Pos <= Symbol'Last and then Symbol (Final_Pos) in '0'..'9' loop
          Final_Pos := Final_Pos + 1;
       end loop;
       Numerator := Integer'Value (Symbol (Pos..Final_Pos-1));
       Pos := Final_Pos;
       if Pos <= Symbol'Last and then Symbol (Pos) = '/' then
          Pos := Pos + 1;
-         Final_Pos := Pos + 1;
-         while Final_Pos <= Symbol'Last and then Symbol (Pos) in '0'..'9' loop
+         Final_Pos := Pos;
+         while Final_Pos <= Symbol'Last and then Symbol (Final_Pos) in '0'..'9' loop
             Final_Pos := Final_Pos + 1;
          end loop;
          Denominator := Integer'Value (Symbol (Pos..Final_Pos-1));
@@ -948,18 +949,20 @@ procedure Decode_Hall is
       
       Expect (Symbol, Pos, To_Set ("0123456789xXyYzZ"));
       
-      case Symbol (Pos) is
-         when 'x'|'X' => Change_Of_Basis (Row, 1) := Factor;
-         when 'y'|'Y' => Change_Of_Basis (Row, 2) := Factor;
-         when 'z'|'Z' => Change_Of_Basis (Row, 3) := Factor;
-         when '0'..'9' =>
-            Inc (Change_Of_Basis (Row, 3), Get_Number (Symbol, Pos));
-         when others =>
-            raise UNEXPECTED_SYMBOL with
-              "unexpected symbol " & Character'Image (Symbol (Pos)) &
-              " in the symop """ & Symbol & """";
-      end case;
-      Pos := Pos + 1;
+      if Pos <= Symbol'Last then
+         case Symbol (Pos) is
+            when 'x'|'X' => Change_Of_Basis (Row, 1) := Factor;
+            when 'y'|'Y' => Change_Of_Basis (Row, 2) := Factor;
+            when 'z'|'Z' => Change_Of_Basis (Row, 3) := Factor;
+            when '0'..'9' =>
+               Inc (Change_Of_Basis (Row, 4), Get_Number (Symbol, Pos));
+            when others =>
+               raise UNEXPECTED_SYMBOL with
+                 "unexpected symbol " & Character'Image (Symbol (Pos)) &
+                 " in the symop """ & Symbol & """";
+         end case;
+         Pos := Pos + 1;
+      end if;
    end;
    
    -- parse the "-x+y*1/2" part in the "-x+y*1/2,-z,y+2/3" operator:
@@ -974,7 +977,7 @@ procedure Decode_Hall is
       loop
          Parse_Term (Symbol, Pos, Change_Of_Basis, Row);
          Skip_Spaces (Symbol, Pos);
-         if Pos <= Symbol'Length and then Symbol (Pos) = ',' then
+         if Pos > Symbol'Length or else Symbol (Pos) = ',' then
             exit;
          end if;
       end loop;
