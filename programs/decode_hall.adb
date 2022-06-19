@@ -992,6 +992,7 @@ procedure Decode_Hall is
    is
    begin
       Change_Of_Basis := Zero_Matrix;
+      Change_Of_Basis (4,4) := 1.0;
       Skip (Symbol, Pos, To_Set("("));
       Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 1);
       Skip (Symbol, Pos, To_Set(" ,"));
@@ -1105,6 +1106,10 @@ procedure Decode_Hall is
             Put (Standard_Error, Symops (I));
             New_Line (Standard_Error);
          end loop;
+         
+         Put_Line (Standard_Error, "Change of basis:");
+         Put (Standard_Error, Change_Of_Basis);
+         New_Line (Standard_Error);
       end if;
       
       -- Reconstruct all rotation operators:
