@@ -878,6 +878,9 @@ procedure Decode_Hall is
               ", expecing one of """ &
               To_Sequence (Ch_Set) & """";
          end if;
+      else
+         raise UNEXPECTED_SYMBOL with
+           "unexpected end-of-string";
       end if;
    end;
    
@@ -951,9 +954,15 @@ procedure Decode_Hall is
       
       if Pos <= Symbol'Last then
          case Symbol (Pos) is
-            when 'x'|'X' => Change_Of_Basis (Row, 1) := Factor;
-            when 'y'|'Y' => Change_Of_Basis (Row, 2) := Factor;
-            when 'z'|'Z' => Change_Of_Basis (Row, 3) := Factor;
+            when 'x'|'X' => 
+               Change_Of_Basis (Row, 1) := Factor;
+               Pos := Pos + 1;
+            when 'y'|'Y' => 
+               Change_Of_Basis (Row, 2) := Factor;
+               Pos := Pos + 1;
+            when 'z'|'Z' => 
+               Change_Of_Basis (Row, 3) := Factor;
+               Pos := Pos + 1;
             when '0'..'9' =>
                Inc (Change_Of_Basis (Row, 4), Get_Number (Symbol, Pos));
             when others =>
@@ -961,7 +970,6 @@ procedure Decode_Hall is
                  "unexpected symbol " & Character'Image (Symbol (Pos)) &
                  " in the symop """ & Symbol & """";
          end case;
-         Pos := Pos + 1;
       end if;
    end;
    
@@ -977,7 +985,8 @@ procedure Decode_Hall is
       loop
          Parse_Term (Symbol, Pos, Change_Of_Basis, Row);
          Skip_Spaces (Symbol, Pos);
-         if Pos > Symbol'Length or else Symbol (Pos) = ',' then
+         if Pos > Symbol'Length or else 
+           Is_In (Symbol (Pos), To_Set (",)")) then
             exit;
          end if;
       end loop;
@@ -993,13 +1002,20 @@ procedure Decode_Hall is
    begin
       Change_Of_Basis := Zero_Matrix;
       Change_Of_Basis (4,4) := 1.0;
-      Skip (Symbol, Pos, To_Set("("));
+      -- Put_Line (Standard_Error, ">>> start    : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
+      Skip (Symbol, Pos, To_Set('('));
+      -- Put_Line (Standard_Error, ">>> skip '(' : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 1);
-      Skip (Symbol, Pos, To_Set(" ,"));
+      -- Put_Line (Standard_Error, ">>> parse 1  : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
+      Skip (Symbol, Pos, To_Set(','));
+      -- Put_Line (Standard_Error, ">>> skip ',' : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 2);
-      Skip (Symbol, Pos, To_Set(" ,"));
+      -- Put_Line (Standard_Error, ">>> parse 2  : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
+      Skip (Symbol, Pos, To_Set(','));
+      -- Put_Line (Standard_Error, ">>> skip ',' : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 3);
-      Skip (Symbol, Pos, To_Set(")"));
+      -- Put_Line (Standard_Error, ">>> parse 3  : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
+      Skip (Symbol, Pos, To_Set(')'));
    end;
    
    procedure Get_Shift_Of_Origin (
