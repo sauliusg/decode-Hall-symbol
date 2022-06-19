@@ -916,9 +916,11 @@ procedure Decode_Hall is
          Final_Pos := Final_Pos + 1;
       end loop;
       Numerator := Integer'Value (Symbol (Pos..Final_Pos-1));
+      Skip_Spaces (Symbol, Final_Pos);
       Pos := Final_Pos;
       if Pos <= Symbol'Last and then Symbol (Pos) = '/' then
          Pos := Pos + 1;
+         Skip_Spaces (Symbol, Pos);
          Final_Pos := Pos;
          while Final_Pos <= Symbol'Last and then Symbol (Final_Pos) in '0'..'9' loop
             Final_Pos := Final_Pos + 1;
