@@ -1161,6 +1161,21 @@ procedure Decode_Hall is
          New_Line (Standard_Error);
       end if;
       
+      -- Apply the change-of-basis operator:
+      
+      if Change_Of_Basis /= Unity_Matrix then
+         declare
+            S1, S2 : Symop := Change_Of_Basis;
+         begin
+            S2 (1,4) := - S2 (1,4) ;
+            S2 (2,4) := - S2 (2,4) ;
+            S2 (3,4) := - S2 (3,4) ;
+            for I in 1..N_Symops loop
+               Symops (I) := S1 * Symops (I) * S2;
+            end loop;
+         end;
+      end if;
+      
       -- Reconstruct all rotation operators:
       
       declare
@@ -1203,21 +1218,6 @@ procedure Decode_Hall is
          end loop;
          N_Symops := M;
       end;      
-      
-      -- Apply the change-of-basis operator:
-      
-      if Change_Of_Basis /= Unity_Matrix then
-         declare
-            S1, S2 : Symop := Change_Of_Basis;
-         begin
-            S2 (1,4) := - S2 (1,4) ;
-            S2 (2,4) := - S2 (2,4) ;
-            S2 (3,4) := - S2 (3,4) ;
-            for I in 1..N_Symops loop
-               Symops (I) := S1 * Symops (I) * S2;
-            end loop;
-         end;
-      end if;
       
       return Symops (1..N_Symops);
    end;
