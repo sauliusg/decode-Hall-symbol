@@ -72,8 +72,8 @@ procedure Decode_Hall is
       (4 =>  1.0, others => 0.0)
      );
    
-   Inversion_Matrices : constant array (1..2) of Symop :=
-     (Unity_Matrix, Ci_Matrix);
+   -- Inversion_Matrices : constant array (1..2) of Symop :=
+   --  (Unity_Matrix, Ci_Matrix);
    
    type Crystallographic_Translation_Component is record
       Numerator : Integer range 0..6;
@@ -160,7 +160,7 @@ procedure Decode_Hall is
    end;
    
    function To_Symop (T : Crystallographic_Translation) return Symop is
-      S : Symop := Zero_Matrix;
+      S : Symop := Unity_Matrix;
    begin
       for I in T'Range loop
          S (I,4) := Float (T (I).Numerator) / Float (T (I).Denominator);
@@ -168,19 +168,18 @@ procedure Decode_Hall is
       return S;
    end;
    
+   function Axis_Index (Direction : Known_Axis_Direction) return Positive is
+   begin
+      case Direction is
+         when X_AXIS => return 1;
+         when Y_AXIS => return 2;
+         when Z_AXIS => return 3;
+      end case;
+   end Axis_Index;
+      
    function To_Symop (T : Crystallographic_Translation_Component;
                       Axis_Direction : Known_Axis_Direction) return Symop is
-      S : Symop := Zero_Matrix;
-      
-      function Axis_Index (Direction : Known_Axis_Direction) return Positive is
-      begin
-         case Direction is
-            when X_AXIS => return 1;
-            when Y_AXIS => return 2;
-            when Z_AXIS => return 3;
-         end case;
-      end Axis_Index;
-      
+      S : Symop := Unity_Matrix;      
    begin
       S (Axis_Index (Axis_Direction), 4) :=
         Float (T.Numerator) / Float (T.Denominator);
@@ -397,27 +396,40 @@ procedure Decode_Hall is
       end loop;
    end;
    
-   procedure Add (M1 : in out Symop; M2 : in Symop) is
+   procedure Add (M : in out Symop; T : Crystallographic_Translation) is
    begin
-      for I in M1'Range(1) loop
-         for J in M1'Range(2) loop
-            M1 (I,J) := M1 (I,J) + M2(I,J);
-         end loop;
-      end loop;
-      Snap_To_Crystallographic_Translations (M1);
-   end;
-   
-   function "+" (M1, M2 : Symop) return Symop is
-      M : Symop;
-   begin
-      for I in M1'Range(1) loop
-         for J in M1'Range(2) loop
-            M (I,J) := M1 (I,J) + M2(I,J);
-         end loop;
+      for I in 1..3 loop
+         M (I,4) := M (I,4) + 
+           Float (T (I).Numerator) / Float (T (I).Denominator);
       end loop;
       Snap_To_Crystallographic_Translations (M);
-      return M;
    end;
+   
+   procedure Add 
+     (
+      M : in out Symop;
+      T : Crystallographic_Translation_Component;
+      Axis_Direction : Known_Axis_Direction
+     ) 
+   is
+      I : Positive := Axis_Index (Axis_Direction);
+   begin
+      M(I,4) := M(I,4) +
+        Float (T.Numerator) / Float (T.Denominator);
+      Snap_To_Crystallographic_Translations (M);
+   end;
+   
+   -- function "+" (M1, M2 : Symop) return Symop is
+   --    M : Symop;
+   -- begin
+   --    for I in M1'Range(1) loop
+   --       for J in M1'Range(2) loop
+   --          M (I,J) := M1 (I,J) + M2(I,J);
+   --       end loop;
+   --    end loop;
+   --    Snap_To_Crystallographic_Translations (M);
+   --    return M;
+   -- end;
    
    function "*" (M1, M2 : Symop) return Symop is
       M : Symop;
@@ -568,7 +580,7 @@ procedure Decode_Hall is
    is
    begin
       Skip_Spaces (Symbol, Pos);
-      Centering (1) := Zero_Matrix;
+      Centering (1) := Unity_Matrix;
       case Symbol (Pos) is
          when 'P' =>
            N_Centering := 1;
@@ -678,22 +690,22 @@ procedure Decode_Hall is
       for Tr of Translations loop
          case Tr is
             when ' ' => null;
-            when 'a' => Add (Matrix, To_Symop (Translation_a));
-            when 'b' => Add (Matrix, To_Symop (Translation_b));
-            when 'c' => Add (Matrix, To_Symop (Translation_c));
-            when 'd' => Add (Matrix, To_Symop (Translation_d));
-            when 'u' => Add (Matrix, To_Symop (Translation_u));
-            when 'v' => Add (Matrix, To_Symop (Translation_v));
-            when 'w' => Add (Matrix, To_Symop (Translation_w));
-            when 'n' => Add (Matrix, To_Symop (Translation_n));
+            when 'a' => Add (Matrix, Translation_a);
+            when 'b' => Add (Matrix, Translation_b);
+            when 'c' => Add (Matrix, Translation_c);
+            when 'd' => Add (Matrix, Translation_d);
+            when 'u' => Add (Matrix, Translation_u);
+            when 'v' => Add (Matrix, Translation_v);
+            when 'w' => Add (Matrix, Translation_w);
+            when 'n' => Add (Matrix, Translation_n);
             when '1' => 
                case Rotation is 
                   when '3' => 
-                     Add (Matrix, To_Symop (Translations_3_1, Axis_Direction));
+                     Add (Matrix, Translations_3_1, Axis_Direction);
                   when '4' => 
-                     Add (Matrix, To_Symop (Translations_4_1, Axis_Direction));
+                     Add (Matrix, Translations_4_1, Axis_Direction);
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_1, Axis_Direction));
+                     Add (Matrix, Translations_6_1, Axis_Direction);
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -702,9 +714,9 @@ procedure Decode_Hall is
             when '2' => 
                case Rotation is 
                   when '3' => 
-                     Add (Matrix, To_Symop (Translations_3_2, Axis_Direction));
+                     Add (Matrix, Translations_3_2, Axis_Direction);
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_2, Axis_Direction));
+                     Add (Matrix, Translations_6_2, Axis_Direction);
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -713,7 +725,7 @@ procedure Decode_Hall is
             when '3' => 
                case Rotation is 
                   when '4' => 
-                     Add (Matrix, To_Symop (Translations_4_3, Axis_Direction));
+                     Add (Matrix, Translations_4_3, Axis_Direction);
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -722,7 +734,7 @@ procedure Decode_Hall is
             when '4' => 
                case Rotation is 
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_4, Axis_Direction));
+                     Add (Matrix, Translations_6_4, Axis_Direction);
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -731,7 +743,7 @@ procedure Decode_Hall is
             when '5' => 
                case Rotation is 
                   when '6' => 
-                     Add (Matrix, To_Symop (Translations_6_5, Axis_Direction));
+                     Add (Matrix, Translations_6_5, Axis_Direction);
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
@@ -1210,6 +1222,7 @@ procedure Decode_Hall is
       
       Pos : Positive := 1;      -- current position in the string 'Symbol'.
       
+      Inversions : array (1..2) of Symop := (Unity_Matrix, Ci_Matrix);
       N_Inversions : Positive;
       
       Centering : Symop_Array (1..4);
@@ -1234,10 +1247,31 @@ procedure Decode_Hall is
       
       Get_Change_Of_Basis (Symbol, Pos, Change_Of_Basis);
       
+      -- Apply the change-of-basis operator:
+      
+      if Change_Of_Basis /= Unity_Matrix then
+         declare
+            S1, S2 : Symop := Change_Of_Basis;
+         begin
+            S2 := Invert (S1);
+            for I in 2..N_Symops loop
+               Symops (I) := S1 * Symops (I) * S2;
+            end loop;
+            for I in 2..N_Centering loop
+               Centering (I) := S1 * Centering (I) * S2;
+            end loop;
+            if N_Inversions = 2 then
+               Inversions (2) := S1 * Inversions (2) * S2;
+            end if;
+         end;
+      end if;
+      
+      -- Print out all matrices if requested:
+      
       if Debug_Print_Matrices then
          Put_Line (Standard_Error, "Inversions:");
          for I in 1..N_Inversions loop
-            Put (Standard_Error, Inversion_Matrices (I));
+            Put (Standard_Error, Inversions (I));
             New_Line (Standard_Error);
          end loop;
          
@@ -1257,19 +1291,6 @@ procedure Decode_Hall is
          Put_Line (Standard_Error, "Change of basis:");
          Put (Standard_Error, Change_Of_Basis);
          New_Line (Standard_Error);
-      end if;
-      
-      -- Apply the change-of-basis operator:
-      
-      if Change_Of_Basis /= Unity_Matrix then
-         declare
-            S1, S2 : Symop := Change_Of_Basis;
-         begin
-            S2 := Invert (S1);
-            for I in 1..N_Symops loop
-               Symops (I) := S1 * Symops (I) * S2;
-            end loop;
-         end;
       end if;
       
       -- Reconstruct all rotation operators:
@@ -1303,7 +1324,7 @@ procedure Decode_Hall is
                if I /= 1 or else C /= 1 then
                   for S in 1..N_Symops loop
                      New_Symop :=
-                       (Symops (S) + Centering (C)) * Inversion_Matrices (I);
+                       Symops (S) * Centering (C) * Inversions (I);
                      if not Has_Symop (Symops, M, New_Symop) then
                        M := M + 1;
                        Symops (M) := New_Symop;
