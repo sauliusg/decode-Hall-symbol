@@ -72,9 +72,6 @@ procedure Decode_Hall is
       (4 =>  1.0, others => 0.0)
      );
    
-   -- Inversion_Matrices : constant array (1..2) of Symop :=
-   --  (Unity_Matrix, Ci_Matrix);
-   
    type Crystallographic_Translation_Component is record
       Numerator : Integer range 0..6;
       Denominator : Integer range 1..6;
@@ -418,18 +415,6 @@ procedure Decode_Hall is
         Float (T.Numerator) / Float (T.Denominator);
       Snap_To_Crystallographic_Translations (M);
    end;
-   
-   -- function "+" (M1, M2 : Symop) return Symop is
-   --    M : Symop;
-   -- begin
-   --    for I in M1'Range(1) loop
-   --       for J in M1'Range(2) loop
-   --          M (I,J) := M1 (I,J) + M2(I,J);
-   --       end loop;
-   --    end loop;
-   --    Snap_To_Crystallographic_Translations (M);
-   --    return M;
-   -- end;
    
    function "*" (M1, M2 : Symop) return Symop is
       M : Symop;
