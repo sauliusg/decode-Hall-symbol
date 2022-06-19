@@ -931,13 +931,37 @@ procedure Decode_Hall is
       return Float (Numerator) / Float (Denominator);
    end;
    
+   -- parse the '+1/2*x' factor:
+   procedure Parse_Factor
+     (
+      Symbol : in String;
+      Pos : in out Integer;
+      Change_Of_Basis : out Symop;
+      Row : in Integer;
+      Factor : in Float
+     ) is
+   begin
+      Skip_Spaces (Symbol, Pos);
+      Expect (Symbol, Pos, To_Set ("xXyYzY"));
+      -- Put_Line (Standard_Error, ">>> factor: " & Factor'Image);
+      case Symbol (Pos) is
+         when 'x'|'X' => Change_Of_Basis (Row, 1) := Factor;
+         when 'y'|'Y' => Change_Of_Basis (Row, 2) := Factor;
+         when 'z'|'Z' => Change_Of_Basis (Row, 3) := Factor;
+         when others =>
+            raise UNEXPECTED_SYMBOL with
+              "unexpected character " & Symbol (Pos)'Image;
+      end case;
+      Pos := Pos + 1;
+   end;
+   
    -- Parse the "+x", "y", "-z", "1/2" parts in the "+x-y*1/2:
    procedure Parse_Term
      (
       Symbol : in String;
       Pos : in out Integer;
       Change_Of_Basis : out Symop;
-      Row : Integer
+      Row : in Integer
      ) is
       Factor : Float := 1.0;
    begin
@@ -966,7 +990,14 @@ procedure Decode_Hall is
                Change_Of_Basis (Row, 3) := Factor;
                Pos := Pos + 1;
             when '0'..'9' =>
-               Inc (Change_Of_Basis (Row, 4), Get_Number (Symbol, Pos));
+               Factor := Factor * Get_Number (Symbol, Pos);
+               Skip_Spaces (Symbol, Pos);
+               if Pos <= Symbol'Length and then Symbol (Pos) = '*' then
+                  Pos := Pos + 1;
+                  Parse_Factor (Symbol, Pos, Change_Of_Basis, Row, Factor);
+               else
+                  Inc (Change_Of_Basis (Row, 4), Factor);
+               end if;
             when others =>
                raise UNEXPECTED_SYMBOL with
                  "unexpected symbol " & Character'Image (Symbol (Pos)) &
