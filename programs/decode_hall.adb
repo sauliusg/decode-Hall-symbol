@@ -1408,6 +1408,8 @@ procedure Decode_Hall is
             return "";
          elsif T = 0.5 then
             return "+1/2";
+         elsif T = 1.5 then
+            return "+3/2";
          elsif T = 1.0/3.0 then
             return "+1/3";
          elsif T = 2.0/3.0 then
@@ -1448,12 +1450,14 @@ procedure Decode_Hall is
                      end if;
                   end if;
                   if Abs (S (I,J)) /= 1.0 then
-                     for Ch of S (I,J)'Image loop
-                        if Ch /= '-' and then Ch /= ' ' then
+                     declare
+                        R : String := Rational_Translation (abs(S (I,J)));
+                     begin
+                        for Ch of R (2..R'Last) loop
                            Buffer (Pos) := Ch;
                            Pos := Pos + 1;
-                        end if;
-                     end loop;
+                        end loop;
+                     end;
                      Buffer (Pos) := '*';
                      Pos := Pos + 1;
                   end if;
