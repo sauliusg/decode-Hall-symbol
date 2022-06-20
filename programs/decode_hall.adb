@@ -50,13 +50,13 @@ procedure Decode_Hall is
    subtype Known_Axis_Order is
      Axis_Order_Type range IDENTITY .. SIXFOLD;
    
-   type Symop is array (1..4, 1..4) of Float;
+   type Symmetry_Operator is array (1..4, 1..4) of Float;
    
-   type Symop_Array is array (Positive range <>) of Symop;
+   type Symmetry_Operator_Array is array (Positive range <>) of Symmetry_Operator;
    
-   Zero_Matrix : constant Symop := (others => (others => 0.0));
+   Zero_Matrix : constant Symmetry_Operator := (others => (others => 0.0));
    
-   Unity_Matrix : constant Symop :=
+   Unity_Matrix : constant Symmetry_Operator :=
      (
       (1 => 1.0, others => 0.0),
       (2 => 1.0, others => 0.0),
@@ -64,7 +64,7 @@ procedure Decode_Hall is
       (4 => 1.0, others => 0.0)
      );
    
-   Ci_Matrix : constant Symop :=
+   Ci_Matrix : constant Symmetry_Operator :=
      (
       (1 => -1.0, others => 0.0),
       (2 => -1.0, others => 0.0),
@@ -136,10 +136,10 @@ procedure Decode_Hall is
    Translations_6_4 : constant Crystallographic_Translation_Component := (4,6);
    Translations_6_5 : constant Crystallographic_Translation_Component := (5,6);
    
-   procedure Put (F : File_Type; S : Symop) is
+   procedure Put (F : File_Type; S : Symmetry_Operator) is
    begin
-      for J in Symop'Range(1) loop
-         for K in Symop'Range(1) loop
+      for J in Symmetry_Operator'Range(1) loop
+         for K in Symmetry_Operator'Range(1) loop
             Put (F, " " & S (J,K)'Image);
          end loop;
          New_Line (F);
@@ -156,8 +156,8 @@ procedure Decode_Hall is
       New_Line (F);
    end;
    
-   function To_Symop (T : Crystallographic_Translation) return Symop is
-      S : Symop := Unity_Matrix;
+   function To_Symmetry_Operator (T : Crystallographic_Translation) return Symmetry_Operator is
+      S : Symmetry_Operator := Unity_Matrix;
    begin
       for I in T'Range loop
          S (I,4) := Float (T (I).Numerator) / Float (T (I).Denominator);
@@ -174,17 +174,17 @@ procedure Decode_Hall is
       end case;
    end Axis_Index;
       
-   function To_Symop (T : Crystallographic_Translation_Component;
-                      Axis_Direction : Known_Axis_Direction) return Symop is
-      S : Symop := Unity_Matrix;      
+   function To_Symmetry_Operator (T : Crystallographic_Translation_Component;
+                      Axis_Direction : Known_Axis_Direction) return Symmetry_Operator is
+      S : Symmetry_Operator := Unity_Matrix;      
    begin
       S (Axis_Index (Axis_Direction), 4) :=
         Float (T.Numerator) / Float (T.Denominator);
       return S;
-   end To_Symop;
+   end To_Symmetry_Operator;
    
    Principal_Rotations : constant array 
-     (Known_Axis_Direction, Known_Axis_Order) of Symop :=
+     (Known_Axis_Direction, Known_Axis_Order) of Symmetry_Operator :=
      (
       X_AXIS => 
         ( -- axis x (a)
@@ -304,7 +304,7 @@ procedure Decode_Hall is
         )
      );
    
-   Face_Diagonal_Rotations : constant array (Known_Axis_Direction,1..2) of Symop :=
+   Face_Diagonal_Rotations : constant array (Known_Axis_Direction,1..2) of Symmetry_Operator :=
      (
       X_AXIS => (
                  1 => (
@@ -350,7 +350,7 @@ procedure Decode_Hall is
                 )
      );
    
-   Body_Diagonal_Rotation : constant Symop :=
+   Body_Diagonal_Rotation : constant Symmetry_Operator :=
      (
       (0.0, 0.0, 1.0, 0.0),
       (1.0, 0.0, 0.0, 0.0),
@@ -369,7 +369,7 @@ procedure Decode_Hall is
    
    Eps : constant Float := 16.0 * Machine_Epsilon;
 
-   procedure Snap_To_Crystallographic_Translations (M : in out Symop) is
+   procedure Snap_To_Crystallographic_Translations (M : in out Symmetry_Operator) is
    begin
       for I in 1 .. M'Last(1) - 1 loop
          M (I,4) := M (I,4) - Float'Floor (M (I,4));
@@ -393,7 +393,7 @@ procedure Decode_Hall is
       end loop;
    end;
    
-   procedure Add (M : in out Symop; T : Crystallographic_Translation) is
+   procedure Add (M : in out Symmetry_Operator; T : Crystallographic_Translation) is
    begin
       for I in 1..3 loop
          M (I,4) := M (I,4) + 
@@ -404,7 +404,7 @@ procedure Decode_Hall is
    
    procedure Add 
      (
-      M : in out Symop;
+      M : in out Symmetry_Operator;
       T : Crystallographic_Translation_Component;
       Axis_Direction : Known_Axis_Direction
      ) 
@@ -416,8 +416,8 @@ procedure Decode_Hall is
       Snap_To_Crystallographic_Translations (M);
    end;
    
-   function "*" (M1, M2 : Symop) return Symop is
-      M : Symop;
+   function "*" (M1, M2 : Symmetry_Operator) return Symmetry_Operator is
+      M : Symmetry_Operator;
    begin
       pragma Assert (M1'Last(2) = M2'Last(1));
       
@@ -483,7 +483,7 @@ procedure Decode_Hall is
    end Invert;
    
    -- A very specific Determinant routine for symops:
-   function Det (S : Symop) return Float is
+   function Det (S : Symmetry_Operator) return Float is
       R : Matrix3x3;
    begin
       for I in R'Range(1) loop
@@ -495,9 +495,9 @@ procedure Decode_Hall is
    end;
    
    -- a very specific inversion routine for sympos:
-   function Invert (S : Symop) return Symop is
+   function Invert (S : Symmetry_Operator) return Symmetry_Operator is
       R : Matrix3x3;
-      Inv : Symop;
+      Inv : Symmetry_Operator;
    begin
       for I in R'Range(1) loop
          for J in R'Range(2) loop
@@ -571,7 +571,7 @@ procedure Decode_Hall is
      (
       Symbol : in String;
       Pos : in out Positive;
-      Centering : out Symop_Array;
+      Centering : out Symmetry_Operator_Array;
       N_Centering : out Positive
      )
    is
@@ -582,25 +582,25 @@ procedure Decode_Hall is
          when 'P' =>
            N_Centering := 1;
          when 'A' =>
-           Centering (2) := To_Symop (A_Translation_Vector);
+           Centering (2) := To_Symmetry_Operator (A_Translation_Vector);
            N_Centering := 2;
          when 'B' =>
-           Centering (2) := To_Symop (B_Translation_Vector);
+           Centering (2) := To_Symmetry_Operator (B_Translation_Vector);
            N_Centering := 2;
          when 'C' =>
-           Centering (2) := To_Symop (C_Translation_Vector);
+           Centering (2) := To_Symmetry_Operator (C_Translation_Vector);
            N_Centering := 2;
          when 'I' =>
-           Centering (2) := To_Symop (I_Translation_Vector);
+           Centering (2) := To_Symmetry_Operator (I_Translation_Vector);
            N_Centering := 2;
          when 'F' =>
-           Centering (2) := To_Symop (F_Translation_Vector_1);
-           Centering (3) := To_Symop (F_Translation_Vector_2);
-           Centering (4) := To_Symop (F_Translation_Vector_3);
+           Centering (2) := To_Symmetry_Operator (F_Translation_Vector_1);
+           Centering (3) := To_Symmetry_Operator (F_Translation_Vector_2);
+           Centering (4) := To_Symmetry_Operator (F_Translation_Vector_3);
            N_Centering := 4;
          when 'R' =>
-           Centering (2) := To_Symop (R_Translation_Vector_1);
-           Centering (3) := To_Symop (R_Translation_Vector_2);
+           Centering (2) := To_Symmetry_Operator (R_Translation_Vector_1);
+           Centering (3) := To_Symmetry_Operator (R_Translation_Vector_2);
            N_Centering := 3;
          when others =>
             raise UNKNOWN_CENTERING with
@@ -627,7 +627,7 @@ procedure Decode_Hall is
    
    procedure Get_Rotation_Matrix_From_Axis_And_Rotation
      (
-      Matrix : out Symop;
+      Matrix : out Symmetry_Operator;
       Axis : in Character;
       Rotation : in Character;
       Preceeding_Axis_Direction : in out Axis_Direction_Type;
@@ -677,7 +677,7 @@ procedure Decode_Hall is
    
    procedure Add_Translation_To_The_Rotation_Matrix
      (
-      Matrix : out Symop;
+      Matrix : out Symmetry_Operator;
       Rotation : Character;
       Translations : String;
       Axis_Direction : in Axis_Direction_Type
@@ -755,7 +755,7 @@ procedure Decode_Hall is
    
    procedure Construct_Rotation_Matrix
      (
-      Matrix : out Symop;
+      Matrix : out Symmetry_Operator;
       Inversion : in Character;
       Axis : in Character;
       Rotation : in Character;
@@ -788,16 +788,16 @@ procedure Decode_Hall is
         );
    end;
       
-   function Has_Symop
+   function Has_Symmetry_Operator
      (
-      Symops : Symop_Array;
-      Last_Symop_Index : Positive;
-      Lookup_Symop : Symop
+      Symmetry_Operators : Symmetry_Operator_Array;
+      Last_Symmetry_Operator_Index : Positive;
+      Lookup_Symmetry_Operator : Symmetry_Operator
      )
      return Boolean is
    begin
-      for I in 1 .. Last_Symop_Index loop
-         if Symops (I) = Lookup_Symop then
+      for I in 1 .. Last_Symmetry_Operator_Index loop
+         if Symmetry_Operators (I) = Lookup_Symmetry_Operator then
             return True;
          end if;
       end loop;
@@ -926,7 +926,7 @@ procedure Decode_Hall is
      (
       Symbol : in String;
       Pos : in out Positive;
-      Rotations : out Symop_Array;
+      Rotations : out Symmetry_Operator_Array;
       N_Rotations : in out Natural;
       Preceeding_Axis_Direction : in out Axis_Direction_Type;
       Preceeding_Axis_Order : in out Axis_Order_Type;
@@ -959,7 +959,7 @@ procedure Decode_Hall is
                                        Preceeding_Axis_Order,
                                        Axis_Number);
             
-            if Has_Symop( Rotations, N_Rotations -1, Rotations (N_Rotations)) then
+            if Has_Symmetry_Operator( Rotations, N_Rotations -1, Rotations (N_Rotations)) then
                N_Rotations := N_Rotations - 1;
             end if;
          end if;
@@ -1043,7 +1043,7 @@ procedure Decode_Hall is
      (
       Symbol : in String;
       Pos : in out Integer;
-      Change_Of_Basis : out Symop;
+      Change_Of_Basis : out Symmetry_Operator;
       Row : in Integer;
       Factor : in Float
      ) is
@@ -1066,7 +1066,7 @@ procedure Decode_Hall is
      (
       Symbol : in String;
       Pos : in out Integer;
-      Change_Of_Basis : out Symop;
+      Change_Of_Basis : out Symmetry_Operator;
       Row : in Integer
      ) is
       Factor : Float := 1.0;
@@ -1113,11 +1113,11 @@ procedure Decode_Hall is
    end;
    
    -- parse the "-x+y*1/2" part in the "-x+y*1/2,-z,y+2/3" operator:
-   procedure Parse_Symop_Component
+   procedure Parse_Symmetry_Operator_Component
      (
       Symbol : in String;
       Pos : in out Integer;
-      Change_Of_Basis : out Symop;
+      Change_Of_Basis : out Symmetry_Operator;
       Row : Integer
      ) is
    begin
@@ -1135,30 +1135,30 @@ procedure Decode_Hall is
       (
        Symbol : in String;
        Pos : in out Integer;
-       Change_Of_Basis : out Symop
+       Change_Of_Basis : out Symmetry_Operator
       )
    is
    begin
       Change_Of_Basis := Zero_Matrix;
       Change_Of_Basis (4,4) := 1.0;
       Skip (Symbol, Pos, To_Set('('));
-      Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 1);
+      Parse_Symmetry_Operator_Component (Symbol, Pos, Change_Of_Basis, 1);
       Skip (Symbol, Pos, To_Set(','));
-      Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 2);
+      Parse_Symmetry_Operator_Component (Symbol, Pos, Change_Of_Basis, 2);
       Skip (Symbol, Pos, To_Set(','));
-      Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 3);
+      Parse_Symmetry_Operator_Component (Symbol, Pos, Change_Of_Basis, 3);
       Skip (Symbol, Pos, To_Set(')'));
    end;
    
    procedure Get_Shift_Of_Origin (
                                   Symbol : in String;
                                   Pos : in out Integer;
-                                  Change_Of_Basis : out Symop
+                                  Change_Of_Basis : out Symmetry_Operator
                                  )
    is
       Shift : Integer;
       Sign : Integer := 1;
-      S : Symop := Unity_Matrix;
+      S : Symmetry_Operator := Unity_Matrix;
    begin
       Skip_Spaces (Symbol, Pos);
       
@@ -1195,7 +1195,7 @@ procedure Decode_Hall is
    procedure Get_Change_Of_Basis (
                                   Symbol : in String;
                                   Pos : in out Integer;
-                                  Change_Of_Basis : out Symop
+                                  Change_Of_Basis : out Symmetry_Operator
                                  )
    is
    begin
@@ -1209,17 +1209,17 @@ procedure Decode_Hall is
    
    procedure Build_Group
      (
-      Operators : in out Symop_Array;
+      Operators : in out Symmetry_Operator_Array;
       N_Operators : in out Positive
      )
    is
       N, M : Positive := N_Operators;
-      New_Operator : Symop;
+      New_Operator : Symmetry_Operator;
    begin
       loop
          for I in 2 .. N loop
             New_Operator := Operators (I) * Operators (N);
-            if not Has_Symop (Operators, M, New_Operator) then
+            if not Has_Symmetry_Operator (Operators, M, New_Operator) then
                M := M + 1;
                Operators (M) := New_Operator;
             end if;
@@ -1230,34 +1230,34 @@ procedure Decode_Hall is
       N_Operators := M;
    end;
    
-   function Decode_Hall (Symbol : in String) return Symop_Array is
-      Max_Symops : constant Integer := 192;
+   function Decode_Hall (Symbol : in String) return Symmetry_Operator_Array is
+      Max_Symmetry_Operators : constant Integer := 192;
       
-      Symops : Symop_Array (1 .. Max_Symops);
-      N_Symops : Positive := 1;
+      Symmetry_Operators : Symmetry_Operator_Array (1 .. Max_Symmetry_Operators);
+      N_Symmetry_Operators : Positive := 1;
       
       Pos : Positive := 1;      -- current position in the string 'Symbol'.
       
-      Inversions : array (1..2) of Symop := (Unity_Matrix, Ci_Matrix);
+      Inversions : array (1..2) of Symmetry_Operator := (Unity_Matrix, Ci_Matrix);
       N_Inversions : Positive;
       
       Max_Centering : constant Positive := 8;
-      Centering : Symop_Array (1..Max_Centering);
+      Centering : Symmetry_Operator_Array (1..Max_Centering);
       N_Centering : Positive;
       
       Preceeding_Axis_Direction : Axis_Direction_Type := UNKNOWN;
       Preceeding_Axis_Order : Axis_Order_Type := UNKNOWN;
       
-      Change_Of_Basis : Symop;
+      Change_Of_Basis : Symmetry_Operator;
       
    begin
-      Symops (1) := Unity_Matrix;
+      Symmetry_Operators (1) := Unity_Matrix;
       
       Get_Hall_Symbol_Inversions (Symbol, Pos, N_Inversions);
       Get_Hall_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
       
       for Axis_Number in 1..4 loop
-         Get_Hall_Symbol_Rotation (Symbol, Pos, Symops, N_Symops,
+         Get_Hall_Symbol_Rotation (Symbol, Pos, Symmetry_Operators, N_Symmetry_Operators,
                                    Preceeding_Axis_Direction,
                                    Preceeding_Axis_Order, Axis_Number);
       end loop;
@@ -1268,12 +1268,12 @@ procedure Decode_Hall is
       
       if Change_Of_Basis /= Unity_Matrix then
          declare
-            V : Symop := Change_Of_Basis;
-            V_Inv : Symop;
+            V : Symmetry_Operator := Change_Of_Basis;
+            V_Inv : Symmetry_Operator;
          begin
             V_Inv := Invert (V);
-            for I in 2..N_Symops loop
-               Symops (I) := V * Symops (I) * V_Inv;
+            for I in 2..N_Symmetry_Operators loop
+               Symmetry_Operators (I) := V * Symmetry_Operators (I) * V_Inv;
             end loop;
             for I in 2..N_Centering loop
                Centering (I) := V * Centering (I) * V_Inv;
@@ -1296,7 +1296,7 @@ procedure Decode_Hall is
             Value : Vector_Components;
          end record;
          
-         function "*" (S : Symop; T : Vector_Type) return Vector_Type is
+         function "*" (S : Symmetry_Operator; T : Vector_Type) return Vector_Type is
             R : Vector_Type := (Value => (others => 0.0));
          begin
             for I in R.Value'Range loop
@@ -1308,8 +1308,8 @@ procedure Decode_Hall is
             return R;
          end;
          
-         function To_Symop (T : Vector_Type) return Symop is
-            S : Symop := Unity_Matrix;
+         function To_Symmetry_Operator (T : Vector_Type) return Symmetry_Operator is
+            S : Symmetry_Operator := Unity_Matrix;
          begin
             for I in 1..3 loop
                S (I,4) := T.Value (I);
@@ -1336,7 +1336,7 @@ procedure Decode_Hall is
             (Value => (0.0, 0.0, 1.0, 1.0))
            );
          
-         C_O_B_Rotation : Symop := Change_Of_Basis;
+         C_O_B_Rotation : Symmetry_Operator := Change_Of_Basis;
          
       begin
          for I in 1..3 loop
@@ -1345,7 +1345,7 @@ procedure Decode_Hall is
          for Vector of Unit_Vectors loop
             if Is_Centering (C_O_B_Rotation * Vector) then
                N_Centering := N_Centering + 1;
-               Centering (N_Centering) := To_Symop (C_O_B_Rotation * Vector);
+               Centering (N_Centering) := To_Symmetry_Operator (C_O_B_Rotation * Vector);
             end if;
          end loop;
          
@@ -1369,9 +1369,9 @@ procedure Decode_Hall is
          end loop;
          
          Put_Line (Standard_Error, "Rotations:");
-         for I in 1..N_Symops loop
+         for I in 1..N_Symmetry_Operators loop
             Put_Line (Standard_Error, I'Image);
-            Put (Standard_Error, Symops (I));
+            Put (Standard_Error, Symmetry_Operators (I));
             New_Line (Standard_Error);
          end loop;
          
@@ -1382,35 +1382,35 @@ procedure Decode_Hall is
       
       -- Reconstruct all rotation operators:
       
-      Build_Group (Symops, N_Symops);
+      Build_Group (Symmetry_Operators, N_Symmetry_Operators);
       
       -- Add centering and inversion matrices:
       
       declare
-         M : Positive := N_Symops;
-         New_Symop : Symop;
+         M : Positive := N_Symmetry_Operators;
+         New_Symmetry_Operator : Symmetry_Operator;
       begin
          for I in 1..N_Inversions loop
             for C in 1..N_Centering loop
                if I /= 1 or else C /= 1 then
-                  for S in 1..N_Symops loop
-                     New_Symop :=
-                       Symops (S) * Centering (C) * Inversions (I);
-                     if not Has_Symop (Symops, M, New_Symop) then
+                  for S in 1..N_Symmetry_Operators loop
+                     New_Symmetry_Operator :=
+                       Symmetry_Operators (S) * Centering (C) * Inversions (I);
+                     if not Has_Symmetry_Operator (Symmetry_Operators, M, New_Symmetry_Operator) then
                        M := M + 1;
-                       Symops (M) := New_Symop;
+                       Symmetry_Operators (M) := New_Symmetry_Operator;
                      end if;
                   end loop;
                end if;
             end loop;
          end loop;
-         N_Symops := M;
+         N_Symmetry_Operators := M;
       end;      
       
-      return Symops (1..N_Symops);
+      return Symmetry_Operators (1..N_Symmetry_Operators);
    end;
    
-   function As_String (S : Symop) return String is
+   function As_String (S : Symmetry_Operator) return String is
       Buffer : String (1..100); -- large enough to hold any symop
       Pos : Positive := 1;
       Non_Zero_Printed : Boolean;
@@ -1528,18 +1528,18 @@ begin
       end if;
       
       declare
-         Symops : Symop_Array := Decode_Hall (Argument (I));
+         Symmetry_Operators : Symmetry_Operator_Array := Decode_Hall (Argument (I));
       begin
          if Debug_Print_Matrices then
-            Put_Line (Standard_Error, "Symops:");
-            for I in Symops'Range loop
-               Put (Standard_Error, Symops (I));
+            Put_Line (Standard_Error, "Symmetry_Operators:");
+            for I in Symmetry_Operators'Range loop
+               Put (Standard_Error, Symmetry_Operators (I));
                New_Line (Standard_Error);
             end loop;
          end if;
          
-         for I in Symops'Range loop
-            Put_Line (As_String (Symops (I)));
+         for I in Symmetry_Operators'Range loop
+            Put_Line (As_String (Symmetry_Operators (I)));
          end loop;
       end;
    end loop;
