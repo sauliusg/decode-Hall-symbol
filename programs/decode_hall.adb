@@ -1401,6 +1401,8 @@ procedure Decode_Hall is
       Non_Zero_Printed : Boolean;
       
       function Rational_Translation (T : Float) return String is
+         Buffer : String := T'Image;
+         Idx : Positive := 1;
       begin
          if T = 0.0 then
             return "";
@@ -1419,7 +1421,13 @@ procedure Decode_Hall is
          elsif T = 5.0/6.0 then
             return "+5/6";
          else
-            return T'Image;
+            while Idx <= Buffer'Last and then
+              (Buffer (Idx) = ' ' or else
+                 Buffer (Idx) = '+' or else
+                 Buffer (Idx) = '-') loop
+               Idx := Idx + 1;
+            end loop;
+            return (if T < 0.0 then "-" else "+") & Buffer (Idx..Buffer'Last);
          end if;
       end;
       
@@ -1461,18 +1469,9 @@ procedure Decode_Hall is
                end if;
             else
                -- translation part:
-               if S (I,J) < 0.0 then
-                  Buffer (Pos) := '-';
-                  Pos := Pos + 1;
-               elsif S (I,J) > 0.0 then
-                  Buffer (Pos) := '+';
-                  Pos := Pos + 1;
-               end if;
                for C of Rational_Translation (S (I,J)) loop
-                  if C /= ' ' and then C /= '+' and then C /= '-' then
-                     Buffer (Pos) := C;
-                     Pos := Pos + 1;
-                  end if;
+                  Buffer (Pos) := C;
+                  Pos := Pos + 1;
                end loop;
             end if;
          end loop;
