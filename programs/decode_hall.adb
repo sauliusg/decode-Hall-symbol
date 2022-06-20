@@ -1305,19 +1305,20 @@ procedure Decode_Hall is
             (Value => (0.0, 1.0, 0.0, 1.0)),
             (Value => (0.0, 0.0, 1.0, 1.0))
            );
+         
+         C_O_B_Rotation : Symop := Change_Of_Basis;
+         
       begin
+         for I in 1..3 loop   
+            C_O_B_Rotation (I,4) := 0.0;
+         end loop;
          for Vector of Unit_Vectors loop
             -- Put_Line (Standard_Error, ">>> " & Vector'Image);
             -- New_Line;
-            declare
-               V_New : Vector_Type;
-            begin
-               V_New := Change_Of_Basis * Vector;
-               if Is_Centering (V_New) then
-                  N_Centering := N_Centering + 1;
-                  Centering (N_Centering) := To_Symop (V_New);
-               end if;
-            end;
+            if Is_Centering (C_O_B_Rotation * Vector) then
+               N_Centering := N_Centering + 1;
+               Centering (N_Centering) := To_Symop (Change_Of_Basis * Vector);
+            end if;
          end loop;
       end;
       
