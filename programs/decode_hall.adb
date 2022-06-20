@@ -1285,6 +1285,7 @@ procedure Decode_Hall is
             for I in 1..3 loop
                S (I,4) := T.Value (I);
             end loop;
+            Snap_To_Crystallographic_Translations (S);
             return S;
          end;
          
