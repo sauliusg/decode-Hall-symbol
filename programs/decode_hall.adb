@@ -1241,17 +1241,18 @@ procedure Decode_Hall is
       
       if Change_Of_Basis /= Unity_Matrix then
          declare
-            S1, S2 : Symop := Change_Of_Basis;
+            V : Symop := Change_Of_Basis;
+            V_Inv : Symop;
          begin
-            S2 := Invert (S1);
+            V_Inv := Invert (V);
             for I in 2..N_Symops loop
-               Symops (I) := S1 * Symops (I) * S2;
+               Symops (I) := V * Symops (I) * V_Inv;
             end loop;
             for I in 2..N_Centering loop
-               Centering (I) := S1 * Centering (I) * S2;
+               Centering (I) := V * Centering (I) * V_Inv;
             end loop;
             if N_Inversions = 2 then
-               Inversions (2) := S1 * Inversions (2) * S2;
+               Inversions (2) := V * Inversions (2) * V_Inv;
             end if;
          end;
       end if;
