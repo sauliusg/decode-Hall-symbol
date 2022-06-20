@@ -1,3 +1,4 @@
+-- pragma Ada_2022;
 with Text_IO;                   use Text_IO;
 with Ada.Integer_Text_IO;       use Ada.Integer_Text_IO;
 with Ada.Command_Line;          use Ada.Command_Line;
@@ -1215,7 +1216,8 @@ procedure Decode_Hall is
       Inversions : array (1..2) of Symop := (Unity_Matrix, Ci_Matrix);
       N_Inversions : Positive;
       
-      Centering : Symop_Array (1..4);
+      Max_Centering : constant Positive := 8;
+      Centering : Symop_Array (1..Max_Centering);
       N_Centering : Positive;
       
       Preceeding_Axis_Direction : Axis_Direction_Type := UNKNOWN;
@@ -1256,6 +1258,46 @@ procedure Decode_Hall is
             end if;
          end;
       end if;
+      
+      -- Generate additional centering operators:
+      
+      declare
+         type Vector_Components is array (1..4) of Float;
+         type Vector_Type is record
+            Value : Vector_Components;
+         end record;
+         
+         function "*" (S : Symop; T : Vector_Type) return Vector_Type is
+            R : Vector_Type := (Value => (others => 0.0));
+         begin
+            for I in R.Value'Range loop
+               for K in T.Value'Range loop
+                  R.Value (I) := R.Value (I) +
+                    S (I,K) * T.Value (K);
+               end loop;
+            end loop;
+            return R;
+         end;
+         
+         function To_Symop (T : Vector_Type) return Symop is
+            S : Symop := Unity_Matrix;
+         begin
+            return S;
+         end;
+         
+         Unit_Vectors : array (1..3) of Vector_Type :=
+           (
+            (Value => (1.0, 0.0, 0.0, 1.0)),
+            (Value => (0.0, 1.0, 0.0, 1.0)),
+            (Value => (0.0, 0.0, 1.0, 1.0))
+           );
+      begin
+         for Vector of Unit_Vectors loop
+            -- Put_Line (Standard_Error, ">>> " & Vector'Image);
+            -- New_Line;
+            null;
+         end loop;
+      end;
       
       -- Print out all matrices if requested:
       
