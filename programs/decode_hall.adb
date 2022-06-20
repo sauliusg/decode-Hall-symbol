@@ -1282,7 +1282,21 @@ procedure Decode_Hall is
          function To_Symop (T : Vector_Type) return Symop is
             S : Symop := Unity_Matrix;
          begin
+            for I in 1..3 loop
+               S (I,4) := T.Value (I);
+            end loop;
             return S;
+         end;
+         
+         function Is_Centering (T : Vector_Type) return Boolean is            
+            function Fract (X : Float) return Float is (X - Float'Floor (X));
+         begin
+            for Component of T.Value loop
+               if abs (Fract (Component)) >= Eps then
+                  return True;
+               end if;
+            end loop;
+            return False;
          end;
          
          Unit_Vectors : array (1..3) of Vector_Type :=
@@ -1295,7 +1309,15 @@ procedure Decode_Hall is
          for Vector of Unit_Vectors loop
             -- Put_Line (Standard_Error, ">>> " & Vector'Image);
             -- New_Line;
-            null;
+            declare
+               V_New : Vector_Type;
+            begin
+               V_New := Change_Of_Basis * Vector;
+               if Is_Centering (V_New) then
+                  N_Centering := N_Centering + 1;
+                  Centering (N_Centering) := To_Symop (V_New);
+               end if;
+            end;
          end loop;
       end;
       
@@ -1438,9 +1460,18 @@ procedure Decode_Hall is
                end if;
             else
                -- translation part:
-               for C of Rational_Translation (S (I,J)) loop
-                  Buffer (Pos) := C;
+               if S (I,J) < 0.0 then
+                  Buffer (Pos) := '-';
                   Pos := Pos + 1;
+               elsif S (I,J) > 0.0 then
+                  Buffer (Pos) := '+';
+                  Pos := Pos + 1;
+               end if;
+               for C of Rational_Translation (S (I,J)) loop
+                  if C /= ' ' and then C /= '+' and then C /= '-' then
+                     Buffer (Pos) := C;
+                     Pos := Pos + 1;
+                  end if;
                end loop;
             end if;
          end loop;
