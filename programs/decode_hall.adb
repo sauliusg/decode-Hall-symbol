@@ -309,7 +309,8 @@ procedure Decode_Hall is
         )
      );
    
-   Face_Diagonal_Rotations : constant array (Known_Axis_Direction,1..2) of Symmetry_Operator :=
+   Face_Diagonal_Rotations :
+     constant array (Known_Axis_Direction,1..2) of Symmetry_Operator :=
      (
       X_AXIS => (
                  1 => (
@@ -374,7 +375,8 @@ procedure Decode_Hall is
    
    Eps : constant Float := 16.0 * Machine_Epsilon;
 
-   procedure Snap_To_Crystallographic_Translations (M : in out Symmetry_Operator) is
+   procedure Snap_To_Crystallographic_Translations 
+     (M : in out Symmetry_Operator) is
    begin
       for I in 1 .. M'Last(1) - 1 loop
          M (I,4) := M (I,4) - Float'Floor (M (I,4));
@@ -398,7 +400,8 @@ procedure Decode_Hall is
       end loop;
    end;
    
-   procedure Add (M : in out Symmetry_Operator; T : Crystallographic_Translation) is
+   procedure Add
+     (M : in out Symmetry_Operator; T : Crystallographic_Translation) is
    begin
       for I in 1..3 loop
          M (I,4) := M (I,4) + 
@@ -672,7 +675,8 @@ procedure Decode_Hall is
          when '*' =>
             Matrix :=
               Body_Diagonal_Rotation;
-            Preceeding_Axis_Direction := Known_Axis_Direction'Val (Axis_Number - 1);
+            Preceeding_Axis_Direction := 
+              Known_Axis_Direction'Val (Axis_Number - 1);
          when others =>
             raise UNKNOWN_AXIS with "axis character " & Axis'Image;
       end case;
@@ -964,7 +968,8 @@ procedure Decode_Hall is
                                        Preceeding_Axis_Order,
                                        Axis_Number);
             
-            if Has_Symmetry_Operator( Rotations, N_Rotations -1, Rotations (N_Rotations)) then
+            if Has_Symmetry_Operator( Rotations, N_Rotations - 1, 
+                                      Rotations (N_Rotations)) then
                N_Rotations := N_Rotations - 1;
             end if;
          end if;
