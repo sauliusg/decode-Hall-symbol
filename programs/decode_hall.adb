@@ -1141,19 +1141,12 @@ procedure Decode_Hall is
    begin
       Change_Of_Basis := Zero_Matrix;
       Change_Of_Basis (4,4) := 1.0;
-      -- Put_Line (Standard_Error, ">>> start    : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Skip (Symbol, Pos, To_Set('('));
-      -- Put_Line (Standard_Error, ">>> skip '(' : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 1);
-      -- Put_Line (Standard_Error, ">>> parse 1  : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Skip (Symbol, Pos, To_Set(','));
-      -- Put_Line (Standard_Error, ">>> skip ',' : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 2);
-      -- Put_Line (Standard_Error, ">>> parse 2  : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Skip (Symbol, Pos, To_Set(','));
-      -- Put_Line (Standard_Error, ">>> skip ',' : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Parse_Symop_Component (Symbol, Pos, Change_Of_Basis, 3);
-      -- Put_Line (Standard_Error, ">>> parse 3  : " & Symbol (1..Pos-1) & "|" & Symbol (Pos..Symbol'Last));
       Skip (Symbol, Pos, To_Set(')'));
    end;
    
