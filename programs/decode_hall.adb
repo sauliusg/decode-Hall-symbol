@@ -1422,6 +1422,14 @@ procedure Decode_Hall is
             return "+1/6";
          elsif T = 5.0/6.0 then
             return "+5/6";
+         elsif T = 1.0/8.0 then
+            return "+1/8";
+         elsif T = 3.0/8.0 then
+            return "+3/8";
+         elsif T = 5.0/8.0 then
+            return "+5/8";
+         elsif T = 7.0/8.0 then
+            return "+7/8";
          else
             while Idx <= Buffer'Last and then
               (Buffer (Idx) = ' ' or else
