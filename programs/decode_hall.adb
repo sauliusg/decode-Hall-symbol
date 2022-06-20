@@ -1,4 +1,3 @@
--- pragma Ada_2022;
 with Text_IO;                   use Text_IO;
 with Ada.Integer_Text_IO;       use Ada.Integer_Text_IO;
 with Ada.Command_Line;          use Ada.Command_Line;
@@ -1051,7 +1050,6 @@ procedure Decode_Hall is
    begin
       Skip_Spaces (Symbol, Pos);
       Expect (Symbol, Pos, To_Set ("xXyYzY"));
-      -- Put_Line (Standard_Error, ">>> factor: " & Factor'Image);
       case Symbol (Pos) is
          when 'x'|'X' => Change_Of_Basis (Row, 1) := Factor;
          when 'y'|'Y' => Change_Of_Basis (Row, 2) := Factor;
@@ -1275,8 +1273,6 @@ procedure Decode_Hall is
       
       -- Apply the change-of-basis operator:
       
-      -- Put_Line (">>> Det (C-o-B) = " & Float'Image (Det (Change_Of_Basis)));
-      
       if Change_Of_Basis /= Unity_Matrix then
          declare
             V : Symop := Change_Of_Basis;
@@ -1354,8 +1350,6 @@ procedure Decode_Hall is
             C_O_B_Rotation (I,4) := 0.0;
          end loop;
          for Vector of Unit_Vectors loop
-            -- Put_Line (Standard_Error, ">>> " & Vector'Image);
-            -- New_Line;
             if Is_Centering (C_O_B_Rotation * Vector) then
                N_Centering := N_Centering + 1;
                Centering (N_Centering) := To_Symop (C_O_B_Rotation * Vector);
