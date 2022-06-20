@@ -1029,7 +1029,9 @@ procedure Decode_Hall is
       Denominator : Natural := 1;
       Final_Pos : Integer := Pos;
    begin
-      while Final_Pos <= Symbol'Last and then Symbol (Final_Pos) in '0'..'9' loop
+      while Final_Pos <= Symbol'Last and then 
+        Symbol (Final_Pos) in '0'..'9'
+      loop
          Final_Pos := Final_Pos + 1;
       end loop;
       Numerator := Integer'Value (Symbol (Pos..Final_Pos-1));
@@ -1039,7 +1041,9 @@ procedure Decode_Hall is
          Pos := Pos + 1;
          Skip_Spaces (Symbol, Pos);
          Final_Pos := Pos;
-         while Final_Pos <= Symbol'Last and then Symbol (Final_Pos) in '0'..'9' loop
+         while Final_Pos <= Symbol'Last and then 
+           Symbol (Final_Pos) in '0'..'9'
+         loop
             Final_Pos := Final_Pos + 1;
          end loop;
          Denominator := Integer'Value (Symbol (Pos..Final_Pos-1));
@@ -1243,12 +1247,14 @@ procedure Decode_Hall is
    function Decode_Hall (Symbol : in String) return Symmetry_Operator_Array is
       Max_Symmetry_Operators : constant Integer := 192;
       
-      Symmetry_Operators : Symmetry_Operator_Array (1 .. Max_Symmetry_Operators);
+      Symmetry_Operators :
+        Symmetry_Operator_Array (1 .. Max_Symmetry_Operators);
       N_Symmetry_Operators : Positive := 1;
       
-      Pos : Positive := 1;      -- current position in the string 'Symbol'.
+      Pos : Positive := 1; -- current position in the string 'Symbol'.
       
-      Inversions : array (1..2) of Symmetry_Operator := (Unity_Matrix, Ci_Matrix);
+      Inversions : array (1..2) of Symmetry_Operator :=
+        (Unity_Matrix, Ci_Matrix);
       N_Inversions : Positive;
       
       Max_Centering : constant Positive := 8;
@@ -1267,7 +1273,8 @@ procedure Decode_Hall is
       Get_Hall_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
       
       for Axis_Number in 1..4 loop
-         Get_Hall_Symbol_Rotation (Symbol, Pos, Symmetry_Operators, N_Symmetry_Operators,
+         Get_Hall_Symbol_Rotation (Symbol, Pos, Symmetry_Operators,
+                                   N_Symmetry_Operators,
                                    Preceeding_Axis_Direction,
                                    Preceeding_Axis_Order, Axis_Number);
       end loop;
@@ -1282,16 +1289,22 @@ procedure Decode_Hall is
             V_Inv : Symmetry_Operator;
          begin
             V_Inv := Invert (V);
+            
             for I in 2..N_Symmetry_Operators loop
                Symmetry_Operators (I) := V * Symmetry_Operators (I) * V_Inv;
             end loop;
+            
             for I in 2..N_Centering loop
                Centering (I) := V * Centering (I) * V_Inv;
             end loop;
-            while N_Centering > 1 and then Centering (N_Centering) = Centering (1) loop
+            
+            while N_Centering > 1 and then 
+              Centering (N_Centering) = Centering (1) 
+            loop
                -- remove centerings that became unit matrices after C-o-B:
                N_Centering := N_Centering - 1;
             end loop;
+            
             if N_Inversions = 2 then
                Inversions (2) := V * Inversions (2) * V_Inv;
             end if;
@@ -1306,7 +1319,9 @@ procedure Decode_Hall is
             Value : Vector_Components;
          end record;
          
-         function "*" (S : Symmetry_Operator; T : Vector_Type) return Vector_Type is
+         function "*" (S : Symmetry_Operator; T : Vector_Type)
+                      return Vector_Type 
+         is
             R : Vector_Type := (Value => (others => 0.0));
          begin
             for I in R.Value'Range loop
@@ -1318,7 +1333,9 @@ procedure Decode_Hall is
             return R;
          end;
          
-         function To_Symmetry_Operator (T : Vector_Type) return Symmetry_Operator is
+         function To_Symmetry_Operator (T : Vector_Type)
+                                       return Symmetry_Operator
+         is
             S : Symmetry_Operator := Unity_Matrix;
          begin
             for I in 1..3 loop
@@ -1355,7 +1372,8 @@ procedure Decode_Hall is
          for Vector of Unit_Vectors loop
             if Is_Centering (C_O_B_Rotation * Vector) then
                N_Centering := N_Centering + 1;
-               Centering (N_Centering) := To_Symmetry_Operator (C_O_B_Rotation * Vector);
+               Centering (N_Centering) :=
+                 To_Symmetry_Operator (C_O_B_Rotation * Vector);
             end if;
          end loop;
          
@@ -1539,7 +1557,8 @@ begin
       end if;
       
       declare
-         Symmetry_Operators : Symmetry_Operator_Array := Decode_Hall (Argument (I));
+         Symmetry_Operators : Symmetry_Operator_Array :=
+           Decode_Hall (Argument (I));
       begin
          if Debug_Print_Matrices then
             Put_Line (Standard_Error, "Symmetry_Operators:");
