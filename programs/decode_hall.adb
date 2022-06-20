@@ -1321,6 +1321,16 @@ procedure Decode_Hall is
                Centering (N_Centering) := To_Symop (Change_Of_Basis * Vector);
             end if;
          end loop;
+         
+         -- see if multiplication of two new centerings gives a third one:
+         if N_Centering = 3 then
+            N_Centering := N_Centering + 1;
+            Centering (N_Centering) := Centering (2) * Centering (3);
+            if Has_Symop (Centering, N_Centering - 1, 
+                          Centering (N_Centering)) then
+               N_Centering := N_Centering - 1;
+            end if;
+         end if;         
       end;
       
       -- Print out all matrices if requested:
