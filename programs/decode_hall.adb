@@ -52,7 +52,8 @@ procedure Decode_Hall is
    
    type Symmetry_Operator is array (1..4, 1..4) of Float;
    
-   type Symmetry_Operator_Array is array (Positive range <>) of Symmetry_Operator;
+   type Symmetry_Operator_Array is
+     array (Positive range <>) of Symmetry_Operator;
    
    Zero_Matrix : constant Symmetry_Operator := (others => (others => 0.0));
    
@@ -156,7 +157,9 @@ procedure Decode_Hall is
       New_Line (F);
    end;
    
-   function To_Symmetry_Operator (T : Crystallographic_Translation) return Symmetry_Operator is
+   function To_Symmetry_Operator (T : Crystallographic_Translation) 
+                                 return Symmetry_Operator
+   is
       S : Symmetry_Operator := Unity_Matrix;
    begin
       for I in T'Range loop
@@ -175,7 +178,9 @@ procedure Decode_Hall is
    end Axis_Index;
       
    function To_Symmetry_Operator (T : Crystallographic_Translation_Component;
-                      Axis_Direction : Known_Axis_Direction) return Symmetry_Operator is
+                                  Axis_Direction : Known_Axis_Direction)
+                                 return Symmetry_Operator
+   is
       S : Symmetry_Operator := Unity_Matrix;      
    begin
       S (Axis_Index (Axis_Direction), 4) :=
@@ -1396,7 +1401,8 @@ procedure Decode_Hall is
                   for S in 1..N_Symmetry_Operators loop
                      New_Symmetry_Operator :=
                        Symmetry_Operators (S) * Centering (C) * Inversions (I);
-                     if not Has_Symmetry_Operator (Symmetry_Operators, M, New_Symmetry_Operator) then
+                     if not Has_Symmetry_Operator (Symmetry_Operators, M, 
+                                                   New_Symmetry_Operator) then
                        M := M + 1;
                        Symmetry_Operators (M) := New_Symmetry_Operator;
                      end if;
