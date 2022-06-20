@@ -1215,7 +1215,29 @@ procedure Decode_Hall is
          Interpret_Change_Of_Basis_Matrix (Symbol, Pos, Change_Of_Basis);
       end if;
    end;
-
+   
+   procedure Build_Group
+     (
+      Operators : in out Symop_Array;
+      N_Operators : in out Positive
+     )
+   is
+      N, M : Positive := N_Operators;
+      New_Operator : Symop;
+   begin
+      loop
+         for I in 2 .. N loop
+            New_Operator := Operators (I) * Operators (N);
+            if not Has_Symop (Operators, M, New_Operator) then
+               M := M + 1;
+               Operators (M) := New_Operator;
+            end if;
+         end loop;
+         N := N + 1;
+         exit when N > M or else M >= Operators'Last;
+      end loop;
+      N_Operators := M;
+   end;
    
    function Decode_Hall (Symbol : in String) return Symop_Array is
       Max_Symops : constant Integer := 192;
@@ -1341,27 +1363,9 @@ procedure Decode_Hall is
          end loop;
          
          -- see if multiplication of two new centerings gives a third one:
-         -- NOTE: this is code duplication!
-         -- TO_DO: parametrise and merge with the Symop generation code!
-         declare
-            N, M : Positive := N_Centering;
-            New_Centering : Symop;
-         begin
-            loop
-               for I in 2 .. N loop
-                  New_Centering := Centering (I) * Centering (N);
-                  if not Has_Symop (Centering, M, New_Centering) then
-                     M := M + 1;
-                     Centering (M) := New_Centering;
-                  end if;
-               end loop;
-               N := N + 1;
-               exit when N > M or else M >= Max_Centering;
-            end loop;
-            N_Centering := M;
-         end;
+         Build_Group (Centering, N_Centering);
       end;
-      
+         
       -- Print out all matrices if requested:
       
       if Debug_Print_Matrices then
@@ -1391,23 +1395,7 @@ procedure Decode_Hall is
       
       -- Reconstruct all rotation operators:
       
-      declare
-         N, M : Positive := N_Symops;
-         New_Symop : Symop;
-      begin
-         loop
-            for I in 2 .. N loop
-               New_Symop := Symops (I) * Symops (N);
-               if not Has_Symop (Symops, M, New_Symop) then
-                  M := M + 1;
-                  Symops (M) := New_Symop;
-               end if;
-            end loop;
-            N := N + 1;
-            exit when N > M or else M >= Max_Symops;
-         end loop;
-         N_Symops := M;
-      end;
+      Build_Group (Symops, N_Symops);
       
       -- Add centering and inversion matrices:
       
