@@ -375,7 +375,7 @@ procedure Decode_Hall is
    
    Eps : constant Float := 16.0 * Machine_Epsilon;
 
-   procedure Snap_To_Crystallographic_Translations 
+   procedure Snap_To_Crystallographic_Translations
      (M : in out Symmetry_Operator) is
    begin
       for I in 1 .. M'Last(1) - 1 loop
@@ -398,7 +398,7 @@ procedure Decode_Hall is
             M (I,4) := 0.0;
          end if;
       end loop;
-   end;
+   end Snap_To_Crystallographic_Translations;
    
    procedure Add
      (M : in out Symmetry_Operator; T : Crystallographic_Translation) is
@@ -439,7 +439,7 @@ procedure Decode_Hall is
       end loop;
       Snap_To_Crystallographic_Translations (M);
       return M;
-   end;
+   end "*";
    
    type Matrix3x3 is array (1..3,1..3) of Float;
    
@@ -480,7 +480,7 @@ procedure Decode_Hall is
             Coeff := -1.0;
          end if;
          return Coeff * (A(1,1)*A(2,2) - A(1,2)*A(2,1));
-      end;
+      end Adjunct;
       
    begin -- Invert
       return (
@@ -548,7 +548,7 @@ procedure Decode_Hall is
       Inv (4,4) := 1.0;
       
       return Inv;
-   end;
+   end Invert;
    
    -- -------------------------------------------------------------------------
    procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
@@ -573,7 +573,7 @@ procedure Decode_Hall is
       else
          N_Inversions := 1;
       end if;
-   end;
+   end Get_Hall_Symbol_Inversions;
    
    procedure Get_Hall_Symbol_Centerings
      (
@@ -615,7 +615,7 @@ procedure Decode_Hall is
               "unknown centering symbol " & Symbol (Pos)'Image;
       end case;
       Pos := Pos + 1;
-   end;
+   end Get_Hall_Symbol_Centerings;
    
    function Rotation_Axis_Index (Rotation_Character : Character)
                                 return Known_Axis_Order
@@ -631,7 +631,7 @@ procedure Decode_Hall is
             raise UNKNOWN_ROTATION
               with "rotation " & Rotation_Character'Image;
       end case;
-   end;
+   end Rotation_Axis_Index;
    
    procedure Get_Rotation_Matrix_From_Axis_And_Rotation
      (
@@ -795,7 +795,7 @@ procedure Decode_Hall is
          Translations,
          Axis_Direction
         );
-   end;
+   end Construct_Rotation_Matrix;
       
    function Has_Symmetry_Operator
      (
@@ -905,7 +905,7 @@ procedure Decode_Hall is
                raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
          end case;
       end if;
-   end;
+   end Get_Axis_Character;
    
    procedure Get_Translation_Characters
      (
@@ -929,7 +929,7 @@ procedure Decode_Hall is
          Pos := Pos + 1;
       end loop;
       N_Translations := I;
-   end;
+   end Get_Translation_Characters;
       
    procedure Get_Hall_Symbol_Rotation
      (
@@ -999,7 +999,7 @@ procedure Decode_Hall is
          raise UNEXPECTED_SYMBOL with
            "unexpected end-of-string";
       end if;
-   end;
+   end Expect;
    
    procedure Skip (
                    Symbol : in String;
@@ -1050,7 +1050,7 @@ procedure Decode_Hall is
          Pos := Final_Pos;
       end if;
       return Float (Numerator) / Float (Denominator);
-   end;
+   end Get_Number;
    
    -- parse the '+1/2*x' factor:
    procedure Parse_Factor
@@ -1073,7 +1073,7 @@ procedure Decode_Hall is
               "unexpected character " & Symbol (Pos)'Image;
       end case;
       Pos := Pos + 1;
-   end;
+   end Parse_Factor;
    
    -- Parse the "+x", "y", "-z", "1/2" parts in the "+x-y*1/2:
    procedure Parse_Term
@@ -1124,7 +1124,7 @@ procedure Decode_Hall is
                  " in the symop """ & Symbol & """";
          end case;
       end if;
-   end;
+   end Parse_Term;
    
    -- parse the "-x+y*1/2" part in the "-x+y*1/2,-z,y+2/3" operator:
    procedure Parse_Symmetry_Operator_Component
@@ -1143,7 +1143,7 @@ procedure Decode_Hall is
             exit;
          end if;
       end loop;
-   end;
+   end Parse_Symmetry_Operator_Component;
    
    procedure Interpret_Change_Of_Basis_Matrix
       (
@@ -1162,7 +1162,7 @@ procedure Decode_Hall is
       Skip (Symbol, Pos, To_Set(','));
       Parse_Symmetry_Operator_Component (Symbol, Pos, Change_Of_Basis, 3);
       Skip (Symbol, Pos, To_Set(')'));
-   end;
+   end Interpret_Change_Of_Basis_Matrix;
    
    procedure Get_Shift_Of_Origin (
                                   Symbol : in String;
@@ -1193,7 +1193,7 @@ procedure Decode_Hall is
          Expect (Symbol, Pos, To_Set (')'));         
       end if;
       Change_Of_Basis := S;
-   end;
+   end Get_Shift_Of_Origin;
    
    function Has_Only_Characters (S : String; CS : Character_Set) return Boolean
    is
@@ -1242,7 +1242,7 @@ procedure Decode_Hall is
          exit when N > M or else M >= Operators'Last;
       end loop;
       N_Operators := M;
-   end;
+   end Build_Group;
    
    function Decode_Hall (Symbol : in String) return Symmetry_Operator_Array is
       Max_Symmetry_Operators : constant Integer := 192;
@@ -1437,7 +1437,7 @@ procedure Decode_Hall is
       end;      
       
       return Symmetry_Operators (1..N_Symmetry_Operators);
-   end;
+   end Decode_Hall;
    
    function As_String (S : Symmetry_Operator) return String is
       Buffer : String (1..100); -- large enough to hold any symop
@@ -1483,7 +1483,7 @@ procedure Decode_Hall is
             end loop;
             return (if T < 0.0 then "-" else "+") & Buffer (Idx..Buffer'Last);
          end if;
-      end;
+      end Rational_Translation;
       
    begin
       for I in 1 .. S'Last(2) - 1 loop
@@ -1538,7 +1538,7 @@ procedure Decode_Hall is
       end loop;
       
       return Buffer (1..Pos-1);
-   end;
+   end As_String;
    
 begin
    
