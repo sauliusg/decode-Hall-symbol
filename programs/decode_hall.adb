@@ -1341,14 +1341,25 @@ procedure Decode_Hall is
          end loop;
          
          -- see if multiplication of two new centerings gives a third one:
-         if N_Centering = 3 then
-            N_Centering := N_Centering + 1;
-            Centering (N_Centering) := Centering (2) * Centering (3);
-            if Has_Symop (Centering, N_Centering - 1, 
-                          Centering (N_Centering)) then
-               N_Centering := N_Centering - 1;
-            end if;
-         end if;         
+         -- NOTE: this is code duplication!
+         -- TO_DO: parametrise and merge with the Symop generation code!
+         declare
+            N, M : Positive := N_Centering;
+            New_Centering : Symop;
+         begin
+            loop
+               for I in 2 .. N loop
+                  New_Centering := Centering (I) * Centering (N);
+                  if not Has_Symop (Centering, M, New_Centering) then
+                     M := M + 1;
+                     Centering (M) := New_Centering;
+                  end if;
+               end loop;
+               N := N + 1;
+               exit when N > M or else M >= Max_Centering;
+            end loop;
+            N_Centering := M;
+         end;
       end;
       
       -- Print out all matrices if requested:
