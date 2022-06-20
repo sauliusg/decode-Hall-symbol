@@ -483,6 +483,18 @@ procedure Decode_Hall is
              );
    end Invert;
    
+   -- A very specific Determinant routine for symops:
+   function Det (S : Symop) return Float is
+      R : Matrix3x3;
+   begin
+      for I in R'Range(1) loop
+         for J in R'Range(2) loop
+            R (I,J) := S (I,J);
+         end loop;
+      end loop;
+      return Det (R);
+   end;
+   
    -- a very specific inversion routine for sympos:
    function Invert (S : Symop) return Symop is
       R : Matrix3x3;
@@ -1241,6 +1253,8 @@ procedure Decode_Hall is
       
       -- Apply the change-of-basis operator:
       
+      -- Put_Line (">>> Det (C-o-B) = " & Float'Image (Det (Change_Of_Basis)));
+      
       if Change_Of_Basis /= Unity_Matrix then
          declare
             V : Symop := Change_Of_Basis;
@@ -1252,6 +1266,10 @@ procedure Decode_Hall is
             end loop;
             for I in 2..N_Centering loop
                Centering (I) := V * Centering (I) * V_Inv;
+            end loop;
+            while N_Centering > 1 and then Centering (N_Centering) = Centering (1) loop
+               -- remove centerings that became unit matrices after C-o-B:
+               N_Centering := N_Centering - 1;
             end loop;
             if N_Inversions = 2 then
                Inversions (2) := V * Inversions (2) * V_Inv;
