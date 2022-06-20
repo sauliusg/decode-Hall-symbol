@@ -1328,7 +1328,7 @@ procedure Decode_Hall is
          C_O_B_Rotation : Symop := Change_Of_Basis;
          
       begin
-         for I in 1..3 loop   
+         for I in 1..3 loop
             C_O_B_Rotation (I,4) := 0.0;
          end loop;
          for Vector of Unit_Vectors loop
@@ -1336,7 +1336,7 @@ procedure Decode_Hall is
             -- New_Line;
             if Is_Centering (C_O_B_Rotation * Vector) then
                N_Centering := N_Centering + 1;
-               Centering (N_Centering) := To_Symop (Change_Of_Basis * Vector);
+               Centering (N_Centering) := To_Symop (C_O_B_Rotation * Vector);
             end if;
          end loop;
          
