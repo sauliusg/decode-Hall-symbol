@@ -1,0 +1,75 @@
++ directory-metadata
++ whoami
+saulius
++ hostname -f
+tasmanijos-velnias
++ pwd
+/home/saulius/src/decode-Hall-symbol
++ svn info
+Path: .
+Working Copy Root Path: /home/saulius/src/decode-Hall-symbol
+URL: svn+ssh://saulius.grazulis.lt/home/saulius/svn-repositories/decode-Hall-symbol/trunk
+Relative URL: ^/trunk
+Repository Root: svn+ssh://saulius.grazulis.lt/home/saulius/svn-repositories/decode-Hall-symbol
+Repository UUID: df35e32c-3005-4c95-812c-7079c7d8870e
+Revision: 112
+Node Kind: directory
+Schedule: normal
+Last Changed Author: saulius
+Last Changed Rev: 112
+Last Changed Date: 2022-06-20 16:46:30 +0300 (Mon, 20 Jun 2022)
+
++ df -h .
+Filesystem                  Size  Used Avail Use% Mounted on
+/dev/mapper/linux--vg-home  3,5T  2,4T  945G  72% /home
++ type osname
+osname is /home/saulius/scripts/osname
++ osname
+Linuxmint-20.1
++ uname -a
+Linux tasmanijos-velnias 5.4.0-73-generic #82-Ubuntu SMP Wed Apr 14 17:39:42 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
++ date
+2022-06-20T18:05:27 EEST
++ which symops
+/home/saulius/src/cod-tools/scripts/symops
+++ which symops
++ svn info /home/saulius/src/cod-tools/scripts/symops
+Path: /home/saulius/src/cod-tools/scripts/symops
+Name: symops
+Working Copy Root Path: /home/saulius/src/cod-tools
+URL: svn://cod.ibt.lt/cif-tools/trunk/scripts/symops
+Relative URL: ^/trunk/scripts/symops
+Repository Root: svn://cod.ibt.lt/cif-tools
+Repository UUID: 04be6746-3802-0410-999d-98508da1e98c
+Revision: 9325
+Node Kind: file
+Schedule: normal
+Last Changed Author: saulius
+Last Changed Rev: 9325
+Last Changed Date: 2022-06-09 18:32:06 +0300 (Thu, 09 Jun 2022)
+Text Last Updated: 2022-06-09 18:32:06 +0300 (Thu, 09 Jun 2022)
+Checksum: b0f21b384be95ac821b97e948fb04b7046da93ae
+
++ svn info /home/saulius/src/cod-tools/src/lib/perl5/COD/Spacegroups/Lookup/COD.pm
+Path: /home/saulius/src/cod-tools/src/lib/perl5/COD/Spacegroups/Lookup/COD.pm
+Name: COD.pm
+Working Copy Root Path: /home/saulius/src/cod-tools
+URL: svn://cod.ibt.lt/cif-tools/trunk/src/lib/perl5/COD/Spacegroups/Lookup/COD.pm
+Relative URL: ^/trunk/src/lib/perl5/COD/Spacegroups/Lookup/COD.pm
+Repository Root: svn://cod.ibt.lt/cif-tools
+Repository UUID: 04be6746-3802-0410-999d-98508da1e98c
+Revision: 9325
+Node Kind: file
+Schedule: normal
+Last Changed Author: antanas
+Last Changed Rev: 9322
+Last Changed Date: 2022-05-31 15:26:53 +0300 (Tue, 31 May 2022)
+Text Last Updated: 2022-06-09 18:22:00 +0300 (Thu, 09 Jun 2022)
+Checksum: 44fce66577636be80a4e760f9f92e993c9bfa5cd
+
++ grep hall /home/saulius/src/cod-tools/src/lib/perl5/COD/Spacegroups/Lookup/COD.pm
++ grep '\*'
++ grep '('
++ awk '-F'\''' '{print $2}'
++ xargs -i bash -c 'if ! diff -q <(./bin/decode_hall '\''{}'\'' | sort) <(symops --hall -- '\''{}'\'' | awk "{print toupper(\$0)}" | sort); then echo === '\''{}'\'' ===; fi'
++ grep -v '^Files'
