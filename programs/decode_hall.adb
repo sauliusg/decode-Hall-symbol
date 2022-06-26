@@ -2,6 +2,7 @@ with Text_IO;                   use Text_IO;
 with Ada.Integer_Text_IO;       use Ada.Integer_Text_IO;
 with Ada.Command_Line;          use Ada.Command_Line;
 with Ada.Environment_Variables; use Ada.Environment_Variables;
+with Ada.Strings.Fixed;         use Ada.Strings.Fixed;
 with Ada.Strings.Maps;          use Ada.Strings.Maps;
 
 procedure Decode_Hall is
@@ -1550,28 +1551,41 @@ begin
    then
       Debug_Print_Matrices := True;
    end if;
-      
-   for I in 1 .. Argument_Count loop
-      if Debug_Print_Matrices then
-         Put_Line (Standard_Error, Argument (I));
-      end if;
-      
-      declare
-         Symmetry_Operators : Symmetry_Operator_Array :=
-           Decode_Hall (Argument (I));
-      begin
+   
+   if Argument_Count > 0 and then 
+     Index ("--help", Argument (1)) = 1
+   then
+      Put_Line ("Decode a Hall Crystallographic spacegroup symbol " &
+                  "given on the command line");
+      Put_Line ("and output symmtetry operators as general position " &
+                  "point coordinates, e.g. '-X,-Y,Z+1/2");
+      New_Line;
+      Put_Line ("USAGE:");
+      Put_Line ("  " & Command_Name & " 'P -2c'");
+      Put_Line ("  " & Command_Name & " --help");
+   else
+      for I in 1 .. Argument_Count loop
          if Debug_Print_Matrices then
-            Put_Line (Standard_Error, "Symmetry_Operators:");
-            for I in Symmetry_Operators'Range loop
-               Put (Standard_Error, Symmetry_Operators (I));
-               New_Line (Standard_Error);
-            end loop;
+            Put_Line (Standard_Error, Argument (I));
          end if;
          
-         for I in Symmetry_Operators'Range loop
-            Put_Line (As_String (Symmetry_Operators (I)));
-         end loop;
-      end;
-   end loop;
+         declare
+            Symmetry_Operators : Symmetry_Operator_Array :=
+              Decode_Hall (Argument (I));
+         begin
+            if Debug_Print_Matrices then
+               Put_Line (Standard_Error, "Symmetry_Operators:");
+               for I in Symmetry_Operators'Range loop
+                  Put (Standard_Error, Symmetry_Operators (I));
+                  New_Line (Standard_Error);
+               end loop;
+            end if;
+            
+            for I in Symmetry_Operators'Range loop
+               Put_Line (As_String (Symmetry_Operators (I)));
+            end loop;
+         end;
+      end loop;
+   end if;
    
 end Decode_Hall;
