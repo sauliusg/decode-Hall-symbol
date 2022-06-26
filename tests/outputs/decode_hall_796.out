@@ -1,0 +1,18 @@
+Decode a Hall Crystallographic spacegroup symbol given on the command line
+and output symmtetry operators as general position point coordinates, e.g. '-X,-Y,Z+1/2
+
+USAGE:
+  ./bin/decode_hall 'P -2c'
+  ./bin/decode_hall --help
+
+X,Y,Z
+X,Y,-Z+1/2
+
+X,Y,Z
+Z,X,Y
+Y,Z,X
+
+X,Y,Z
+-X,-Y,Z
+X,-Y,-Z
+-X,Y,-Z

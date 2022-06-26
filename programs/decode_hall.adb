@@ -1552,23 +1552,21 @@ begin
       Debug_Print_Matrices := True;
    end if;
    
-   if Argument_Count > 0 and then 
-     Index ("--help", Argument (1)) = 1
-   then
-      Put_Line ("Decode a Hall Crystallographic spacegroup symbol " &
-                  "given on the command line");
-      Put_Line ("and output symmtetry operators as general position " &
-                  "point coordinates, e.g. '-X,-Y,Z+1/2");
-      New_Line;
-      Put_Line ("USAGE:");
-      Put_Line ("  " & Command_Name & " 'P -2c'");
-      Put_Line ("  " & Command_Name & " --help");
-   else
-      for I in 1 .. Argument_Count loop
+   for I in 1 .. Argument_Count loop
+      if Index ("--help", Argument (I)) = 1
+      then
+         Put_Line ("Decode a Hall Crystallographic spacegroup symbol " &
+                     "given on the command line");
+         Put_Line ("and output symmtetry operators as general position " &
+                     "point coordinates, e.g. '-X,-Y,Z+1/2");
+         New_Line;
+         Put_Line ("USAGE:");
+         Put_Line ("  " & Command_Name & " 'P -2c'");
+         Put_Line ("  " & Command_Name & " --help");
          if Debug_Print_Matrices then
             Put_Line (Standard_Error, Argument (I));
          end if;
-         
+      else
          declare
             Symmetry_Operators : Symmetry_Operator_Array :=
               Decode_Hall (Argument (I));
@@ -1589,7 +1587,7 @@ begin
                Put_Line (As_String (Symmetry_Operators (I)));
             end loop;
          end;
-      end loop;
-   end if;
-   
+      end if;
+   end loop;
+
 end Decode_Hall;
