@@ -12,4 +12,5 @@ X,Y,Z
 Z,X,Y
 Y,Z,X
 
+
 raised DECODE_HALL.UNKNOWN_ROTATION : mismatching translation '2' for rotation '2'

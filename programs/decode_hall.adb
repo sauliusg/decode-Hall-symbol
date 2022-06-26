@@ -1553,6 +1553,10 @@ begin
    end if;
    
    for I in 1 .. Argument_Count loop
+      if I > 1 then
+         New_Line;
+      end if;
+            
       if Index ("--help", Argument (I)) = 1
       then
          Put_Line ("Decode a Hall Crystallographic spacegroup symbol " &
@@ -1563,10 +1567,11 @@ begin
          Put_Line ("USAGE:");
          Put_Line ("  " & Command_Name & " 'P -2c'");
          Put_Line ("  " & Command_Name & " --help");
+      else
          if Debug_Print_Matrices then
             Put_Line (Standard_Error, Argument (I));
          end if;
-      else
+         
          declare
             Symmetry_Operators : Symmetry_Operator_Array :=
               Decode_Hall (Argument (I));
@@ -1577,10 +1582,6 @@ begin
                   Put (Standard_Error, Symmetry_Operators (I));
                   New_Line (Standard_Error);
                end loop;
-            end if;
-            
-            if I > 1 then
-               New_Line;
             end if;
             
             for I in Symmetry_Operators'Range loop
