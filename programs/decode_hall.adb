@@ -1581,6 +1581,10 @@ begin
                end loop;
             end if;
             
+            if I > 1 then
+               New_Line;
+            end if;
+            
             for I in Symmetry_Operators'Range loop
                Put_Line (As_String (Symmetry_Operators (I)));
             end loop;

@@ -1,0 +1,11 @@
+X,Y,Z
+X,Y,-Z+1/2
+
+X,Y,Z
+Z,X,Y
+Y,Z,X
+
+X,Y,Z
+-X,-Y,Z
+X,-Y,-Z
+-X,Y,-Z
