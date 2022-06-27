@@ -5,6 +5,8 @@ with Ada.Environment_Variables; use Ada.Environment_Variables;
 with Ada.Strings.Fixed;         use Ada.Strings.Fixed;
 with Ada.Strings.Maps;          use Ada.Strings.Maps;
 
+with Project_Version;
+
 procedure Decode_Hall is
    
    -- This program decodes Hall Crystallographic space group symbols
@@ -1567,6 +1569,12 @@ begin
          Put_Line ("USAGE:");
          Put_Line ("  " & Command_Name & " 'P -2c'");
          Put_Line ("  " & Command_Name & " --help");
+      elsif Index ("--version", Argument (I)) = 1 then
+         Put (Command_Name & " " & Project_Version.Version);
+         if Project_Version.VCS_Text /= "" then
+            Put (" " & Project_Version.VCS_Text);
+         end if;
+         New_Line;
       else
          if Debug_Print_Matrices then
             Put_Line (Standard_Error, Argument (I));
