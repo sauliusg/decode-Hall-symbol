@@ -17,6 +17,11 @@ ifeq ("${REPORTED_VERSION}","")
 REPORTED_VERSION := $(shell grep -v "^\#" ${VFILE} | awk '{print $$0}' | sed 's/\$$//g; s/  */ /g')
 endif
 
+ifeq ("${VCS_MESSAGE}","")
+VCS_VERSION := $(shell svnversion)
+VCS_MESSAGE := SVN revision ${VCS_VERSION}
+endif
+
 ifeq (${VCS_VERSION},Unversioned directory)
     VCS_VERSION := $(shell git log --format='%h' -1 2>/dev/null)
     ifeq (${VCS_VERSION},)
