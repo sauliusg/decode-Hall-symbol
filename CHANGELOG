@@ -1,3 +1,11 @@
-... (unreleased)
+decode-Hall-symbol (unreleased)
 
   * Initial release.
+
+  * Added:
+    - program 'decode_hall':
+      - adding capability to decode any Hall symbol from the (Hall 1981) paper;
+      - adding capability to decode shift-of-origin;
+      - adding capability to decode change-of-basis (as in ITC vol. B, 2001);
+      - implementing option '--help';
+      - implementing option '--version' and package versioning support.
