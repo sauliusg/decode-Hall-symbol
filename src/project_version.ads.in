@@ -1,0 +1,6 @@
+package Project_Version is
+   
+   Version : constant String := "@VERSION@";
+   VCS_Text : constant String := "@VCS_TEXT@";
+   
+end Project_Version;
