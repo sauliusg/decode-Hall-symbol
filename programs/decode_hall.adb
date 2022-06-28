@@ -995,7 +995,7 @@ procedure Decode_Hall is
               "symbol " & Character'Image (Symbol (Pos)) & " " &
               "is not expected at position" & Pos'Image &
               " in """ & Symbol & """" &
-              ", expecing one of """ &
+              ", expecting one of """ &
               To_Sequence (Ch_Set) & """";
          end if;
       else
