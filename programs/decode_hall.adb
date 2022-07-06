@@ -1439,6 +1439,10 @@ procedure Decode_Hall is
          N_Symmetry_Operators := M;
       end;      
       
+      -- Reconstruct all symmetry operators:
+      
+      Build_Group (Symmetry_Operators, N_Symmetry_Operators);
+      
       return Symmetry_Operators (1..N_Symmetry_Operators);
    end Decode_Hall;
    
