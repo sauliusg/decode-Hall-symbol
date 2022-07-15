@@ -493,18 +493,6 @@ procedure Decode_Hall is
              );
    end Invert;
    
-   -- A very specific Determinant routine for symops:
-   function Det (S : Symmetry_Operator) return Float is
-      R : Matrix3x3;
-   begin
-      for I in R'Range(1) loop
-         for J in R'Range(2) loop
-            R (I,J) := S (I,J);
-         end loop;
-      end loop;
-      return Det (R);
-   end;
-   
    -- a very specific inversion routine for sympos:
    function Invert (S : Symmetry_Operator) return Symmetry_Operator is
       R : Matrix3x3;
