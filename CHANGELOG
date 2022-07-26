@@ -1,5 +1,9 @@
 decode-Hall-symbol (unreleased)
 
+  * ...
+
+decode-Hall-symbol (0.1.0)
+
   * Initial release.
 
   * Added:
