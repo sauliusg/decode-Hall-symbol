@@ -6,3 +6,8 @@
 #------------------------------------------------------------------------
 
 VERSION_ADA_DIR = ./src
+
+# We release directoy to the ^/tags/ directory:
+
+TAGS     = ../tags
+RELEASES = ${TAGS}
