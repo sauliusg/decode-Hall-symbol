@@ -84,6 +84,7 @@ procedure Decode_Hall is
    type Crystallographic_Translation is array (1..3)
      of Crystallographic_Translation_Component;
    
+   -- Centering translations vectors from Hall 1981 [1], Table 1:
    A_Translation_Vector : constant Crystallographic_Translation :=
      ((0,1), (1,2), (1,2));
    
@@ -111,7 +112,7 @@ procedure Decode_Hall is
    F_Translation_Vector_3 : constant Crystallographic_Translation :=
      C_Translation_Vector;
    
-   
+   -- Translation symbol vectors from Hall 1981 [1], Table 2, left side:
    Translation_a : constant Crystallographic_Translation :=
      ((1,2), (0,1), (0,1));
    Translation_b : constant Crystallographic_Translation :=
@@ -129,6 +130,9 @@ procedure Decode_Hall is
    Translation_d : constant Crystallographic_Translation :=
      ((1,4), (1,4), (1,4));
    
+   -- Translation symbol vectors from Hall 1981 [1], Table 2, right
+   --  side. These translations will have to be aplied along the
+   --  specified axis:
    Translations_3_1 : constant Crystallographic_Translation_Component := (1,3);
    Translations_3_2 : constant Crystallographic_Translation_Component := (2,3);
    
@@ -191,6 +195,7 @@ procedure Decode_Hall is
       return S;
    end To_Symmetry_Operator;
    
+   -- Rotation matrices from Hall 1981 [1], Table 3:
    Principal_Rotations : constant array 
      (Known_Axis_Direction, Known_Axis_Order) of Symmetry_Operator :=
      (
@@ -270,11 +275,11 @@ procedure Decode_Hall is
              ( 0.0,  0.0,  0.0,  1.0)
             )
         ),
-      -- axis z (c)
+      
       Z_AXIS =>
-        (
+        (-- axis z (c)
          IDENTITY =>
-           ( -- identity
+           (
              (1.0,  0.0,  0.0,  0.0),
              (0.0,  1.0,  0.0,  0.0),
              (0.0,  0.0,  1.0,  0.0),
@@ -312,17 +317,18 @@ procedure Decode_Hall is
         )
      );
    
+   -- Rotation matrices from Hall 1981 [1], Table 4:
    Face_Diagonal_Rotations :
      constant array (Known_Axis_Direction,1..2) of Symmetry_Operator :=
      (
       X_AXIS => (
-                 1 => (
+                 1 => ( -- 2'
                        (-1.0,  0.0,  0.0,  0.0),
                        ( 0.0,  0.0, -1.0,  0.0),
                        ( 0.0, -1.0,  0.0,  0.0),
                        ( 0.0,  0.0,  0.0,  1.0)
                       ),
-                 2 => (
+                 2 => ( -- 2"
                        (-1.0,  0.0,  0.0,  0.0),
                        ( 0.0,  0.0,  1.0,  0.0),
                        ( 0.0,  1.0,  0.0,  0.0),
@@ -330,13 +336,13 @@ procedure Decode_Hall is
                       )
                 ),
       Y_AXIS => (
-                 1 => (
+                 1 => ( -- 2'
                        ( 0.0,  0.0, -1.0,  0.0),
                        ( 0.0, -1.0,  0.0,  0.0),
                        (-1.0,  0.0,  0.0,  0.0),
                        ( 0.0,  0.0,  0.0,  1.0)
                       ),
-                 2 => (
+                 2 => ( -- 2"
                        ( 0.0,  0.0,  1.0,  0.0),
                        ( 0.0, -1.0,  0.0,  0.0),
                        ( 1.0,  0.0,  0.0,  0.0),
@@ -344,13 +350,13 @@ procedure Decode_Hall is
                       )
                 ),
       Z_AXIS => (
-                 1 => (
+                 1 => ( -- 2'
                        ( 0.0, -1.0,  0.0,  0.0),
                        (-1.0,  0.0,  0.0,  0.0),
                        ( 0.0,  0.0, -1.0,  0.0),
                        ( 0.0,  0.0,  0.0,  1.0)
                       ),
-                 2 => (
+                 2 => ( -- 2"
                        ( 0.0,  1.0,  0.0,  0.0),
                        ( 1.0,  0.0,  0.0,  0.0),
                        ( 0.0,  0.0, -1.0,  0.0),
