@@ -148,7 +148,7 @@ procedure Decode_Hall is
    begin
       for J in Symmetry_Operator'Range(1) loop
          for K in Symmetry_Operator'Range(1) loop
-            Put (F, " " & S (J,K)'Image);
+            Put (F, " " & Float'Image (S (J,K)));
          end loop;
          New_Line (F);
       end loop;
@@ -159,7 +159,7 @@ procedure Decode_Hall is
    begin
       for I in S'Range loop
          Ratio := Float (S (I).Numerator) / Float (S (I).Denominator); 
-         Put (F, " " & Ratio'Image);
+         Put (F, " " & Float'Image (Ratio));
       end loop;
       New_Line (F);
    end;
@@ -609,7 +609,7 @@ procedure Decode_Hall is
            N_Centering := 3;
          when others =>
             raise UNKNOWN_CENTERING with
-              "unknown centering symbol " & Symbol (Pos)'Image;
+              "unknown centering symbol " & Character'Image(Symbol (Pos));
       end case;
       Pos := Pos + 1;
    end Get_Hall_Symbol_Centerings;
@@ -626,7 +626,7 @@ procedure Decode_Hall is
          when '6' => return SIXFOLD;
          when others => 
             raise UNKNOWN_ROTATION
-              with "rotation " & Rotation_Character'Image;
+              with "rotation " & Character'Image (Rotation_Character);
       end case;
    end Rotation_Axis_Index;
    
@@ -675,7 +675,7 @@ procedure Decode_Hall is
             Preceeding_Axis_Direction := 
               Known_Axis_Direction'Val (Axis_Number - 1);
          when others =>
-            raise UNKNOWN_AXIS with "axis character " & Axis'Image;
+            raise UNKNOWN_AXIS with "axis character " & Character'Image (Axis);
       end case;
       
       Preceeding_Axis_Order := Current_Axis_Order;
@@ -712,7 +712,8 @@ procedure Decode_Hall is
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
-                       Tr'Image & " for rotation " & Rotation'Image;
+                       Character'Image (Tr) & " for rotation " & 
+                       Character'Image (Rotation);
                end case;
             when '2' => 
                case Rotation is 
@@ -723,7 +724,8 @@ procedure Decode_Hall is
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
-                       Tr'Image & " for rotation " & Rotation'Image;
+                       Character'Image (Tr) & " for rotation " &
+                       Character'Image (Rotation);
                end case;
             when '3' => 
                case Rotation is 
@@ -732,7 +734,8 @@ procedure Decode_Hall is
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
-                       Tr'Image & " for rotation " & Rotation'Image;
+                       Character'Image (Tr) & " for rotation " &
+                       Character'Image (Rotation);
                end case;
             when '4' => 
                case Rotation is 
@@ -741,7 +744,8 @@ procedure Decode_Hall is
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
-                       Tr'Image & " for rotation " & Rotation'Image;
+                       Character'Image (Tr) & " for rotation " &
+                       Character'Image (Rotation);
                end case;
             when '5' => 
                case Rotation is 
@@ -750,11 +754,12 @@ procedure Decode_Hall is
                   when others =>
                      raise UNKNOWN_ROTATION
                        with "mismatching translation " & 
-                       Tr'Image & " for rotation " & Rotation'Image;
+                       Character'Image (Tr) & " for rotation " &
+                       Character'Image (Rotation);
                end case;
             when others =>
                raise UNKNOWN_TRANSLATION
-                 with "translation character " & Tr'Image;
+                 with "translation character " & Character'Image (Tr);
          end case;
       end loop;
    end Add_Translation_To_The_Rotation_Matrix;
@@ -884,22 +889,23 @@ procedure Decode_Hall is
                         raise UNKNOWN_AXIS with
                           "can not determine rotation axis for " &
                           "the preceeding axis " & 
-                          Preceeding_Axis_Order'Image &
+                          Axis_Order_Type'Image (Preceeding_Axis_Order) &
                           " and current axis " & 
-                          Rotation_Character'Image;
+                          Character'Image (Rotation_Character);
                      end if;
                   when '3' => 
                      Axis := '*';
                   when others =>
                      raise UNKNOWN_ROTATION 
                        with "wrong rotation character " & 
-                       Rotation_Character'Image &
-                       " for axis number" & Axis_Number'Image;
+                       Character'Image (Rotation_Character) &
+                       " for axis number" & Positive'Image (Axis_Number);
                end case;
             when 4 =>
                Axis := 'x';
             when others =>
-               raise UNKNOWN_AXIS with "axis number" & Axis_Number'Image;
+               raise UNKNOWN_AXIS 
+                 with "axis number" & Positive'Image (Axis_Number);
          end case;
       end if;
    end Get_Axis_Character;
@@ -987,7 +993,7 @@ procedure Decode_Hall is
          if not Is_In( Symbol (Pos), Ch_Set) then
             raise UNEXPECTED_SYMBOL with
               "symbol " & Character'Image (Symbol (Pos)) & " " &
-              "is not expected at position" & Pos'Image &
+              "is not expected at position" & Integer'Image (Pos) &
               " in """ & Symbol & """" &
               ", expecting one of """ &
               To_Sequence (Ch_Set) & """";
@@ -1067,7 +1073,7 @@ procedure Decode_Hall is
          when 'z'|'Z' => Change_Of_Basis (Row, 3) := Factor;
          when others =>
             raise UNEXPECTED_SYMBOL with
-              "unexpected character " & Symbol (Pos)'Image;
+              "unexpected character " & Character'Image (Symbol (Pos));
       end case;
       Pos := Pos + 1;
    end Parse_Factor;
@@ -1395,7 +1401,7 @@ procedure Decode_Hall is
          
          Put_Line (Standard_Error, "Rotations:");
          for I in 1..N_Symmetry_Operators loop
-            Put_Line (Standard_Error, I'Image);
+            Put_Line (Standard_Error, Integer'Image (I));
             Put (Standard_Error, Symmetry_Operators (I));
             New_Line (Standard_Error);
          end loop;
@@ -1446,7 +1452,7 @@ procedure Decode_Hall is
       Non_Zero_Printed : Boolean;
       
       function Rational_Translation (T : Float) return String is
-         Buffer : String := T'Image;
+         Buffer : String := Float'Image (T);
          Idx : Positive := 1;
       begin
          if T = 0.0 then
