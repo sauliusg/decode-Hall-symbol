@@ -681,7 +681,7 @@ procedure Decode_Hall is
       Preceeding_Axis_Order := Current_Axis_Order;
    end Get_Rotation_Matrix_From_Axis_And_Rotation;
    
-   procedure Add_Translation_To_The_Rotation_Matrix
+   procedure Add_Translations_To_The_Rotation_Matrix
      (
       Matrix : out Symmetry_Operator;
       Rotation : Character;
@@ -762,7 +762,7 @@ procedure Decode_Hall is
                  with "translation character " & Character'Image (Tr);
          end case;
       end loop;
-   end Add_Translation_To_The_Rotation_Matrix;
+   end Add_Translations_To_The_Rotation_Matrix;
    
    procedure Construct_Rotation_Matrix
      (
@@ -791,7 +791,7 @@ procedure Decode_Hall is
          Matrix := Ci_Matrix * Matrix;
       end if;
       
-      Add_Translation_To_The_Rotation_Matrix
+      Add_Translations_To_The_Rotation_Matrix
         (
          Matrix, Rotation,
          Translations,
