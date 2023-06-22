@@ -28,10 +28,12 @@ procedure Decode_Hall is
    -- 2. Sydney R. Hall, Ralf W. Grosse-Kunstleve "Concise Space-Group
    --  Symbols". 1996, URL: https://cci.lbl.gov/sginfo/hall_symbols.html
    --  [accessed: 2022-06-14T15:24+03:00]
-   --
-   -- 3. International Tables Volume B 1994, Section 1.4. "Symmetry in
-   --  reciprocal space". URL: https://onlinelibrary.wiley.com/iucr/itc/B/
-   --  [accessed: 2022-06-14T15:35+03:00]
+   --   
+   -- 3. International Tables Volume B (2010), "Symmetry in reciprocal
+   --  space". Section 1.4., Appendix A1.4.2. Space-group symbols for
+   --  numeric and symbolic computations, URL:
+   --  https://onlinelibrary.wiley.com/iucr/itc/B/ [accessed:
+   --  2022-06-14T15:35+03:00]
    
    Debug_Print_Matrices : Boolean := False;
    
