@@ -1226,6 +1226,8 @@ procedure Decode_Hall is
       end if;
    end;
    
+   function As_String (S : Symmetry_Operator) return String;
+
    procedure Build_Group
      (
       Operators : in out Symmetry_Operator_Array;
@@ -1240,6 +1242,16 @@ procedure Decode_Hall is
             New_Operator := Operators (I) * Operators (N);
             if not Has_Symmetry_Operator (Operators, M, New_Operator) then
                M := M + 1;
+               if M > Operators'Last then
+                  for I in Operators'Range loop
+                     Put (As_String (Operators (I)));
+                     New_Line;
+                     Flush;
+                  end loop;
+                  raise CONSTRAINT_ERROR
+                    with "Operator no." & M'Image & " exceeds capacity " &
+                    "of the array when storing " &  As_String (New_Operator);
+               end if;
                Operators (M) := New_Operator;
             end if;
          end loop;
