@@ -190,7 +190,7 @@ procedure Decode_Hall is
                                   Axis_Direction : Known_Axis_Direction)
                                  return Symmetry_Operator
    is
-      S : Symmetry_Operator := Unity_Matrix;      
+      S : Symmetry_Operator := Unity_Matrix;
    begin
       S (Axis_Index (Axis_Direction), 4) :=
         Float (T.Numerator) / Float (T.Denominator);
