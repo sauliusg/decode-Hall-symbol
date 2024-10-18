@@ -645,7 +645,7 @@ procedure Decode_HM is
             V_Inv := Invert (V);
             
             for I in 2..N_Symmetry_Operators loop
-               Symmetry_Operators (I) := V * Symmetry_Operators (I) * V_Inv;
+               Symmetry_Operators (I) := V_Inv * Symmetry_Operators (I) * V;
             end loop;
             
             for I in 2..N_Centering loop
