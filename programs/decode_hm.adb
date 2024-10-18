@@ -288,6 +288,40 @@ procedure Decode_HM is
       end if;
    end;
    
+   Twofold_Along_B_Matrix : constant Symmetry_Operator :=
+     (
+      (1 => -1.0, others => 0.0),
+      (2 =>  1.0, others => 0.0),
+      (3 => -1.0, others => 0.0),
+      (4 =>  1.0, others => 0.0)
+     );
+   
+   procedure Get_H_M_Symbol_Rotations
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Rotations : out Symmetry_Operator_Array;
+      N_Rotations : in out Natural
+     )
+   is      
+      Translations : String (1..3) := (others => ' ');
+      N_Translations : Natural := 0;      
+   begin
+      Skip_Spaces (Symbol, Pos);
+      case Symbol (Pos) is
+         when '1' =>
+            Pos := Pos + 1;
+            null;
+         when '2' =>
+            Pos := Pos + 1;
+            N_Rotations := N_Rotations + 1;
+            Rotations (N_Rotations) := Twofold_Along_B_Matrix;
+         when others =>
+            raise UNKNOWN_ROTATION with
+              "rotation symbol '" & Symbol (Pos .. Pos) & "' is not supported";
+      end case;
+   end Get_H_M_Symbol_Rotations;
+   
    subtype Character_Set is Ada.Strings.Maps.Character_Set;
    
    procedure Expect (
@@ -593,10 +627,11 @@ procedure Decode_HM is
    begin
       Symmetry_Operators (1) := Unity_Matrix;
       
-      Get_H_M_Symbol_Inversions (Symbol, Pos, N_Inversions);
       Get_H_M_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
+      Get_H_M_Symbol_Inversions (Symbol, Pos, N_Inversions);
       
-      -- GET ROTATIONS HERE!
+      Get_H_M_Symbol_Rotations (Symbol, Pos, Symmetry_Operators,
+                                N_Symmetry_Operators);
       
       Get_Change_Of_Basis (Symbol, Pos, Change_Of_Basis);
       
