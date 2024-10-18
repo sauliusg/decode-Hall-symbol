@@ -15,10 +15,10 @@ package Symmetry_Operations is
      Axis_Direction_Type range X_AXIS .. Z_AXIS;
    
    type Axis_Order_Type is
-     (IDENTITY_AXIS, TWOFOLD, THREEFOLD, FOURFOLD, SIXFOLD, UNKNOWN);
+     (IDENTITY, TWOFOLD, THREEFOLD, FOURFOLD, SIXFOLD, UNKNOWN);
    
    subtype Known_Axis_Order is
-     Axis_Order_Type range IDENTITY_AXIS .. SIXFOLD;
+     Axis_Order_Type range IDENTITY .. SIXFOLD;
    
    type Symmetry_Operator is array (1..4, 1..4) of Float;
    

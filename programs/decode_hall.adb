@@ -39,7 +39,8 @@ procedure Decode_Hall is
    
    Debug_Print_Matrices : Boolean := False;
    
-   use type Axis_Order_Type;
+   function IDENTITY return Axis_Order_Type 
+     renames Symmetry_Operations.IDENTITY;
    
    -- Rotation matrices from Hall 1981 [1], Table 3:
    Principal_Rotations : constant array 
@@ -47,7 +48,7 @@ procedure Decode_Hall is
      (
       X_AXIS => 
         ( -- axis x (a)
-          IDENTITY_AXIS =>
+          IDENTITY =>
             (
              (1.0,  0.0,  0.0,  0.0),
              (0.0,  1.0,  0.0,  0.0),
@@ -85,7 +86,7 @@ procedure Decode_Hall is
         ),
       Y_AXIS => 
         ( -- axis y (b)
-          IDENTITY_AXIS =>
+          IDENTITY =>
             (
              (1.0,  0.0,  0.0,  0.0),
              (0.0,  1.0,  0.0,  0.0),
@@ -124,7 +125,7 @@ procedure Decode_Hall is
       
       Z_AXIS =>
         (-- axis z (c)
-         IDENTITY_AXIS =>
+         IDENTITY =>
            (
              (1.0,  0.0,  0.0,  0.0),
              (0.0,  1.0,  0.0,  0.0),
@@ -465,7 +466,7 @@ procedure Decode_Hall is
    is
    begin
       case Rotation_Character is
-         when '1' => return IDENTITY_AXIS;
+         when '1' => return IDENTITY;
          when '2' => return TWOFOLD;
          when '3' => return THREEFOLD;
          when '4' => return FOURFOLD;
