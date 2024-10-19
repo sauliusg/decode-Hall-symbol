@@ -472,6 +472,9 @@ procedure Decode_HM is
                   Parse_Factor (Symbol, Pos, Change_Of_Basis, Row, Factor);
                else
                   Inc (Change_Of_Basis (Row, 4), Factor);
+                  Put_Line (Standard_Error, ">>> Row = " &
+                              Row'Image & ", Change_Of_Basis (Row, 4) = " &
+                              Float'Image (Change_Of_Basis (Row, 4)));
                end if;
             when others =>
                raise UNEXPECTED_SYMBOL with
@@ -614,13 +617,21 @@ procedure Decode_HM is
    type Float_Matrix is array (Integer range <>, Integer range <>) of Float;
    
    function Transpose (A : Symmetry_Operator) return Symmetry_Operator is
-      R : Symmetry_Operator := A;
+      R : Symmetry_Operator;
    begin
+      -- Transpose the rotation part:
       for I in 1 .. 3 loop
          for J in 1 .. 3 loop
             R (I, J) := A(J, I);
          end loop;
       end loop;
+      -- Copy the rest:
+      for I in 1 .. 3 loop
+         R(I, 4) := A (I, 4);
+         R(4, I) := A (4, I);
+      end loop;
+      -- The (4, 4) elemet is always the same:
+      R (4, 4) := 1.0;
       return R;
    end;
    
