@@ -613,23 +613,16 @@ procedure Decode_HM is
    
    type Float_Matrix is array (Integer range <>, Integer range <>) of Float;
    
-   function Transpose (A : Float_Matrix) return Float_Matrix is
-      R : Float_Matrix (A'First(1) .. A'Last(1), A'First(2) .. A'Last(2));
+   function Transpose (A : Symmetry_Operator) return Symmetry_Operator is
+      R : Symmetry_Operator := A;
    begin
-      for I in A'Range(1) loop
-         for J in A'Range(2) loop
+      for I in 1 .. 3 loop
+         for J in 1 .. 3 loop
             R (I, J) := A(J, I);
          end loop;
       end loop;
-      return Float_Matrix (R);
+      return R;
    end;
-   
-   function Transpose (A : Symmetry_Operator) return Symmetry_Operator is
-   begin
-      return Symmetry_Operator (Transpose (Float_Matrix (A)));
-   end;
-   
-   pragma Inline (Transpose);
    
    function Decode_Hermann_Mauguin (Symbol : in String) return Symmetry_Operator_Array is
       Max_Symmetry_Operators : constant Integer := 192;
