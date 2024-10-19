@@ -472,9 +472,6 @@ procedure Decode_HM is
                   Parse_Factor (Symbol, Pos, Change_Of_Basis, Row, Factor);
                else
                   Inc (Change_Of_Basis (Row, 4), Factor);
-                  Put_Line (Standard_Error, ">>> Row = " &
-                              Row'Image & ", Change_Of_Basis (Row, 4) = " &
-                              Float'Image (Change_Of_Basis (Row, 4)));
                end if;
             when others =>
                raise UNEXPECTED_SYMBOL with
