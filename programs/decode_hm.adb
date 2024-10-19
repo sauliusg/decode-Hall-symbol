@@ -792,6 +792,8 @@ procedure Decode_HM is
          
          Put_Line (Standard_Error, "Change of basis:");
          Put (Standard_Error, Transpose (Change_Of_Basis));
+         Put_Line (Standard_Error, "Inverse Change of basis:");
+         Put (Standard_Error, Invert (Transpose (Change_Of_Basis)));
          New_Line (Standard_Error);
       end if;
       
