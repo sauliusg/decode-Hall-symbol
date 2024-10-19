@@ -611,6 +611,26 @@ procedure Decode_HM is
       N_Operators := M;
    end Build_Group;
    
+   type Float_Matrix is array (Integer range <>, Integer range <>) of Float;
+   
+   function Transpose (A : Float_Matrix) return Float_Matrix is
+      R : Float_Matrix (A'First(1) .. A'Last(1), A'First(2) .. A'Last(2));
+   begin
+      for I in A'Range(1) loop
+         for J in A'Range(2) loop
+            R (I, J) := A(J, I);
+         end loop;
+      end loop;
+      return Float_Matrix (R);
+   end;
+   
+   function Transpose (A : Symmetry_Operator) return Symmetry_Operator is
+   begin
+      return Symmetry_Operator (Transpose (Float_Matrix (A)));
+   end;
+   
+   pragma Inline (Transpose);
+   
    function Decode_Hermann_Mauguin (Symbol : in String) return Symmetry_Operator_Array is
       Max_Symmetry_Operators : constant Integer := 192;
       
@@ -648,13 +668,13 @@ procedure Decode_HM is
       
       if Change_Of_Basis /= Unity_Matrix then
          declare
-            V : Symmetry_Operator := Change_Of_Basis;
+            V : Symmetry_Operator := Transpose (Change_Of_Basis);
             V_Inv : Symmetry_Operator;
          begin
             V_Inv := Invert (V);
             
             for I in 2..N_Symmetry_Operators loop
-               Symmetry_Operators (I) := V_Inv * Symmetry_Operators (I) * V;
+               Symmetry_Operators (I) := V * Symmetry_Operators (I) * V_Inv;
             end loop;
             
             for I in 2..N_Centering loop
