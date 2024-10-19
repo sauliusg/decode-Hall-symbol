@@ -16,6 +16,15 @@ procedure Decode_HM is
    --  lists of general position coordinates.
    --
    
+   -- The (a,b,c) change-of-basis notation is taken from [1], p 100.
+   
+   -- [1] Zwart, P. H.; Grosse-Kunstleve, R. W.; Lebedev, A. A.;
+   --  Murshudov, G. N. & Adams, P. D. (2007) Surprises and pitfalls
+   --  arising from (pseudo)symmetry. Acta Crystallographica Section D
+   --  Biological Crystallography 64(1), 99-107. International Union
+   --  of Crystallography (IUCr). DOI:
+   --  https://doi.org/10.1107/s090744490705531x
+   
    Debug_Print_Matrices : Boolean := False;
    
    function IDENTITY return Axis_Order_Type 
