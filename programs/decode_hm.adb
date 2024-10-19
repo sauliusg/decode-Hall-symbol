@@ -672,7 +672,7 @@ procedure Decode_HM is
       
       if Change_Of_Basis /= Unity_Matrix then
          declare
-            V : Symmetry_Operator := Transpose (Change_Of_Basis);
+            V : Symmetry_Operator := Invert (Transpose (Change_Of_Basis));
             V_Inv : Symmetry_Operator;
          begin
             V_Inv := Invert (V);
