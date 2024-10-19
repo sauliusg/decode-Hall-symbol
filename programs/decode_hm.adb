@@ -933,10 +933,10 @@ procedure Decode_HM is
    
 begin
    
-   if Exists ("DECODE_HALL_DEBUG") and then
+   if Exists ("DECODE_HM_DEBUG") and then
      (
-      Value ("DECODE_HALL_DEBUG") = "1" or else
-        Value ("DECODE_HALL_DEBUG") = "true"
+      Value ("DECODE_HM_DEBUG") = "1" or else
+        Value ("DECODE_HM_DEBUG") = "true"
      )
    then
       Debug_Print_Matrices := True;
