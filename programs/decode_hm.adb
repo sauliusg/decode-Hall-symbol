@@ -791,7 +791,7 @@ procedure Decode_HM is
          end loop;
          
          Put_Line (Standard_Error, "Change of basis:");
-         Put (Standard_Error, Change_Of_Basis);
+         Put (Standard_Error, Transpose (Change_Of_Basis));
          New_Line (Standard_Error);
       end if;
       
