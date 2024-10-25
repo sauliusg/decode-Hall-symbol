@@ -50,4 +50,63 @@ package Shmueli_Matrices is
       (3 =>  1, others => 0)
      );
    
+   M_2D : Rotation_Matrix :=
+     (
+      ( 0,  1,  0),
+      ( 1,  0,  0),
+      ( 0,  0, -1)
+     );
+   
+   M_2E : Rotation_Matrix :=
+     (
+      ( 0, -1,  0),
+      (-1,  0,  0),
+      ( 0,  0, -1)
+     );
+   
+   -- "Note that the axes 2F, 2G, 3C and 6C appear in trigonal and
+   --  hexagonal space groups":
+   
+   M_2F : Rotation_Matrix :=
+     (
+      ( 1, -1,  0),
+      ( 0, -1,  0),
+      ( 0,  0, -1)
+     );
+   
+   M_2G : Rotation_Matrix :=
+     (
+      ( 1,  0,  0),
+      ( 1, -1,  0),
+      ( 0,  0, -1)
+     );
+   
+   M_3Q : Rotation_Matrix :=
+     (
+      ( 0,  0,  1),
+      ( 1,  0,  0),
+      ( 0,  1,  0)
+     );
+   
+   M_3C : Rotation_Matrix :=
+     (
+      ( 0, -1,  0),
+      ( 1, -1,  0),
+      ( 0,  0,  1)
+     );
+   
+   M_4C : Rotation_Matrix :=
+     (
+      ( 0, -1,  0),
+      ( 1,  0,  0),
+      ( 0,  0,  1)
+     );
+   
+   M_6C : Rotation_Matrix :=
+     (
+      ( 1, -1,  0),
+      ( 1,  0,  0),
+      ( 0,  0,  1)
+     );
+   
 end Shmueli_Matrices;
