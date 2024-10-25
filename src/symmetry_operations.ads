@@ -8,6 +8,8 @@ package Symmetry_Operations is
    UNKNOWN_TRANSLATION : exception;
    UNEXPECTED_SYMBOL : exception;
    
+   function Eps return Float;
+   
    type Axis_Direction_Type is
      (X_AXIS, Y_AXIS, Z_AXIS, UNKNOWN);
    
@@ -21,6 +23,13 @@ package Symmetry_Operations is
      Axis_Order_Type range IDENTITY .. SIXFOLD;
    
    type Symmetry_Operator is array (1..4, 1..4) of Float;
+   
+   procedure Snap_To_Crystallographic_Translations
+     (M : in out Symmetry_Operator);
+      
+   function Invert (S : Symmetry_Operator) return Symmetry_Operator;
+   
+   function "*" (M1, M2 : Symmetry_Operator) return Symmetry_Operator;
    
    type Symmetry_Operator_Array is
      array (Positive range <>) of Symmetry_Operator;
@@ -51,6 +60,9 @@ package Symmetry_Operations is
    type Crystallographic_Translation is array (1..3)
      of Crystallographic_Translation_Component;
    
+   procedure Add
+     (M : in out Symmetry_Operator; T : Crystallographic_Translation);
+      
    -- Centering translations vectors from Hall 1981 [1], Table 1:
    A_Translation_Vector : constant Crystallographic_Translation :=
      ((0,1), (1,2), (1,2));
