@@ -12,17 +12,18 @@ package body Shmueli_Matrices is
       Translation_Code : in String;
       Translation      : out Crystallographic_Translation
      ) is
+      Code : String (1 .. 3) := Translation_Code;
    begin
       if Translation_Code'Length /= 3 then
          raise CONSTRAINT_ERROR with
-           "translation in a Shmuely symbol must be tree characters long, " &
+           "translation in a Shmuely symbol must be three characters long, " &
            "not " & Integer'Image (Translation_Code'Length) & " as in " &
            "'" & Translation_Code & "'";
       end if;
-      for I in Translation_Code'Range loop
+      for I in Translation'Range loop
          declare
             Value : Natural :=
-              Character'Pos (Translation_Code (I)) - Character'Pos ('0');
+              Character'Pos (Code (I)) - Character'Pos ('0');
             Divisor : Natural;
          begin
             -- "An exception: (0 0 5/6) is denoted by 005 and not by
@@ -30,8 +31,12 @@ package body Shmueli_Matrices is
             if Value = 5 then
                Value := 10;
             end if;
-            Divisor := GCD (Value, 12);
-            Translation (I) := (Value/Divisor, 12/Divisor);
+            if Value /= 0 then
+               Divisor := GCD (Value, 12);
+               Translation (I) := (Value/Divisor, 12/Divisor);
+            else 
+               Translation (I) := (0, 1);
+            end if;
          end;
       end loop;
    end;

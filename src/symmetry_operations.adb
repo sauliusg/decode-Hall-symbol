@@ -363,4 +363,53 @@ package body Symmetry_Operations is
       return Buffer (1..Pos-1);
    end As_String;
    
+   function Has_Symmetry_Operator
+     (
+      Symmetry_Operators : Symmetry_Operator_Array;
+      Last_Symmetry_Operator_Index : Positive;
+      Lookup_Symmetry_Operator : Symmetry_Operator
+     )
+     return Boolean is
+   begin
+      for I in 1 .. Last_Symmetry_Operator_Index loop
+         if Symmetry_Operators (I) = Lookup_Symmetry_Operator then
+            return True;
+         end if;
+      end loop;
+      return False;
+   end;
+      
+   procedure Build_Group
+     (
+      Operators : in out Symmetry_Operator_Array;
+      N_Operators : in out Positive
+     )
+   is
+      N, M : Positive := N_Operators;
+      New_Operator : Symmetry_Operator;
+   begin
+      loop
+         for I in 2 .. N loop
+            New_Operator := Operators (I) * Operators (N);
+            if not Has_Symmetry_Operator (Operators, M, New_Operator) then
+               M := M + 1;
+               if M > Operators'Last then
+                  for I in Operators'Range loop
+                     Put (As_String (Operators (I)));
+                     New_Line;
+                     Flush;
+                  end loop;
+                  raise CONSTRAINT_ERROR
+                    with "Operator no." & M'Image & " exceeds capacity " &
+                    "of the array when storing " &  As_String (New_Operator);
+               end if;
+               Operators (M) := New_Operator;
+            end if;
+         end loop;
+         N := N + 1;
+         exit when N > M or else M >= Operators'Last;
+      end loop;
+      N_Operators := M;
+   end Build_Group;
+   
 end Symmetry_Operations;

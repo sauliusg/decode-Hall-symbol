@@ -148,4 +148,18 @@ package Symmetry_Operations is
    
    function As_String (S : Symmetry_Operator) return String;
 
+   function Has_Symmetry_Operator
+     (
+      Symmetry_Operators : Symmetry_Operator_Array;
+      Last_Symmetry_Operator_Index : Positive;
+      Lookup_Symmetry_Operator : Symmetry_Operator
+     )
+     return Boolean;
+
+   procedure Build_Group
+     (
+      Operators : in out Symmetry_Operator_Array;
+      N_Operators : in out Positive
+     );
+   
 end Symmetry_Operations;
