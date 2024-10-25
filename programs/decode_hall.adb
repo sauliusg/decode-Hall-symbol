@@ -395,12 +395,9 @@ procedure Decode_Hall is
    end Invert;
    
    -- -------------------------------------------------------------------------
-   procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
-   begin
-      while Pos <= S'Last and then S (Pos) = ' ' loop
-         Pos := Pos + 1;
-      end loop;
-   end;
+   
+   procedure Skip_Spaces (S : in String; Pos : in out Integer )
+     renames Symmetry_Operations.Skip_Spaces;
    
    procedure Get_Hall_Symbol_Inversions
      (

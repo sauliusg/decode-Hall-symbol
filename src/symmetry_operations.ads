@@ -124,6 +124,8 @@ package Symmetry_Operations is
                                   Axis_Direction : Known_Axis_Direction)
                                  return Symmetry_Operator;
    
+   procedure Skip_Spaces (S : in String; Pos : in out Integer );
+
    procedure Decode_Centering_Symbol
      (
       Symbol : in String;
