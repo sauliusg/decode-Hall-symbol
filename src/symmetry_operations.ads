@@ -123,5 +123,13 @@ package Symmetry_Operations is
    function To_Symmetry_Operator (T : Crystallographic_Translation_Component;
                                   Axis_Direction : Known_Axis_Direction)
                                  return Symmetry_Operator;
+   
+   procedure Decode_Centering_Symbol
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Centering : out Symmetry_Operator_Array;
+      N_Centering : out Positive
+     );
 
 end Symmetry_Operations;

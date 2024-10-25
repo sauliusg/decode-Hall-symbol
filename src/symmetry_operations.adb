@@ -53,4 +53,53 @@ package body Symmetry_Operations is
       return S;
    end To_Symmetry_Operator;
    
+   procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
+   begin
+      while Pos <= S'Last and then S (Pos) = ' ' loop
+         Pos := Pos + 1;
+      end loop;
+   end;
+   
+   procedure Decode_Centering_Symbol
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Centering : out Symmetry_Operator_Array;
+      N_Centering : out Positive
+     )
+   is
+   begin
+      Skip_Spaces (Symbol, Pos);
+      Centering (1) := Unity_Matrix;
+      case Symbol (Pos) is
+         when 'P' =>
+           N_Centering := 1;
+         when 'A' =>
+           Centering (2) := To_Symmetry_Operator (A_Translation_Vector);
+           N_Centering := 2;
+         when 'B' =>
+           Centering (2) := To_Symmetry_Operator (B_Translation_Vector);
+           N_Centering := 2;
+         when 'C' =>
+           Centering (2) := To_Symmetry_Operator (C_Translation_Vector);
+           N_Centering := 2;
+         when 'I' =>
+           Centering (2) := To_Symmetry_Operator (I_Translation_Vector);
+           N_Centering := 2;
+         when 'F' =>
+           Centering (2) := To_Symmetry_Operator (F_Translation_Vector_1);
+           Centering (3) := To_Symmetry_Operator (F_Translation_Vector_2);
+           Centering (4) := To_Symmetry_Operator (F_Translation_Vector_3);
+           N_Centering := 4;
+         when 'R' =>
+           Centering (2) := To_Symmetry_Operator (R_Translation_Vector_1);
+           Centering (3) := To_Symmetry_Operator (R_Translation_Vector_2);
+           N_Centering := 3;
+         when others =>
+            raise UNKNOWN_CENTERING with
+              "unknown centering symbol " & Character'Image(Symbol (Pos));
+      end case;
+      Pos := Pos + 1;
+   end;
+   
 end Symmetry_Operations;

@@ -426,41 +426,8 @@ procedure Decode_Hall is
       Centering : out Symmetry_Operator_Array;
       N_Centering : out Positive
      )
-   is
-   begin
-      Skip_Spaces (Symbol, Pos);
-      Centering (1) := Unity_Matrix;
-      case Symbol (Pos) is
-         when 'P' =>
-           N_Centering := 1;
-         when 'A' =>
-           Centering (2) := To_Symmetry_Operator (A_Translation_Vector);
-           N_Centering := 2;
-         when 'B' =>
-           Centering (2) := To_Symmetry_Operator (B_Translation_Vector);
-           N_Centering := 2;
-         when 'C' =>
-           Centering (2) := To_Symmetry_Operator (C_Translation_Vector);
-           N_Centering := 2;
-         when 'I' =>
-           Centering (2) := To_Symmetry_Operator (I_Translation_Vector);
-           N_Centering := 2;
-         when 'F' =>
-           Centering (2) := To_Symmetry_Operator (F_Translation_Vector_1);
-           Centering (3) := To_Symmetry_Operator (F_Translation_Vector_2);
-           Centering (4) := To_Symmetry_Operator (F_Translation_Vector_3);
-           N_Centering := 4;
-         when 'R' =>
-           Centering (2) := To_Symmetry_Operator (R_Translation_Vector_1);
-           Centering (3) := To_Symmetry_Operator (R_Translation_Vector_2);
-           N_Centering := 3;
-         when others =>
-            raise UNKNOWN_CENTERING with
-              "unknown centering symbol " & Character'Image(Symbol (Pos));
-      end case;
-      Pos := Pos + 1;
-   end Get_Hall_Symbol_Centerings;
-   
+     renames Symmetry_Operations.Decode_Centering_Symbol;
+ 
    function Rotation_Axis_Index (Rotation_Character : Character)
                                 return Known_Axis_Order
    is
