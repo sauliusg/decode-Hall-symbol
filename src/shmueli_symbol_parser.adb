@@ -74,10 +74,7 @@ package body Shmueli_Symbol_Parser is
       N_Symmetry_Operators : Positive := 1;
       
       Crystal_System : Character;
-      
-      Inversions : array (1..2) of Symmetry_Operator :=
-        (Unity_Matrix, Ci_Matrix);
-      N_Inversions : Positive;
+      Centrosymmetry : Character;
       
       Max_Centering : constant Positive := 8;
       Centering : Symmetry_Operator_Array (1..Max_Centering);
@@ -92,8 +89,8 @@ package body Shmueli_Symbol_Parser is
       Pos := Pos + 1;
       
       case Symbol (Pos) is
-         when 'N' => N_Inversions := 1;
-         when 'C' => N_Inversions := 1; -- N_Inversions := 2;
+         when 'N'| 'C'  =>
+            Centrosymmetry := Symbol (Pos);
          when others =>
             raise INVALID_SYMBOL with
               "centrosymmetry symbol '" & Symbol (Pos .. Pos) & "' " &
@@ -152,20 +149,18 @@ package body Shmueli_Symbol_Parser is
          M : Positive := N_Symmetry_Operators;
          New_Symmetry_Operator : Symmetry_Operator;
       begin
-         for I in 1..N_Inversions loop
-            for C in 1..N_Centering loop
-               if I /= 1 or else C /= 1 then
-                  for S in 1..N_Symmetry_Operators loop
-                     New_Symmetry_Operator :=
-                       Symmetry_Operators (S) * Centering (C) * Inversions (I);
-                     if not Has_Symmetry_Operator (Symmetry_Operators, M, 
-                                                   New_Symmetry_Operator) then
-                       M := M + 1;
-                       Symmetry_Operators (M) := New_Symmetry_Operator;
-                     end if;
-                  end loop;
-               end if;
-            end loop;
+         for C in 1..N_Centering loop
+            if C /= 1 then
+               for S in 1..N_Symmetry_Operators loop
+                  New_Symmetry_Operator :=
+                    Symmetry_Operators (S) * Centering (C);
+                  if not Has_Symmetry_Operator (Symmetry_Operators, M, 
+                                                New_Symmetry_Operator) then
+                     M := M + 1;
+                     Symmetry_Operators (M) := New_Symmetry_Operator;
+                  end if;
+               end loop;
+            end if;
          end loop;
          N_Symmetry_Operators := M;
       end;      
