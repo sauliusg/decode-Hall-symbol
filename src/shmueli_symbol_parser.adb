@@ -9,6 +9,7 @@ package body Shmueli_Symbol_Parser is
         Symmetry_Operator_Array (1 .. Max_Symmetry_Operators);
       N_Symmetry_Operators : Positive := 1;
    begin
+      Symmetry_Operators (1) := Unity_Matrix;
       
       return Symmetry_Operators (1..N_Symmetry_Operators);
    end;
