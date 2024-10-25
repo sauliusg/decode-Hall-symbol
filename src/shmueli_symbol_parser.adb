@@ -139,8 +139,10 @@ package body Shmueli_Symbol_Parser is
               );
             Pos := Pos + 3;
             Add (Rotation, Translation);
-            N_Symmetry_Operators := N_Symmetry_Operators + 1;
-            Symmetry_Operators (N_Symmetry_Operators) := Rotation;
+            if Rotation /= Unity_Matrix then
+               N_Symmetry_Operators := N_Symmetry_Operators + 1;
+               Symmetry_Operators (N_Symmetry_Operators) := Rotation;
+            end if;
          end;
       end loop;
       
