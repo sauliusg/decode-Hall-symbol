@@ -6,8 +6,9 @@ with Ada.Strings.Fixed;         use Ada.Strings.Fixed;
 with Ada.Strings.Maps;          use Ada.Strings.Maps;
 
 with Symmetry_Operations;       use Symmetry_Operations;
-
 with Shmueli_Matrices;          use Shmueli_Matrices;
+
+with Shmueli_Symbol_Parser;     use Shmueli_Symbol_Parser;
 
 with Project_Version;
 
@@ -71,8 +72,22 @@ begin
          
          -- decoding of the symbols and printing out the symmetry
          --  operations goes here:
-         
-         Put_Line (Argument (I));
+         declare
+            Symmetry_Operators : Symmetry_Operator_Array :=
+              Decode_Shmueli_Symbol (Argument (I));
+         begin
+            if Debug_Print_Matrices then
+               Put_Line (Standard_Error, "Symmetry_Operators:");
+               for I in Symmetry_Operators'Range loop
+                  Put (Standard_Error, Symmetry_Operators (I));
+                  New_Line (Standard_Error);
+               end loop;
+            end if;
+            
+            for I in Symmetry_Operators'Range loop
+               Put_Line (As_String (Symmetry_Operators (I)));
+            end loop;
+         end;
          
       end if;
    end loop;

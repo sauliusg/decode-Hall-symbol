@@ -1035,8 +1035,6 @@ procedure Decode_Hall is
       end if;
    end;
    
-   function As_String (S : Symmetry_Operator) return String;
-
    procedure Build_Group
      (
       Operators : in out Symmetry_Operator_Array;
@@ -1268,108 +1266,7 @@ procedure Decode_Hall is
       
       return Symmetry_Operators (1..N_Symmetry_Operators);
    end Decode_Hall;
-   
-   function As_String (S : Symmetry_Operator) return String is
-      Buffer : String (1..100); -- large enough to hold any symop
-      Pos : Positive := 1;
-      Non_Zero_Printed : Boolean;
-      
-      function Rational_Translation (T : Float) return String is
-         Buffer : String := Float'Image (T);
-         Idx : Positive := 1;
-      begin
-         if T = 0.0 then
-            return "";
-         elsif T = 0.5 then
-            return "+1/2";
-         elsif T = 1.5 then
-            return "+3/2";
-         elsif T = 1.0/3.0 then
-            return "+1/3";
-         elsif T = 2.0/3.0 then
-            return "+2/3";
-         elsif T = 1.0/4.0 then
-            return "+1/4";
-         elsif T = 3.0/4.0 then
-            return "+3/4";
-         elsif T = 1.0/6.0 then
-            return "+1/6";
-         elsif T = 5.0/6.0 then
-            return "+5/6";
-         elsif T = 1.0/8.0 then
-            return "+1/8";
-         elsif T = 3.0/8.0 then
-            return "+3/8";
-         elsif T = 5.0/8.0 then
-            return "+5/8";
-         elsif T = 7.0/8.0 then
-            return "+7/8";
-         else
-            while Idx <= Buffer'Last and then
-              (Buffer (Idx) = ' ' or else
-                 Buffer (Idx) = '+' or else
-                 Buffer (Idx) = '-') loop
-               Idx := Idx + 1;
-            end loop;
-            return (if T < 0.0 then "-" else "+") & Buffer (Idx..Buffer'Last);
-         end if;
-      end Rational_Translation;
-      
-   begin
-      for I in 1 .. S'Last(2) - 1 loop
-         Non_Zero_Printed := False;
-         for J in S'Range(1) loop
-            if J < 4 then
-               -- rotation part:
-               if S (I,J) /= 0.0 then
-                  if S (I,J) < 0.0 then
-                     Buffer (Pos) := '-';
-                     Pos := Pos + 1;
-                  else
-                     if Non_Zero_Printed then
-                        Buffer (Pos) := '+';
-                        Pos := Pos + 1;
-                     end if;
-                  end if;
-                  if Abs (S (I,J)) /= 1.0 then
-                     declare
-                        R : String := Rational_Translation (abs(S (I,J)));
-                     begin
-                        for Ch of R (2..R'Last) loop
-                           Buffer (Pos) := Ch;
-                           Pos := Pos + 1;
-                        end loop;
-                     end;
-                     Buffer (Pos) := '*';
-                     Pos := Pos + 1;
-                  end if;
-                  case J is
-                     when 1 => Buffer (Pos) := 'X';
-                     when 2 => Buffer (Pos) := 'Y';
-                     when 3 => Buffer (Pos) := 'Z';
-                     when others =>
-                        raise CONSTRAINT_ERROR;
-                  end case;
-                  Pos := Pos + 1;
-                  Non_Zero_Printed := True;
-               end if;
-            else
-               -- translation part:
-               for C of Rational_Translation (S (I,J)) loop
-                  Buffer (Pos) := C;
-                  Pos := Pos + 1;
-               end loop;
-            end if;
-         end loop;
-         if I < 3 then
-            Buffer (Pos) := ',';
-            Pos := Pos + 1;
-         end if;
-      end loop;
-      
-      return Buffer (1..Pos-1);
-   end As_String;
-   
+
 begin
    
    if Exists ("DECODE_HALL_DEBUG") and then

@@ -133,5 +133,7 @@ package Symmetry_Operations is
       Centering : out Symmetry_Operator_Array;
       N_Centering : out Positive
      );
+   
+   function As_String (S : Symmetry_Operator) return String;
 
 end Symmetry_Operations;
