@@ -1,3 +1,5 @@
+with Symmetry_Operations; use Symmetry_Operations;
+
 package Shmueli_Matrices is
    
    -- This package describes the rotation matrices necessary for
@@ -107,6 +109,12 @@ package Shmueli_Matrices is
       ( 1, -1,  0),
       ( 1,  0,  0),
       ( 0,  0,  1)
+     );
+   
+   procedure Decode_Shmueli_Symbol_Translation
+     (
+      Translation_Code : in String;
+      Translation      : out Crystallographic_Translation
      );
    
 end Shmueli_Matrices;
