@@ -93,7 +93,7 @@ package body Shmueli_Symbol_Parser is
       
       case Symbol (Pos) is
          when 'N' => N_Inversions := 1;
-         when 'C' => N_Inversions := 2;
+         when 'C' => N_Inversions := 1; -- N_Inversions := 2;
          when others =>
             raise INVALID_SYMBOL with
               "centrosymmetry symbol '" & Symbol (Pos .. Pos) & "' " &
