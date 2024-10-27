@@ -200,139 +200,6 @@ procedure Decode_HM is
    
    -- -------------------------------------------------------------------------
    
-   procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
-   begin
-      while Pos <= S'Last and then S (Pos) = ' ' loop
-         Pos := Pos + 1;
-      end loop;
-   end;
-   
-   procedure Get_H_M_Symbol_Inversions
-     (
-      Symbol : in String;
-      Pos : in out Integer;
-      N_Inversions : out Positive
-     )
-   is
-   begin
-      Skip_Spaces (Symbol, Pos);
-      if Symbol (Pos) = '-' then
-         N_Inversions := 2;
-         Pos := Pos + 1;
-      else
-         N_Inversions := 1;
-      end if;
-   end Get_H_M_Symbol_Inversions;
-   
-   procedure Get_H_M_Symbol_Centerings
-     (
-      Symbol : in String;
-      Pos : in out Positive;
-      Centering : out Symmetry_Operator_Array;
-      N_Centering : out Positive
-     )
-   is
-   begin
-      Skip_Spaces (Symbol, Pos);
-      Centering (1) := Unity_Matrix;
-      case Symbol (Pos) is
-         when 'P' =>
-           N_Centering := 1;
-         when 'A' =>
-           Centering (2) := To_Symmetry_Operator (A_Translation_Vector);
-           N_Centering := 2;
-         when 'B' =>
-           Centering (2) := To_Symmetry_Operator (B_Translation_Vector);
-           N_Centering := 2;
-         when 'C' =>
-           Centering (2) := To_Symmetry_Operator (C_Translation_Vector);
-           N_Centering := 2;
-         when 'I' =>
-           Centering (2) := To_Symmetry_Operator (I_Translation_Vector);
-           N_Centering := 2;
-         when 'F' =>
-           Centering (2) := To_Symmetry_Operator (F_Translation_Vector_1);
-           Centering (3) := To_Symmetry_Operator (F_Translation_Vector_2);
-           Centering (4) := To_Symmetry_Operator (F_Translation_Vector_3);
-           N_Centering := 4;
-         when 'R' =>
-           Centering (2) := To_Symmetry_Operator (R_Translation_Vector_1);
-           Centering (3) := To_Symmetry_Operator (R_Translation_Vector_2);
-           N_Centering := 3;
-         when others =>
-            raise UNKNOWN_CENTERING with
-              "unknown centering symbol " & Character'Image(Symbol (Pos));
-      end case;
-      Pos := Pos + 1;
-   end Get_H_M_Symbol_Centerings;
-   
-   function Rotation_Axis_Index (Rotation_Character : Character)
-                                return Known_Axis_Order
-   is
-   begin
-      case Rotation_Character is
-         when '1' => return IDENTITY;
-         when '2' => return TWOFOLD;
-         when '3' => return THREEFOLD;
-         when '4' => return FOURFOLD;
-         when '6' => return SIXFOLD;
-         when others => 
-            raise UNKNOWN_ROTATION
-              with "rotation " & Character'Image (Rotation_Character);
-      end case;
-   end Rotation_Axis_Index;
-   
-   procedure Get_Inversion_Character
-     (
-      Symbol : in String;
-      Pos : in out Positive;
-      Inversion : out Character
-     )
-   is
-   begin
-      if Pos <= Symbol'Last and then
-        Symbol (Pos) = '-' then
-         Inversion := Symbol (Pos);
-         Pos := Pos + 1;
-      else
-         Inversion := ' ';
-      end if;
-   end;
-   
-   Twofold_Along_B_Matrix : constant Symmetry_Operator :=
-     (
-      (1 => -1.0, others => 0.0),
-      (2 =>  1.0, others => 0.0),
-      (3 => -1.0, others => 0.0),
-      (4 =>  1.0, others => 0.0)
-     );
-   
-   procedure Get_H_M_Symbol_Rotations
-     (
-      Symbol : in String;
-      Pos : in out Positive;
-      Rotations : out Symmetry_Operator_Array;
-      N_Rotations : in out Natural
-     )
-   is      
-      Translations : String (1..3) := (others => ' ');
-      N_Translations : Natural := 0;      
-   begin
-      Skip_Spaces (Symbol, Pos);
-      case Symbol (Pos) is
-         when '1' =>
-            Pos := Pos + 1;
-            null;
-         when '2' =>
-            Pos := Pos + 1;
-            N_Rotations := N_Rotations + 1;
-            Rotations (N_Rotations) := Twofold_Along_B_Matrix;
-         when others =>
-            raise UNKNOWN_ROTATION with
-              "rotation symbol '" & Symbol (Pos .. Pos) & "' is not supported";
-      end case;
-   end Get_H_M_Symbol_Rotations;
-   
    procedure Inc (X : in out Positive) is
    begin
       X := X + 1;
@@ -694,21 +561,13 @@ procedure Decode_HM is
       
       Symmetry_Operators :
         Symmetry_Operator_Array (1 .. Max_Symmetry_Operators);
-      N_Symmetry_Operators : Natural := 1;
+      N_Symmetry_Operators : Natural := 0;
       
       Pos : Positive := 1; -- current position in the string 'Symbol'.
       
       Change_Of_Basis : Symmetry_Operator;
       
    begin
-      Symmetry_Operators (1) := Unity_Matrix;
-      
-      -- Get_H_M_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
-      -- Get_H_M_Symbol_Inversions (Symbol, Pos, N_Inversions);
-      -- 
-      
-      -- Get_H_M_Symbol_Rotations (Symbol, Pos, Symmetry_Operators,
-      --                           N_Symmetry_Operators);
       
       Lookup_H_M_Symbol_Rotations (Symbol, Pos, Symmetry_Operators,
                                    N_Symmetry_Operators);
