@@ -1,0 +1,42 @@
++ svn up
+Updating '.':
+At revision 1122.
++ directory-metadata
++ whoami
+saulius
++ hostname -f
+starta
++ pwd
+/home/saulius/tmp/COD/2024-10-26-Shmueli-spacegroup-symbols
++ set +x
++ svnversion
+1122
++ svn info
+Path: .
+Working Copy Root Path: /home/saulius/tmp
+URL: svn+ssh://saulius.grazulis.lt/home/saulius/svn-repositories/tmp/COD/2024-10-26-Shmueli-spacegroup-symbols
+Relative URL: ^/COD/2024-10-26-Shmueli-spacegroup-symbols
+Repository Root: svn+ssh://saulius.grazulis.lt/home/saulius/svn-repositories/tmp
+Repository UUID: d3bd5daf-38a0-45fb-a3f8-6742599c9cef
+Revision: 1122
+Node Kind: directory
+Schedule: normal
+Last Changed Author: saulius
+Last Changed Rev: 1122
+Last Changed Date: 2024-10-27 13:52:46 +0200 (Sun, 27 Oct 2024)
+
++ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme1n1p1  1,9T  1,6T  238G  87% /home
++ type osname
+osname is /home/saulius/scripts/osname
++ osname
+Linuxmint-20.3
++ uname -a
+Linux starta 5.15.0-78-generic #85~20.04.1-Ubuntu SMP Mon Jul 17 09:42:39 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
++ date
+2024-10-27T20:33:13 EET
++ echo -e 'H-M\tShmueli'
++ awk '-F\t' 'BEGIN {OFS = FS} NR > 1 {for (i = 2; i <= 6; i++) {if (i != 4) {if ((i != 2 && i != 3) || $1"x" == $4"x") {print $i, $8}}}}' spacegroups-hm-hall-shmueli.tsv
++ grep -v 'COC$I1A606$P2C000$P2A000'
++ sort -u
