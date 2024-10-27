@@ -1,541 +1,543 @@
-"ITC No",H-M,n:c,"Univ HM",Hall,Shmueli,Note
-1,P1,1,P1,"P 1",PAN$P1A000,
-1,A1,1:1,A1,"A 1",AAN$P1A000,"Added by S.G."
-1,B1,1:2,B1,"B 1",BAN$P1A000,"Added by S.G."
-1,C1,1:3,C1,"C 1",CAN$P1A000,"Added by S.G."
-1,F1,1:4,F1,"F 1",FAN$P1A000,"Added by S.G."
-1,I1,1:5,I1,"I 1",IAN$P1A000,"Added by S.G."
-2,P-1,2,P-1,"-P 1",PAC$I1A000,
-2,A-1,2:1,A-1,"-A 1",AAN$I1A000,"Added by S.G."
-2,B-1,2:2,B-1,"-B 1",BAN$I1A000,"Added by S.G."
-2,C-1,2:3,C-1,"-C 1",CAN$I1A000,"Added by S.G."
-2,F-1,2:4,F-1,"-F 1",FAN$I1A000,"Added by S.G."
-2,I-1,2:5,I-1,"-I 1",IAN$I1A000,"Added by S.G."
-3,P2,3:a,P211,"P 2x",PMN$P2A000,"Added by S.G."
-3,P2,3:b,P121,"P 2y",PMN$P2B000,
-3,P2,3:c,P112,"P 2",PMN$P2C000,
-4,P21,4:a,P2111,"P 2xa",PMN$P2A600,"Added by S.G."
-4,P21,4:b,P1211,"P 2yb",PMN$P2B060,
-4,P21,4:c,P1121,"P 2c",PMN$P2C006,
-5,C2,5:a1,B211,"B 2x",BMN$P2A000,"Shmueli symbol added by S.G."
-5,C2,5:a2,C211,"C 2x",CMN$P2A000,"Shmueli symbol added by S.G."
-5,C2,5:a3,I211,"I 2x",IMN$P2A000,"Shmueli symbol added by S.G."
-5,C2,5:b1,C121,"C 2y",CMN$P2B000,
-5,C2,5:b2,A121,"A 2y",AMN$P2B000,
-5,C2,5:b3,I121,"I 2y",IMN$P2B000,
-5,C2,5:c1,A112,"A 2",AMN$P2C000,
-5,C2,5:c2,B112,"B 2",BMN$P2C000,
-5,C2,5:c3,I112,"I 2",IMN$P2C000,
-6,Pm,6:a,Pm11,"P -2x",PMN$I2A000,"Shmueli symbol added by S.G."
-6,Pm,6:b,P1m1,"P -2y",PMN$I2B000,
-6,Pm,6:c,P11m,"P -2",PMN$I2C000,
-7,Pc,7:a1,Pb11,"P -2xb",PMN$I2A060,"Shmueli symbol added by S.G."
-7,Pc,7:a2,Pn11,"P -2xbc",PMN$I2A066,"Shmueli symbol added by S.G."
-7,Pc,7:a3,Pc11,"P -2xc",PMN$I2A006,"Shmueli symbol added by S.G."
-7,Pc,7:b1,P1c1,"P -2yc",PMN$I2B006,
-7,Pc,7:b2,P1n1,"P -2yac",PMN$I2B606,
-7,Pc,7:b3,P1a1,"P -2ya",PMN$I2B600,
-7,Pc,7:c1,P11a,"P -2a",PMN$I2C600,
-7,Pc,7:c2,P11n,"P -2ab",PMN$I2C660,
-7,Pc,7:c3,P11b,"P -2b",PMN$I2C060,
-8,Cm,8:a1,Bm11,"B -2x",BMN$I2A000,"Shmueli symbol added by S.G."
-8,Cm,8:a2,Cm11,"C -2x",CMN$I2A000,"Shmueli symbol added by S.G."
-8,Cm,8:a3,Im11,"I -2x",IMN$I2A000,"Shmueli symbol added by S.G."
-8,Cm,8:b1,C1m1,"C -2y",CMN$I2B000,
-8,Cm,8:b2,A1m1,"A -2y",AMN$I2B000,
-8,Cm,8:b3,I1m1,"I -2y",IMN$I2B000,
-8,Cm,8:c1,A11m,"A -2",AMN$I2C000,
-8,Cm,8:c2,B11m,"B -2",BMN$I2C000,
-8,Cm,8:c3,I11m,"I -2",IMN$I2C000,
-9,Cc,9:-a1,Cc11,"C -2xc",CMN$I2A006,"Shmueli symbol added by S.G."
-9,Cc,9:-a2,Bn11,"B -2xab",BMN$I2A660,"Shmueli symbol added by S.G."
-9,Cc,9:-a3,Ib11,"I -2xb",IMN$I2A060,"Shmueli symbol added by S.G."
-9,Cc,9:-b1,A1a1,"A -2ya",AMN$I2B600,"Shmueli symbol added by S.G."
-9,Cc,9:-b2,C1n1,"C -2yac",CMN$I2B606,"Shmueli symbol added by S.G."
-9,Cc,9:-b3,I1c1,"I -2yc",IMN$I2B006,"Shmueli symbol added by S.G."
-9,Cc,9:-c1,B11b,"B -2b",BMN$I2C060,"Shmueli symbol added by S.G."
-9,Cc,9:-c2,A11n,"A -2ab",AMN$I2C660,"Shmueli symbol added by S.G."
-9,Cc,9:-c3,I11a,"I -2a",IMN$I2C600,"Shmueli symbol added by S.G."
-9,Cc,9:a1,Bb11,"B -2xb",BMN$I2A060,"Shmueli symbol added by S.G."
-9,Cc,9:a2,Cn11,"C -2xac",CMN$I2A606,"Shmueli symbol added by S.G."
-9,Cc,9:a3,Ic11,"I -2xc",IMN$I2A006,"Shmueli symbol added by S.G."
-9,Cc,9:b1,C1c1,"C -2yc",CMN$I2B006,
-9,Cc,9:b2,A1n1,"A -2yab",AMN$I2B606,
-9,Cc,9:b3,I1a1,"I -2ya",IMN$I2B600,
-9,Cc,9:c1,A11a,"A -2a",AMN$I2C600,
-9,Cc,9:c2,B11n,"B -2ab",BMN$I2C660,
-9,Cc,9:c3,I11b,"I -2b",IMN$I2C060,
-10,P2/m,10:a,P2/m11,"-P 2x",PMC$I1A000$P2A000,"Shmueli symbol added by S.G."
-10,P2/m,10:b,P12/m1,"-P 2y",PMC$I1A000$P2B000,
-10,P2/m,10:c,P112/m,"-P 2",PMC$I1A000$P2C000,
-11,P21/m,11:a,P21/m11,"-P 2xa",PMC$I1A000$P2A600,"Shmueli symbol added by S.G."
-11,P21/m,11:b,P121/m1,"-P 2yb",PMC$I1A000$P2B060,
-11,P21/m,11:c,P1121/m,"-P 2c",PMC$I1A000$P2C006,
-12,C2/m,12:a1,B2/m11,"-B 2x",BMC$I1A000$P2A000,"Shmueli symbol added by S.G."
-12,C2/m,12:a2,C2/m11,"-C 2x",CMC$I1A000$P2A000,"Shmueli symbol added by S.G."
-12,C2/m,12:a3,I2/m11,"-I 2x",IMC$I1A000$P2A000,"Shmueli symbol added by S.G."
-12,C2/m,12:b1,C12/m1,"-C 2y",CMC$I1A000$P2B000,
-12,C2/m,12:b2,A12/m1,"-A 2y",AMC$I1A000$P2B000,
-12,C2/m,12:b3,I12/m1,"-I 2y",IMC$I1A000$P2B000,
-12,C2/m,12:c1,A112/m,"-A 2",AMC$I1A000$P2C000,
-12,C2/m,12:c2,B112/m,"-B 2",BMC$I1A000$P2C000,
-12,C2/m,12:c3,I112/m,"-I 2",IMC$I1A000$P2C000,
-13,P2/c,13:a1,P2/b11,"-P 2xb",PMC$I1A000$P2A060,"Shmueli symbol added by S.G."
-13,P2/c,13:a2,P2/n11,"-P 2xbc",PMC$I1A000$P2A066,"Shmueli symbol added by S.G."
-13,P2/c,13:a3,P2/c11,"-P 2xc",PMC$I1A000$P2A006,"Shmueli symbol added by S.G."
-13,P2/c,13:b1,P12/c1,"-P 2yc",PMC$I1A000$P2B006,
-13,P2/c,13:b2,P12/n1,"-P 2yac",PMC$I1A000$P2B606,
-13,P2/c,13:b3,P12/a1,"-P 2ya",PMC$I1A000$P2B600,
-13,P2/c,13:c1,P112/a,"-P 2a",PMC$I1A000$P2C600,
-13,P2/c,13:c2,P112/n,"-P 2ab",PMC$I1A000$P2C660,
-13,P2/c,13:c3,P112/b,"-P 2b",PMC$I1A000$P2C060,
-14,P21/c,14:a1,P21/b11,"-P 2xab",PMC$I1A000$P2A660,"Shmueli symbol added by S.G."
-14,P21/c,14:a2,P21/n11,"-P 2xn",PMC$I1A000$P2A666,"Shmueli symbol added by S.G."
-14,P21/c,14:a3,P21/c11,"-P 2xac",PMC$I1A000$P2A606,"Shmueli symbol added by S.G."
-14,P21/c,14:b1,P121/c1,"-P 2ybc",PMC$I1A000$P2B066,
-14,P21/c,14:b2,P121/n1,"-P 2yn",PMC$I1A000$P2B666,
-14,P21/c,14:b3,P121/a1,"-P 2yab",PMC$I1A000$P2B660,
-14,P21/c,14:c1,P1121/a,"-P 2ac",PMC$I1A000$P2C606,
-14,P21/c,14:c2,P1121/n,"-P 2n",PMC$I1A000$P2C666,
-14,P21/c,14:c3,P1121/b,"-P 2bc",PMC$I1A000$P2C066,
-15,C1/c,15:-a1,C2/c11,"-C 2xc",CMC$I1A000$P2A006,"Shmueli symbol added by S.G."
-15,C1/c,15:-a2,B2/n11,"-B 2xab",BMC$I1A000$P2A660,"Shmueli symbol added by S.G."
-15,C1/c,15:-a3,I2/b11,"-I 2xb",IMC$I1A000$P2A060,"Shmueli symbol added by S.G."
-15,C1/c,15:-b1,A12/a1,"-A 2ya",AMC$I1A000$P2B600,"Shmueli symbol added by S.G."
-15,C1/c,15:-b2,C12/n1,"-C 2yac",CMC$I1A000$P2B606,"Shmueli symbol added by S.G."
-15,C1/c,15:-b3,I12/c1,"-I 2yc",IMC$I1A000$P2B006,"Shmueli symbol added by S.G."
-15,C1/c,15:-c1,B112/b,"-B 2b",BMC$I1A000$P2C060,"Shmueli symbol added by S.G."
-15,C1/c,15:-c2,A112/n,"-A 2ab",AMC$I1A000$P2C660,"Shmueli symbol added by S.G."
-15,C1/c,15:-c3,I112/a,"-I 2a",IMC$I1A000$P2C600,"Shmueli symbol added by S.G."
-15,C1/c,15:a1,B2/b11,"-B 2xb",BMC$I1A000$P2A060,"Shmueli symbol added by S.G."
-15,C1/c,15:a2,C2/n11,"-C 2xac",CMC$I1A000$P2A606,"Shmueli symbol added by S.G."
-15,C1/c,15:a3,I2/c11,"-I 2xc",IMC$I1A000$P2A006,"Shmueli symbol added by S.G."
-15,C1/c,15:b1,C12/c1,"-C 2yc",CMC$I1A000$P2B006,
-15,C1/c,15:b2,A12/n1,"-A 2yab",AMC$I1A000$P2B606,
-15,C1/c,15:b3,I12/a1,"-I 2ya",IMC$I1A000$P2B600,
-15,C1/c,15:c1,A112/a,"-A 2a",AMC$I1A000$P2C600,
-15,C1/c,15:c2,B112/n,"-B 2ab",BMC$I1A000$P2C660,
-15,C1/c,15:c3,I112/b,"-I 2b",IMC$I1A000$P2C060,
-16,P222,16,P222,"P 2 2",PON$P2C000$P2A000,
-17,P2221,17,P2221,"P 2c 2",PON$P2C006$P2A000,
-17,P2221,17:bca,P2212,"P 2 2b",PON$P2C000$P2A060,"Shmueli symbol added by S.G."
-17,P2221,17:cab,P2122,"P 2a 2a",PON$P2C600$P2A600,"Shmueli symbol added by S.G."
-18,P21212,18,P21212,"P 2 2ab",PON$P2C000$P2A660,
-18,P21212,18:bca,P21221,"P 2ac 2ac",PON$P2C606$P2A606,"Shmueli symbol added by S.G."
-18,P21212,18:cab,P22121,"P 2bc 2",PON$P2C066$P2A000,"Shmueli symbol added by S.G."
-19,P212121,19,P212121,"P 2ac 2ab",PON$P2C606$P2A660,
-20,C2221,20,C2221,"C 2c 2",CON$P2C006$P2A000,
-20,C2221,20:bca,B2212,"B 2 2b",BON$P2C000$P2A060,"Shmueli symbol added by S.G."
-20,C2221,20:cab,A2122,"A 2a 2a",AON$P2C600$P2A600,"Shmueli symbol added by S.G."
-21,C222,21,C222,"C 2 2",CON$P2C000$P2A000,
-21,C222,21:bca,B222,"B 2 2",BON$P2C000$P2A000,"Shmueli symbol added by S.G."
-21,C222,21:cab,A222,"A 2 2",AON$P2C000$P2A000,"Shmueli symbol added by S.G."
-22,F222,22,F222,"F 2 2",FON$P2C000$P2A000,
-23,I222,23,I222,"I 2 2",ION$P2C000$P2A000,
-24,I212121,24,I212121,"I 2b 2c",ION$P2C606$P2A660,
-25,Pmm2,25,Pmm2,"P 2 -2",PON$P2C000$I2A000,
-25,Pmm2,25:bca,Pm2m,"P -2 -2",PON$I2C000$I2A000,"Shmueli symbol added by S.G."
-25,Pmm2,25:cab,P2mm,"P -2 2",PON$I2C000$P2A000,"Shmueli symbol added by S.G."
-26,Pmc21,26,Pmc21,"P 2c -2",PON$P2C006$I2A000,
-26,Pmc21,26:-cba,P21am,"P -2 2a",PON$I2C000$P2A600,"Shmueli symbol added by S.G."
-26,Pmc21,26:a-cb,Pm21b,"P -2b -2",PON$I2C060$I2A000,"Shmueli symbol added by S.G."
-26,Pmc21,26:ba-c,Pcm21,"P 2c -2c",PON$P2C006$I2A006,"Shmueli symbol added by S.G."
-26,Pmc21,26:bca,Pb21m,"P -2 -2b",PON$I2C000$I2A060,"Shmueli symbol added by S.G."
-26,Pmc21,26:cab,P21ma,"P -2a 2a",PON$I2C600$P2A600,"Shmueli symbol added by S.G."
-27,Pcc2,27,Pcc2,"P 2 -2c",PON$P2C000$I2A006,
-27,Pcc2,27:bca,Pb2b,"P -2b -2b",PON$I2C060$I2A060,"Shmueli symbol added by S.G."
-27,Pcc2,27:cab,P2aa,"P -2a 2",PON$I2C600$P2A000,"Shmueli symbol added by S.G."
-28,Pma2,28,Pma2,"P 2 -2a",PON$P2C000$I2A600,
-28,Pma2,28:-cba,P2cm,"P -2c 2",PON$I2C006$P2A000,"Shmueli symbol added by S.G."
-28,Pma2,28:a-cb,Pm2a,"P -2a -2a",PON$I2C600$I2A600,"Shmueli symbol added by S.G."
-28,Pma2,28:ba-c,Pbm2,"P 2 -2b",PON$P2C000$I2A060,"Shmueli symbol added by S.G."
-28,Pma2,28:bca,Pc2m,"P -2c -2c",PON$I2C006$I2A006,"Shmueli symbol added by S.G."
-28,Pma2,28:cab,P2mb,"P -2b 2",PON$I2C060$P2A000,"Shmueli symbol added by S.G."
-29,Pca21,29,Pca21,"P 2c -2ac",PON$P2C006$I2A606,
-29,Pca21,29:-cba,P21ca,"P -2ac 2a",PON$I2C606$P2A600,"Shmueli symbol added by S.G."
-29,Pca21,29:a-cb,Pb21a,"P -2a -2ab",PON$I2C600$I2A660,"Shmueli symbol added by S.G."
-29,Pca21,29:ba-c,Pbc21,"P 2c -2b",PON$P2C006$I2A060,"Shmueli symbol added by S.G."
-29,Pca21,29:bca,Pc21b,"P -2bc -2c",PON$I2C066$I2A006,"Shmueli symbol added by S.G."
-29,Pca21,29:cab,P21ab,"P -2b 2a",PON$I2C060$P2A600,"Shmueli symbol added by S.G."
-30,Pnc2,30,Pnc2,"P 2 -2bc",PON$P2C000$I2A066,
-30,Pnc2,30:-cba,P2an,"P -2ab 2",PON$I2C660$P2A000,"Shmueli symbol added by S.G."
-30,Pnc2,30:a-cb,Pn2b,"P -2bc -2bc",PON$I2C066$I2A066,"Shmueli symbol added by S.G."
-30,Pnc2,30:ba-c,Pcn2,"P 2 -2ac",PON$P2C000$I2A606,"Shmueli symbol added by S.G."
-30,Pnc2,30:bca,Pb2n,"P -2ab -2ab",PON$I2C660$I2A660,"Shmueli symbol added by S.G."
-30,Pnc2,30:cab,P2na,"P -2ac 2",PON$I2C606$P2A000,"Shmueli symbol added by S.G."
-31,Pmn21,31,Pmn21,"P 2ac -2",PON$P2C606$I2A000,
-31,Pmn21,31:-cba,P21nm,"P -2 2ac",PON$I2C000$P2A606,"Shmueli symbol added by S.G."
-31,Pmn21,31:a-cb,Pm21n,"P -2ab -2",PON$I2C660$I2A000,"Shmueli symbol added by S.G."
-31,Pmn21,31:ba-c,Pnm21,"P 2bc -2bc",PON$P2C066$I2A066,"Shmueli symbol added by S.G."
-31,Pmn21,31:bca,Pn21m,"P -2 -2bc",PON$I2C000$I2A066,"Shmueli symbol added by S.G."
-31,Pmn21,31:cab,P21mn,"P -2ab 2ab",PON$I2C660$P2A660,"Shmueli symbol added by S.G."
-32,Pba2,32,Pba2,"P 2 -2ab",PON$P2C000$I2A660,
-32,Pba2,32:bca,Pc2a,"P -2ac -2ac",PON$I2C606$I2A606,"Shmueli symbol added by S.G."
-32,Pba2,32:cab,P2cb,"P -2bc 2",PON$I2C066$P2A000,"Shmueli symbol added by S.G."
-33,Pna21,33,Pna21,"P 2c -2n",PON$P2C006$I2A666,
-33,Pna21,33:-cba,P21cn,"P -2n 2a",PON$I2C666$P2A600,"Shmueli symbol added by S.G."
-33,Pna21,33:a-cb,Pn21a,"P -2ac -2n",PON$I2C606$I2A666,"Shmueli symbol added by S.G."
-33,Pna21,33:ba-c,Pbn21,"P 2c -2ab",PON$P2C006$I2A660,"Shmueli symbol added by S.G."
-33,Pna21,33:bca,Pc21n,"P -2n -2ac",PON$I2C666$I2A606,"Shmueli symbol added by S.G."
-33,Pna21,33:cab,P21nb,"P -2bc 2a",PON$I2C066$P2A600,"Shmueli symbol added by S.G."
-34,Pnn2,34,Pnn2,"P 2 -2n",PON$P2C000$I2A666,
-34,Pnn2,34:bca,Pn2n,"P -2n -2n",PON$I2C666$I2A666,"Shmueli symbol added by S.G."
-34,Pnn2,34:cab,P2nn,"P -2n 2",PON$I2C666$P2A000,"Shmueli symbol added by S.G."
-35,Cmm2,35,Cmm2,"C 2 -2",CON$P2C000$I2A000,
-35,Cmm2,35:bca,Bm2m,"B -2 -2",BON$I2C000$I2A000,"Shmueli symbol added by S.G."
-35,Cmm2,35:cab,A2mm,"A -2 2",AON$I2C000$P2A000,"Shmueli symbol added by S.G."
-36,Cmc21,36,Cmc21,"C 2c -2",CON$P2C006$I2A000,
-36,Cmc21,36:-cba,A21am,"A -2 2a",AON$I2C000$P2A600,"Shmueli symbol added by S.G."
-36,Cmc21,36:a-cb,Bm21b,"B -2b -2",BON$I2C060$I2A000,"Shmueli symbol added by S.G."
-36,Cmc21,36:ba-c,Ccm21,"C 2c -2c",CON$P2C006$I2A006,"Shmueli symbol added by S.G."
-36,Cmc21,36:bca,Bb21m,"B -2 -2b",BON$I2C000$I2A060,"Shmueli symbol added by S.G."
-36,Cmc21,36:cab,A21ma,"A -2a 2a",AON$I2C600$P2A600,"Shmueli symbol added by S.G."
-37,Ccc2,37,Ccc2,"C 2 -2c",CON$P2C000$I2A006,
-37,Ccc2,37:bca,Bb2b,"B -2b -2b",BON$I2C060$I2A060,"Shmueli symbol added by S.G."
-37,Ccc2,37:cab,A2aa,"A -2a 2",AON$I2C600$P2A000,"Shmueli symbol added by S.G."
-38,Amm2,38,Amm2,"A 2 -2",AON$P2C000$I2A000,
-38,Amm2,38:-cba,C2mm,"C -2 2",CON$I2C000$P2A000,"Shmueli symbol added by S.G."
-38,Amm2,38:a-cb,Am2m,"A -2 -2",AON$I2C000$I2A000,"Shmueli symbol added by S.G."
-38,Amm2,38:ba-c,Bmm2,"B 2 -2",BON$P2C000$I2A000,"Shmueli symbol added by S.G."
-38,Amm2,38:bca,Cm2m,"C -2 -2",CON$I2C000$I2A000,"Shmueli symbol added by S.G."
-38,Amm2,38:cab,B2mm,"B -2 2",BON$I2C000$P2A000,"Shmueli symbol added by S.G."
-39,Abm2,39,Abm2,"A 2 -2b",AON$P2C000$I2A060,
-39,Abm2,39:-cba,C2mb,"C -2a 2",CON$I2C600$P2A000,"Shmueli symbol added by S.G."
-39,Abm2,39:a-cb,Ac2m,"A -2b -2b",AON$I2C060$I2A060,"Shmueli symbol added by S.G."
-39,Abm2,39:ba-c,Bma2,"B 2 -2a",BON$P2C000$I2A600,"Shmueli symbol added by S.G."
-39,Abm2,39:bca,Cm2a,"C -2a -2a",CON$I2C600$I2A600,"Shmueli symbol added by S.G."
-39,Abm2,39:cab,B2cm,"B -2a 2",BON$I2C600$P2A000,"Shmueli symbol added by S.G."
-40,Ama2,40,Ama2,"A 2 -2a",AON$P2C000$I2A600,
-40,Ama2,40:-cba,C2cm,"C -2c 2",CON$I2C006$P2A000,"Shmueli symbol added by S.G."
-40,Ama2,40:a-cb,Am2a,"A -2a -2a",AON$I2C600$I2A600,"Shmueli symbol added by S.G."
-40,Ama2,40:ba-c,Bbm2,"B 2 -2b",BON$P2C000$I2A060,"Shmueli symbol added by S.G."
-40,Ama2,40:bca,Cc2m,"C -2c -2c",CON$I2C006$I2A006,"Shmueli symbol added by S.G."
-40,Ama2,40:cab,B2mb,"B -2b 2",BON$I2C060$P2A000,"Shmueli symbol added by S.G."
-41,Aba2,41,Aba2,"A 2 -2ab",AON$P2C000$I2A660,
-41,Aba2,41:-cba,C2cb,"C -2ac 2",CON$I2C606$P2A000,"Shmueli symbol added by S.G."
-41,Aba2,41:a-cb,Ac2a,"A -2ab -2ab",AON$I2C660$I2A660,"Shmueli symbol added by S.G."
-41,Aba2,41:ba-c,Bba2,"B 2 -2ab",BON$P2C000$I2A660,"Shmueli symbol added by S.G."
-41,Aba2,41:bca,Cc2a,"C -2ac -2ac",CON$I2C606$I2A606,"Shmueli symbol added by S.G."
-41,Aba2,41:cab,B2cb,"B -2ab 2",BON$I2C660$P2A000,"Shmueli symbol added by S.G."
-42,Fmm2,42,Fmm2,"F 2 -2",FON$P2C000$I2A000,
-42,Fmm3,42:bca,Fm2m,"F -2 -2",FON$I2C000$I2A000,"Shmueli symbol added by S.G."
-42,Fmm4,42:cab,F2mm,"F -2 2",FON$I2C000$P2A000,"Shmueli symbol added by S.G."
-43,Fdd2,43,Fdd2,"F 2 -2d",FON$P2C000$I2A333,
-43,Fdd2,43:bca,Fd2d,"F -2d -2d",FON$I2C333$I2A333,"Shmueli symbol added by S.G."
-43,Fdd2,43:cab,F2dd,"F -2d 2",FON$I2C333$P2A000,"Shmueli symbol added by S.G."
-44,Imm2,44,Imm2,"I 2 -2",ION$P2C000$I2A000,
-44,Imm2,44:bca,Im2m,"I -2 -2",ION$I2C000$I2A000,"Shmueli symbol added by S.G."
-44,Imm2,44:cab,I2mm,"I -2 2",ION$I2C000$P2A000,"Shmueli symbol added by S.G."
-45,Iba2,45,Iba2,"I 2 -2c",ION$P2C000$I2A660,
-45,Iba2,45:bca,Ic2a,"I -2b -2b",ION$I2C060$I2A060,"Shmueli symbol added by S.G."
-45,Iba2,45:cab,I2cb,"I -2a 2",ION$I2C600$P2A000,"Shmueli symbol added by S.G."
-46,Ima2,46,Ima2,"I 2 -2a",ION$P2C000$I2A600,
-46,Ima2,46:-cba,I2cm,"I -2c 2",ION$I2C006$P2A000,"Shmueli symbol added by S.G."
-46,Ima2,46:a-cb,Im2a,"I -2a -2a",ION$I2C600$I2A600,"Shmueli symbol added by S.G."
-46,Ima2,46:ba-c,Ibm2,"I 2 -2b",ION$P2C000$I2A060,"Shmueli symbol added by S.G."
-46,Ima2,46:bca,Ic2m,"I -2c -2c",ION$I2C006$I2A006,"Shmueli symbol added by S.G."
-46,Ima2,46:cab,I2mb,"I -2b 2",ION$I2C060$P2A000,"Shmueli symbol added by S.G."
-47,Pmmm,47,Pmmm,"-P 2 2",POC$I1A000$P2C000$P2A000,
-48,Pnnn,48:1,Pnnn:1,"P 2 2 -1n",POC$I1A666$P2C000$P2A000,
-48,Pnnn,48:2,Pnnn:2,"-P 2ab 2bc",POC$I1A000$P2C660$P2A066,
-49,Pccm,49,Pccm,"-P 2 2c",POC$I1A000$P2C000$P2A006,
-49,Pccm,49:bca,Pbmb,"-P 2b 2b",POC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
-49,Pccm,49:cab,Pmaa,"-P 2a 2",POC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G."
-50,Pban,50:1,Pban:1,"P 2 2 -1ab",POC$I1A660$P2C000$P2A000,
-50,Pban,50:1bca,Pcna:1,"P 2 2 -1ac",POC$I1A606$P2C000$P2A000,"Shmueli symbol added by S.G."
-50,Pban,50:1cab,Pncb:1,"P 2 2 -1bc",POC$I1A066$P2C000$P2A000,"Shmueli symbol added by S.G."
-50,Pban,50:2,Pban:2,"-P 2ab 2b",POC$I1A000$P2C660$P2A060,
-50,Pban,50:2bca,Pcna:2,"-P 2a 2c",POC$I1A000$P2C600$P2A006,"Shmueli symbol added by S.G."
-50,Pban,50:2cab,Pncb:2,"-P 2b 2bc",POC$I1A000$P2C060$P2A066,"Shmueli symbol added by S.G."
-51,Pmma,51,Pmma,"-P 2a 2a",POC$I1A000$P2C600$P2A600,
-51,Pmma,51:-cba,Pcmm,"-P 2c 2c",POC$I1A000$P2C006$P2A006,"Shmueli symbol added by S.G."
-51,Pmma,51:a-cb,Pmam,"-P 2 2a",POC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G."
-51,Pmma,51:ba-c,Pmmb,"-P 2b 2",POC$I1A000$P2C060$P2A000,"Shmueli symbol added by S.G."
-51,Pmma,51:bca,Pmcm,"-P 2c 2",POC$I1A000$P2C006$P2A000,"Shmueli symbol added by S.G."
-51,Pmma,51:cab,Pbmm,"-P 2 2b",POC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G."
-52,Pnna,52,Pnna,"-P 2a 2bc",POC$I1A000$P2C600$P2A066,
-52,Pnna,52:-cba,Pcnn,"-P 2ab 2c",POC$I1A000$P2C660$P2A006,"Shmueli symbol added by S.G."
-52,Pnna,52:a-cb,Pnan,"-P 2n 2bc",POC$I1A000$P2C666$P2A066,"Shmueli symbol added by S.G."
-52,Pnna,52:ba-c,Pnnb,"-P 2b 2n",POC$I1A000$P2C060$P2A666,"Shmueli symbol added by S.G."
-52,Pnna,52:bca,Pncn,"-P 2ab 2n",POC$I1A000$P2C660$P2A666,"Shmueli symbol added by S.G."
-52,Pnna,52:cab,Pbnn,"-P 2n 2b",POC$I1A000$P2C666$P2A060,"Shmueli symbol added by S.G."
-53,Pmna,53,Pmna,"-P 2ac 2",POC$I1A000$P2C606$P2A000,
-53,Pmna,53:-cba,Pcnm,"-P 2 2ac",POC$I1A000$P2C000$P2A606,"Shmueli symbol added by S.G."
-53,Pmna,53:a-cb,Pman,"-P 2ab 2",POC$I1A000$P2C660$P2A000,"Shmueli symbol added by S.G."
-53,Pmna,53:ba-c,Pnmb,"-P 2bc 2bc",POC$I1A000$P2C066$P2A066,"Shmueli symbol added by S.G."
-53,Pmna,53:bca,Pncm,"-P 2 2bc",POC$I1A000$P2C000$P2A066,"Shmueli symbol added by S.G."
-53,Pmna,53:cab,Pbmn,"-P 2ab 2ab",POC$I1A000$P2C660$P2A660,"Shmueli symbol added by S.G."
-54,Pcca,54,Pcca,"-P 2a 2ac",POC$I1A000$P2C600$P2A606,
-54,Pcca,54:-cba,Pcaa,"-P 2ac 2c",POC$I1A000$P2C606$P2A006,"Shmueli symbol added by S.G."
-54,Pcca,54:a-cb,Pbab,"-P 2b 2ab",POC$I1A000$P2C060$P2A660,"Shmueli symbol added by S.G."
-54,Pcca,54:ba-c,Pccb,"-P 2b 2c",POC$I1A000$P2C060$P2A006,"Shmueli symbol added by S.G."
-54,Pcca,54:bca,Pbcb,"-P 2bc 2b",POC$I1A000$P2C066$P2A060,"Shmueli symbol added by S.G."
-54,Pcca,54:cab,Pbaa,"-P 2a 2b",POC$I1A000$P2C600$P2A060,"Shmueli symbol added by S.G."
-55,Pbam,55,Pbam,"-P 2 2ab",POC$I1A000$P2C000$P2A660,
-55,Pbam,55:bca,Pcma,"-P 2ac 2ac",POC$I1A000$P2C606$P2A606,"Shmueli symbol added by S.G."
-55,Pbam,55:cab,Pmcb,"-P 2bc 2",POC$I1A000$P2C066$P2A000,"Shmueli symbol added by S.G."
-56,Pccn,56,Pccn,"-P 2ab 2ac",POC$I1A000$P2C660$P2A606,
-56,Pccn,56:bca,Pbnb,"-P 2bc 2ab",POC$I1A000$P2C066$P2A660,"Shmueli symbol added by S.G."
-56,Pccn,56:cab,Pnaa,"-P 2ac 2bc",POC$I1A000$P2C606$P2A066,"Shmueli symbol added by S.G."
-57,Pbcm,57,Pbcm,"-P 2c 2b",POC$I1A000$P2C006$P2A060,
-57,Pbcm,57:-cba,Pmab,"-P 2b 2a",POC$I1A000$P2C060$P2A600,"Shmueli symbol added by S.G."
-57,Pbcm,57:a-cb,Pcmb,"-P 2bc 2c",POC$I1A000$P2C066$P2A006,"Shmueli symbol added by S.G."
-57,Pbcm,57:ba-c,Pcam,"-P 2c 2ac",POC$I1A000$P2C006$P2A606,"Shmueli symbol added by S.G."
-57,Pbcm,57:bca,Pbma,"-P 2a 2ab",POC$I1A000$P2C600$P2A660,"Shmueli symbol added by S.G."
-57,Pbcm,57:cab,Pmca,"-P 2ac 2a",POC$I1A000$P2C606$P2A600,"Shmueli symbol added by S.G."
-58,Pnnm,58,Pnnm,"-P 2 2n",POC$I1A000$P2C000$P2A666,
-58,Pnnm,58:bca,Pnmn,"-P 2n 2n",POC$I1A000$P2C666$P2A666,"Shmueli symbol added by S.G."
-58,Pnnm,58:cab,Pmnn,"-P 2n 2",POC$I1A000$P2C666$P2A000,"Shmueli symbol added by S.G."
-59,Pmmn,59:1,Pmmn:1,"P 2 2ab -1ab",POC$I1A660$P2C000$P2A660,
-59,Pmmn,59:1bca,Pmnm:1,"P 2ac 2ac -1ac",POC$I1A606$P2C606$P2A606,"Shmueli symbol added by S.G."
-59,Pmmn,59:1cab,Pnmm:1,"P 2bc 2 -1bc",POC$I1A066$P2C066$P2A000,"Shmueli symbol added by S.G."
-59,Pmmn,59:2,Pmmn:2,"-P 2ab 2a",POC$I1A000$P2C660$P2A600,
-59,Pmmn,59:2bca,Pmnm:2,"-P 2c 2a",POC$I1A000$P2C006$P2A600,"Shmueli symbol added by S.G."
-59,Pmmn,59:2cab,Pnmm:2,"-P 2c 2bc",POC$I1A000$P2C006$P2A066,"Shmueli symbol added by S.G."
-60,Pbcn,60,Pbcn,"-P 2n 2ab",POC$I1A000$P2C666$P2A660,
-60,Pbcn,60:-cba,Pnab,"-P 2bc 2n",POC$I1A000$P2C066$P2A666,"Shmueli symbol added by S.G."
-60,Pbcn,60:a-cb,Pcnb,"-P 2b 2ac",POC$I1A000$P2C060$P2A606,"Shmueli symbol added by S.G."
-60,Pbcn,60:ba-c,Pcan,"-P 2n 2c",POC$I1A000$P2C666$P2A006,"Shmueli symbol added by S.G."
-60,Pbcn,60:bca,Pbna,"-P 2ac 2b",POC$I1A000$P2C606$P2A060,"Shmueli symbol added by S.G."
-60,Pbcn,60:cab,Pnca,"-P 2a 2n",POC$I1A000$P2C600$P2A666,"Shmueli symbol added by S.G."
-61,Pbca,61,Pbca,"-P 2ac 2ab",POC$I1A000$P2C606$P2A660,
-61,Pbca,61:ba-c,Pcab,"-P 2bc 2ac",POC$I1A000$P2C066$P2A606,"Shmueli symbol added by S.G."
-62,Pnma,62,Pnma,"-P 2ac 2n",POC$I1A000$P2C606$P2A666,
-62,Pnma,62:-cba,Pcmn,"-P 2n 2ac",POC$I1A000$P2C666$P2A606,"Shmueli symbol added by S.G."
-62,Pnma,62:a-cb,Pnam,"-P 2c 2n",POC$I1A000$P2C006$P2A666,"Shmueli symbol added by S.G."
-62,Pnma,62:ba-c,Pmnb,"-P 2bc 2a",POC$I1A000$P2C066$P2A600,"Shmueli symbol added by S.G."
-62,Pnma,62:bca,Pmcn,"-P 2n 2a",POC$I1A000$P2C666$P2A600,"Shmueli symbol added by S.G."
-62,Pnma,62:cab,Pbnm,"-P 2c 2ab",POC$I1A000$P2C006$P2A660,"Shmueli symbol added by S.G."
-63,Cmcm,63,Cmcm,"-C 2c 2",COC$I1A000$P2C006$P2A000,
-63,Cmcm,63:-cba,Amam,"-A 2 2a",AOC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G."
-63,Cmcm,63:a-cb,Bmmb,"-B 2b 2",BOC$I1A000$P2C060$P2A000,"Shmueli symbol added by S.G."
-63,Cmcm,63:ba-c,Ccmm,"-C 2c 2c",COC$I1A000$P2C006$P2A006,"Shmueli symbol added by S.G."
-63,Cmcm,63:bca,Bbmm,"-B 2 2b",BOC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G."
-63,Cmcm,63:cab,Amma,"-A 2a 2a",AOC$I1A000$P2C600$P2A600,"Shmueli symbol added by S.G."
-64,Cmca,64,Cmca,"-C 2ac 2",COC$I1A000$P2C066$P2A000,
-64,Cmca,64:-cba,Acam,"-A 2 2ab",AOC$I1A000$P2C000$P2A660,"Shmueli symbol added by S.G."
-64,Cmca,64:a-cb,Bmab,"-B 2ab 2",BOC$I1A000$P2C660$P2A000,"Shmueli symbol added by S.G."
-64,Cmca,64:ba-c,Ccmb,"-C 2ac 2ac",COC$I1A000$P2C606$P2A606,"Shmueli symbol added by S.G."
-64,Cmca,64:bca,Bbcm,"-B 2 2ab",BOC$I1A000$P2C000$P2A660,"Shmueli symbol added by S.G."
-64,Cmca,64:cab,Abma,"-A 2ab 2ab",AOC$I1A000$P2C660$P2A660,"Shmueli symbol added by S.G."
-65,Cmmm,65,Cmmm,"-C 2 2",COC$I1A000$P2C000$P2A000,
-65,Cmmm,65:bca,Bmmm,"-B 2 2",BOC$I1A000$P2C000$P2A000,"Shmueli symbol added by S.G."
-65,Cmmm,65:cab,Ammm,"-A 2 2",AOC$I1A000$P2C000$P2A000,"Shmueli symbol added by S.G."
-66,Cccm,66,Cccm,"-C 2 2c",COC$I1A000$P2C000$P2A006,
-66,Cccm,66:bca,Bbmb,"-B 2b 2b",BOC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
-66,Cccm,66:cab,Amaa,"-A 2a 2",AOC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G."
-67,Cmma,67,Cmma,"-C 2a 2",COC$I1A000$P2C060$P2A000,
-67,Cmma,67:-cba,Acmm,"-A 2 2b",AOC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G."
-67,Cmma,67:a-cb,Bmam,"-B 2a 2",BOC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G."
-67,Cmma,67:ba-c,Cmmb,"-C 2a 2a",COC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
-67,Cmma,67:bca,Bmcm,"-B 2 2a",BOC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G."
-67,Cmma,67:cab,Abmm,"-A 2b 2b",AOC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
-68,Ccca,68:1,Ccca:1,"C 2 2 -1ac",COC$I1A066$P2C660$P2A660,
-68,Ccca,68:1-cba,Acaa:1,"A 2 2 -1ab",AOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G."
-68,Ccca,68:1a-cb,Bbab:1,"B 2 2 -1ab",BOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G."
-68,Ccca,68:1ba-c,Cccb:1,"C 2 2 -1ac",COC$I1A606$P2C000$P2A000,"Shmueli symbol added by S.G.; alternative to COC$I1A066$P2C660$P2A660"
-68,Ccca,68:1bca,Bbcb:1,"B 2 2 -1ab",BOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G."
-68,Ccca,68:1cab,Abaa:1,"A 2 2 -1ab",AOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G."
-68,Ccca,68:2,Ccca:2,"-C 2a 2ac",COC$I1A000$P2C600$P2A606,
-68,Ccca,68:2-cba,Acaa:2,"-A 2ab 2b",AOC$I1A000$P2C660$P2A060,"Shmueli symbol added by S.G."
-68,Ccca,68:2a-cb,Bbab:2,"-B 2b 2ab",BOC$I1A000$P2C060$P2A660,"Shmueli symbol added by S.G."
-68,Ccca,68:2ba-c,Cccb:2,"-C 2a 2c",COC$I1A000$P2C600$P2A006,"Shmueli symbol added by S.G."
-68,Ccca,68:2bca,Bbcb:2,"-B 2ab 2b",BOC$I1A000$P2C660$P2A060,"Shmueli symbol added by S.G."
-68,Ccca,68:2cab,Abaa:2,"-A 2a 2b",AOC$I1A000$P2C600$P2A060,"Shmueli symbol added by S.G."
-69,Fmmm,69,Fmmm,"-F 2 2",FOC$I1A000$P2C000$P2A000,
-70,Fddd,70:1,Fddd:1,"F 2 2 -1d",FOC$I1A333$P2C000$P2A000,
-70,Fddd,70:2,Fddd:2,"-F 2uv 2vw",FOC$I1A000$P2C990$P2A099,
-71,Immm,71,Immm,"-I 2 2",IOC$I1A000$P2C000$P2A000,
-72,Ibam,72,Ibam,"-I 2 2c",IOC$I1A000$P2C000$P2A660,
-72,Ibam,72:bca,Icma,"-I 2b 2b",IOC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
-72,Ibam,72:cab,Imcb,"-I 2a 2",IOC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G."
-73,Ibca,73,Ibca,"-I 2b 2c",IOC$I1A000$P2C606$P2A660,
-73,Ibca,73:ba-c,Icab,"-I 2a 2b",IOC$I1A000$P2C600$P2A060,"Shmueli symbol added by S.G."
-74,Imma,74,Imma,"-I 2b 2",IOC$I1A000$P2C060$P2A000,
-74,Imma,74:-cba,Icmm,"-I 2 2b",IOC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G."
-74,Imma,74:a-cb,Imam,"-I 2c 2",IOC$I1A000$P2C006$P2A000,"Shmueli symbol added by S.G."
-74,Imma,74:ba-c,Immb,"-I 2a 2a",IOC$I1A000$P2C600$P2A600,"Shmueli symbol added by S.G."
-74,Imma,74:bca,Imcm,"-I 2 2a",IOC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G."
-74,Imma,74:cab,Ibmm,"-I 2c 2c",IOC$I1A000$P2C006$P2A006,"Shmueli symbol added by S.G."
-75,P4,75,P4,"P 4",PTN$P4C000,
-76,P41,76,P41,"P 4w",PTN$P4C003,
-77,P42,77,P42,"P 4c",PTN$P4C006,
-78,P43,78,P43,"P 4cw",PTN$P4C009,
-79,I4,79,I4,"I 4",ITN$P4C000,
-80,I41,80,I41,"I 4bw",ITN$P4C063,
-81,P-4,81,P-4,"P -4",PTN$I4C000,
-82,I-4,82,I-4,"I -4",ITN$I4C000,
-83,P4/m,83,P4/m,"-P 4",PTC$I1A000$P4C000,
-84,P42/m,84,P42/m,"-P 4c",PTC$I1A000$P4C006,
-85,P4/n,85:1,P4/n:1,"P 4ab -1ab",PTC$I1A660$P4C660,
-85,P4/n,85:2,P4/n:2,"-P 4a",PTC$I1A000$P4C600,
-86,P42/n,86:1,P42/n:1,"P 4n -1n",PTC$I1A666$P4C666,
-86,P42/n,86:2,P42/n:2,"-P 4bc",PTC$I1A000$P4C066,
-87,I4/m,87,I4/m,"-I 4",ITC$I1A000$P4C000,
-88,I41/a,88:1,I41/a:1,"I 4bw -1bw",ITC$I1A063$P4C063,
-88,I41/a,88:2,I41/a:2,"-I 4ad",ITC$I1A000$P4C933,
-89,P422,89,P422,"P 4 2",PTN$P4C000$P2A000,
-90,P4212,90,P4212,"P 4ab 2ab",PTN$P4C660$P2A660,
-91,P4122,91,P4122,"P 4w 2c",PTN$P4C003$P2A006,
-92,P41212,92,P41212,"P 4abw 2nw",PTN$P4C663$P2A669,
-93,P4222,93,P4222,"P 4c 2",PTN$P4C006$P2A000,
-94,P42212,94,P42212,"P 4n 2n",PTN$P4C666$P2A666,
-95,P4322,95,P4322,"P 4cw 2c",PTN$P4C009$P2A006,
-96,P43212,96,P43212,"P 4nw 2abw",PTN$P4C669$P2A663,
-97,I422,97,I422,"I 4 2",ITN$P4C000$P2A000,
-98,I4122,98,I4122,"I 4bw 2bw",ITN$P4C063$P2A063,
-99,P4mm,99,P4mm,"P 4 -2",PTN$P4C000$I2A000,
-100,P4bm,100,P4bm,"P 4 -2ab",PTN$P4C000$I2A660,
-101,P42cm,101,P42cm,"P 4c -2c",PTN$P4C006$I2A006,
-102,P42nm,102,P42nm,"P 4n -2n",PTN$P4C666$I2A666,
-103,P4cc,103,P4cc,"P 4 -2c",PTN$P4C000$I2A006,
-104,P4nc,104,P4nc,"P 4 -2n",PTN$P4C000$I2A666,
-105,P42mc,105,P42mc,"P 4c -2",PTN$P4C006$I2A000,
-106,P42bc,106,P42bc,"P 4c -2ab",PTN$P4C006$I2A660,
-107,I4mm,107,I4mm,"I 4 -2",ITN$P4C000$I2A000,
-108,I4cm,108,I4cm,"I 4 -2c",ITN$P4C000$I2A006,
-109,I41md,109,I41md,"I 4bw -2",ITN$P4C063$I2A666,
-110,I41cd,110,I41cd,"I 4bw -2c",ITN$P4C063$I2A660,
-111,P-42m,111,P-42m,"P -4 2",PTN$I4C000$P2A000,
-112,P-42c,112,P-42c,"P -4 2c",PTN$I4C000$P2A006,
-113,P-421m,113,P-421m,"P -4 2ab",PTN$I4C000$P2A660,
-114,P-421c,114,P-421c,"P -4 2n",PTN$I4C000$P2A666,
-115,P-4m2,115,P-4m2,"P -4 -2",PTN$I4C000$P2D000,
-116,P-4c2,116,P-4c2,"P -4 -2c",PTN$I4C000$P2D006,
-117,P-4b2,117,P-4b2,"P -4 -2ab",PTN$I4C000$P2D660,
-118,P-4n2,118,P-4n2,"P -4 -2n",PTN$I4C000$P2D666,
-119,I-4m2,119,I-4m2,"I -4 -2",ITN$I4C000$P2D000,
-120,I-4c2,120,I-4c2,"I -4 -2c",ITN$I4C000$P2D006,
-121,I-42m,121,I-42m,"I -4 2",ITN$I4C000$P2A000,
-122,I-42d,122,I-42d,"I -4 2bw",ITN$I4C000$P2A609,
-123,P4/mmm,123,P4/mmm,"-P 4 2",PTC$I1A000$P4C000$P2A000,
-124,P4/mcc,124,P4/mcc,"-P 4 2c",PTC$I1A000$P4C000$P2A006,
-125,P4/nbm,125:1,P4/nbm:1,"P 4 2 -1ab",PTC$I1A660$P4C000$P2A000,
-125,P4/nbm,125:2,P4/nbm:2,"-P 4a 2b",PTC$I1A000$P4C600$P2A060,
-126,P4/nnc,126:1,P4/nnc:1,"P 4 2 -1n",PTC$I1A666$P4C000$P2A000,
-126,P4/nnc,126:2,P4/nnc:2,"-P 4a 2bc",PTC$I1A000$P4C600$P2A066,
-127,P4/mbm,127,P4/mbm,"-P 4 2ab",PTC$I1A000$P4C000$P2A660,
-128,P4/mnc,128,P4/mnc,"-P 4 2n",PTC$I1A000$P4C000$P2A666,
-129,P4/nmm,129:1,P4/nmm:1,"P 4ab 2ab -1ab",PTC$I1A660$P4C660$P2A660,
-129,P4/nmm,129:2,P4/nmm:2,"-P 4a 2a",PTC$I1A000$P4C600$P2A600,
-130,P4/ncc,130:1,P4/ncc:1,"P 4ab 2n -1ab",PTC$I1A660$P4C660$P2A666,
-130,P4/ncc,130:2,P4/ncc:2,"-P 4a 2ac",PTC$I1A000$P4C600$P2A606,
-131,P42/mmc,131,P42/mmc,"-P 4c 2",PTC$I1A000$P4C006$P2A000,
-132,P42/mcm,132,P42/mcm,"-P 4c 2c",PTC$I1A000$P4C006$P2A006,
-133,P42/nbc,133:1,P42/nbc:1,"P 4n 2c -1n",PTC$I1A666$P4C666$P2A006,
-133,P42/nbc,133:2,P42/nbc:2,"-P 4ac 2b",PTC$I1A000$P4C606$P2A060,
-134,P42/nnm,134:1,P42/nnm:1,"P 4n 2 -1n",PTC$I1A666$P4C666$P2A000,
-134,P42/nnm,134:2,P42/nnm:2,"-P 4ac 2bc",PTC$I1A000$P4C606$P2A066,
-135,P42/mbc,135,P42/mbc,"-P 4c 2ab",PTC$I1A000$P4C006$P2A660,
-136,P42/mnm,136,P42/mnm,"-P 4n 2n",PTC$I1A000$P4C666$P2A666,
-137,P42/nmc,137:1,P42/nmc:1,"P 4n 2n -1n",PTC$I1A666$P4C666$P2A666,
-137,P42/nmc,137:2,P42/nmc:2,"-P 4ac 2a",PTC$I1A000$P4C606$P2A600,
-138,P42/ncm,138:1,P42/ncm:1,"P 4n 2ab -1n",PTC$I1A666$P4C666$P2A660,
-138,P42/ncm,138:2,P42/ncm:2,"-P 4ac 2ac",PTC$I1A000$P4C606$P2A606,
-139,I4/mmm,139,I4/mmm,"-I 4 2",ITC$I1A000$P4C000$P2A000,
-140,I4/mcm,140,I4/mcm,"-I 4 2c",ITC$I1A000$P4C000$P2A006,
-141,I41/amd,141:1,I41/amd:1,"I 4bw 2bw -1bw",ITC$I1A063$P4C063$P2A063,
-141,I41/amd,141:2,I41/amd:2,"-I 4bd 2",ITC$I1A000$P4C393$P2A000,
-142,I41/acd,142:1,I41/acd:1,"I 4bw 2aw -1bw",ITC$I1A063$P4C063$P2A069,
-142,I41/acd,142:2,I41/acd:2,"-I 4bd 2c",ITC$I1A000$P4C393$P2A006,
-143,P3,143,P3,"P 3",PRN$P3C000,
-144,P31,144,P31,"P 31",PRN$P3C004,
-145,P32,145,P32,"P 32",PRN$P3C008,
-146,R3,146:H,R3:H,"R 3",RRN$P3C000,
-146,R3,146:R,R3:R,"P 3*",PRN$P3Q000,
-147,P-3,147,P-3,"-P 3",PRC$I3C000,
-148,R-3,148:H,R-3:H,"-R 3",RRC$I3C000,
-148,R-3,148:R,R-3:R,"-P 3*",PRC$I3Q000,
-149,P312,149,P312,"P 3 2",PRN$P3C000$P2G000,
-150,P321,150,P321,"P 3 2""",PRN$P3C000$P2F000,
-151,P3112,151,P3112,"P 31 2 (0 0 4)",PRN$P3C004$P2G000,
-152,P3121,152,P3121,"P 31 2""",PRN$P3C004$P2F008,
-153,P3212,153,P3212,"P 32 2 (0 0 2)",PRN$P3C008$P2G000,
-154,P3221,154,P3221,"P 32 2""",PRN$P3C008$P2F004,
-155,R32,155:H,R32:H,"R 3 2""",RRN$P3C000$P2F000,
-155,R32,155:R,R32:R,"P 3* 2",PRN$P3Q000$P2E000,
-156,P3m1,156,P3m1,"P 3 -2""",PRN$P3C000$I2F000,
-157,P31m,157,P31m,"P 3 -2",PRN$P3C000$I2G000,
-158,P3c1,158,P3c1,"P 3 -2""c",PRN$P3C000$I2F006,
-159,P31c,159,P31c,"P 3 -2c",PRN$P3C000$I2G006,
-160,R3m,160:H,R3m:H,"R 3 -2""",RRN$P3C000$I2F000,
-160,R3m,160:R,R3m:R,"P 3* -2",PRN$P3Q000$I2E000,
-161,R3c,161:H,R3c:H,"R 3 -2""c",RRN$P3C000$I2F006,
-161,R3c,161:R,R3c:R,"P 3* -2n",PRN$P3Q000$I2E666,
-162,P-31m,162,P-31m,"-P 3 2",PRC$I3C000$P2G000,
-163,P-31c,163,P-31c,"-P 3 2c",PRC$I3C000$P2G006,
-164,P-3m1,164,P-3m1,"-P 3 2""",PRC$I3C000$P2F000,
-165,P-3c1,165,P-3c1,"-P 3 2""c",PRC$I3C000$P2F006,
-166,R-3m,166:H,R-3m:H,"-R 3 2""",RRC$I3C000$P2F000,
-166,R-3m,166:R,R-3m:R,"-P 3* 2",PRC$I3Q000$P2E000,
-167,R-3c,167:H,R-3c:H,"-R 3 2""c",RRC$I3C000$P2F006,
-167,R-3c,167:R,R-3c:R,"-P 3* 2n",PRC$I3Q000$P2E666,
-168,P6,168,P6,"P 6",PHN$P6C000,
-169,P61,169,P61,"P 61",PHN$P6C002,
-170,P65,170,P65,"P 65",PHN$P6C005,
-171,P62,171,P62,"P 62",PHN$P6C004,
-172,P64,172,P64,"P 64",PHN$P6C008,
-173,P63,173,P63,"P 6c",PHN$P6C006,
-174,P-6,174,P-6,"P -6",PHN$I6C000,
-175,P6/m,175,P6/m,"-P 6",PHC$I1A000$P6C000,
-176,P63/m,176,P63/m,"-P 6c",PHC$I1A000$P6C006,
-177,P622,177,P622,"P 6 2",PHN$P6C000$P2F000,
-178,P6122,178,P6122,"P 61 2 (0 0 5)",PHN$P6C002$P2F000,
-179,P6522,179,P6522,"P 65 2 (0 0 1)",PHN$P6C005$P2F000,
-180,P6222,180,P6222,"P 62 2 (0 0 4)",PHN$P6C004$P2F000,
-181,P6422,181,P6422,"P 64 2 (0 0 2)",PHN$P6C008$P2F000,
-182,P6322,182,P6322,"P 6c 2c",PHN$P6C006$P2F000,
-183,P6mm,183,P6mm,"P 6 -2",PHN$P6C000$I2F000,
-184,P6cc,184,P6cc,"P 6 -2c",PHN$P6C000$I2F006,
-185,P63cm,185,P63cm,"P 6c -2",PHN$P6C006$I2F006,
-186,P63mc,186,P63mc,"P 6c -2c",PHN$P6C006$I2F000,
-187,P-6m2,187,P-6m2,"P -6 2",PHN$I6C000$P2G000,
-188,P-6c2,188,P-6c2,"P -6c 2",PHN$I6C006$P2G000,
-189,P-62m,189,P-62m,"P -6 -2",PHN$I6C000$P2F000,
-190,P-62c,190,P-62c,"P -6c -2c",PHN$I6C006$P2F000,
-191,P6/mmm,191,P6/mmm,"-P 6 2",PHC$I1A000$P6C000$P2F000,
-192,P6/mcc,192,P6/mcc,"-P 6 2c",PHC$I1A000$P6C000$P2F006,
-193,P63/mcm,193,P63/mcm,"-P 6c 2",PHC$I1A000$P6C006$P2F006,
-194,P63/mmc,194,P63/mmc,"-P 6c 2c",PHC$I1A000$P6C006$P2F000,
-195,P23,195,P23,"P 2 2 3",PCN$P3Q000$P2C000$P2A000,
-196,F23,196,F23,"F 2 2 3",FCN$P3Q000$P2C000$P2A000,
-197,I23,197,I23,"I 2 2 3",ICN$P3Q000$P2C000$P2A000,
-198,P213,198,P213,"P 2ac 2ab 3",PCN$P3Q000$P2C606$P2A660,
-199,I213,199,I213,"I 2b 2c 3",ICN$P3Q000$P2C606$P2A660,
-200,Pm-3,200,Pm-3,"-P 2 2 3",PCC$I3Q000$P2C000$P2A000,
-201,Pn-3,201:1,Pn-3:1,"P 2 2 3 -1n",PCC$I3Q666$P2C000$P2A000,
-201,Pn-3,201:2,Pn-3:2,"-P 2ab 2bc 3",PCC$I3Q000$P2C660$P2A066,
-202,Fm-3,202,Fm-3,"-F 2 2 3",FCC$I3Q000$P2C000$P2A000,
-203,Fd-3,203:1,Fd-3:1,"F 2 2 3 -1d",FCC$I3Q333$P2C000$P2A000,
-203,Fd-3,203:2,Fd-3:2,"-F 2uv 2vw 3",FCC$I3Q000$P2C330$P2A033,
-204,Im-3,204,Im-3,"-I 2 2 3",ICC$I3Q000$P2C000$P2A000,
-205,Pa-3,205,Pa-3,"-P 2ac 2ab 3",PCC$I3Q000$P2C606$P2A660,
-206,Ia-3,206,Ia-3,"-I 2b 2c 3",ICC$I3Q000$P2C606$P2A660,
-207,P432,207,P432,"P 4 2 3",PCN$P3Q000$P4C000$P2D000,
-208,P4232,208,P4232,"P 4n 2 3",PCN$P3Q000$P4C666$P2D666,
-209,F432,209,F432,"F 4 2 3",FCN$P3Q000$P4C000$P2D000,
-210,F4132,210,F4132,"F 4d 2 3",FCN$P3Q000$P4C993$P2D939,
-211,I432,211,I432,"I 4 2 3",ICN$P3Q000$P4C000$P2D000,
-212,P4332,212,P4332,"P 4acd 2ab 3",PCN$P3Q000$P4C939$P2D399,
-213,P4132,213,P4132,"P 4bd 2ab 3",PCN$P3Q000$P4C393$P2D933,
-214,I4132,214,I4132,"I 4bd 2c 3",ICN$P3Q000$P4C393$P2D933,
-215,P-43m,215,P-43m,"P -4 2 3",PCN$P3Q000$I4C000$I2D000,
-216,F-43m,216,F-43m,"F -4 2 3",FCN$P3Q000$I4C000$I2D000,
-217,I-43m,217,I-43m,"I -4 2 3",ICN$P3Q000$I4C000$I2D000,
-218,P-43n,218,P-43n,"P -4n 2 3",PCN$P3Q000$I4C666$I2D666,
-219,F-43c,219,F-43c,"F -4a 2 3",FCN$P3Q000$I4C666$I2D666,
-220,I-43d,220,I-43d,"I -4bd 2c 3",ICN$P3Q000$I4C939$I2D399,
-221,Pm-3m,221,Pm-3m,"-P 4 2 3",PCC$I3Q000$P4C000$P2D000,
-222,Pn-3n,222:1,Pn-3n:1,"P 4 2 3 -1n",PCC$I3Q666$P4C000$P2D000,
-222,Pn-3n,222:2,Pn-3n:2,"-P 4a 2bc 3",PCC$I3Q000$P4C600$P2D006,
-223,Pm-3n,223,Pm-3n,"-P 4n 2 3",PCC$I3Q000$P4C666$P2D666,
-224,Pn-3m,224:1,Pn-3m:1,"P 4n 2 3 -1n",PCC$I3Q666$P4C666$P2D666,
-224,Pn-3m,224:2,Pn-3m:2,"-P 4bc 2bc 3",PCC$I3Q000$P4C066$P2D660,
-225,Fm-3m,225,Fm-3m,"-F 4 2 3",FCC$I3Q000$P4C000$P2D000,
-226,Fm-3c,226,Fm-3c,"-F 4a 2 3",FCC$I3Q000$P4C666$P2D666,
-227,Fd-3m,227:1,Fd-3m:1,"F 4d 2 3 -1d",FCC$I3Q333$P4C993$P2D939,
-227,Fd-3m,227:2,Fd-3m:2,"-F 4vw 2vw 3",FCC$I3Q000$P4C693$P2D936,
-228,Fd-3c,228:1,Fd-3c:1,"F 4d 2 3 -1ad",FCC$I3Q999$P4C993$P2D939,
-228,Fd-3c,228:2,Fd-3c:2,"-F 4ud 2vw 3",FCC$I3Q000$P4C093$P2D930,
-229,Im-3m,229,Im-3m,"-I 4 2 3",ICC$I3Q000$P4C000$P2D000,
-230,Ia-3d,230,Ia-3d,"-I 4bd 2c 3",ICC$I3Q000$P4C393$P2D933,
+"ITC No",H-M,HM2005,n:c,"Univ HM",UHM2005,Hall,Shmueli,Note
+1,P1,P1,1,P1,P1,"P 1",PAN$P1A000,
+1,A1,A1,1:1,A1,A1,"A 1",AAN$P1A000,"Added by S.G."
+1,B1,B1,1:2,B1,B1,"B 1",BAN$P1A000,"Added by S.G."
+1,C1,C1,1:3,C1,C1,"C 1",CAN$P1A000,"Added by S.G."
+1,F1,F1,1:4,F1,F1,"F 1",FAN$P1A000,"Added by S.G."
+1,I1,I1,1:5,I1,I1,"I 1",IAN$P1A000,"Added by S.G."
+2,P-1,P-1,2,P-1,P-1,"-P 1",PAC$I1A000,
+2,A-1,A-1,2:1,A-1,A-1,"-A 1",AAN$I1A000,"Added by S.G."
+2,B-1,B-1,2:2,B-1,B-1,"-B 1",BAN$I1A000,"Added by S.G."
+2,C-1,C-1,2:3,C-1,C-1,"-C 1",CAN$I1A000,"Added by S.G."
+2,F-1,F-1,2:4,F-1,F-1,"-F 1",FAN$I1A000,"Added by S.G."
+2,I-1,I-1,2:5,I-1,I-1,"-I 1",IAN$I1A000,"Added by S.G."
+3,P2,P2,3:a,P211,P211,"P 2x",PMN$P2A000,"Added by S.G."
+3,P2,P2,3:b,P121,P121,"P 2y",PMN$P2B000,
+3,P2,P2,3:c,P112,P112,"P 2",PMN$P2C000,
+4,P21,P21,4:a,P2111,P2111,"P 2xa",PMN$P2A600,"Added by S.G."
+4,P21,P21,4:b,P1211,P1211,"P 2yb",PMN$P2B060,
+4,P21,P21,4:c,P1121,P1121,"P 2c",PMN$P2C006,
+5,C2,C2,5:a1,B211,B211,"B 2x",BMN$P2A000,"Shmueli symbol added by S.G."
+5,C2,C2,5:a2,C211,C211,"C 2x",CMN$P2A000,"Shmueli symbol added by S.G."
+5,C2,C2,5:a3,I211,I211,"I 2x",IMN$P2A000,"Shmueli symbol added by S.G."
+5,C2,C2,5:b1,C121,C121,"C 2y",CMN$P2B000,
+5,C2,C2,5:b2,A121,A121,"A 2y",AMN$P2B000,
+5,C2,C2,5:b3,I121,I121,"I 2y",IMN$P2B000,
+5,C2,C2,5:c1,A112,A112,"A 2",AMN$P2C000,
+5,C2,C2,5:c2,B112,B112,"B 2",BMN$P2C000,
+5,C2,C2,5:c3,I112,I112,"I 2",IMN$P2C000,
+6,Pm,Pm,6:a,Pm11,Pm11,"P -2x",PMN$I2A000,"Shmueli symbol added by S.G."
+6,Pm,Pm,6:b,P1m1,P1m1,"P -2y",PMN$I2B000,
+6,Pm,Pm,6:c,P11m,P11m,"P -2",PMN$I2C000,
+7,Pc,Pc,7:a1,Pb11,Pb11,"P -2xb",PMN$I2A060,"Shmueli symbol added by S.G."
+7,Pc,Pc,7:a2,Pn11,Pn11,"P -2xbc",PMN$I2A066,"Shmueli symbol added by S.G."
+7,Pc,Pc,7:a3,Pc11,Pc11,"P -2xc",PMN$I2A006,"Shmueli symbol added by S.G."
+7,Pc,Pc,7:b1,P1c1,P1c1,"P -2yc",PMN$I2B006,
+7,Pc,Pc,7:b2,P1n1,P1n1,"P -2yac",PMN$I2B606,
+7,Pc,Pc,7:b3,P1a1,P1a1,"P -2ya",PMN$I2B600,
+7,Pc,Pc,7:c1,P11a,P11a,"P -2a",PMN$I2C600,
+7,Pc,Pc,7:c2,P11n,P11n,"P -2ab",PMN$I2C660,
+7,Pc,Pc,7:c3,P11b,P11b,"P -2b",PMN$I2C060,
+8,Cm,Cm,8:a1,Bm11,Bm11,"B -2x",BMN$I2A000,"Shmueli symbol added by S.G."
+8,Cm,Cm,8:a2,Cm11,Cm11,"C -2x",CMN$I2A000,"Shmueli symbol added by S.G."
+8,Cm,Cm,8:a3,Im11,Im11,"I -2x",IMN$I2A000,"Shmueli symbol added by S.G."
+8,Cm,Cm,8:b1,C1m1,C1m1,"C -2y",CMN$I2B000,
+8,Cm,Cm,8:b2,A1m1,A1m1,"A -2y",AMN$I2B000,
+8,Cm,Cm,8:b3,I1m1,I1m1,"I -2y",IMN$I2B000,
+8,Cm,Cm,8:c1,A11m,A11m,"A -2",AMN$I2C000,
+8,Cm,Cm,8:c2,B11m,B11m,"B -2",BMN$I2C000,
+8,Cm,Cm,8:c3,I11m,I11m,"I -2",IMN$I2C000,
+9,Cc,Cc,9:-a1,Cc11,Cc11,"C -2xc",CMN$I2A006,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-a2,Bn11,Bn11,"B -2xab",BMN$I2A660,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-a3,Ib11,Ib11,"I -2xb",IMN$I2A060,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-b1,A1a1,A1a1,"A -2ya",AMN$I2B600,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-b2,C1n1,C1n1,"C -2yac",CMN$I2B606,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-b3,I1c1,I1c1,"I -2yc",IMN$I2B006,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-c1,B11b,B11b,"B -2b",BMN$I2C060,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-c2,A11n,A11n,"A -2ab",AMN$I2C660,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:-c3,I11a,I11a,"I -2a",IMN$I2C600,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:a1,Bb11,Bb11,"B -2xb",BMN$I2A060,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:a2,Cn11,Cn11,"C -2xac",CMN$I2A606,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:a3,Ic11,Ic11,"I -2xc",IMN$I2A006,"Shmueli symbol added by S.G."
+9,Cc,Cc,9:b1,C1c1,C1c1,"C -2yc",CMN$I2B006,
+9,Cc,Cc,9:b2,A1n1,A1n1,"A -2yab",AMN$I2B606,
+9,Cc,Cc,9:b3,I1a1,I1a1,"I -2ya",IMN$I2B600,
+9,Cc,Cc,9:c1,A11a,A11a,"A -2a",AMN$I2C600,
+9,Cc,Cc,9:c2,B11n,B11n,"B -2ab",BMN$I2C660,
+9,Cc,Cc,9:c3,I11b,I11b,"I -2b",IMN$I2C060,
+10,P2/m,P2/m,10:a,P2/m11,P2/m11,"-P 2x",PMC$I1A000$P2A000,"Shmueli symbol added by S.G."
+10,P2/m,P2/m,10:b,P12/m1,P12/m1,"-P 2y",PMC$I1A000$P2B000,
+10,P2/m,P2/m,10:c,P112/m,P112/m,"-P 2",PMC$I1A000$P2C000,
+11,P21/m,P21/m,11:a,P21/m11,P21/m11,"-P 2xa",PMC$I1A000$P2A600,"Shmueli symbol added by S.G."
+11,P21/m,P21/m,11:b,P121/m1,P121/m1,"-P 2yb",PMC$I1A000$P2B060,
+11,P21/m,P21/m,11:c,P1121/m,P1121/m,"-P 2c",PMC$I1A000$P2C006,
+12,C2/m,C2/m,12:a1,B2/m11,B2/m11,"-B 2x",BMC$I1A000$P2A000,"Shmueli symbol added by S.G."
+12,C2/m,C2/m,12:a2,C2/m11,C2/m11,"-C 2x",CMC$I1A000$P2A000,"Shmueli symbol added by S.G."
+12,C2/m,C2/m,12:a3,I2/m11,I2/m11,"-I 2x",IMC$I1A000$P2A000,"Shmueli symbol added by S.G."
+12,C2/m,C2/m,12:b1,C12/m1,C12/m1,"-C 2y",CMC$I1A000$P2B000,
+12,C2/m,C2/m,12:b2,A12/m1,A12/m1,"-A 2y",AMC$I1A000$P2B000,
+12,C2/m,C2/m,12:b3,I12/m1,I12/m1,"-I 2y",IMC$I1A000$P2B000,
+12,C2/m,C2/m,12:c1,A112/m,A112/m,"-A 2",AMC$I1A000$P2C000,
+12,C2/m,C2/m,12:c2,B112/m,B112/m,"-B 2",BMC$I1A000$P2C000,
+12,C2/m,C2/m,12:c3,I112/m,I112/m,"-I 2",IMC$I1A000$P2C000,
+13,P2/c,P2/c,13:a1,P2/b11,P2/b11,"-P 2xb",PMC$I1A000$P2A060,"Shmueli symbol added by S.G."
+13,P2/c,P2/c,13:a2,P2/n11,P2/n11,"-P 2xbc",PMC$I1A000$P2A066,"Shmueli symbol added by S.G."
+13,P2/c,P2/c,13:a3,P2/c11,P2/c11,"-P 2xc",PMC$I1A000$P2A006,"Shmueli symbol added by S.G."
+13,P2/c,P2/c,13:b1,P12/c1,P12/c1,"-P 2yc",PMC$I1A000$P2B006,
+13,P2/c,P2/c,13:b2,P12/n1,P12/n1,"-P 2yac",PMC$I1A000$P2B606,
+13,P2/c,P2/c,13:b3,P12/a1,P12/a1,"-P 2ya",PMC$I1A000$P2B600,
+13,P2/c,P2/c,13:c1,P112/a,P112/a,"-P 2a",PMC$I1A000$P2C600,
+13,P2/c,P2/c,13:c2,P112/n,P112/n,"-P 2ab",PMC$I1A000$P2C660,
+13,P2/c,P2/c,13:c3,P112/b,P112/b,"-P 2b",PMC$I1A000$P2C060,
+14,P21/c,P21/c,14:a1,P21/b11,P21/b11,"-P 2xab",PMC$I1A000$P2A660,"Shmueli symbol added by S.G."
+14,P21/c,P21/c,14:a2,P21/n11,P21/n11,"-P 2xn",PMC$I1A000$P2A666,"Shmueli symbol added by S.G."
+14,P21/c,P21/c,14:a3,P21/c11,P21/c11,"-P 2xac",PMC$I1A000$P2A606,"Shmueli symbol added by S.G."
+14,P21/c,P21/c,14:b1,P121/c1,P121/c1,"-P 2ybc",PMC$I1A000$P2B066,
+14,P21/c,P21/c,14:b2,P121/n1,P121/n1,"-P 2yn",PMC$I1A000$P2B666,
+14,P21/c,P21/c,14:b3,P121/a1,P121/a1,"-P 2yab",PMC$I1A000$P2B660,
+14,P21/c,P21/c,14:c1,P1121/a,P1121/a,"-P 2ac",PMC$I1A000$P2C606,
+14,P21/c,P21/c,14:c2,P1121/n,P1121/n,"-P 2n",PMC$I1A000$P2C666,
+14,P21/c,P21/c,14:c3,P1121/b,P1121/b,"-P 2bc",PMC$I1A000$P2C066,
+15,C1/c,C1/c,15:-a1,C2/c11,C2/c11,"-C 2xc",CMC$I1A000$P2A006,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-a2,B2/n11,B2/n11,"-B 2xab",BMC$I1A000$P2A660,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-a3,I2/b11,I2/b11,"-I 2xb",IMC$I1A000$P2A060,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-b1,A12/a1,A12/a1,"-A 2ya",AMC$I1A000$P2B600,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-b2,C12/n1,C12/n1,"-C 2yac",CMC$I1A000$P2B606,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-b3,I12/c1,I12/c1,"-I 2yc",IMC$I1A000$P2B006,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-c1,B112/b,B112/b,"-B 2b",BMC$I1A000$P2C060,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-c2,A112/n,A112/n,"-A 2ab",AMC$I1A000$P2C660,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:-c3,I112/a,I112/a,"-I 2a",IMC$I1A000$P2C600,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:a1,B2/b11,B2/b11,"-B 2xb",BMC$I1A000$P2A060,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:a2,C2/n11,C2/n11,"-C 2xac",CMC$I1A000$P2A606,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:a3,I2/c11,I2/c11,"-I 2xc",IMC$I1A000$P2A006,"Shmueli symbol added by S.G."
+15,C1/c,C1/c,15:b1,C12/c1,C12/c1,"-C 2yc",CMC$I1A000$P2B006,
+15,C1/c,C1/c,15:b2,A12/n1,A12/n1,"-A 2yab",AMC$I1A000$P2B606,
+15,C1/c,C1/c,15:b3,I12/a1,I12/a1,"-I 2ya",IMC$I1A000$P2B600,
+15,C1/c,C1/c,15:c1,A112/a,A112/a,"-A 2a",AMC$I1A000$P2C600,
+15,C1/c,C1/c,15:c2,B112/n,B112/n,"-B 2ab",BMC$I1A000$P2C660,
+15,C1/c,C1/c,15:c3,I112/b,I112/b,"-I 2b",IMC$I1A000$P2C060,
+16,P222,P222,16,P222,P222,"P 2 2",PON$P2C000$P2A000,
+17,P2221,P2221,17,P2221,P2221,"P 2c 2",PON$P2C006$P2A000,
+17,P2221,P2221,17:bca,P2212,P2212,"P 2 2b",PON$P2C000$P2A060,"Shmueli symbol added by S.G."
+17,P2221,P2221,17:cab,P2122,P2122,"P 2a 2a",PON$P2C600$P2A600,"Shmueli symbol added by S.G."
+18,P21212,P21212,18,P21212,P21212,"P 2 2ab",PON$P2C000$P2A660,
+18,P21212,P21212,18:bca,P21221,P21221,"P 2ac 2ac",PON$P2C606$P2A606,"Shmueli symbol added by S.G."
+18,P21212,P21212,18:cab,P22121,P22121,"P 2bc 2",PON$P2C066$P2A000,"Shmueli symbol added by S.G."
+19,P212121,P212121,19,P212121,P212121,"P 2ac 2ab",PON$P2C606$P2A660,
+20,C2221,C2221,20,C2221,C2221,"C 2c 2",CON$P2C006$P2A000,
+20,C2221,C2221,20:bca,B2212,B2212,"B 2 2b",BON$P2C000$P2A060,"Shmueli symbol added by S.G."
+20,C2221,C2221,20:cab,A2122,A2122,"A 2a 2a",AON$P2C600$P2A600,"Shmueli symbol added by S.G."
+21,C222,C222,21,C222,C222,"C 2 2",CON$P2C000$P2A000,
+21,C222,C222,21:bca,B222,B222,"B 2 2",BON$P2C000$P2A000,"Shmueli symbol added by S.G."
+21,C222,C222,21:cab,A222,A222,"A 2 2",AON$P2C000$P2A000,"Shmueli symbol added by S.G."
+22,F222,F222,22,F222,F222,"F 2 2",FON$P2C000$P2A000,
+23,I222,I222,23,I222,I222,"I 2 2",ION$P2C000$P2A000,
+24,I212121,I212121,24,I212121,I212121,"I 2b 2c",ION$P2C606$P2A660,
+25,Pmm2,Pmm2,25,Pmm2,Pmm2,"P 2 -2",PON$P2C000$I2A000,
+25,Pmm2,Pmm2,25:bca,Pm2m,Pm2m,"P -2 -2",PON$I2C000$I2A000,"Shmueli symbol added by S.G."
+25,Pmm2,Pmm2,25:cab,P2mm,P2mm,"P -2 2",PON$I2C000$P2A000,"Shmueli symbol added by S.G."
+26,Pmc21,Pmc21,26,Pmc21,Pmc21,"P 2c -2",PON$P2C006$I2A000,
+26,Pmc21,Pmc21,26:-cba,P21am,P21am,"P -2 2a",PON$I2C000$P2A600,"Shmueli symbol added by S.G."
+26,Pmc21,Pmc21,26:a-cb,Pm21b,Pm21b,"P -2b -2",PON$I2C060$I2A000,"Shmueli symbol added by S.G."
+26,Pmc21,Pmc21,26:ba-c,Pcm21,Pcm21,"P 2c -2c",PON$P2C006$I2A006,"Shmueli symbol added by S.G."
+26,Pmc21,Pmc21,26:bca,Pb21m,Pb21m,"P -2 -2b",PON$I2C000$I2A060,"Shmueli symbol added by S.G."
+26,Pmc21,Pmc21,26:cab,P21ma,P21ma,"P -2a 2a",PON$I2C600$P2A600,"Shmueli symbol added by S.G."
+27,Pcc2,Pcc2,27,Pcc2,Pcc2,"P 2 -2c",PON$P2C000$I2A006,
+27,Pcc2,Pcc2,27:bca,Pb2b,Pb2b,"P -2b -2b",PON$I2C060$I2A060,"Shmueli symbol added by S.G."
+27,Pcc2,Pcc2,27:cab,P2aa,P2aa,"P -2a 2",PON$I2C600$P2A000,"Shmueli symbol added by S.G."
+28,Pma2,Pma2,28,Pma2,Pma2,"P 2 -2a",PON$P2C000$I2A600,
+28,Pma2,Pma2,28:-cba,P2cm,P2cm,"P -2c 2",PON$I2C006$P2A000,"Shmueli symbol added by S.G."
+28,Pma2,Pma2,28:a-cb,Pm2a,Pm2a,"P -2a -2a",PON$I2C600$I2A600,"Shmueli symbol added by S.G."
+28,Pma2,Pma2,28:ba-c,Pbm2,Pbm2,"P 2 -2b",PON$P2C000$I2A060,"Shmueli symbol added by S.G."
+28,Pma2,Pma2,28:bca,Pc2m,Pc2m,"P -2c -2c",PON$I2C006$I2A006,"Shmueli symbol added by S.G."
+28,Pma2,Pma2,28:cab,P2mb,P2mb,"P -2b 2",PON$I2C060$P2A000,"Shmueli symbol added by S.G."
+29,Pca21,Pca21,29,Pca21,Pca21,"P 2c -2ac",PON$P2C006$I2A606,
+29,Pca21,Pca21,29:-cba,P21ca,P21ca,"P -2ac 2a",PON$I2C606$P2A600,"Shmueli symbol added by S.G."
+29,Pca21,Pca21,29:a-cb,Pb21a,Pb21a,"P -2a -2ab",PON$I2C600$I2A660,"Shmueli symbol added by S.G."
+29,Pca21,Pca21,29:ba-c,Pbc21,Pbc21,"P 2c -2b",PON$P2C006$I2A060,"Shmueli symbol added by S.G."
+29,Pca21,Pca21,29:bca,Pc21b,Pc21b,"P -2bc -2c",PON$I2C066$I2A006,"Shmueli symbol added by S.G."
+29,Pca21,Pca21,29:cab,P21ab,P21ab,"P -2b 2a",PON$I2C060$P2A600,"Shmueli symbol added by S.G."
+30,Pnc2,Pnc2,30,Pnc2,Pnc2,"P 2 -2bc",PON$P2C000$I2A066,
+30,Pnc2,Pnc2,30:-cba,P2an,P2an,"P -2ab 2",PON$I2C660$P2A000,"Shmueli symbol added by S.G."
+30,Pnc2,Pnc2,30:a-cb,Pn2b,Pn2b,"P -2bc -2bc",PON$I2C066$I2A066,"Shmueli symbol added by S.G."
+30,Pnc2,Pnc2,30:ba-c,Pcn2,Pcn2,"P 2 -2ac",PON$P2C000$I2A606,"Shmueli symbol added by S.G."
+30,Pnc2,Pnc2,30:bca,Pb2n,Pb2n,"P -2ab -2ab",PON$I2C660$I2A660,"Shmueli symbol added by S.G."
+30,Pnc2,Pnc2,30:cab,P2na,P2na,"P -2ac 2",PON$I2C606$P2A000,"Shmueli symbol added by S.G."
+31,Pmn21,Pmn21,31,Pmn21,Pmn21,"P 2ac -2",PON$P2C606$I2A000,
+31,Pmn21,Pmn21,31:-cba,P21nm,P21nm,"P -2 2ac",PON$I2C000$P2A606,"Shmueli symbol added by S.G."
+31,Pmn21,Pmn21,31:a-cb,Pm21n,Pm21n,"P -2ab -2",PON$I2C660$I2A000,"Shmueli symbol added by S.G."
+31,Pmn21,Pmn21,31:ba-c,Pnm21,Pnm21,"P 2bc -2bc",PON$P2C066$I2A066,"Shmueli symbol added by S.G."
+31,Pmn21,Pmn21,31:bca,Pn21m,Pn21m,"P -2 -2bc",PON$I2C000$I2A066,"Shmueli symbol added by S.G."
+31,Pmn21,Pmn21,31:cab,P21mn,P21mn,"P -2ab 2ab",PON$I2C660$P2A660,"Shmueli symbol added by S.G."
+32,Pba2,Pba2,32,Pba2,Pba2,"P 2 -2ab",PON$P2C000$I2A660,
+32,Pba2,Pba2,32:bca,Pc2a,Pc2a,"P -2ac -2ac",PON$I2C606$I2A606,"Shmueli symbol added by S.G."
+32,Pba2,Pba2,32:cab,P2cb,P2cb,"P -2bc 2",PON$I2C066$P2A000,"Shmueli symbol added by S.G."
+33,Pna21,Pna21,33,Pna21,Pna21,"P 2c -2n",PON$P2C006$I2A666,
+33,Pna21,Pna21,33:-cba,P21cn,P21cn,"P -2n 2a",PON$I2C666$P2A600,"Shmueli symbol added by S.G."
+33,Pna21,Pna21,33:a-cb,Pn21a,Pn21a,"P -2ac -2n",PON$I2C606$I2A666,"Shmueli symbol added by S.G."
+33,Pna21,Pna21,33:ba-c,Pbn21,Pbn21,"P 2c -2ab",PON$P2C006$I2A660,"Shmueli symbol added by S.G."
+33,Pna21,Pna21,33:bca,Pc21n,Pc21n,"P -2n -2ac",PON$I2C666$I2A606,"Shmueli symbol added by S.G."
+33,Pna21,Pna21,33:cab,P21nb,P21nb,"P -2bc 2a",PON$I2C066$P2A600,"Shmueli symbol added by S.G."
+34,Pnn2,Pnn2,34,Pnn2,Pnn2,"P 2 -2n",PON$P2C000$I2A666,
+34,Pnn2,Pnn2,34:bca,Pn2n,Pn2n,"P -2n -2n",PON$I2C666$I2A666,"Shmueli symbol added by S.G."
+34,Pnn2,Pnn2,34:cab,P2nn,P2nn,"P -2n 2",PON$I2C666$P2A000,"Shmueli symbol added by S.G."
+35,Cmm2,Cmm2,35,Cmm2,Cmm2,"C 2 -2",CON$P2C000$I2A000,
+35,Cmm2,Cmm2,35:bca,Bm2m,Bm2m,"B -2 -2",BON$I2C000$I2A000,"Shmueli symbol added by S.G."
+35,Cmm2,Cmm2,35:cab,A2mm,A2mm,"A -2 2",AON$I2C000$P2A000,"Shmueli symbol added by S.G."
+36,Cmc21,Cmc21,36,Cmc21,Cmc21,"C 2c -2",CON$P2C006$I2A000,
+36,Cmc21,Cmc21,36:-cba,A21am,A21am,"A -2 2a",AON$I2C000$P2A600,"Shmueli symbol added by S.G."
+36,Cmc21,Cmc21,36:a-cb,Bm21b,Bm21b,"B -2b -2",BON$I2C060$I2A000,"Shmueli symbol added by S.G."
+36,Cmc21,Cmc21,36:ba-c,Ccm21,Ccm21,"C 2c -2c",CON$P2C006$I2A006,"Shmueli symbol added by S.G."
+36,Cmc21,Cmc21,36:bca,Bb21m,Bb21m,"B -2 -2b",BON$I2C000$I2A060,"Shmueli symbol added by S.G."
+36,Cmc21,Cmc21,36:cab,A21ma,A21ma,"A -2a 2a",AON$I2C600$P2A600,"Shmueli symbol added by S.G."
+37,Ccc2,Ccc2,37,Ccc2,Ccc2,"C 2 -2c",CON$P2C000$I2A006,
+37,Ccc2,Ccc2,37:bca,Bb2b,Bb2b,"B -2b -2b",BON$I2C060$I2A060,"Shmueli symbol added by S.G."
+37,Ccc2,Ccc2,37:cab,A2aa,A2aa,"A -2a 2",AON$I2C600$P2A000,"Shmueli symbol added by S.G."
+38,Amm2,Amm2,38,Amm2,Amm2,"A 2 -2",AON$P2C000$I2A000,
+38,Amm2,Amm2,38:-cba,C2mm,C2mm,"C -2 2",CON$I2C000$P2A000,"Shmueli symbol added by S.G."
+38,Amm2,Amm2,38:a-cb,Am2m,Am2m,"A -2 -2",AON$I2C000$I2A000,"Shmueli symbol added by S.G."
+38,Amm2,Amm2,38:ba-c,Bmm2,Bmm2,"B 2 -2",BON$P2C000$I2A000,"Shmueli symbol added by S.G."
+38,Amm2,Amm2,38:bca,Cm2m,Cm2m,"C -2 -2",CON$I2C000$I2A000,"Shmueli symbol added by S.G."
+38,Amm2,Amm2,38:cab,B2mm,B2mm,"B -2 2",BON$I2C000$P2A000,"Shmueli symbol added by S.G."
+39,Abm2,Aem2,39,Abm2,Aem2,"A 2 -2b",AON$P2C000$I2A060,
+39,Abm2,Aem2,39:-cba,C2mb,C2me,"C -2a 2",CON$I2C600$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+39,Abm2,Aem2,39:a-cb,Ac2m,Ae2m,"A -2b -2b",AON$I2C060$I2A060,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+39,Abm2,Aem2,39:ba-c,Bma2,Bme2,"B 2 -2a",BON$P2C000$I2A600,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+39,Abm2,Aem2,39:bca,Cm2a,Cm2e,"C -2a -2a",CON$I2C600$I2A600,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+39,Abm2,Aem2,39:cab,B2cm,B2em,"B -2a 2",BON$I2C600$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+40,Ama2,Ama2,40,Ama2,Ama2,"A 2 -2a",AON$P2C000$I2A600,
+40,Ama2,Ama2,40:-cba,C2cm,C2cm,"C -2c 2",CON$I2C006$P2A000,"Shmueli symbol added by S.G."
+40,Ama2,Ama2,40:a-cb,Am2a,Am2a,"A -2a -2a",AON$I2C600$I2A600,"Shmueli symbol added by S.G."
+40,Ama2,Ama2,40:ba-c,Bbm2,Bbm2,"B 2 -2b",BON$P2C000$I2A060,"Shmueli symbol added by S.G."
+40,Ama2,Ama2,40:bca,Cc2m,Cc2m,"C -2c -2c",CON$I2C006$I2A006,"Shmueli symbol added by S.G."
+40,Ama2,Ama2,40:cab,B2mb,B2mb,"B -2b 2",BON$I2C060$P2A000,"Shmueli symbol added by S.G."
+41,Aba2,Aea2,41,Aba2,Aea2,"A 2 -2ab",AON$P2C000$I2A660,
+41,Aba2,Aea2,41:-cba,C2cb,C2ce,"C -2ac 2",CON$I2C606$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+41,Aba2,Aea2,41:a-cb,Ac2a,Ae2a,"A -2ab -2ab",AON$I2C660$I2A660,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+41,Aba2,Aea2,41:ba-c,Bba2,Bbe2,"B 2 -2ab",BON$P2C000$I2A660,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+41,Aba2,Aea2,41:bca,Cc2a,Cc2e,"C -2ac -2ac",CON$I2C606$I2A606,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+41,Aba2,Aea2,41:cab,B2cb,B2eb,"B -2ab 2",BON$I2C660$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+42,Fmm2,Fmm2,42,Fmm2,Fmm2,"F 2 -2",FON$P2C000$I2A000,
+42,Fmm3,Fmm3,42:bca,Fm2m,Fm2m,"F -2 -2",FON$I2C000$I2A000,"Shmueli symbol added by S.G."
+42,Fmm4,Fmm4,42:cab,F2mm,F2mm,"F -2 2",FON$I2C000$P2A000,"Shmueli symbol added by S.G."
+43,Fdd2,Fdd2,43,Fdd2,Fdd2,"F 2 -2d",FON$P2C000$I2A333,
+43,Fdd2,Fdd2,43:bca,Fd2d,Fd2d,"F -2d -2d",FON$I2C333$I2A333,"Shmueli symbol added by S.G."
+43,Fdd2,Fdd2,43:cab,F2dd,F2dd,"F -2d 2",FON$I2C333$P2A000,"Shmueli symbol added by S.G."
+44,Imm2,Imm2,44,Imm2,Imm2,"I 2 -2",ION$P2C000$I2A000,
+44,Imm2,Imm2,44:bca,Im2m,Im2m,"I -2 -2",ION$I2C000$I2A000,"Shmueli symbol added by S.G."
+44,Imm2,Imm2,44:cab,I2mm,I2mm,"I -2 2",ION$I2C000$P2A000,"Shmueli symbol added by S.G."
+45,Iba2,Iba2,45,Iba2,Iba2,"I 2 -2c",ION$P2C000$I2A660,
+45,Iba2,Iba2,45:bca,Ic2a,Ic2a,"I -2b -2b",ION$I2C060$I2A060,"Shmueli symbol added by S.G."
+45,Iba2,Iba2,45:cab,I2cb,I2cb,"I -2a 2",ION$I2C600$P2A000,"Shmueli symbol added by S.G."
+46,Ima2,Ima2,46,Ima2,Ima2,"I 2 -2a",ION$P2C000$I2A600,
+46,Ima2,Ima2,46:-cba,I2cm,I2cm,"I -2c 2",ION$I2C006$P2A000,"Shmueli symbol added by S.G."
+46,Ima2,Ima2,46:a-cb,Im2a,Im2a,"I -2a -2a",ION$I2C600$I2A600,"Shmueli symbol added by S.G."
+46,Ima2,Ima2,46:ba-c,Ibm2,Ibm2,"I 2 -2b",ION$P2C000$I2A060,"Shmueli symbol added by S.G."
+46,Ima2,Ima2,46:bca,Ic2m,Ic2m,"I -2c -2c",ION$I2C006$I2A006,"Shmueli symbol added by S.G."
+46,Ima2,Ima2,46:cab,I2mb,I2mb,"I -2b 2",ION$I2C060$P2A000,"Shmueli symbol added by S.G."
+47,Pmmm,Pmmm,47,Pmmm,Pmmm,"-P 2 2",POC$I1A000$P2C000$P2A000,
+48,Pnnn,Pnnn,48:1,Pnnn:1,Pnnn:1,"P 2 2 -1n",POC$I1A666$P2C000$P2A000,
+48,Pnnn,Pnnn,48:2,Pnnn:2,Pnnn:2,"-P 2ab 2bc",POC$I1A000$P2C660$P2A066,
+49,Pccm,Pccm,49,Pccm,Pccm,"-P 2 2c",POC$I1A000$P2C000$P2A006,
+49,Pccm,Pccm,49:bca,Pbmb,Pbmb,"-P 2b 2b",POC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
+49,Pccm,Pccm,49:cab,Pmaa,Pmaa,"-P 2a 2",POC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G."
+50,Pban,Pban,50:1,Pban:1,Pban:1,"P 2 2 -1ab",POC$I1A660$P2C000$P2A000,
+50,Pban,Pban,50:1bca,Pcna:1,Pcna:1,"P 2 2 -1ac",POC$I1A606$P2C000$P2A000,"Shmueli symbol added by S.G."
+50,Pban,Pban,50:1cab,Pncb:1,Pncb:1,"P 2 2 -1bc",POC$I1A066$P2C000$P2A000,"Shmueli symbol added by S.G."
+50,Pban,Pban,50:2,Pban:2,Pban:2,"-P 2ab 2b",POC$I1A000$P2C660$P2A060,
+50,Pban,Pban,50:2bca,Pcna:2,Pcna:2,"-P 2a 2c",POC$I1A000$P2C600$P2A006,"Shmueli symbol added by S.G."
+50,Pban,Pban,50:2cab,Pncb:2,Pncb:2,"-P 2b 2bc",POC$I1A000$P2C060$P2A066,"Shmueli symbol added by S.G."
+51,Pmma,Pmma,51,Pmma,Pmma,"-P 2a 2a",POC$I1A000$P2C600$P2A600,
+51,Pmma,Pmma,51:-cba,Pcmm,Pcmm,"-P 2c 2c",POC$I1A000$P2C006$P2A006,"Shmueli symbol added by S.G."
+51,Pmma,Pmma,51:a-cb,Pmam,Pmam,"-P 2 2a",POC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G."
+51,Pmma,Pmma,51:ba-c,Pmmb,Pmmb,"-P 2b 2",POC$I1A000$P2C060$P2A000,"Shmueli symbol added by S.G."
+51,Pmma,Pmma,51:bca,Pmcm,Pmcm,"-P 2c 2",POC$I1A000$P2C006$P2A000,"Shmueli symbol added by S.G."
+51,Pmma,Pmma,51:cab,Pbmm,Pbmm,"-P 2 2b",POC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G."
+52,Pnna,Pnna,52,Pnna,Pnna,"-P 2a 2bc",POC$I1A000$P2C600$P2A066,
+52,Pnna,Pnna,52:-cba,Pcnn,Pcnn,"-P 2ab 2c",POC$I1A000$P2C660$P2A006,"Shmueli symbol added by S.G."
+52,Pnna,Pnna,52:a-cb,Pnan,Pnan,"-P 2n 2bc",POC$I1A000$P2C666$P2A066,"Shmueli symbol added by S.G."
+52,Pnna,Pnna,52:ba-c,Pnnb,Pnnb,"-P 2b 2n",POC$I1A000$P2C060$P2A666,"Shmueli symbol added by S.G."
+52,Pnna,Pnna,52:bca,Pncn,Pncn,"-P 2ab 2n",POC$I1A000$P2C660$P2A666,"Shmueli symbol added by S.G."
+52,Pnna,Pnna,52:cab,Pbnn,Pbnn,"-P 2n 2b",POC$I1A000$P2C666$P2A060,"Shmueli symbol added by S.G."
+53,Pmna,Pmna,53,Pmna,Pmna,"-P 2ac 2",POC$I1A000$P2C606$P2A000,
+53,Pmna,Pmna,53:-cba,Pcnm,Pcnm,"-P 2 2ac",POC$I1A000$P2C000$P2A606,"Shmueli symbol added by S.G."
+53,Pmna,Pmna,53:a-cb,Pman,Pman,"-P 2ab 2",POC$I1A000$P2C660$P2A000,"Shmueli symbol added by S.G."
+53,Pmna,Pmna,53:ba-c,Pnmb,Pnmb,"-P 2bc 2bc",POC$I1A000$P2C066$P2A066,"Shmueli symbol added by S.G."
+53,Pmna,Pmna,53:bca,Pncm,Pncm,"-P 2 2bc",POC$I1A000$P2C000$P2A066,"Shmueli symbol added by S.G."
+53,Pmna,Pmna,53:cab,Pbmn,Pbmn,"-P 2ab 2ab",POC$I1A000$P2C660$P2A660,"Shmueli symbol added by S.G."
+54,Pcca,Pcca,54,Pcca,Pcca,"-P 2a 2ac",POC$I1A000$P2C600$P2A606,
+54,Pcca,Pcca,54:-cba,Pcaa,Pcaa,"-P 2ac 2c",POC$I1A000$P2C606$P2A006,"Shmueli symbol added by S.G."
+54,Pcca,Pcca,54:a-cb,Pbab,Pbab,"-P 2b 2ab",POC$I1A000$P2C060$P2A660,"Shmueli symbol added by S.G."
+54,Pcca,Pcca,54:ba-c,Pccb,Pccb,"-P 2b 2c",POC$I1A000$P2C060$P2A006,"Shmueli symbol added by S.G."
+54,Pcca,Pcca,54:bca,Pbcb,Pbcb,"-P 2bc 2b",POC$I1A000$P2C066$P2A060,"Shmueli symbol added by S.G."
+54,Pcca,Pcca,54:cab,Pbaa,Pbaa,"-P 2a 2b",POC$I1A000$P2C600$P2A060,"Shmueli symbol added by S.G."
+55,Pbam,Pbam,55,Pbam,Pbam,"-P 2 2ab",POC$I1A000$P2C000$P2A660,
+55,Pbam,Pbam,55:bca,Pcma,Pcma,"-P 2ac 2ac",POC$I1A000$P2C606$P2A606,"Shmueli symbol added by S.G."
+55,Pbam,Pbam,55:cab,Pmcb,Pmcb,"-P 2bc 2",POC$I1A000$P2C066$P2A000,"Shmueli symbol added by S.G."
+56,Pccn,Pccn,56,Pccn,Pccn,"-P 2ab 2ac",POC$I1A000$P2C660$P2A606,
+56,Pccn,Pccn,56:bca,Pbnb,Pbnb,"-P 2bc 2ab",POC$I1A000$P2C066$P2A660,"Shmueli symbol added by S.G."
+56,Pccn,Pccn,56:cab,Pnaa,Pnaa,"-P 2ac 2bc",POC$I1A000$P2C606$P2A066,"Shmueli symbol added by S.G."
+57,Pbcm,Pbcm,57,Pbcm,Pbcm,"-P 2c 2b",POC$I1A000$P2C006$P2A060,
+57,Pbcm,Pbcm,57:-cba,Pmab,Pmab,"-P 2b 2a",POC$I1A000$P2C060$P2A600,"Shmueli symbol added by S.G."
+57,Pbcm,Pbcm,57:a-cb,Pcmb,Pcmb,"-P 2bc 2c",POC$I1A000$P2C066$P2A006,"Shmueli symbol added by S.G."
+57,Pbcm,Pbcm,57:ba-c,Pcam,Pcam,"-P 2c 2ac",POC$I1A000$P2C006$P2A606,"Shmueli symbol added by S.G."
+57,Pbcm,Pbcm,57:bca,Pbma,Pbma,"-P 2a 2ab",POC$I1A000$P2C600$P2A660,"Shmueli symbol added by S.G."
+57,Pbcm,Pbcm,57:cab,Pmca,Pmca,"-P 2ac 2a",POC$I1A000$P2C606$P2A600,"Shmueli symbol added by S.G."
+58,Pnnm,Pnnm,58,Pnnm,Pnnm,"-P 2 2n",POC$I1A000$P2C000$P2A666,
+58,Pnnm,Pnnm,58:bca,Pnmn,Pnmn,"-P 2n 2n",POC$I1A000$P2C666$P2A666,"Shmueli symbol added by S.G."
+58,Pnnm,Pnnm,58:cab,Pmnn,Pmnn,"-P 2n 2",POC$I1A000$P2C666$P2A000,"Shmueli symbol added by S.G."
+59,Pmmn,Pmmn,59:1,Pmmn:1,Pmmn:1,"P 2 2ab -1ab",POC$I1A660$P2C000$P2A660,
+59,Pmmn,Pmmn,59:1bca,Pmnm:1,Pmnm:1,"P 2ac 2ac -1ac",POC$I1A606$P2C606$P2A606,"Shmueli symbol added by S.G."
+59,Pmmn,Pmmn,59:1cab,Pnmm:1,Pnmm:1,"P 2bc 2 -1bc",POC$I1A066$P2C066$P2A000,"Shmueli symbol added by S.G."
+59,Pmmn,Pmmn,59:2,Pmmn:2,Pmmn:2,"-P 2ab 2a",POC$I1A000$P2C660$P2A600,
+59,Pmmn,Pmmn,59:2bca,Pmnm:2,Pmnm:2,"-P 2c 2a",POC$I1A000$P2C006$P2A600,"Shmueli symbol added by S.G."
+59,Pmmn,Pmmn,59:2cab,Pnmm:2,Pnmm:2,"-P 2c 2bc",POC$I1A000$P2C006$P2A066,"Shmueli symbol added by S.G."
+60,Pbcn,Pbcn,60,Pbcn,Pbcn,"-P 2n 2ab",POC$I1A000$P2C666$P2A660,
+60,Pbcn,Pbcn,60:-cba,Pnab,Pnab,"-P 2bc 2n",POC$I1A000$P2C066$P2A666,"Shmueli symbol added by S.G."
+60,Pbcn,Pbcn,60:a-cb,Pcnb,Pcnb,"-P 2b 2ac",POC$I1A000$P2C060$P2A606,"Shmueli symbol added by S.G."
+60,Pbcn,Pbcn,60:ba-c,Pcan,Pcan,"-P 2n 2c",POC$I1A000$P2C666$P2A006,"Shmueli symbol added by S.G."
+60,Pbcn,Pbcn,60:bca,Pbna,Pbna,"-P 2ac 2b",POC$I1A000$P2C606$P2A060,"Shmueli symbol added by S.G."
+60,Pbcn,Pbcn,60:cab,Pnca,Pnca,"-P 2a 2n",POC$I1A000$P2C600$P2A666,"Shmueli symbol added by S.G."
+61,Pbca,Pbca,61,Pbca,Pbca,"-P 2ac 2ab",POC$I1A000$P2C606$P2A660,
+61,Pbca,Pbca,61:ba-c,Pcab,Pcab,"-P 2bc 2ac",POC$I1A000$P2C066$P2A606,"Shmueli symbol added by S.G."
+62,Pnma,Pnma,62,Pnma,Pnma,"-P 2ac 2n",POC$I1A000$P2C606$P2A666,
+62,Pnma,Pnma,62:-cba,Pcmn,Pcmn,"-P 2n 2ac",POC$I1A000$P2C666$P2A606,"Shmueli symbol added by S.G."
+62,Pnma,Pnma,62:a-cb,Pnam,Pnam,"-P 2c 2n",POC$I1A000$P2C006$P2A666,"Shmueli symbol added by S.G."
+62,Pnma,Pnma,62:ba-c,Pmnb,Pmnb,"-P 2bc 2a",POC$I1A000$P2C066$P2A600,"Shmueli symbol added by S.G."
+62,Pnma,Pnma,62:bca,Pmcn,Pmcn,"-P 2n 2a",POC$I1A000$P2C666$P2A600,"Shmueli symbol added by S.G."
+62,Pnma,Pnma,62:cab,Pbnm,Pbnm,"-P 2c 2ab",POC$I1A000$P2C006$P2A660,"Shmueli symbol added by S.G."
+63,Cmcm,Cmcm,63,Cmcm,Cmcm,"-C 2c 2",COC$I1A000$P2C006$P2A000,
+63,Cmcm,Cmcm,63:-cba,Amam,Amam,"-A 2 2a",AOC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G."
+63,Cmcm,Cmcm,63:a-cb,Bmmb,Bmmb,"-B 2b 2",BOC$I1A000$P2C060$P2A000,"Shmueli symbol added by S.G."
+63,Cmcm,Cmcm,63:ba-c,Ccmm,Ccmm,"-C 2c 2c",COC$I1A000$P2C006$P2A006,"Shmueli symbol added by S.G."
+63,Cmcm,Cmcm,63:bca,Bbmm,Bbmm,"-B 2 2b",BOC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G."
+63,Cmcm,Cmcm,63:cab,Amma,Amma,"-A 2a 2a",AOC$I1A000$P2C600$P2A600,"Shmueli symbol added by S.G."
+64,Cmca,Cmce,64,Cmca,Cmce,"-C 2ac 2",COC$I1A000$P2C066$P2A000,
+64,Cmca,Cmce,64:-cba,Acam,Aeam,"-A 2 2ab",AOC$I1A000$P2C000$P2A660,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+64,Cmca,Cmce,64:a-cb,Bmab,Bmeb,"-B 2ab 2",BOC$I1A000$P2C660$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+64,Cmca,Cmce,64:ba-c,Ccmb,Ccme,"-C 2ac 2ac",COC$I1A000$P2C606$P2A606,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+64,Cmca,Cmce,64:bca,Bbcm,Bbem,"-B 2 2ab",BOC$I1A000$P2C000$P2A660,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+64,Cmca,Cmce,64:cab,Abma,Aema,"-A 2ab 2ab",AOC$I1A000$P2C660$P2A660,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+65,Cmmm,Cmmm,65,Cmmm,Cmmm,"-C 2 2",COC$I1A000$P2C000$P2A000,
+65,Cmmm,Cmmm,65:bca,Bmmm,Bmmm,"-B 2 2",BOC$I1A000$P2C000$P2A000,"Shmueli symbol added by S.G."
+65,Cmmm,Cmmm,65:cab,Ammm,Ammm,"-A 2 2",AOC$I1A000$P2C000$P2A000,"Shmueli symbol added by S.G."
+66,Cccm,Cccm,66,Cccm,Cccm,"-C 2 2c",COC$I1A000$P2C000$P2A006,
+66,Cccm,Cccm,66:bca,Bbmb,Bbmb,"-B 2b 2b",BOC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
+66,Cccm,Cccm,66:cab,Amaa,Amaa,"-A 2a 2",AOC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G."
+67,Cmma,Cmme,67,Cmma,Cmme,"-C 2a 2",COC$I1A000$P2C060$P2A000,
+67,Cmma,Cmme,67:abc,Cmma,Cmme:abc,"-C 2a 2",COC$I1A000$P2C060$P2A000,"Adding the row with explicit default axis configuration (abc) to disambiguate Cmme:abc and Cmme:ba-c symbols"
+67,Cmma,Cmme,67:-cba,Acmm,Aemm:-cba,"-A 2 2b",AOC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+67,Cmma,Cmme,67:a-cb,Bmam,Bmem:a-cb,"-B 2a 2",BOC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+67,Cmma,Cmme,67:ba-c,Cmmb,Cmme:ba-c,"-C 2a 2a",COC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G. Overlaps with old Cmma (67:abc (standard))! New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+67,Cmma,Cmme,67:bca,Bmcm,Bmem:bca,"-B 2 2a",BOC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G. Overlaps with old Bmam (67:a-cb)! New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+67,Cmma,Cmme,67:cab,Abmm,Aemm:cab,"-A 2b 2b",AOC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G. Overlaps with old Acmm (67:-cba)! New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+68,Ccca,Ccce,68:1,Ccca:1,Ccce:1,"C 2 2 -1ac",COC$I1A066$P2C660$P2A660,
+68,Ccca,Ccce,68:1-cba,Acaa:1,Aeaa:1,"A 2 2 -1ab",AOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+68,Ccca,Ccce,68:1a-cb,Bbab:1,Bbeb:1,"B 2 2 -1ab",BOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+68,Ccca,Ccce,68:1ba-c,Cccb:1,Ccce:1,"C 2 2 -1ac",COC$I1A606$P2C000$P2A000,"Shmueli symbol added by S.G.; Hall symbol identical to 68:1abc (Ccca:1). New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2). Alternative to COC$I1A066$P2C660$P2A660, generates same symop matrices."
+68,Ccca,Ccce,68:1bca,Bbcb:1,Bbeb:1,"B 2 2 -1ab",BOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G.; Hall symbol identical to 68:1a-cb (Bbab:1). New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)."
+68,Ccca,Ccce,68:1cab,Abaa:1,Aeaa:1,"A 2 2 -1ab",AOC$I1A660$P2C000$P2A000,"Shmueli symbol added by S.G.; Hall symbol identical to 68:1-cba (Acaa:1). New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)."
+68,Ccca,Ccce,68:2,Ccca:2,Ccce:2,"-C 2a 2ac",COC$I1A000$P2C600$P2A606,
+68,Ccca,Ccce,68:2abc,Ccca:2,Ccce:2abc,"-C 2a 2ac",COC$I1A000$P2C600$P2A606,"Adding the row with explicit default axis configuration (abc) to disambiguate Ccce:abc and Ccce:ba-c symbols"
+68,Ccca,Ccce,68:2-cba,Acaa:2,Aeaa:2-cba,"-A 2ab 2b",AOC$I1A000$P2C660$P2A060,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+68,Ccca,Ccce,68:2a-cb,Bbab:2,Bbeb:2a-cb,"-B 2b 2ab",BOC$I1A000$P2C060$P2A660,"Shmueli symbol added by S.G.; new H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+68,Ccca,Ccce,68:2ba-c,Cccb:2,Ccce:2ba-c,"-C 2a 2c",COC$I1A000$P2C600$P2A006,"Shmueli symbol added by S.G.; Overlaps with old Ccca:2 (68:2, i.e. 68:2abc (standard))! New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+68,Ccca,Ccce,68:2bca,Bbcb:2,Bbeb:2bca,"-B 2ab 2b",BOC$I1A000$P2C660$P2A060,"Shmueli symbol added by S.G.; Overlaps with old Bbab:2 (68:2a-cb)! New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+68,Ccca,Ccce,68:2cab,Abaa:2,Aeaa:2cab,"-A 2a 2b",AOC$I1A000$P2C600$P2A060,"Shmueli symbol added by S.G.; Overlaps with old Acaa:2 (68:2-cba)! New H-M symbol looked up in the ITC Vol. A (p. 65 onwards) using the axis designator (e.g. ba-c for Bme2)"
+69,Fmmm,Fmmm,69,Fmmm,Fmmm,"-F 2 2",FOC$I1A000$P2C000$P2A000,
+70,Fddd,Fddd,70:1,Fddd:1,Fddd:1,"F 2 2 -1d",FOC$I1A333$P2C000$P2A000,
+70,Fddd,Fddd,70:2,Fddd:2,Fddd:2,"-F 2uv 2vw",FOC$I1A000$P2C990$P2A099,
+71,Immm,Immm,71,Immm,Immm,"-I 2 2",IOC$I1A000$P2C000$P2A000,
+72,Ibam,Ibam,72,Ibam,Ibam,"-I 2 2c",IOC$I1A000$P2C000$P2A660,
+72,Ibam,Ibam,72:bca,Icma,Icma,"-I 2b 2b",IOC$I1A000$P2C060$P2A060,"Shmueli symbol added by S.G."
+72,Ibam,Ibam,72:cab,Imcb,Imcb,"-I 2a 2",IOC$I1A000$P2C600$P2A000,"Shmueli symbol added by S.G."
+73,Ibca,Ibca,73,Ibca,Ibca,"-I 2b 2c",IOC$I1A000$P2C606$P2A660,
+73,Ibca,Ibca,73:ba-c,Icab,Icab,"-I 2a 2b",IOC$I1A000$P2C600$P2A060,"Shmueli symbol added by S.G."
+74,Imma,Imma,74,Imma,Imma,"-I 2b 2",IOC$I1A000$P2C060$P2A000,
+74,Imma,Imma,74:-cba,Icmm,Icmm,"-I 2 2b",IOC$I1A000$P2C000$P2A060,"Shmueli symbol added by S.G."
+74,Imma,Imma,74:a-cb,Imam,Imam,"-I 2c 2",IOC$I1A000$P2C006$P2A000,"Shmueli symbol added by S.G."
+74,Imma,Imma,74:ba-c,Immb,Immb,"-I 2a 2a",IOC$I1A000$P2C600$P2A600,"Shmueli symbol added by S.G."
+74,Imma,Imma,74:bca,Imcm,Imcm,"-I 2 2a",IOC$I1A000$P2C000$P2A600,"Shmueli symbol added by S.G."
+74,Imma,Imma,74:cab,Ibmm,Ibmm,"-I 2c 2c",IOC$I1A000$P2C006$P2A006,"Shmueli symbol added by S.G."
+75,P4,P4,75,P4,P4,"P 4",PTN$P4C000,
+76,P41,P41,76,P41,P41,"P 4w",PTN$P4C003,
+77,P42,P42,77,P42,P42,"P 4c",PTN$P4C006,
+78,P43,P43,78,P43,P43,"P 4cw",PTN$P4C009,
+79,I4,I4,79,I4,I4,"I 4",ITN$P4C000,
+80,I41,I41,80,I41,I41,"I 4bw",ITN$P4C063,
+81,P-4,P-4,81,P-4,P-4,"P -4",PTN$I4C000,
+82,I-4,I-4,82,I-4,I-4,"I -4",ITN$I4C000,
+83,P4/m,P4/m,83,P4/m,P4/m,"-P 4",PTC$I1A000$P4C000,
+84,P42/m,P42/m,84,P42/m,P42/m,"-P 4c",PTC$I1A000$P4C006,
+85,P4/n,P4/n,85:1,P4/n:1,P4/n:1,"P 4ab -1ab",PTC$I1A660$P4C660,
+85,P4/n,P4/n,85:2,P4/n:2,P4/n:2,"-P 4a",PTC$I1A000$P4C600,
+86,P42/n,P42/n,86:1,P42/n:1,P42/n:1,"P 4n -1n",PTC$I1A666$P4C666,
+86,P42/n,P42/n,86:2,P42/n:2,P42/n:2,"-P 4bc",PTC$I1A000$P4C066,
+87,I4/m,I4/m,87,I4/m,I4/m,"-I 4",ITC$I1A000$P4C000,
+88,I41/a,I41/a,88:1,I41/a:1,I41/a:1,"I 4bw -1bw",ITC$I1A063$P4C063,
+88,I41/a,I41/a,88:2,I41/a:2,I41/a:2,"-I 4ad",ITC$I1A000$P4C933,
+89,P422,P422,89,P422,P422,"P 4 2",PTN$P4C000$P2A000,
+90,P4212,P4212,90,P4212,P4212,"P 4ab 2ab",PTN$P4C660$P2A660,
+91,P4122,P4122,91,P4122,P4122,"P 4w 2c",PTN$P4C003$P2A006,
+92,P41212,P41212,92,P41212,P41212,"P 4abw 2nw",PTN$P4C663$P2A669,
+93,P4222,P4222,93,P4222,P4222,"P 4c 2",PTN$P4C006$P2A000,
+94,P42212,P42212,94,P42212,P42212,"P 4n 2n",PTN$P4C666$P2A666,
+95,P4322,P4322,95,P4322,P4322,"P 4cw 2c",PTN$P4C009$P2A006,
+96,P43212,P43212,96,P43212,P43212,"P 4nw 2abw",PTN$P4C669$P2A663,
+97,I422,I422,97,I422,I422,"I 4 2",ITN$P4C000$P2A000,
+98,I4122,I4122,98,I4122,I4122,"I 4bw 2bw",ITN$P4C063$P2A063,
+99,P4mm,P4mm,99,P4mm,P4mm,"P 4 -2",PTN$P4C000$I2A000,
+100,P4bm,P4bm,100,P4bm,P4bm,"P 4 -2ab",PTN$P4C000$I2A660,
+101,P42cm,P42cm,101,P42cm,P42cm,"P 4c -2c",PTN$P4C006$I2A006,
+102,P42nm,P42nm,102,P42nm,P42nm,"P 4n -2n",PTN$P4C666$I2A666,
+103,P4cc,P4cc,103,P4cc,P4cc,"P 4 -2c",PTN$P4C000$I2A006,
+104,P4nc,P4nc,104,P4nc,P4nc,"P 4 -2n",PTN$P4C000$I2A666,
+105,P42mc,P42mc,105,P42mc,P42mc,"P 4c -2",PTN$P4C006$I2A000,
+106,P42bc,P42bc,106,P42bc,P42bc,"P 4c -2ab",PTN$P4C006$I2A660,
+107,I4mm,I4mm,107,I4mm,I4mm,"I 4 -2",ITN$P4C000$I2A000,
+108,I4cm,I4cm,108,I4cm,I4cm,"I 4 -2c",ITN$P4C000$I2A006,
+109,I41md,I41md,109,I41md,I41md,"I 4bw -2",ITN$P4C063$I2A666,
+110,I41cd,I41cd,110,I41cd,I41cd,"I 4bw -2c",ITN$P4C063$I2A660,
+111,P-42m,P-42m,111,P-42m,P-42m,"P -4 2",PTN$I4C000$P2A000,
+112,P-42c,P-42c,112,P-42c,P-42c,"P -4 2c",PTN$I4C000$P2A006,
+113,P-421m,P-421m,113,P-421m,P-421m,"P -4 2ab",PTN$I4C000$P2A660,
+114,P-421c,P-421c,114,P-421c,P-421c,"P -4 2n",PTN$I4C000$P2A666,
+115,P-4m2,P-4m2,115,P-4m2,P-4m2,"P -4 -2",PTN$I4C000$P2D000,
+116,P-4c2,P-4c2,116,P-4c2,P-4c2,"P -4 -2c",PTN$I4C000$P2D006,
+117,P-4b2,P-4b2,117,P-4b2,P-4b2,"P -4 -2ab",PTN$I4C000$P2D660,
+118,P-4n2,P-4n2,118,P-4n2,P-4n2,"P -4 -2n",PTN$I4C000$P2D666,
+119,I-4m2,I-4m2,119,I-4m2,I-4m2,"I -4 -2",ITN$I4C000$P2D000,
+120,I-4c2,I-4c2,120,I-4c2,I-4c2,"I -4 -2c",ITN$I4C000$P2D006,
+121,I-42m,I-42m,121,I-42m,I-42m,"I -4 2",ITN$I4C000$P2A000,
+122,I-42d,I-42d,122,I-42d,I-42d,"I -4 2bw",ITN$I4C000$P2A609,
+123,P4/mmm,P4/mmm,123,P4/mmm,P4/mmm,"-P 4 2",PTC$I1A000$P4C000$P2A000,
+124,P4/mcc,P4/mcc,124,P4/mcc,P4/mcc,"-P 4 2c",PTC$I1A000$P4C000$P2A006,
+125,P4/nbm,P4/nbm,125:1,P4/nbm:1,P4/nbm:1,"P 4 2 -1ab",PTC$I1A660$P4C000$P2A000,
+125,P4/nbm,P4/nbm,125:2,P4/nbm:2,P4/nbm:2,"-P 4a 2b",PTC$I1A000$P4C600$P2A060,
+126,P4/nnc,P4/nnc,126:1,P4/nnc:1,P4/nnc:1,"P 4 2 -1n",PTC$I1A666$P4C000$P2A000,
+126,P4/nnc,P4/nnc,126:2,P4/nnc:2,P4/nnc:2,"-P 4a 2bc",PTC$I1A000$P4C600$P2A066,
+127,P4/mbm,P4/mbm,127,P4/mbm,P4/mbm,"-P 4 2ab",PTC$I1A000$P4C000$P2A660,
+128,P4/mnc,P4/mnc,128,P4/mnc,P4/mnc,"-P 4 2n",PTC$I1A000$P4C000$P2A666,
+129,P4/nmm,P4/nmm,129:1,P4/nmm:1,P4/nmm:1,"P 4ab 2ab -1ab",PTC$I1A660$P4C660$P2A660,
+129,P4/nmm,P4/nmm,129:2,P4/nmm:2,P4/nmm:2,"-P 4a 2a",PTC$I1A000$P4C600$P2A600,
+130,P4/ncc,P4/ncc,130:1,P4/ncc:1,P4/ncc:1,"P 4ab 2n -1ab",PTC$I1A660$P4C660$P2A666,
+130,P4/ncc,P4/ncc,130:2,P4/ncc:2,P4/ncc:2,"-P 4a 2ac",PTC$I1A000$P4C600$P2A606,
+131,P42/mmc,P42/mmc,131,P42/mmc,P42/mmc,"-P 4c 2",PTC$I1A000$P4C006$P2A000,
+132,P42/mcm,P42/mcm,132,P42/mcm,P42/mcm,"-P 4c 2c",PTC$I1A000$P4C006$P2A006,
+133,P42/nbc,P42/nbc,133:1,P42/nbc:1,P42/nbc:1,"P 4n 2c -1n",PTC$I1A666$P4C666$P2A006,
+133,P42/nbc,P42/nbc,133:2,P42/nbc:2,P42/nbc:2,"-P 4ac 2b",PTC$I1A000$P4C606$P2A060,
+134,P42/nnm,P42/nnm,134:1,P42/nnm:1,P42/nnm:1,"P 4n 2 -1n",PTC$I1A666$P4C666$P2A000,
+134,P42/nnm,P42/nnm,134:2,P42/nnm:2,P42/nnm:2,"-P 4ac 2bc",PTC$I1A000$P4C606$P2A066,
+135,P42/mbc,P42/mbc,135,P42/mbc,P42/mbc,"-P 4c 2ab",PTC$I1A000$P4C006$P2A660,
+136,P42/mnm,P42/mnm,136,P42/mnm,P42/mnm,"-P 4n 2n",PTC$I1A000$P4C666$P2A666,
+137,P42/nmc,P42/nmc,137:1,P42/nmc:1,P42/nmc:1,"P 4n 2n -1n",PTC$I1A666$P4C666$P2A666,
+137,P42/nmc,P42/nmc,137:2,P42/nmc:2,P42/nmc:2,"-P 4ac 2a",PTC$I1A000$P4C606$P2A600,
+138,P42/ncm,P42/ncm,138:1,P42/ncm:1,P42/ncm:1,"P 4n 2ab -1n",PTC$I1A666$P4C666$P2A660,
+138,P42/ncm,P42/ncm,138:2,P42/ncm:2,P42/ncm:2,"-P 4ac 2ac",PTC$I1A000$P4C606$P2A606,
+139,I4/mmm,I4/mmm,139,I4/mmm,I4/mmm,"-I 4 2",ITC$I1A000$P4C000$P2A000,
+140,I4/mcm,I4/mcm,140,I4/mcm,I4/mcm,"-I 4 2c",ITC$I1A000$P4C000$P2A006,
+141,I41/amd,I41/amd,141:1,I41/amd:1,I41/amd:1,"I 4bw 2bw -1bw",ITC$I1A063$P4C063$P2A063,
+141,I41/amd,I41/amd,141:2,I41/amd:2,I41/amd:2,"-I 4bd 2",ITC$I1A000$P4C393$P2A000,
+142,I41/acd,I41/acd,142:1,I41/acd:1,I41/acd:1,"I 4bw 2aw -1bw",ITC$I1A063$P4C063$P2A069,
+142,I41/acd,I41/acd,142:2,I41/acd:2,I41/acd:2,"-I 4bd 2c",ITC$I1A000$P4C393$P2A006,
+143,P3,P3,143,P3,P3,"P 3",PRN$P3C000,
+144,P31,P31,144,P31,P31,"P 31",PRN$P3C004,
+145,P32,P32,145,P32,P32,"P 32",PRN$P3C008,
+146,R3,R3,146:H,R3:H,R3:H,"R 3",RRN$P3C000,
+146,R3,R3,146:R,R3:R,R3:R,"P 3*",PRN$P3Q000,
+147,P-3,P-3,147,P-3,P-3,"-P 3",PRC$I3C000,
+148,R-3,R-3,148:H,R-3:H,R-3:H,"-R 3",RRC$I3C000,
+148,R-3,R-3,148:R,R-3:R,R-3:R,"-P 3*",PRC$I3Q000,
+149,P312,P312,149,P312,P312,"P 3 2",PRN$P3C000$P2G000,
+150,P321,P321,150,P321,P321,"P 3 2""",PRN$P3C000$P2F000,
+151,P3112,P3112,151,P3112,P3112,"P 31 2 (0 0 4)",PRN$P3C004$P2G000,
+152,P3121,P3121,152,P3121,P3121,"P 31 2""",PRN$P3C004$P2F008,
+153,P3212,P3212,153,P3212,P3212,"P 32 2 (0 0 2)",PRN$P3C008$P2G000,
+154,P3221,P3221,154,P3221,P3221,"P 32 2""",PRN$P3C008$P2F004,
+155,R32,R32,155:H,R32:H,R32:H,"R 3 2""",RRN$P3C000$P2F000,
+155,R32,R32,155:R,R32:R,R32:R,"P 3* 2",PRN$P3Q000$P2E000,
+156,P3m1,P3m1,156,P3m1,P3m1,"P 3 -2""",PRN$P3C000$I2F000,
+157,P31m,P31m,157,P31m,P31m,"P 3 -2",PRN$P3C000$I2G000,
+158,P3c1,P3c1,158,P3c1,P3c1,"P 3 -2""c",PRN$P3C000$I2F006,
+159,P31c,P31c,159,P31c,P31c,"P 3 -2c",PRN$P3C000$I2G006,
+160,R3m,R3m,160:H,R3m:H,R3m:H,"R 3 -2""",RRN$P3C000$I2F000,
+160,R3m,R3m,160:R,R3m:R,R3m:R,"P 3* -2",PRN$P3Q000$I2E000,
+161,R3c,R3c,161:H,R3c:H,R3c:H,"R 3 -2""c",RRN$P3C000$I2F006,
+161,R3c,R3c,161:R,R3c:R,R3c:R,"P 3* -2n",PRN$P3Q000$I2E666,
+162,P-31m,P-31m,162,P-31m,P-31m,"-P 3 2",PRC$I3C000$P2G000,
+163,P-31c,P-31c,163,P-31c,P-31c,"-P 3 2c",PRC$I3C000$P2G006,
+164,P-3m1,P-3m1,164,P-3m1,P-3m1,"-P 3 2""",PRC$I3C000$P2F000,
+165,P-3c1,P-3c1,165,P-3c1,P-3c1,"-P 3 2""c",PRC$I3C000$P2F006,
+166,R-3m,R-3m,166:H,R-3m:H,R-3m:H,"-R 3 2""",RRC$I3C000$P2F000,
+166,R-3m,R-3m,166:R,R-3m:R,R-3m:R,"-P 3* 2",PRC$I3Q000$P2E000,
+167,R-3c,R-3c,167:H,R-3c:H,R-3c:H,"-R 3 2""c",RRC$I3C000$P2F006,
+167,R-3c,R-3c,167:R,R-3c:R,R-3c:R,"-P 3* 2n",PRC$I3Q000$P2E666,
+168,P6,P6,168,P6,P6,"P 6",PHN$P6C000,
+169,P61,P61,169,P61,P61,"P 61",PHN$P6C002,
+170,P65,P65,170,P65,P65,"P 65",PHN$P6C005,
+171,P62,P62,171,P62,P62,"P 62",PHN$P6C004,
+172,P64,P64,172,P64,P64,"P 64",PHN$P6C008,
+173,P63,P63,173,P63,P63,"P 6c",PHN$P6C006,
+174,P-6,P-6,174,P-6,P-6,"P -6",PHN$I6C000,
+175,P6/m,P6/m,175,P6/m,P6/m,"-P 6",PHC$I1A000$P6C000,
+176,P63/m,P63/m,176,P63/m,P63/m,"-P 6c",PHC$I1A000$P6C006,
+177,P622,P622,177,P622,P622,"P 6 2",PHN$P6C000$P2F000,
+178,P6122,P6122,178,P6122,P6122,"P 61 2 (0 0 5)",PHN$P6C002$P2F000,
+179,P6522,P6522,179,P6522,P6522,"P 65 2 (0 0 1)",PHN$P6C005$P2F000,
+180,P6222,P6222,180,P6222,P6222,"P 62 2 (0 0 4)",PHN$P6C004$P2F000,
+181,P6422,P6422,181,P6422,P6422,"P 64 2 (0 0 2)",PHN$P6C008$P2F000,
+182,P6322,P6322,182,P6322,P6322,"P 6c 2c",PHN$P6C006$P2F000,
+183,P6mm,P6mm,183,P6mm,P6mm,"P 6 -2",PHN$P6C000$I2F000,
+184,P6cc,P6cc,184,P6cc,P6cc,"P 6 -2c",PHN$P6C000$I2F006,
+185,P63cm,P63cm,185,P63cm,P63cm,"P 6c -2",PHN$P6C006$I2F006,
+186,P63mc,P63mc,186,P63mc,P63mc,"P 6c -2c",PHN$P6C006$I2F000,
+187,P-6m2,P-6m2,187,P-6m2,P-6m2,"P -6 2",PHN$I6C000$P2G000,
+188,P-6c2,P-6c2,188,P-6c2,P-6c2,"P -6c 2",PHN$I6C006$P2G000,
+189,P-62m,P-62m,189,P-62m,P-62m,"P -6 -2",PHN$I6C000$P2F000,
+190,P-62c,P-62c,190,P-62c,P-62c,"P -6c -2c",PHN$I6C006$P2F000,
+191,P6/mmm,P6/mmm,191,P6/mmm,P6/mmm,"-P 6 2",PHC$I1A000$P6C000$P2F000,
+192,P6/mcc,P6/mcc,192,P6/mcc,P6/mcc,"-P 6 2c",PHC$I1A000$P6C000$P2F006,
+193,P63/mcm,P63/mcm,193,P63/mcm,P63/mcm,"-P 6c 2",PHC$I1A000$P6C006$P2F006,
+194,P63/mmc,P63/mmc,194,P63/mmc,P63/mmc,"-P 6c 2c",PHC$I1A000$P6C006$P2F000,
+195,P23,P23,195,P23,P23,"P 2 2 3",PCN$P3Q000$P2C000$P2A000,
+196,F23,F23,196,F23,F23,"F 2 2 3",FCN$P3Q000$P2C000$P2A000,
+197,I23,I23,197,I23,I23,"I 2 2 3",ICN$P3Q000$P2C000$P2A000,
+198,P213,P213,198,P213,P213,"P 2ac 2ab 3",PCN$P3Q000$P2C606$P2A660,
+199,I213,I213,199,I213,I213,"I 2b 2c 3",ICN$P3Q000$P2C606$P2A660,
+200,Pm-3,Pm-3,200,Pm-3,Pm-3,"-P 2 2 3",PCC$I3Q000$P2C000$P2A000,
+201,Pn-3,Pn-3,201:1,Pn-3:1,Pn-3:1,"P 2 2 3 -1n",PCC$I3Q666$P2C000$P2A000,
+201,Pn-3,Pn-3,201:2,Pn-3:2,Pn-3:2,"-P 2ab 2bc 3",PCC$I3Q000$P2C660$P2A066,
+202,Fm-3,Fm-3,202,Fm-3,Fm-3,"-F 2 2 3",FCC$I3Q000$P2C000$P2A000,
+203,Fd-3,Fd-3,203:1,Fd-3:1,Fd-3:1,"F 2 2 3 -1d",FCC$I3Q333$P2C000$P2A000,
+203,Fd-3,Fd-3,203:2,Fd-3:2,Fd-3:2,"-F 2uv 2vw 3",FCC$I3Q000$P2C330$P2A033,
+204,Im-3,Im-3,204,Im-3,Im-3,"-I 2 2 3",ICC$I3Q000$P2C000$P2A000,
+205,Pa-3,Pa-3,205,Pa-3,Pa-3,"-P 2ac 2ab 3",PCC$I3Q000$P2C606$P2A660,
+206,Ia-3,Ia-3,206,Ia-3,Ia-3,"-I 2b 2c 3",ICC$I3Q000$P2C606$P2A660,
+207,P432,P432,207,P432,P432,"P 4 2 3",PCN$P3Q000$P4C000$P2D000,
+208,P4232,P4232,208,P4232,P4232,"P 4n 2 3",PCN$P3Q000$P4C666$P2D666,
+209,F432,F432,209,F432,F432,"F 4 2 3",FCN$P3Q000$P4C000$P2D000,
+210,F4132,F4132,210,F4132,F4132,"F 4d 2 3",FCN$P3Q000$P4C993$P2D939,
+211,I432,I432,211,I432,I432,"I 4 2 3",ICN$P3Q000$P4C000$P2D000,
+212,P4332,P4332,212,P4332,P4332,"P 4acd 2ab 3",PCN$P3Q000$P4C939$P2D399,
+213,P4132,P4132,213,P4132,P4132,"P 4bd 2ab 3",PCN$P3Q000$P4C393$P2D933,
+214,I4132,I4132,214,I4132,I4132,"I 4bd 2c 3",ICN$P3Q000$P4C393$P2D933,
+215,P-43m,P-43m,215,P-43m,P-43m,"P -4 2 3",PCN$P3Q000$I4C000$I2D000,
+216,F-43m,F-43m,216,F-43m,F-43m,"F -4 2 3",FCN$P3Q000$I4C000$I2D000,
+217,I-43m,I-43m,217,I-43m,I-43m,"I -4 2 3",ICN$P3Q000$I4C000$I2D000,
+218,P-43n,P-43n,218,P-43n,P-43n,"P -4n 2 3",PCN$P3Q000$I4C666$I2D666,
+219,F-43c,F-43c,219,F-43c,F-43c,"F -4a 2 3",FCN$P3Q000$I4C666$I2D666,
+220,I-43d,I-43d,220,I-43d,I-43d,"I -4bd 2c 3",ICN$P3Q000$I4C939$I2D399,
+221,Pm-3m,Pm-3m,221,Pm-3m,Pm-3m,"-P 4 2 3",PCC$I3Q000$P4C000$P2D000,
+222,Pn-3n,Pn-3n,222:1,Pn-3n:1,Pn-3n:1,"P 4 2 3 -1n",PCC$I3Q666$P4C000$P2D000,
+222,Pn-3n,Pn-3n,222:2,Pn-3n:2,Pn-3n:2,"-P 4a 2bc 3",PCC$I3Q000$P4C600$P2D006,
+223,Pm-3n,Pm-3n,223,Pm-3n,Pm-3n,"-P 4n 2 3",PCC$I3Q000$P4C666$P2D666,
+224,Pn-3m,Pn-3m,224:1,Pn-3m:1,Pn-3m:1,"P 4n 2 3 -1n",PCC$I3Q666$P4C666$P2D666,
+224,Pn-3m,Pn-3m,224:2,Pn-3m:2,Pn-3m:2,"-P 4bc 2bc 3",PCC$I3Q000$P4C066$P2D660,
+225,Fm-3m,Fm-3m,225,Fm-3m,Fm-3m,"-F 4 2 3",FCC$I3Q000$P4C000$P2D000,
+226,Fm-3c,Fm-3c,226,Fm-3c,Fm-3c,"-F 4a 2 3",FCC$I3Q000$P4C666$P2D666,
+227,Fd-3m,Fd-3m,227:1,Fd-3m:1,Fd-3m:1,"F 4d 2 3 -1d",FCC$I3Q333$P4C993$P2D939,
+227,Fd-3m,Fd-3m,227:2,Fd-3m:2,Fd-3m:2,"-F 4vw 2vw 3",FCC$I3Q000$P4C693$P2D936,
+228,Fd-3c,Fd-3c,228:1,Fd-3c:1,Fd-3c:1,"F 4d 2 3 -1ad",FCC$I3Q999$P4C993$P2D939,
+228,Fd-3c,Fd-3c,228:2,Fd-3c:2,Fd-3c:2,"-F 4ud 2vw 3",FCC$I3Q000$P4C093$P2D930,
+229,Im-3m,Im-3m,229,Im-3m,Im-3m,"-I 4 2 3",ICC$I3Q000$P4C000$P2D000,
+230,Ia-3d,Ia-3d,230,Ia-3d,Ia-3d,"-I 4bd 2c 3",ICC$I3Q000$P4C393$P2D933,
