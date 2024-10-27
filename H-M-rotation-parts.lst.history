@@ -1,1 +1,0 @@
-  551  grep -E 'universal_h_m' src/lib/perl5/COD/Spacegroups/Lookup/COD.pm | grep -v '^#' | awk -F"'" '{print $2}' | sed 's/^[A-Z] //; s/ *(.*$//; s/ *:.*$//' | sort -u > ~/H-M-rotation-parts.lst
