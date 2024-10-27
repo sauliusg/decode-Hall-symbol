@@ -100,7 +100,7 @@ package body Shmueli_Symbol_Parser is
       Pos := Pos + 1;
       
       for I in 1 .. 3 loop
-         exit when Pos > Symbol'Length;
+         exit when Pos > Symbol'Length or else Symbol (Pos) = ' ';
          
          if Symbol (Pos) /= '$' then
             raise INVALID_SYMBOL with

@@ -7,6 +7,7 @@ with Ada.Strings.Maps;          use Ada.Strings.Maps;
 
 with Symmetry_Operations;       use Symmetry_Operations;
 with HM_Symbols;                use HM_Symbols;
+with Shmueli_Symbol_Parser;     use Shmueli_Symbol_Parser;
 
 with Project_Version;
 
@@ -332,6 +333,59 @@ procedure Decode_HM is
       end case;
    end Get_H_M_Symbol_Rotations;
    
+   procedure Inc (X : in out Positive) is
+   begin
+      X := X + 1;
+   end;
+   
+   pragma Inline (Inc);
+   
+   procedure Lookup_H_M_Symbol_Rotations
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Rotations : out Symmetry_Operator_Array;
+      N_Rotations : in out Natural
+     )
+   is
+      Start : Positive := Pos;
+      J : Positive := 1;
+   begin
+      N_Rotations := 0;
+
+      while Pos <= Symbol'Length and then Symbol (Pos) /= '(' loop
+         Inc (Pos);
+      end loop;
+      
+      declare
+         HM_Part : String (1 .. Pos - Start);
+         HM_Symbol : HM_Symbol_Type;
+      begin
+         for I in Start .. Pos - 1 loop
+            if Symbol (I) /= ' ' then
+               HM_Part (J) := Symbol (I);
+               Inc (J);
+            end if;
+         end loop;
+         
+         HM_Symbol := +HM_Part (1 .. J - 1);
+         
+         for I in HM_Symbol_Table'Range loop
+            if HM_Symbol = HM_Symbol_Table(I).HM_Symbol then
+               declare
+                  Matrices : Symmetry_Operator_Array :=
+                    Decode_Shmueli_Symbol (String (HM_Symbol_Table(I).Shmueli_Symbol));
+               begin      
+                  N_Rotations := Matrices'Length;
+                  Rotations (1 .. N_Rotations) := Matrices;
+               end;
+               exit;
+            end if;
+         end loop;
+      end;
+   end;
+   
+   
    subtype Character_Set is Ada.Strings.Maps.Character_Set;
    
    procedure Expect (
@@ -633,36 +687,31 @@ procedure Decode_HM is
       return R;
    end;
    
-   function Decode_Hermann_Mauguin (Symbol : in String) return Symmetry_Operator_Array is
+   function Decode_Hermann_Mauguin (Symbol : in String) 
+                                   return Symmetry_Operator_Array is
+      
       Max_Symmetry_Operators : constant Integer := 192;
       
       Symmetry_Operators :
         Symmetry_Operator_Array (1 .. Max_Symmetry_Operators);
-      N_Symmetry_Operators : Positive := 1;
+      N_Symmetry_Operators : Natural := 1;
       
       Pos : Positive := 1; -- current position in the string 'Symbol'.
-      
-      Inversions : array (1..2) of Symmetry_Operator :=
-        (Unity_Matrix, Ci_Matrix);
-      N_Inversions : Positive;
-      
-      Max_Centering : constant Positive := 8;
-      Centering : Symmetry_Operator_Array (1..Max_Centering);
-      N_Centering : Positive;
-      
-      Preceeding_Axis_Direction : Axis_Direction_Type := UNKNOWN;
-      Preceeding_Axis_Order : Axis_Order_Type := UNKNOWN;
       
       Change_Of_Basis : Symmetry_Operator;
       
    begin
       Symmetry_Operators (1) := Unity_Matrix;
       
-      Get_H_M_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
-      Get_H_M_Symbol_Inversions (Symbol, Pos, N_Inversions);
+      -- Get_H_M_Symbol_Centerings (Symbol, Pos, Centering, N_Centering);
+      -- Get_H_M_Symbol_Inversions (Symbol, Pos, N_Inversions);
+      -- 
       
-      Get_H_M_Symbol_Rotations (Symbol, Pos, Symmetry_Operators,
-                                N_Symmetry_Operators);
+      -- Get_H_M_Symbol_Rotations (Symbol, Pos, Symmetry_Operators,
+      --                           N_Symmetry_Operators);
+      
+      Lookup_H_M_Symbol_Rotations (Symbol, Pos, Symmetry_Operators,
+                                   N_Symmetry_Operators);
       
       Get_Change_Of_Basis (Symbol, Pos, Change_Of_Basis);
       
@@ -674,113 +723,15 @@ procedure Decode_HM is
             V_Inv : Symmetry_Operator;
          begin
             V_Inv := Invert (V);
-            
             for I in 2..N_Symmetry_Operators loop
                Symmetry_Operators (I) := V * Symmetry_Operators (I) * V_Inv;
             end loop;
-            
-            for I in 2..N_Centering loop
-               Centering (I) := V * Centering (I) * V_Inv;
-            end loop;
-            
-            while N_Centering > 1 and then 
-              Centering (N_Centering) = Centering (1) 
-            loop
-               -- remove centerings that became unit matrices after C-o-B:
-               N_Centering := N_Centering - 1;
-            end loop;
-            
-            if N_Inversions = 2 then
-               Inversions (2) := V * Inversions (2) * V_Inv;
-            end if;
          end;
       end if;
       
-      -- Generate additional centering operators:
-      
-      declare
-         type Vector_Components is array (1..4) of Float;
-         type Vector_Type is record
-            Value : Vector_Components;
-         end record;
-         
-         function "*" (S : Symmetry_Operator; T : Vector_Type)
-                      return Vector_Type 
-         is
-            R : Vector_Type := (Value => (others => 0.0));
-         begin
-            for I in R.Value'Range loop
-               for K in T.Value'Range loop
-                  R.Value (I) := R.Value (I) +
-                    S (I,K) * T.Value (K);
-               end loop;
-            end loop;
-            return R;
-         end;
-         
-         function To_Symmetry_Operator (T : Vector_Type)
-                                       return Symmetry_Operator
-         is
-            S : Symmetry_Operator := Unity_Matrix;
-         begin
-            for I in 1..3 loop
-               S (I,4) := T.Value (I);
-            end loop;
-            Snap_To_Crystallographic_Translations (S);
-            return S;
-         end;
-         
-         function Is_Centering (T : Vector_Type) return Boolean is            
-            function Fract (X : Float) return Float is (X - Float'Floor (X));
-         begin
-            for Component of T.Value loop
-               if abs (Fract (Component)) >= Eps then
-                  return True;
-               end if;
-            end loop;
-            return False;
-         end;
-         
-         Unit_Vectors : array (1..3) of Vector_Type :=
-           (
-            (Value => (1.0, 0.0, 0.0, 1.0)),
-            (Value => (0.0, 1.0, 0.0, 1.0)),
-            (Value => (0.0, 0.0, 1.0, 1.0))
-           );
-         
-         C_O_B_Rotation : Symmetry_Operator := Change_Of_Basis;
-         
-      begin
-         for I in 1..3 loop
-            C_O_B_Rotation (I,4) := 0.0;
-         end loop;
-         for Vector of Unit_Vectors loop
-            if Is_Centering (C_O_B_Rotation * Vector) then
-               N_Centering := N_Centering + 1;
-               Centering (N_Centering) :=
-                 To_Symmetry_Operator (C_O_B_Rotation * Vector);
-            end if;
-         end loop;
-         
-         -- see if multiplication of two new centerings gives a third one:
-         Build_Group (Centering, N_Centering);
-      end;
-         
       -- Print out all matrices if requested:
       
       if Debug_Print_Matrices then
-         Put_Line (Standard_Error, "Inversions:");
-         for I in 1..N_Inversions loop
-            Put (Standard_Error, Inversions (I));
-            New_Line (Standard_Error);
-         end loop;
-         
-         Put_Line (Standard_Error, "Centerings:");
-         for I in 1..N_Centering loop
-            Put (Standard_Error, Centering (I));
-            New_Line (Standard_Error);
-         end loop;
-         
          Put_Line (Standard_Error, "Rotations:");
          for I in 1..N_Symmetry_Operators loop
             Put_Line (Standard_Error, Integer'Image (I));
@@ -796,34 +747,6 @@ procedure Decode_HM is
       end if;
       
       -- Reconstruct all rotation operators:
-      
-      Build_Group (Symmetry_Operators, N_Symmetry_Operators);
-      
-      -- Add centering and inversion matrices:
-      
-      declare
-         M : Positive := N_Symmetry_Operators;
-         New_Symmetry_Operator : Symmetry_Operator;
-      begin
-         for I in 1..N_Inversions loop
-            for C in 1..N_Centering loop
-               if I /= 1 or else C /= 1 then
-                  for S in 1..N_Symmetry_Operators loop
-                     New_Symmetry_Operator :=
-                       Symmetry_Operators (S) * Centering (C) * Inversions (I);
-                     if not Has_Symmetry_Operator (Symmetry_Operators, M, 
-                                                   New_Symmetry_Operator) then
-                       M := M + 1;
-                       Symmetry_Operators (M) := New_Symmetry_Operator;
-                     end if;
-                  end loop;
-               end if;
-            end loop;
-         end loop;
-         N_Symmetry_Operators := M;
-      end;      
-      
-      -- Reconstruct all symmetry operators:
       
       Build_Group (Symmetry_Operators, N_Symmetry_Operators);
       
@@ -955,7 +878,7 @@ begin
                      "point coordinates, e.g. '-X,-Y,Z+1/2'");
          New_Line;
          Put_Line ("USAGE:");
-         Put_Line ("  " & Command_Name & " 'P -2c'");
+         Put_Line ("  " & Command_Name & " 'P 21 21 21'");
          Put_Line ("  " & Command_Name & " --help");
       elsif Index ("--version", Argument (I)) = 1 then
          Put (Command_Name & " " & Project_Version.Version);

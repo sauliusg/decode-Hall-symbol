@@ -1,30 +1,28 @@
 package HM_Symbols is
    
-   type HM_Symbol is new String (1 .. 10);
-   type Smueli_Symbol is new String (1 .. 24);
+   type HM_Symbol_Type is new String (1 .. 10);
+   type Shmueli_Symbol_Type is new String (1 .. 24);
    
    type HM_Symbol_Interpretation is record
-      HM : HM_Symbol;
-      SH : Smueli_Symbol;
+      HM_Symbol      : HM_Symbol_Type;
+      Shmueli_Symbol : Shmueli_Symbol_Type;
    end record;
    
-   function "+" (S : String) return HM_Symbol is
-      (HM_Symbol (S (S'First .. S'Last) & 
-                    (1 .. HM_Symbol'Length - S'Length => ASCII.NUL)));
+   function "+" (S : String) return HM_Symbol_Type is
+      (HM_Symbol_Type (S (S'First .. S'Last) &
+                         (1 .. HM_Symbol_Type'Length - S'Length =>
+                            ' ')));
    
-   function "+" (S : String) return Smueli_Symbol is
-      (Smueli_Symbol (S (S'First .. S'Last) & 
-                        (1 .. Smueli_Symbol'Length - S'Length => ASCII.NUL)));
+   function "+" (S : String) return Shmueli_Symbol_Type is
+      (Shmueli_Symbol_Type (S (S'First .. S'Last) & 
+                              (1 .. Shmueli_Symbol_Type'Length - S'Length =>
+                                 ' ')));
    
    type HM_Symbol_Array is array (Positive range <>) 
      of HM_Symbol_Interpretation;
       
-   HM_Symbols : constant HM_Symbol_Array :=
+   HM_Symbol_Table : constant HM_Symbol_Array :=
      (
-      (
-       +"H-M",
-       +"Shmueli"
-      ),
       (
        +"A-1",
        +"AAN$I1A000"
@@ -1186,6 +1184,10 @@ package HM_Symbols is
        +"PAN$P1A000"
       ),
       (
+       +"P2",
+       +"PAN$P2B000"
+      ),
+      (
        +"P112",
        +"PMN$P2C000"
       ),
@@ -1332,6 +1334,10 @@ package HM_Symbols is
       (
        +"P211",
        +"PMN$P2A000"
+      ),
+      (
+       +"P21",
+       +"PAN$P2B060"
       ),
       (
        +"P2111",
