@@ -6,6 +6,7 @@ with Ada.Strings.Fixed;         use Ada.Strings.Fixed;
 with Ada.Strings.Maps;          use Ada.Strings.Maps;
 
 with Symmetry_Operations;       use Symmetry_Operations;
+with HM_Symbols;                use HM_Symbols;
 
 with Project_Version;
 
