@@ -1,0 +1,1 @@
+  578  ( set -x; svn up; directory-metadata; (echo -e "H-M\tShmueli"; awk -F'\t' 'BEGIN {OFS = FS} NR > 1 {for (i = 2; i <= 6; i++) {if (i != 4) {if ((i != 2 && i != 3) || $1"x" == $4"x") {print $i, $8}}}}' spacegroups-hm-hall-shmueli.tsv | grep -v 'COC$I1A606$P2C000$P2A000' | sort -u) > all-hm-shmueli-symbols.tsv ) &> all-hm-shmueli-symbols.tsv.log

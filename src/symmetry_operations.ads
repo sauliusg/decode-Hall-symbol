@@ -8,6 +8,8 @@ package Symmetry_Operations is
    UNKNOWN_TRANSLATION : exception;
    UNEXPECTED_SYMBOL : exception;
    
+   function Eps return Float;
+   
    type Axis_Direction_Type is
      (X_AXIS, Y_AXIS, Z_AXIS, UNKNOWN);
    
@@ -21,6 +23,13 @@ package Symmetry_Operations is
      Axis_Order_Type range IDENTITY .. SIXFOLD;
    
    type Symmetry_Operator is array (1..4, 1..4) of Float;
+   
+   procedure Snap_To_Crystallographic_Translations
+     (M : in out Symmetry_Operator);
+      
+   function Invert (S : Symmetry_Operator) return Symmetry_Operator;
+   
+   function "*" (M1, M2 : Symmetry_Operator) return Symmetry_Operator;
    
    type Symmetry_Operator_Array is
      array (Positive range <>) of Symmetry_Operator;
@@ -51,6 +60,9 @@ package Symmetry_Operations is
    type Crystallographic_Translation is array (1..3)
      of Crystallographic_Translation_Component;
    
+   procedure Add
+     (M : in out Symmetry_Operator; T : Crystallographic_Translation);
+      
    -- Centering translations vectors from Hall 1981 [1], Table 1:
    A_Translation_Vector : constant Crystallographic_Translation :=
      ((0,1), (1,2), (1,2));
@@ -123,5 +135,31 @@ package Symmetry_Operations is
    function To_Symmetry_Operator (T : Crystallographic_Translation_Component;
                                   Axis_Direction : Known_Axis_Direction)
                                  return Symmetry_Operator;
+   
+   procedure Skip_Spaces (S : in String; Pos : in out Integer );
 
+   procedure Decode_Centering_Symbol
+     (
+      Symbol : in String;
+      Pos : in out Positive;
+      Centering : out Symmetry_Operator_Array;
+      N_Centering : out Positive
+     );
+   
+   function As_String (S : Symmetry_Operator) return String;
+
+   function Has_Symmetry_Operator
+     (
+      Symmetry_Operators : Symmetry_Operator_Array;
+      Last_Symmetry_Operator_Index : Positive;
+      Lookup_Symmetry_Operator : Symmetry_Operator
+     )
+     return Boolean;
+
+   procedure Build_Group
+     (
+      Operators : in out Symmetry_Operator_Array;
+      N_Operators : in out Positive
+     );
+   
 end Symmetry_Operations;
