@@ -838,7 +838,7 @@ begin
             
       if Index ("--help", Argument (I)) = 1
       then
-         Put_Line ("Decode a Hall Crystallographic spacegroup symbol " &
+         Put_Line ("Decode a Hermann-Mauguin Crystallographic spacegroup symbol " &
                      "given on the command line");
          Put_Line ("and output symmtetry operators as general position " &
                      "point coordinates, e.g. '-X,-Y,Z+1/2'");

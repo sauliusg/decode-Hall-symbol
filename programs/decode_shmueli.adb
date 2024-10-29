@@ -51,13 +51,13 @@ begin
             
       if Index ("--help", Argument (I)) = 1
       then
-         Put_Line ("Decode a Hall Crystallographic spacegroup symbol " &
+         Put_Line ("Decode a Shmueli Crystallographic spacegroup symbol " &
                      "given on the command line");
          Put_Line ("and output symmtetry operators as general position " &
                      "point coordinates, e.g. '-X,-Y,Z+1/2'");
          New_Line;
          Put_Line ("USAGE:");
-         Put_Line ("  " & Command_Name & " 'P -2c'");
+         Put_Line ("  " & Command_Name & " 'CON$P2C006$I2A000'");
          Put_Line ("  " & Command_Name & " --help");
       elsif Index ("--version", Argument (I)) = 1 then
          Put (Command_Name & " " & Project_Version.Version);
