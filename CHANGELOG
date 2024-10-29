@@ -1,6 +1,12 @@
 decode-Hall-symbol (unreleased)
 
-  * ...
+  * Added:
+    - program 'decode_shmueli':
+        - decodes explicit Shmueli symbols (e.g. 'PAC$I1A000');
+    - program 'decode_hm':
+        - decodes Hermann-Mauguin symbol, both short and universal,
+	  with optional shift-of-origin and change-of-basis
+	  designators.
 
 decode-Hall-symbol (0.1.0)
 
