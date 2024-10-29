@@ -1,5 +1,9 @@
 decode-Hall-symbol (unreleased)
 
+  * ...
+
+decode-Hall-symbol (0.1.1)
+
   * Added:
     - program 'decode_shmueli':
         - decodes explicit Shmueli symbols (e.g. 'PAC$I1A000');
