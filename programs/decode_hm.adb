@@ -1,3 +1,5 @@
+pragma Ada_2022;
+
 with Text_IO;                   use Text_IO;
 with Ada.Integer_Text_IO;       use Ada.Integer_Text_IO;
 with Ada.Command_Line;          use Ada.Command_Line;
@@ -503,10 +505,10 @@ procedure Decode_HM is
    procedure Build_Group
      (
       Operators : in out Symmetry_Operator_Array;
-      N_Operators : in out Positive
+      N_Operators : in out Natural
      )
    is
-      N, M : Positive := N_Operators;
+      N, M : Natural := N_Operators;
       New_Operator : Symmetry_Operator;
    begin
       loop
@@ -567,6 +569,10 @@ procedure Decode_HM is
       
       Change_Of_Basis : Symmetry_Operator;
       
+      Max_Centering : constant Positive := 8;
+      Centering : Symmetry_Operator_Array (1..Max_Centering);
+      N_Centering : Natural := 0;
+      
    begin
       
       Lookup_H_M_Symbol_Rotations (Symbol, Pos, Symmetry_Operators,
@@ -588,6 +594,100 @@ procedure Decode_HM is
          end;
       end if;
       
+      -- Generate additional centering operators:
+      
+      declare
+         type Vector_Components is array (1..4) of Float;
+         type Vector_Type is record
+            Value : Vector_Components;
+         end record;
+         
+         function "*" (S : Symmetry_Operator; T : Vector_Type)
+                      return Vector_Type 
+         is
+            R : Vector_Type := (Value => (others => 0.0));
+         begin
+            for I in R.Value'Range loop
+               for K in T.Value'Range loop
+                  R.Value (I) := R.Value (I) +
+                    S (I,K) * T.Value (K);
+               end loop;
+            end loop;
+            return R;
+         end;
+         
+         function To_Symmetry_Operator (T : Vector_Type)
+                                       return Symmetry_Operator
+         is
+            S : Symmetry_Operator := Unity_Matrix;
+         begin
+            for I in 1..3 loop
+               S (I,4) := T.Value (I);
+            end loop;
+            Snap_To_Crystallographic_Translations (S);
+            return S;
+         end;
+         
+         function Is_Centering (T : Vector_Type) return Boolean is            
+            function Fract (X : Float) return Float is (X - Float'Floor (X));
+         begin
+            for Component of T.Value loop
+               if abs (Fract (Component)) >= Eps then
+                  return True;
+               end if;
+            end loop;
+            return False;
+         end;
+         
+         Unit_Vectors : array (1..3) of Vector_Type :=
+           (
+            (Value => (1.0, 0.0, 0.0, 1.0)),
+            (Value => (0.0, 1.0, 0.0, 1.0)),
+            (Value => (0.0, 0.0, 1.0, 1.0))
+           );
+         
+         C_O_B_Rotation : Symmetry_Operator := Invert (Change_Of_Basis);
+         
+      begin
+         for I in 1..3 loop
+            C_O_B_Rotation (I,4) := 0.0;
+         end loop;
+         for Vector of Unit_Vectors loop
+            if Is_Centering (C_O_B_Rotation * Vector) then
+               N_Centering := N_Centering + 1;
+               Centering (N_Centering) :=
+                 To_Symmetry_Operator (C_O_B_Rotation * Vector);
+            end if;
+         end loop;
+         
+         -- see if multiplication of two new centerings gives a third one:
+         Build_Group (Centering, N_Centering);
+      end;
+         
+      -- Reconstruct all rotation operators:
+      
+      Build_Group (Symmetry_Operators, N_Symmetry_Operators);
+      
+      -- Add centering matrices:
+      
+      declare
+         M : Natural := N_Symmetry_Operators;
+         New_Symmetry_Operator : Symmetry_Operator;
+      begin
+         for C in 1..N_Centering loop
+            for S in 1..N_Symmetry_Operators loop
+               New_Symmetry_Operator :=
+                 Symmetry_Operators (S) * Centering (C);
+               if not Has_Symmetry_Operator (Symmetry_Operators, M, 
+                                             New_Symmetry_Operator) then
+                  M := M + 1;
+                  Symmetry_Operators (M) := New_Symmetry_Operator;
+               end if;
+            end loop;
+         end loop;
+         N_Symmetry_Operators := M;
+      end;      
+      
       -- Print out all matrices if requested:
       
       if Debug_Print_Matrices then
@@ -598,6 +698,13 @@ procedure Decode_HM is
             New_Line (Standard_Error);
          end loop;
          
+         Put_Line (Standard_Error, "Centerings:");
+         for I in 1..N_Centering loop
+            Put (Standard_Error, Centering (I));
+            New_Line (Standard_Error);
+         end loop;
+         New_Line (Standard_Error);
+         
          Put_Line (Standard_Error, "Change of basis:");
          Put (Standard_Error, Transpose (Change_Of_Basis));
          Put_Line (Standard_Error, "Inverse Change of basis:");
@@ -605,7 +712,7 @@ procedure Decode_HM is
          New_Line (Standard_Error);
       end if;
       
-      -- Reconstruct all rotation operators:
+      -- Reconstruct all rotation operators once again:
       
       Build_Group (Symmetry_Operators, N_Symmetry_Operators);
       
