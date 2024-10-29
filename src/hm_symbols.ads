@@ -484,6 +484,10 @@ package HM_Symbols is
        +"CMN$I2B606"
       ),
       (
+       +"C2",
+       +"CMN$P2B000"
+      ),
+      (
        +"C2/c11",
        +"CMC$I1A000$P2A006"
       ),
