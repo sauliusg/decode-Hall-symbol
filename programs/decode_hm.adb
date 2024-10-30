@@ -119,7 +119,7 @@ procedure Decode_HM is
       D : Float := Det (M);
       
       function Adjunct (P, Q : Integer) return Float is
-         A : array (1..4,1..2) of Float;
+         A : array (1..2,1..2) of Float;
          K, L : Integer;
          Coeff : Float;
       begin
