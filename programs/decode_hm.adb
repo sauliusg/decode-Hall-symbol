@@ -592,11 +592,27 @@ procedure Decode_HM is
          declare
             V : Symmetry_Operator := Invert (Transpose (Change_Of_Basis));
             V_Inv : Symmetry_Operator;
+            New_Symmetry_Operators : Symmetry_Operator_Array (1 .. N_Symmetry_Operators);
+            N_New_Operators : Positive := 1;
+            New_Operator : Symmetry_Operator;
          begin
+            New_Symmetry_Operators (1) := Symmetry_Operators (1);
             V_Inv := Invert (V);
             for I in 2..N_Symmetry_Operators loop
-               Symmetry_Operators (I) := V * Symmetry_Operators (I) * V_Inv;
+               New_Operator := V * Symmetry_Operators (I) * V_Inv;
+               if not Has_Symmetry_Operator
+                  (
+                   New_Symmetry_Operators,
+                   N_New_Operators,
+                   New_Operator
+                  ) then
+                   N_New_Operators := N_New_Operators + 1;
+                   New_Symmetry_Operators (N_New_Operators) := New_Operator;
+               end if;
             end loop;
+            N_Symmetry_Operators := N_New_Operators;
+            Symmetry_Operators (2 .. N_New_Operators) :=
+                New_Symmetry_Operators (2 .. N_New_Operators);
          end;
       end if;
       
