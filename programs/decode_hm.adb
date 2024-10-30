@@ -652,7 +652,8 @@ procedure Decode_HM is
             (Value => (0.0, 0.0, 1.0, 1.0))
            );
          
-         C_O_B_Rotation : Symmetry_Operator := Invert (Change_Of_Basis);
+         C_O_B_Rotation : Symmetry_Operator :=
+             Transpose (Invert (Change_Of_Basis));
          
       begin
          for I in 1..3 loop
