@@ -5,7 +5,7 @@ SOURCE_ODS = $(wildcard *.ods)
 
 TARGET_TSV = ${SOURCE_ODS:%.ods=%.tsv}
 
-.PREVIOUS: %.csv
+.PRECIOUS: %.csv
 
 .PHONY: all clean distclean mostlyclean cleanAll display
 
