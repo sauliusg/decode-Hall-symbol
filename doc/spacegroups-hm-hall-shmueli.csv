@@ -11,12 +11,15 @@
 2,C-1,C-1,2:3,C-1,C-1,"-C 1",CAN$I1A000,"Added by S.G."
 2,F-1,F-1,2:4,F-1,F-1,"-F 1",FAN$I1A000,"Added by S.G."
 2,I-1,I-1,2:5,I-1,I-1,"-I 1",IAN$I1A000,"Added by S.G."
+3,P2,P2,3,P121,P121,"P 2y",PMN$P2B000,"Adding the default setting (S.G.)"
 3,P2,P2,3:a,P211,P211,"P 2x",PMN$P2A000,"Added by S.G."
 3,P2,P2,3:b,P121,P121,"P 2y",PMN$P2B000,
 3,P2,P2,3:c,P112,P112,"P 2",PMN$P2C000,
+4,P21,P21,4,P1211,P1211,"P 2yb",PMN$P2B060,"Adding the default setting (S.G.)"
 4,P21,P21,4:a,P2111,P2111,"P 2xa",PMN$P2A600,"Added by S.G."
 4,P21,P21,4:b,P1211,P1211,"P 2yb",PMN$P2B060,
 4,P21,P21,4:c,P1121,P1121,"P 2c",PMN$P2C006,
+5,C2,C2,5,C121,C121,"C 2y",CMN$P2B000,"Adding the default setting (S.G.)"
 5,C2,C2,5:a1,B211,B211,"B 2x",BMN$P2A000,"Shmueli symbol added by S.G."
 5,C2,C2,5:a2,C211,C211,"C 2x",CMN$P2A000,"Shmueli symbol added by S.G."
 5,C2,C2,5:a3,I211,I211,"I 2x",IMN$P2A000,"Shmueli symbol added by S.G."
@@ -26,9 +29,11 @@
 5,C2,C2,5:c1,A112,A112,"A 2",AMN$P2C000,
 5,C2,C2,5:c2,B112,B112,"B 2",BMN$P2C000,
 5,C2,C2,5:c3,I112,I112,"I 2",IMN$P2C000,
+6,Pm,Pm,6,P1m1,P1m1,"P -2y",PMN$I2B000,"Adding the default setting (S.G.)"
 6,Pm,Pm,6:a,Pm11,Pm11,"P -2x",PMN$I2A000,"Shmueli symbol added by S.G."
 6,Pm,Pm,6:b,P1m1,P1m1,"P -2y",PMN$I2B000,
 6,Pm,Pm,6:c,P11m,P11m,"P -2",PMN$I2C000,
+7,Pc,Pc,7,P1c1,P1c1,"P -2yc",PMN$I2B006,"Adding the default setting (S.G.)"
 7,Pc,Pc,7:a1,Pb11,Pb11,"P -2xb",PMN$I2A060,"Shmueli symbol added by S.G."
 7,Pc,Pc,7:a2,Pn11,Pn11,"P -2xbc",PMN$I2A066,"Shmueli symbol added by S.G."
 7,Pc,Pc,7:a3,Pc11,Pc11,"P -2xc",PMN$I2A006,"Shmueli symbol added by S.G."
@@ -38,6 +43,7 @@
 7,Pc,Pc,7:c1,P11a,P11a,"P -2a",PMN$I2C600,
 7,Pc,Pc,7:c2,P11n,P11n,"P -2ab",PMN$I2C660,
 7,Pc,Pc,7:c3,P11b,P11b,"P -2b",PMN$I2C060,
+8,Cm,Cm,8,C1m1,C1m1,"C -2y",CMN$I2B000,"Adding the default setting (S.G.)"
 8,Cm,Cm,8:a1,Bm11,Bm11,"B -2x",BMN$I2A000,"Shmueli symbol added by S.G."
 8,Cm,Cm,8:a2,Cm11,Cm11,"C -2x",CMN$I2A000,"Shmueli symbol added by S.G."
 8,Cm,Cm,8:a3,Im11,Im11,"I -2x",IMN$I2A000,"Shmueli symbol added by S.G."
@@ -47,6 +53,7 @@
 8,Cm,Cm,8:c1,A11m,A11m,"A -2",AMN$I2C000,
 8,Cm,Cm,8:c2,B11m,B11m,"B -2",BMN$I2C000,
 8,Cm,Cm,8:c3,I11m,I11m,"I -2",IMN$I2C000,
+9,Cc,Cc,9,C1c1,C1c1,"C -2yc",CMN$I2B006,"Adding the default setting (S.G.)"
 9,Cc,Cc,9:-a1,Cc11,Cc11,"C -2xc",CMN$I2A006,"Shmueli symbol added by S.G."
 9,Cc,Cc,9:-a2,Bn11,Bn11,"B -2xab",BMN$I2A660,"Shmueli symbol added by S.G."
 9,Cc,Cc,9:-a3,Ib11,Ib11,"I -2xb",IMN$I2A060,"Shmueli symbol added by S.G."
@@ -65,12 +72,15 @@
 9,Cc,Cc,9:c1,A11a,A11a,"A -2a",AMN$I2C600,
 9,Cc,Cc,9:c2,B11n,B11n,"B -2ab",BMN$I2C660,
 9,Cc,Cc,9:c3,I11b,I11b,"I -2b",IMN$I2C060,
+10,P2/m,P2/m,10,P12/m1,P12/m1,"-P 2y",PMC$I1A000$P2B000,"Adding the default setting (S.G.)"
 10,P2/m,P2/m,10:a,P2/m11,P2/m11,"-P 2x",PMC$I1A000$P2A000,"Shmueli symbol added by S.G."
 10,P2/m,P2/m,10:b,P12/m1,P12/m1,"-P 2y",PMC$I1A000$P2B000,
 10,P2/m,P2/m,10:c,P112/m,P112/m,"-P 2",PMC$I1A000$P2C000,
+11,P21/m,P21/m,11,P121/m1,P121/m1,"-P 2yb",PMC$I1A000$P2B060,"Adding the default setting (S.G.)"
 11,P21/m,P21/m,11:a,P21/m11,P21/m11,"-P 2xa",PMC$I1A000$P2A600,"Shmueli symbol added by S.G."
 11,P21/m,P21/m,11:b,P121/m1,P121/m1,"-P 2yb",PMC$I1A000$P2B060,
 11,P21/m,P21/m,11:c,P1121/m,P1121/m,"-P 2c",PMC$I1A000$P2C006,
+12,C2/m,C2/m,12,C12/m1,C12/m1,"-C 2y",CMC$I1A000$P2B000,"Adding the default setting (S.G.)"
 12,C2/m,C2/m,12:a1,B2/m11,B2/m11,"-B 2x",BMC$I1A000$P2A000,"Shmueli symbol added by S.G."
 12,C2/m,C2/m,12:a2,C2/m11,C2/m11,"-C 2x",CMC$I1A000$P2A000,"Shmueli symbol added by S.G."
 12,C2/m,C2/m,12:a3,I2/m11,I2/m11,"-I 2x",IMC$I1A000$P2A000,"Shmueli symbol added by S.G."
@@ -80,6 +90,7 @@
 12,C2/m,C2/m,12:c1,A112/m,A112/m,"-A 2",AMC$I1A000$P2C000,
 12,C2/m,C2/m,12:c2,B112/m,B112/m,"-B 2",BMC$I1A000$P2C000,
 12,C2/m,C2/m,12:c3,I112/m,I112/m,"-I 2",IMC$I1A000$P2C000,
+13,P2/c,P2/c,13,P12/c1,P12/c1,"-P 2yc",PMC$I1A000$P2B006,"Adding the default setting (S.G.)"
 13,P2/c,P2/c,13:a1,P2/b11,P2/b11,"-P 2xb",PMC$I1A000$P2A060,"Shmueli symbol added by S.G."
 13,P2/c,P2/c,13:a2,P2/n11,P2/n11,"-P 2xbc",PMC$I1A000$P2A066,"Shmueli symbol added by S.G."
 13,P2/c,P2/c,13:a3,P2/c11,P2/c11,"-P 2xc",PMC$I1A000$P2A006,"Shmueli symbol added by S.G."
@@ -89,6 +100,7 @@
 13,P2/c,P2/c,13:c1,P112/a,P112/a,"-P 2a",PMC$I1A000$P2C600,
 13,P2/c,P2/c,13:c2,P112/n,P112/n,"-P 2ab",PMC$I1A000$P2C660,
 13,P2/c,P2/c,13:c3,P112/b,P112/b,"-P 2b",PMC$I1A000$P2C060,
+14,P21/c,P21/c,14,P121/c1,P121/c1,"-P 2ybc",PMC$I1A000$P2B066,"Adding the default setting (S.G.)"
 14,P21/c,P21/c,14:a1,P21/b11,P21/b11,"-P 2xab",PMC$I1A000$P2A660,"Shmueli symbol added by S.G."
 14,P21/c,P21/c,14:a2,P21/n11,P21/n11,"-P 2xn",PMC$I1A000$P2A666,"Shmueli symbol added by S.G."
 14,P21/c,P21/c,14:a3,P21/c11,P21/c11,"-P 2xac",PMC$I1A000$P2A606,"Shmueli symbol added by S.G."
@@ -98,6 +110,7 @@
 14,P21/c,P21/c,14:c1,P1121/a,P1121/a,"-P 2ac",PMC$I1A000$P2C606,
 14,P21/c,P21/c,14:c2,P1121/n,P1121/n,"-P 2n",PMC$I1A000$P2C666,
 14,P21/c,P21/c,14:c3,P1121/b,P1121/b,"-P 2bc",PMC$I1A000$P2C066,
+15,C1/c,C1/c,15,C12/c1,C12/c1,"-C 2yc",CMC$I1A000$P2B006,"Adding the default setting (S.G.)"
 15,C1/c,C1/c,15:-a1,C2/c11,C2/c11,"-C 2xc",CMC$I1A000$P2A006,"Shmueli symbol added by S.G."
 15,C1/c,C1/c,15:-a2,B2/n11,B2/n11,"-B 2xab",BMC$I1A000$P2A660,"Shmueli symbol added by S.G."
 15,C1/c,C1/c,15:-a3,I2/b11,I2/b11,"-I 2xb",IMC$I1A000$P2A060,"Shmueli symbol added by S.G."
