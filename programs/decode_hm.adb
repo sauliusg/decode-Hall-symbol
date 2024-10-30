@@ -209,6 +209,8 @@ procedure Decode_HM is
    
    pragma Inline (Inc);
    
+   HM_SYMBOL_NOT_FOUND : exception;
+   
    procedure Lookup_H_M_Symbol_Rotations
      (
       Symbol : in String;
@@ -248,9 +250,13 @@ procedure Decode_HM is
                   N_Rotations := Matrices'Length;
                   Rotations (1 .. N_Rotations) := Matrices;
                end;
-               exit;
+               return;
             end if;
          end loop;
+         
+         raise HM_SYMBOL_NOT_FOUND with
+           "Hermann-Mauguin symbol '" & Symbol & "' " &
+           "was not found in internal tables";
       end;
    end;
    
