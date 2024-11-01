@@ -70,8 +70,6 @@ begin
             Put_Line (Standard_Error, Argument (I));
          end if;
          
-         -- decoding of the symbols and printing out the symmetry
-         --  operations goes here:
          declare
             Symmetry_Operators : Symmetry_Operator_Array :=
               Decode_Shmueli_Symbol (Argument (I));
