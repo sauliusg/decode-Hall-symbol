@@ -1,5 +1,9 @@
 decode-Hall-symbol (unreleased)
 
+  * ...
+
+decode-Hall-symbol (0.1.2)
+
   * Added:
     - program 'decode_hm':
         - Adding default settings for monoclinic groups;
