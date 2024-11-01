@@ -1,0 +1,2 @@
+
+raised CHANGE_OF_BASIS.WRONG_CHANGE_OF_BASIS : the change of basis operator may contain either only the "abc" characters or only the "xyz" characters, but "(a-b,a+b,z)" contains both

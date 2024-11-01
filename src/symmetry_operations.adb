@@ -145,6 +145,27 @@ package body Symmetry_Operations is
       return Inv;
    end Invert;
    
+   type Float_Matrix is array (Integer range <>, Integer range <>) of Float;
+   
+   function Transpose (A : Symmetry_Operator) return Symmetry_Operator is
+      R : Symmetry_Operator;
+   begin
+      -- Transpose the rotation part:
+      for I in 1 .. 3 loop
+         for J in 1 .. 3 loop
+            R (I, J) := A(J, I);
+         end loop;
+      end loop;
+      -- Copy the rest:
+      for I in 1 .. 3 loop
+         R(I, 4) := A (I, 4);
+         R(4, I) := A (4, I);
+      end loop;
+      -- The (4, 4) elemet is always the same:
+      R (4, 4) := 1.0;
+      return R;
+   end Transpose;
+   
    function "*" (M1, M2 : Symmetry_Operator) return Symmetry_Operator is
       M : Symmetry_Operator;
    begin
@@ -212,13 +233,6 @@ package body Symmetry_Operations is
         Float (T.Numerator) / Float (T.Denominator);
       return S;
    end To_Symmetry_Operator;
-   
-   procedure Skip_Spaces (S : in String; Pos : in out Integer ) is
-   begin
-      while Pos <= S'Last and then S (Pos) = ' ' loop
-         Pos := Pos + 1;
-      end loop;
-   end;
    
    procedure Decode_Centering_Symbol
      (

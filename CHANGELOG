@@ -1,6 +1,10 @@
 decode-Hall-symbol (unreleased)
 
-  * ...
+  * Changed:
+    - programs 'decode_hall', 'decode_hm':
+      - accepting both inverese and direct change-of-basis operators
+        (i.e. both "abc"-containing, like "(a-b,a+b,c)", and "xyz"
+        containing, like "(x-y,x+y,z)").
 
 decode-Hall-symbol (0.1.2)
 

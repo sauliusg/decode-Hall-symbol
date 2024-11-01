@@ -7,7 +7,10 @@ with Ada.Environment_Variables; use Ada.Environment_Variables;
 with Ada.Strings.Fixed;         use Ada.Strings.Fixed;
 with Ada.Strings.Maps;          use Ada.Strings.Maps;
 
+with Parser_Tools;              use Parser_Tools;
+
 with Symmetry_Operations;       use Symmetry_Operations;
+with Change_Of_Basis;           use Change_Of_Basis;
 with HM_Symbols;                use HM_Symbols;
 with Shmueli_Symbol_Parser;     use Shmueli_Symbol_Parser;
 
@@ -260,251 +263,7 @@ procedure Decode_HM is
       end;
    end;
    
-   
-   subtype Character_Set is Ada.Strings.Maps.Character_Set;
-   
-   procedure Expect (
-                     Symbol : in String;
-                     Pos : in out Integer;
-                     Ch_Set : in Character_Set
-                    ) 
-   is
-   begin
-      Skip_Spaces (Symbol, Pos);
-      if Pos <= Symbol'Last then
-         if not Is_In( Symbol (Pos), Ch_Set) then
-            raise UNEXPECTED_SYMBOL with
-              "symbol " & Character'Image (Symbol (Pos)) & " " &
-              "is not expected at position" & Integer'Image (Pos) &
-              " in """ & Symbol & """" &
-              ", expecting one of """ &
-              To_Sequence (Ch_Set) & """";
-         end if;
-      else
-         raise UNEXPECTED_SYMBOL with
-           "unexpected end-of-string";
-      end if;
-   end Expect;
-   
-   procedure Skip (
-                   Symbol : in String;
-                   Pos : in out Integer;
-                   Ch_Set : in Character_Set
-                  )
-   is
-   begin
-      Expect (Symbol, Pos, Ch_Set);
-      while Pos <= Symbol'Length and then Is_In (Symbol (Pos), Ch_Set) loop
-         Pos := Pos + 1;
-      end loop;
-   end;
-
    ----------------------------------------------------------------------------
-   -- A simple recursive descent parser for the change-of-basis operator:
-   
-   -- parse a fractional number (e.g. "2/3") and return its value as Float:
-   procedure Inc (Result : in out Float; D : in Float) is
-   begin
-      Result := Result + D;
-   end;
-   
-   function Get_Number (Symbol : in String; Pos : in out Integer) return Float
-   is
-      Numerator : Natural := 1;
-      Denominator : Natural := 1;
-      Final_Pos : Integer := Pos;
-   begin
-      while Final_Pos <= Symbol'Last and then 
-        Symbol (Final_Pos) in '0'..'9'
-      loop
-         Final_Pos := Final_Pos + 1;
-      end loop;
-      Numerator := Integer'Value (Symbol (Pos..Final_Pos-1));
-      Skip_Spaces (Symbol, Final_Pos);
-      Pos := Final_Pos;
-      if Pos <= Symbol'Last and then Symbol (Pos) = '/' then
-         Pos := Pos + 1;
-         Skip_Spaces (Symbol, Pos);
-         Final_Pos := Pos;
-         while Final_Pos <= Symbol'Last and then 
-           Symbol (Final_Pos) in '0'..'9'
-         loop
-            Final_Pos := Final_Pos + 1;
-         end loop;
-         Denominator := Integer'Value (Symbol (Pos..Final_Pos-1));
-         Pos := Final_Pos;
-      end if;
-      return Float (Numerator) / Float (Denominator);
-   end Get_Number;
-   
-   -- parse the '+2*a' factor:
-   procedure Parse_Factor
-     (
-      Symbol : in String;
-      Pos : in out Integer;
-      Change_Of_Basis : out Symmetry_Operator;
-      Row : in Integer;
-      Factor : in Float
-     ) is
-   begin
-      Skip_Spaces (Symbol, Pos);
-      Expect (Symbol, Pos, To_Set ("abc"));
-      case Symbol (Pos) is
-         when 'a' => Change_Of_Basis (Row, 1) := Factor;
-         when 'b' => Change_Of_Basis (Row, 2) := Factor;
-         when 'c' => Change_Of_Basis (Row, 3) := Factor;
-         when others =>
-            raise UNEXPECTED_SYMBOL with
-              "unexpected character " & Character'Image (Symbol (Pos));
-      end case;
-      Pos := Pos + 1;
-   end Parse_Factor;
-   
-   -- Parse the "+a", "b", "1/4" parts in the "+a+2*b+1/4:
-   procedure Parse_Term
-     (
-      Symbol : in String;
-      Pos : in out Integer;
-      Change_Of_Basis : out Symmetry_Operator;
-      Row : in Integer
-     ) is
-      Factor : Float := 1.0;
-   begin
-      Skip_Spaces (Symbol, Pos);
-      
-      if Pos <= Symbol'Last then
-         if Symbol (Pos) = '+' then
-            Pos := Pos + 1;
-         elsif Symbol (Pos) = '-' then
-            Factor := -1.0;
-            Pos := Pos + 1;
-         end if;
-      end if;
-      
-      Expect (Symbol, Pos, To_Set ("0123456789abc"));
-      
-      if Pos <= Symbol'Last then
-         case Symbol (Pos) is
-            when 'a' => 
-               Change_Of_Basis (Row, 1) := Factor;
-               Pos := Pos + 1;
-            when 'b' => 
-               Change_Of_Basis (Row, 2) := Factor;
-               Pos := Pos + 1;
-            when 'c' => 
-               Change_Of_Basis (Row, 3) := Factor;
-               Pos := Pos + 1;
-            when '0'..'9' =>
-               Factor := Factor * Get_Number (Symbol, Pos);
-               Skip_Spaces (Symbol, Pos);
-               if Pos <= Symbol'Length and then Symbol (Pos) = '*' then
-                  Pos := Pos + 1;
-                  Parse_Factor (Symbol, Pos, Change_Of_Basis, Row, Factor);
-               else
-                  Inc (Change_Of_Basis (Row, 4), Factor);
-               end if;
-            when others =>
-               raise UNEXPECTED_SYMBOL with
-                 "unexpected symbol " & Character'Image (Symbol (Pos)) &
-                 " in the symop """ & Symbol & """";
-         end case;
-      end if;
-   end Parse_Term;
-   
-   -- parse the "2*b+1/4" part in the "2*b+1/4,c,a-1/3" operator:
-   procedure Parse_Symmetry_Operator_Component
-     (
-      Symbol : in String;
-      Pos : in out Integer;
-      Change_Of_Basis : out Symmetry_Operator;
-      Row : Integer
-     ) is
-   begin
-      loop
-         Parse_Term (Symbol, Pos, Change_Of_Basis, Row);
-         Skip_Spaces (Symbol, Pos);
-         if Pos > Symbol'Length or else 
-           Is_In (Symbol (Pos), To_Set (",)")) then
-            exit;
-         end if;
-      end loop;
-   end Parse_Symmetry_Operator_Component;
-   
-   procedure Interpret_Change_Of_Basis_Matrix
-      (
-       Symbol : in String;
-       Pos : in out Integer;
-       Change_Of_Basis : out Symmetry_Operator
-      )
-   is
-   begin
-      Change_Of_Basis := Zero_Matrix;
-      Change_Of_Basis (4,4) := 1.0;
-      Skip (Symbol, Pos, To_Set('('));
-      Parse_Symmetry_Operator_Component (Symbol, Pos, Change_Of_Basis, 1);
-      Skip (Symbol, Pos, To_Set(','));
-      Parse_Symmetry_Operator_Component (Symbol, Pos, Change_Of_Basis, 2);
-      Skip (Symbol, Pos, To_Set(','));
-      Parse_Symmetry_Operator_Component (Symbol, Pos, Change_Of_Basis, 3);
-      Skip (Symbol, Pos, To_Set(')'));
-   end Interpret_Change_Of_Basis_Matrix;
-   
-   procedure Get_Shift_Of_Origin (
-                                  Symbol : in String;
-                                  Pos : in out Integer;
-                                  Change_Of_Basis : out Symmetry_Operator
-                                 )
-   is
-      Shift : Integer;
-      Sign : Integer := 1;
-      S : Symmetry_Operator := Unity_Matrix;
-   begin
-      Skip_Spaces (Symbol, Pos);
-      
-      if Pos <= Symbol'Last and then Symbol (Pos) = '(' then
-         Pos := Pos + 1;
-         
-         for I in 1 .. 3 loop
-            Expect (Symbol, Pos, To_Set ("-0123456789"));
-            if Symbol (Pos) = '-' then
-               Sign := -1;
-               Pos := Pos + 1;
-            end if;
-            Get (Symbol (Pos..Symbol'Last), Shift, Pos);
-            Pos := Pos + 1;
-            S (I,4) := Float (Sign * Shift) / 12.0;
-         end loop;
-         
-         Expect (Symbol, Pos, To_Set (')'));         
-      end if;
-      Change_Of_Basis := S;
-   end Get_Shift_Of_Origin;
-   
-   function Has_Only_Characters (S : String; CS : Character_Set) return Boolean
-   is
-   begin
-      for C of S loop
-         if not Is_In (C, CS) then
-            return False;
-         end if;
-      end loop;
-      return True;
-   end;
-   
-   procedure Get_Change_Of_Basis (
-                                  Symbol : in String;
-                                  Pos : in out Integer;
-                                  Change_Of_Basis : out Symmetry_Operator
-                                 )
-   is
-   begin
-      if Has_Only_Characters (Symbol (Pos..Symbol'Last),
-                              To_Set ("-( 0123456789)")) then
-         Get_Shift_Of_Origin (Symbol, Pos, Change_Of_Basis);
-      else
-         Interpret_Change_Of_Basis_Matrix (Symbol, Pos, Change_Of_Basis);
-      end if;
-   end;
    
    function As_String (S : Symmetry_Operator) return String;
 
@@ -541,27 +300,6 @@ procedure Decode_HM is
       N_Operators := M;
    end Build_Group;
    
-   type Float_Matrix is array (Integer range <>, Integer range <>) of Float;
-   
-   function Transpose (A : Symmetry_Operator) return Symmetry_Operator is
-      R : Symmetry_Operator;
-   begin
-      -- Transpose the rotation part:
-      for I in 1 .. 3 loop
-         for J in 1 .. 3 loop
-            R (I, J) := A(J, I);
-         end loop;
-      end loop;
-      -- Copy the rest:
-      for I in 1 .. 3 loop
-         R(I, 4) := A (I, 4);
-         R(4, I) := A (4, I);
-      end loop;
-      -- The (4, 4) elemet is always the same:
-      R (4, 4) := 1.0;
-      return R;
-   end;
-   
    function Decode_Hermann_Mauguin (Symbol : in String) 
                                    return Symmetry_Operator_Array is
       
@@ -590,7 +328,7 @@ procedure Decode_HM is
       
       if Change_Of_Basis /= Unity_Matrix then
          declare
-            V : Symmetry_Operator := Invert (Transpose (Change_Of_Basis));
+            V : Symmetry_Operator := Change_Of_Basis;
             V_Inv : Symmetry_Operator;
             New_Symmetry_Operators : Symmetry_Operator_Array (1 .. N_Symmetry_Operators);
             N_New_Operators : Positive := 1;
@@ -664,10 +402,9 @@ procedure Decode_HM is
             (0.0, 0.0, 1.0, 1.0)
            );
          
-         C_O_B_Rotation : Symmetry_Operator :=
-             Transpose (Invert (Change_Of_Basis));
+         C_O_B_Rotation : Symmetry_Operator := Change_Of_Basis;
          
-      begin
+      begin -- declare
          for I in 1..3 loop
             C_O_B_Rotation (I,4) := 0.0;
          end loop;
@@ -725,9 +462,9 @@ procedure Decode_HM is
          New_Line (Standard_Error);
          
          Put_Line (Standard_Error, "Change of basis:");
-         Put (Standard_Error, Transpose (Change_Of_Basis));
+         Put (Standard_Error, Change_Of_Basis);
          Put_Line (Standard_Error, "Inverse Change of basis:");
-         Put (Standard_Error, Invert (Transpose (Change_Of_Basis)));
+         Put (Standard_Error, Invert (Change_Of_Basis));
          New_Line (Standard_Error);
       end if;
       

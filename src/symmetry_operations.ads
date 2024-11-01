@@ -1,4 +1,6 @@
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO;  use Ada.Text_IO;
+
+with Parser_Tools; use Parser_Tools;
 
 package Symmetry_Operations is
    
@@ -6,7 +8,6 @@ package Symmetry_Operations is
    UNKNOWN_ROTATION : exception;
    UNKNOWN_CENTERING : exception;
    UNKNOWN_TRANSLATION : exception;
-   UNEXPECTED_SYMBOL : exception;
    
    function Eps return Float;
    
@@ -29,6 +30,8 @@ package Symmetry_Operations is
       
    function Invert (S : Symmetry_Operator) return Symmetry_Operator;
    
+   function Transpose (A : Symmetry_Operator) return Symmetry_Operator;
+      
    function "*" (M1, M2 : Symmetry_Operator) return Symmetry_Operator;
    
    type Symmetry_Operator_Array is
@@ -136,8 +139,6 @@ package Symmetry_Operations is
                                   Axis_Direction : Known_Axis_Direction)
                                  return Symmetry_Operator;
    
-   procedure Skip_Spaces (S : in String; Pos : in out Integer );
-
    procedure Decode_Centering_Symbol
      (
       Symbol : in String;
