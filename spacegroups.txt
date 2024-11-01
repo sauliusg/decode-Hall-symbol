@@ -1,6 +1,0 @@
-ITC A, Table 8.3.5.1: Sequence of generators for the crystal classes. p737.
-
-ITC B, The two-character symbols for the matrices of rotation, which
-appear in the explicit space-group symbols in Table A1.4.2.1 (Shmueli
-matrices): p108.
-
