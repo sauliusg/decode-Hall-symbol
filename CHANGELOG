@@ -1,6 +1,9 @@
 decode-Hall-symbol (unreleased)
 
-  * ...
+  * Changed:
+    - Moving Hall and H-M symbol decoding routines to separate
+      packages so that they can be reused outside of the provided
+      programs.
 
 decode-Hall-symbol (0.1.3)
 
