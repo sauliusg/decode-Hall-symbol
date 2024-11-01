@@ -1,6 +1,17 @@
 decode-Hall-symbol (unreleased)
 
-  * ...
+  * Added:
+    - program 'decode_hm':
+        - Adding default settings for monoclinic groups;
+        - Adding short H-M symbols with default settings for
+          monoclinic groups.
+
+  * Fixed:
+    - program 'decode_hm':
+        - BUG FIX: correcting application of the change-of-basis
+          matrix to the centering operators;
+        - BUG FIX: making sure that duplicate operators are not
+          inserted after the change-of-basis;
 
 decode-Hall-symbol (0.1.1)
 
