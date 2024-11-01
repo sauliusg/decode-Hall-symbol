@@ -396,10 +396,10 @@ package body Symmetry_Operations is
    procedure Build_Group
      (
       Operators : in out Symmetry_Operator_Array;
-      N_Operators : in out Positive
+      N_Operators : in out Natural
      )
    is
-      N, M : Positive := N_Operators;
+      N, M : Natural := N_Operators;
       New_Operator : Symmetry_Operator;
    begin
       loop

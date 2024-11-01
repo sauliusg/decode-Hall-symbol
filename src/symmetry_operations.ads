@@ -160,7 +160,7 @@ package Symmetry_Operations is
    procedure Build_Group
      (
       Operators : in out Symmetry_Operator_Array;
-      N_Operators : in out Positive
+      N_Operators : in out Natural
      );
    
 end Symmetry_Operations;
