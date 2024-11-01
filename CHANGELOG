@@ -1,5 +1,9 @@
 decode-Hall-symbol (unreleased)
 
+  * ...
+
+decode-Hall-symbol (0.1.3)
+
   * Changed:
     - programs 'decode_hall', 'decode_hm':
       - accepting both inverese and direct change-of-basis operators
