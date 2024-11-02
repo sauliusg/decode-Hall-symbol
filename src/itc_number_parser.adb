@@ -6,7 +6,31 @@ with ITC_Number_Tables;     use ITC_Number_Tables;
 with Shmueli_Symbol_Parser; use Shmueli_Symbol_Parser;
 
 package body ITC_Number_Parser is   
-
+   
+   function Lookup_ITC_Number_And_Setting (S : String; Pos : in out Positive)
+                                          return Shmueli_Symbol_Type is
+      ITC_NC : ITC_Number_And_Cell_Symbol_Type;
+      Start : Positive := Pos;      
+   begin
+      while Pos <= S'Last and then S (Pos) /= ' ' loop
+         Pos := Pos + 1;
+      end loop;
+      
+      ITC_NC := +S(Start .. Pos - 1);
+      
+      for I in ITC_Number_And_Cell_Symbol_Table'Range loop
+         if ITC_NC = 
+           ITC_Number_And_Cell_Symbol_Table (I).
+           ITC_Number_And_Cell_Symbol then
+            return ITC_Number_And_Cell_Symbol_Table (I).Shmueli_Symbol;
+         end if;
+      end loop;
+      
+      raise ITC_NUMBER_SYMBOL_NOT_FOUND with
+        "ITC symbol """ & S(Start .. Pos - 1) & """ could not be " &
+        "found in the lookup tables";
+   end;
+   
    function Lookup_ITC_Number (SG_Number : in Space_Group_Number_Type)
                               return Symmetry_Operator_Array is
    begin
@@ -27,10 +51,11 @@ package body ITC_Number_Parser is
       
       N_Symmetry_Operators : Positive := 1;
       
+      Semicolon_Index : Natural := Index (ITC_Number_And_Cell, ":");
    begin
       Symmetry_Operators (1) := Unity_Matrix;
       
-      if Index (":", ITC_Number_And_Cell) = 0 then
+      if Semicolon_Index = 0 then
          declare
             SG_Number : Space_Group_Number_Type;
          begin
@@ -45,6 +70,41 @@ package body ITC_Number_Parser is
                N_Symmetry_Operators := N_Default_Operators;
             end;
          end;
+      else
+         if Semicolon_Index < ITC_Number_And_Cell'Length and then
+           ITC_Number_And_Cell (Semicolon_Index + 1) = '1' and then
+           (Semicolon_Index = ITC_Number_And_Cell'Length - 1 or else
+              not (ITC_Number_And_Cell (Semicolon_Index + 2) in '0' .. '9'))
+         then
+            declare
+               SG_Number : Integer;
+               Start : Integer := ITC_Number_And_Cell'First;
+            begin
+               Get (ITC_Number_And_Cell (Start .. Semicolon_Index - 1), 
+                    SG_Number, Pos);
+               declare
+                  Default_Symmetry_Operators : Symmetry_Operator_Array :=
+                    Lookup_ITC_Number (SG_Number);
+                  N_Default_Operators : Positive := 
+                    Default_Symmetry_Operators'Last;
+               begin
+                  Symmetry_Operators (1 .. N_Default_Operators) :=
+                    Default_Symmetry_Operators;
+                  N_Symmetry_Operators := N_Default_Operators;
+               end;
+            end;
+         else
+            declare
+               SH : Shmueli_Symbol_Type :=
+                 Lookup_ITC_Number_And_Setting (ITC_Number_And_Cell, Pos);
+               
+               Matrices : Symmetry_Operator_Array :=
+                 Decode_Shmueli_Symbol (String (SH));
+            begin
+               N_Symmetry_Operators := Matrices'Length;
+               Symmetry_Operators (1 .. Matrices'Length) := Matrices;
+            end;
+         end if;
       end if;
       
       -- Reconstruct all symmetry operators:

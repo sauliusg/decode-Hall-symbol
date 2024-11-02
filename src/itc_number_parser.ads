@@ -2,6 +2,8 @@ with Symmetry_Operations; use Symmetry_Operations;
 
 package ITC_Number_Parser is
    
+   ITC_NUMBER_SYMBOL_NOT_FOUND : exception;
+
    Debug_Print_Matrices : Boolean := False;
    
    subtype Space_Group_Number_Type is Positive range 1 .. 230;
