@@ -45,6 +45,7 @@ begin
          Put_Line ("  " & Command_Name & " 68");
          Put_Line ("  " & Command_Name & " 68:2");
          Put_Line ("  " & Command_Name & " '68:2 (c,a,b)'");
+         Put_Line ("  " & Command_Name & " '160:R'");         
          Put_Line ("  " & Command_Name & " --help");
       elsif Index ("--version", Argument (I)) = 1 then
          Put (Command_Name & " " & Project_Version.Version);
