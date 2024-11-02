@@ -13,6 +13,12 @@ package body ITC_Number_Parser is
       ITC_NC : ITC_Number_And_Cell_Symbol_Type;
       Start : Positive := Pos;      
    begin
+      while Start <= S'Last and then S (Start) = ' ' loop
+         Start := Start + 1;
+      end loop;
+      
+      Pos := Start;
+      
       while Pos <= S'Last and then S (Pos) /= ' ' loop
          Pos := Pos + 1;
       end loop;
@@ -43,7 +49,7 @@ package body ITC_Number_Parser is
                               return Symmetry_Operator_Array
    is
       -- current position in the string 'ITC_Number_And_Cell':
-      Pos : Positive := 1;
+      Pos : Positive := ITC_Number_And_Cell'First;
       
       Max_Symmetry_Operators : constant Integer := 192;
       
@@ -83,7 +89,7 @@ package body ITC_Number_Parser is
            ITC_Number_And_Cell (Semicolon_Index + 1) = '1' and then
            (Semicolon_Index = ITC_Number_And_Cell'Length - 1 or else
               not (ITC_Number_And_Cell (Semicolon_Index + 2) in '0' .. '9'))
-         then
+         then         
             declare
                SG_Number : Integer;
                Start : Integer := ITC_Number_And_Cell'First;
