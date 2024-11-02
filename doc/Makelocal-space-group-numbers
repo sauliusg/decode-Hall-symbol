@@ -17,10 +17,10 @@ SPACE_GROUP_SETTINGS_TSV = sgnumber-with-setting-shmueli-symbol.tsv
 all: ${SPACE_GROUP_NUMBERS_TSV} ${SPACE_GROUP_SETTINGS_TSV}
 
 ${SPACE_GROUP_NUMBERS_TSV}: ${INPUT_SPACE_GROUP_LIST}
-	date +"# %F %T %Z"> $@
+	date +"# %F %T %Z" > $@
 	echo "SGNo\tShmueli" >> $@
 	awk -F'\t' \
-		'NR > 1 && \
+		'NR > 2 && \
 		($$4 !~ /:/ || $$4 ~ /^[0-9]+:[1H] *$$/) && \
 		$$4 != "1:1" && \
 		$$4 != "2:1" { \
@@ -29,10 +29,10 @@ ${SPACE_GROUP_NUMBERS_TSV}: ${INPUT_SPACE_GROUP_LIST}
 	}' $< | uniq >> $@
 
 ${SPACE_GROUP_SETTINGS_TSV}: ${INPUT_SPACE_GROUP_LIST}
-	date +"# %F %T %Z"> $@
+	date +"# %F %T %Z" > $@
 	echo "N:C\tShmueli" >> $@
 	awk -F'\t' \
-		'NR > 1 && \
+		'NR > 2 && \
 		$$4 ~ /^[0-9]+:[2-9HR]$$/ { \
 			print $$4"\t"$$(NF-1) \
 	}' $< >> $@

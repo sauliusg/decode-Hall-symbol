@@ -21,10 +21,12 @@ display:
 	@echo ${TARGET_TSV}
 
 %.csv: %.ods
-	ods2csv $< > $@
+	date +"# %F %T %Z" | perl -pe 's/\n/\r\n/' > $@
+	ods2csv $< >> $@
 
 %.tsv: %.csv
-	csv2tab $< > $@
+	date +"# %F %T %Z" > $@
+	csv2tab $< >> $@
 
 clean:
 	rm -f ${SOURCE_ODS:%.ods=%.csv}
