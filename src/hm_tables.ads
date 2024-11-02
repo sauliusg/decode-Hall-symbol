@@ -1,4 +1,4 @@
-package HM_Symbols is
+package HM_Tables is
    
    type HM_Symbol_Type is new String (1 .. 10);
    type Shmueli_Symbol_Type is new String (1 .. 24);
@@ -2373,4 +2373,4 @@ package HM_Symbols is
       )
      );
    
-end HM_Symbols;
+end HM_Tables;

@@ -1,7 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 
 with Change_Of_Basis;           use Change_Of_Basis;
-with HM_Symbols;                use HM_Symbols;
+with HM_Tables;                 use HM_Tables;
 with Shmueli_Symbol_Parser;     use Shmueli_Symbol_Parser;
 
 package body HM_Symbol_Parser is
