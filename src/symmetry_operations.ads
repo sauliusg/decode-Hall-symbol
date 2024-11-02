@@ -157,6 +157,14 @@ package Symmetry_Operations is
      )
      return Boolean;
 
+   procedure Apply_Change_Of_Basis
+     (
+      Symmetry_Operators : in out Symmetry_Operator_Array;
+      N_Symmetry_Operators : in out Positive;
+      Change_Of_Basis : in Symmetry_Operator;
+      Debug_Print_Matrices : Boolean := False
+     );
+      
    procedure Build_Group
      (
       Operators : in out Symmetry_Operator_Array;

@@ -2,6 +2,7 @@ with Ada.Text_IO;           use Ada.Text_IO;
 with Ada.Integer_Text_IO;   use Ada.Integer_Text_IO;
 with Ada.Strings.Fixed;     use Ada.Strings.Fixed;
 
+with Change_Of_Basis;       use Change_Of_Basis;
 with ITC_Number_Tables;     use ITC_Number_Tables;
 with Shmueli_Symbol_Parser; use Shmueli_Symbol_Parser;
 
@@ -50,6 +51,8 @@ package body ITC_Number_Parser is
         Symmetry_Operator_Array (1 .. Max_Symmetry_Operators);
       
       N_Symmetry_Operators : Positive := 1;
+      
+      Change_Of_Basis : Symmetry_Operator;
       
       Semicolon_Index : Natural := Index (ITC_Number_And_Cell, ":");
    begin
@@ -105,7 +108,24 @@ package body ITC_Number_Parser is
                Symmetry_Operators (1 .. Matrices'Length) := Matrices;
             end;
          end if;
+         
+         Pos := Semicolon_Index;
+         while Pos <= ITC_Number_And_Cell'Last and then
+           ITC_Number_And_Cell (Pos) /= ' ' loop
+            Pos := Pos + 1;
+         end loop;
+         
+         Get_Change_Of_Basis (ITC_Number_And_Cell, Pos, Change_Of_Basis);
+         
+         Apply_Change_Of_Basis
+           (
+            Symmetry_Operators,
+            N_Symmetry_Operators,
+            Change_Of_Basis,
+            Debug_Print_Matrices
+           );
       end if;
+      
       
       -- Reconstruct all symmetry operators:
       
