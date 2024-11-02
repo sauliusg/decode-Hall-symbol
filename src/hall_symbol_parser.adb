@@ -669,6 +669,33 @@ package body Hall_Symbol_Parser is
          Change_Of_Basis
         );
       
+      -- Print out all matrices if requested:
+      
+      if Debug_Print_Matrices then
+         Put_Line (Standard_Error, "Inversions:");
+         for I in 1..N_Inversions loop
+            Put (Standard_Error, Inversions (I));
+            New_Line (Standard_Error);
+         end loop;
+         
+         Put_Line (Standard_Error, "Centerings:");
+         for I in 1..N_Centering loop
+            Put (Standard_Error, Centering (I));
+            New_Line (Standard_Error);
+         end loop;
+         
+         Put_Line (Standard_Error, "Rotations:");
+         for I in 1..N_Symmetry_Operators loop
+            Put_Line (Standard_Error, Integer'Image (I));
+            Put (Standard_Error, Symmetry_Operators (I));
+            New_Line (Standard_Error);
+         end loop;
+         
+         Put_Line (Standard_Error, "Change of basis:");
+         Put (Standard_Error, Change_Of_Basis);
+         New_Line (Standard_Error);
+      end if;
+      
       -- Reconstruct all symmetry operators:
       
       Build_Group (Symmetry_Operators, N_Symmetry_Operators);
