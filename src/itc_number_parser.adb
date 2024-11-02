@@ -52,7 +52,7 @@ package body ITC_Number_Parser is
       
       N_Symmetry_Operators : Positive := 1;
       
-      Change_Of_Basis : Symmetry_Operator;
+      Change_Of_Basis : Symmetry_Operator := Unity_Matrix;
       
       Semicolon_Index : Natural := Index (ITC_Number_And_Cell, ":");
    begin
@@ -66,12 +66,17 @@ package body ITC_Number_Parser is
             declare
                Default_Symmetry_Operators : Symmetry_Operator_Array :=
                  Lookup_ITC_Number (SG_Number);
-               N_Default_Operators : Positive := Default_Symmetry_Operators'Last;
+               N_Default_Operators : Positive :=
+                 Default_Symmetry_Operators'Last;
             begin
                Symmetry_Operators (1 .. N_Default_Operators) :=
                  Default_Symmetry_Operators;
                N_Symmetry_Operators := N_Default_Operators;
             end;
+            Pos := Pos + 1;
+            if Pos < ITC_Number_And_Cell'Last then
+               Get_Change_Of_Basis (ITC_Number_And_Cell, Pos, Change_Of_Basis);
+            end if;
          end;
       else
          if Semicolon_Index < ITC_Number_And_Cell'Length and then
@@ -117,15 +122,15 @@ package body ITC_Number_Parser is
          
          Get_Change_Of_Basis (ITC_Number_And_Cell, Pos, Change_Of_Basis);
          
-         Apply_Change_Of_Basis
-           (
-            Symmetry_Operators,
-            N_Symmetry_Operators,
-            Change_Of_Basis,
-            Debug_Print_Matrices
-           );
       end if;
       
+      Apply_Change_Of_Basis
+        (
+         Symmetry_Operators,
+         N_Symmetry_Operators,
+         Change_Of_Basis,
+         Debug_Print_Matrices
+        );
       
       -- Reconstruct all symmetry operators:
       
